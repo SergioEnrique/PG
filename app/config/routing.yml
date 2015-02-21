@@ -1,0 +1,7 @@
+pg_party:
+    resource: "@PGPartyBundle/Resources/config/routing.yml"
+    prefix:   /
+
+app:
+    resource: @AppBundle/Controller/
+    type:     annotation
