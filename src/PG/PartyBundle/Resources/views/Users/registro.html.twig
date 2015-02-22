@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>{%block title%}PartyGift{%endblock%}</title>
+<link href="{{asset('css/style.css')}}" rel="stylesheet" type="text/css">
+<link href="{{asset('css/animate.css')}}" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<script type="text/javascript" src="{{asset('js/jquery.scrollTo-1.4.3.1-min.js')}}"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.1.47/jquery.form-validator.min.js"></script>
+    <script> $.validate(); </script>
+</head>
+<body>
+<center>
+				<div class="header-registro"><img src="{{ asset('img/partygift-logo.png') }}" width="200"/></div>
+				<form action="{{ url('pg_party_registro') }}" method="post" id="registration-form" name="myForm" class="contacto-main">
+				<h3 class="registro">REGISTRO</h3>
+				<label>
+					<input type="text" data-validation="email" value="emailpasadoantes" name="email" placeholder="Correo electrónico" data-validation-error-msg="Por favor pon un correo electrónico real."/>
+				</label><br />
+                <label>
+					<input type="text" placeholder="Nombre" name="nombre" data-validation="required" data-validation-error-msg="Por favor pon tu nombre."/>
+				</label><br />
+                <label>
+					<input type="text" placeholder="Apellido(s)" name="apellido_pat" data-validation="required" data-validation-error-msg="Por favor pon tus apellidos."/>
+				</label><br />
+                
+                 <span class="moneda">Moneda:</span> 
+                 <select name="divisa">
+                 	{# Monedas #}
+                 </select>
+                
+                <label>
+					<input type="password" placeholder="Contraseña (6-20 caracteres)" name="pass_confirmation" maxlength="20" data-validation-length="6-20" data-validation="strength" 
+		 data-validation-strength="2" data-validation-error-msg="Por favor pon una contraseña más fuerte."/>
+				</label><br />
+                <label>
+					<input type="password" placeholder="Confirmar contraseña" name="pass" maxlength="20" data-validation="confirmation" data-validation-error-msg="Las contraseñas no coinciden."/>
+				</label><br />
+				
+				
+				<input type="submit" value="Enviar">
+				 </form>
+		</center>
+<script>
+ 
+  $.validate({
+    modules : 'location, date, security, file',
+    onModulesLoaded : function() {
+      $('#country').suggestCountry();
+    }
+  });
+ 
+  // Restrict presentation length
+  $('#presentation').restrictLength( $('#pres-max-length') );
+ 
+</script>
+</body>
+</html>

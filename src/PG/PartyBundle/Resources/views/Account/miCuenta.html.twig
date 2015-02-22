@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>{%block title%}PartyGift{%endblock%}</title>
+	<link href="{{asset('css/style.css')}}" rel="stylesheet" type="text/css">
+	<link href="{{asset('css/animate.css')}}" rel="stylesheet" type="text/css">
+	<link href="{{asset('css/jquery.modal.css')}}" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+	<script type="text/javascript" src="{{asset('js/jquery-1.9.0.min.js')}}"></script>
+	<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+	<script type="text/javascript" src="{{asset('js/jquery.scrollTo-1.4.3.1-min.js')}}"></script>
+	<script type="text/javascript" src="{{asset('js/jquery.modal.js')}}"></script>
+</head>
+<body class="body-micuenta">
+	<div class="all-wrapper body-micuenta">
+		<header>
+			<div class="max-wrapper">
+				<h1 class="logo">
+					<a href="{{url('pg_party_homepage')}}">
+						<img src="{{asset('img/partygift-logo.png')}}" />
+						<span class="oculto">Party Gift</span>
+					</a>
+				</h1>
+				<div class="salir-cuenta"><a href="">{% trans %}salir{% endtrans %}</a></div>
+				{% include ':plantillasParciales:cuentaBox.html.twig' %}
+			</div>
+			<div class="cuenta-info-top">
+				<div class="max-wrapper">
+					<ul>
+						<li>{% trans %}Bienvenido <span class="rosa-persona bold">Gustavo{% endtrans %} <a href="#mis-datos" rel="modal:open">({% trans %}modificar datos{% endtrans %})</a>
+
+						</li>
+						<li>{% trans %}Saldo{% endtrans %}: <span class="rosa-persona bold">$0.00</span></li>
+						<li><span class="rosa-persona bold show-paypal">{% trans %}retirar{% endtrans %}</span>
+							<div id="login" class="login wow bounceIn retiro-paypal">
+								<form action="#">
+									<input type="text" placeholder="{% trans %}monto{% endtrans %}">
+									<input type="password" placeholder="{% trans %}cuenta de paypal{% endtrans %}">
+									<input type="submit" value="{% trans %}enviar{% endtrans %}">
+								</form>
+							</div>
+						</li>
+						<li><div class="info-ball tooltip" title="{% trans %}Para poder retirar el saldo de tu cuenta, es necesario que tengas una cuenta PayPal (correo electrónico registrado en PayPal). Si no lo tienes, es muy fácil, rápido y seguro, sólo tienes que ingresar a www.PayPal.com o dar click en el ícono del lado derecho y registrarte para vincular tu correo electrónico a tu cuenta PayPal. Recuerda que sólo podrás retirar el saldo de tu cuenta a través de PayPal. Si tienes preguntas, no dudes en contactarnos.{% endtrans %}">?</div> <a href="https://www.paypal.com/mx/cgi-bin/webscr?cmd=_minimal-signup" target="_blank"><img src="{{asset('img/paypal.png')}}" width="90"/></a></li>
+					</ul>
+				</div>
+			</div>
+		</header>
+
+		<div id="mis-datos" class="modal" style="display:none;">
+			<h2>{% trans %}Mis datos{% endtrans %}</h2><br/>
+			<form action="">
+				<label for="">{% trans %}Correo electrónico{% endtrans %}:</label>
+				<input type="text" placeholder="edmond@rombomedia.com.mx"><br/>
+				<label for="">{% trans %}Nombre{% endtrans %}:</label>
+				<input type="text" placeholder="Edmond"><br/>
+				<label for="">{% trans %}Apellidos{% endtrans %}:</label>
+				<input type="text" placeholder="Bojalil"><br/>
+				<label for="">{% trans %}Moneda{% endtrans %}</label>
+				<select name="" id="">
+					{#<?php monedas(); ?>#}
+				</select><br/>
+				<h3>{% trans %}Cambiar contraseña{% endtrans %}</h3><br/>
+				<label for="" class="cambiar-pass">{% trans %}Contraseña actual{% endtrans %}:</label>
+				<input type="password"><br/>
+				<label for="" class="cambiar-pass">{% trans %}Nueva contraseña{% endtrans %}:</label>
+				<input type="password"><br/>
+				<input type="submit" value="{% trans %}guardar cambios{% endtrans %}">
+			</form>
+		</div>
+
+		<div id="nuevo-bucket" class="modal" style="display:none;">
+			<h2>{% trans %}Nuevo bucketgift{% endtrans %}</h2><br/>
+			<form action="">
+				<label for="">{% trans %}Evento{% endtrans %}:</label>
+				<input type="text" placeholder="{% trans %}Evento{% endtrans %}"><br/>
+				<label for="">{% trans %}Fecha{% endtrans %}:</label>
+				<input type="text" class="elegir-fecha" placeholder="{% trans %}Fecha{% endtrans %}"><br/>
+				<input type="submit" value="{% trans %}Agregar{% endtrans %}">
+			</form>
+		</div>
+
+		<div id="nuevo-party" class="modal" style="display:none;">
+			<h2>Nuevo <span class="bolder">party</span>gift</h2><br/>
+			<form action="">
+				<label for="">Nombre del gift:</label>
+				<input type="text" placeholder=""><br/>
+				<label for="" class="label-descripcion">Descripción:</label>
+				<textarea></textarea><br/>
+				<label for="">Moneda</label>
+				<select name="" id="">
+					{#<?php monedas(); ?>#}
+				</select><br/>
+				<label for="">Valor del gift:</label>
+				<input type="text" placeholder="$"><br/>
+
+				<label for="">Número de artículos</label>
+				<select name="" id="">
+					<option value="">1</option>
+				</select><br/>
+				<label for="">¿En cuántas partes quieres dividir este artículo? <div class="info-ball info-modal tooltip" title="Para cada partygift, puedes elegir dividirlo en partes, para permitirles a tus invitados que entre muchos te regalen cosas como la renta del salón o la comida que se va a comprar. Cada uno de tus invitados podrá decir cuánto regalarte sin forzarlo a un monto en específico.">?</div></label>
+				<select name="" id="">
+					<option value="">1</option>
+				</select><br/>
+
+				<input type="submit" value="Agregar">
+			</form>
+		</div>
+
+		<!-- FIN MODALES -->
+		<div class="espacio-header"></div>
+		<div class="cuenta-content">
+			<div class="max-wrapper">
+				<nav class="nav-cuenta">
+					<table>
+						<tr>
+							<td colspan="2"><h2>{% trans %}Mis bucketgifts{% endtrans %}</h2></td>
+							<td><a href="#nuevo-bucket" rel="modal:open"><span class="signomas-rosa">+</span> <img src="{{asset('img/bucketazul.png')}}" width="30"/></a>
+								<div class="sin-bucketgifts"><div class="triangulo-negro"></div>{% trans %}Para comenzar primero crea un bucketgift y después selecciónalo para crear tus partygifts.{% endtrans %}</div>
+							</td>
+						</tr>
+						<tr>
+							<td><img class="tooltip" src="{{asset('img/calendario.png')}}" width="25" title="15 / Enero / 2016"/></td>
+							<td class="abrir-evento">Quince años de mi hermana</td>
+							<td><a href=""><img src="{{asset('img/basura-gris.png')}}" width="40"/></a></td>
+						</tr>
+						<tr>
+							<td><img class="tooltip" src="{{asset('img/calendario.png')}}" width="25" title="20 / Mayo / 2015"/></td>
+							<td class="abrir-evento">Peda de graduación</td>
+							<td><a href=""><img src="{{asset('img/basura-gris.png')}}" width="40"/></a></td>
+						</tr>
+					</table>
+				</nav>
+				<section id="eventos-cuenta" style="display:none;">
+					<div class="sin-evento">
+						<h2>Para comenzar primero crea un <span class="bolder">bucket</span>gift y después seleccionalo para crear tus <span class="bolder">party</span>gifts.</h2>
+					</div>
+					<div class="evento-seleccion" style="display:none;">
+						<ul class="menu-eventos header-eventos">
+							<li><h2>Peda de graduación</h2></li>
+							<li>20 / Mayo / 2015</li>
+						</ul>
+						<ul class="menu-eventos">
+							<li><a href="#">¿Quién me regaló <span class="bolder">party</span>gifts? (PDF)</a></li>
+							<li><a href="#nuevo-party" rel="modal:open">Agrega <span class="bolder">party</span>gifts</a></li>
+						</ul>
+						<ul class="evento-micuenta">
+							<li>
+								<h3 class="texto-evento-grande">Gift 1 - Alcohol de la graduación - <a class="ver-evento" href="party.php" target="_blank">COMPARTIR PARTYGIFT</a></h3>
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio, doloremque voluptatum voluptate autem nihil eius exercitationem sequi inventore harum non quaerat velit maxime quas eligendi aliquam ipsam sit nisi amet!</p>
+								<ul class="gifts-partes">
+									<li>Gifts comprados: <span class="texto-evento-grande">50</span></li>
+									<li>Partes restantes: <span class="texto-evento-grande">20</span></li>
+								</ul>
+							</li>
+							<li>
+								<a href=""><img class="basura-negro" src="{{ asset('img/basura-negro.png') }}" width="50"></a>
+								Valor<br/>
+								<span class="texto-evento-grande">$7,000 MXN</span><br/><br/>
+								Gift dividido en<br/>
+								<span class="texto-evento-grande">70 partes</span><br/><br/>
+								Valor por parte</br>
+								<span class="texto-evento-grande">$100 MXN</span><br/><br/>
+							</li>
+						</ul>
+						<ul class="evento-micuenta">
+							<li>
+								<h3 class="texto-evento-grande">Gift 2 - Viaje de graduación - <a class="ver-evento" href="party.php" target="_blank">COMPARTIR PARTYGIFT</a></h3>
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio, doloremque voluptatum voluptate autem nihil eius exercitationem sequi inventore harum non quaerat velit maxime quas eligendi aliquam ipsam sit nisi amet!</p>
+								<ul class="gifts-partes">
+									<li>Gifts comprados: <span class="texto-evento-grande">50</span></li>
+									<li>Partes restantes: <span class="texto-evento-grande">20</span></li>
+								</ul>
+							</li>
+							<li>
+								<a href=""><img class="basura-negro" src="{{ asset('img/basura-negro.png') }}" width="50"></a>
+								Valor<br/>
+								<span class="texto-evento-grande">$7,000 MXN</span><br/><br/>
+								Gift dividido en<br/>
+								<span class="texto-evento-grande">70 partes</span><br/><br/>
+								Valor por parte</br>
+								<span class="texto-evento-grande">$100 MXN</span><br/><br/>
+							</li>
+						</ul>
+					</div> 
+				</section>
+			</div>
+		</div>
+		{% block footer %}
+			{% include ':plantillasParciales:footer.html.twig' %}
+		{% endblock %}
+	</div>
+</div>
+
+{% block modales %}
+	{% include ':plantillasParciales:modalCarrito.html.twig' %}
+{% endblock %}}
+
+<script>
+	$( ".show-paypal" ).click(function() {
+		$( "div#login" ).toggleClass( "show" );
+	});
+
+	$( "#buscar-click" ).click(function() {
+		$( "div.eventos" ).toggleClass( "show" );
+	});
+
+	$( ".abrir-evento" ).click(function() {
+		$( ".evento-seleccion" ).toggleClass( "show" );
+		$( ".sin-evento" ).toggleClass( "hide" );
+		$( ".sin-bucketgifts" ).toggleClass( "hide" );
+		$( "#eventos-cuenta" ).toggleClass( "show-inline" );
+
+	});
+
+	$( "#buscar-click" ).click(function() {
+		$( "#evento-desplegar" ).toggleClass( "hide" );
+	});
+
+	$( ".evento-tr" ).click(function() {
+		$( "#evento-desplegar" ).toggleClass( "hide" );
+		$( "#evento-desplegar" ).toggleClass( "show" );
+	});
+</script>
+<script>
+	$.datepicker.regional['es'] = {
+		closeText: 'Cerrar',
+		prevText: '<Ant',
+		nextText: 'Sig>',
+		currentText: 'Hoy',
+		monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+		monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
+		dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+		dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
+		dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
+		weekHeader: 'Sm',
+		dateFormat: 'dd/mm/yy',
+		firstDay: 1,
+		isRTL: false,
+		showMonthAfterYear: false,
+		yearSuffix: ''
+	};
+	$.datepicker.setDefaults($.datepicker.regional['es']);
+	$(function() {
+		$( ".elegir-fecha" ).datepicker({
+			inline: true,
+			showOtherMonths: true
+		})
+		.datepicker('widget').wrap('<div class="ll-skin-lugo"/>');
+	});
+</script>
+<script>
+	$(function() {
+		$( ".tooltip" ).tooltip();
+	});
+</script>
+<script src="js/wow.min.js"></script>
+<script>
+	new WOW().init();
+</script>
+</body>
+</html>

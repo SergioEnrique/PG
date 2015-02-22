@@ -1,3 +1,24 @@
+root:
+    path: /
+    defaults:
+        _controller: FrameworkBundle:Redirect:urlRedirect
+        path: /es
+        permanent: true
+
 pg_party_homepage:
-    path:     /
+    path:     /{_locale}/
     defaults: { _controller: PGPartyBundle:Default:index }
+    requirements:
+        _locale: en|es
+
+pg_party_miCuenta:
+    path:     /{_locale}/micuenta
+    defaults: { _controller: PGPartyBundle:Account:miCuenta }
+    requirements:
+        _locale: en|es
+
+pg_party_registro:
+    path:     /{_locale}/registro
+    defaults: { _controller: PGPartyBundle:Users:registro }
+    requirements:
+        _locale: en|es

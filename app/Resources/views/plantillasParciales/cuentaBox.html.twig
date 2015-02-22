@@ -5,6 +5,8 @@
 			<span class="bucket-number">5</span>
 		</a>
 	</div>
-	<div class="idioma-moneda"><span class="bolder">Español</span> | <a href="index-en.php">English</a></div>
-	<div class="datos">Edmond - <a href="mi-cuenta.php">Mi cuenta</a></div>
+	<div class="idioma-moneda">
+		<a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'es'})) }}">Español</a> | <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'en'})) }}">English</a>
+	</div>
+	<div class="datos">Edmond - <a href="{{ url('pg_party_miCuenta') }}">{% trans %}Mi cuenta{% endtrans %}</a></div>
 </div>
