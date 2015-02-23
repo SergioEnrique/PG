@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es">
+<html lang="{{app.request.locale}}">
 <head>
 	<meta charset="UTF-8">
 	<title>{%block title%}PartyGift{%endblock%}</title>
@@ -142,44 +142,44 @@
 							<li>20 / Mayo / 2015</li>
 						</ul>
 						<ul class="menu-eventos">
-							<li><a href="#">¿Quién me regaló <span class="bolder">party</span>gifts? (PDF)</a></li>
-							<li><a href="#nuevo-party" rel="modal:open">Agrega <span class="bolder">party</span>gifts</a></li>
+							<li><a href="#">{% trans %}¿Quién me regaló partygifts?{% endtrans %} (PDF)</a></li>
+							<li><a href="#nuevo-party" rel="modal:open">{% trans %}Agrega partygifts{% endtrans %}</a></li>
 						</ul>
 						<ul class="evento-micuenta">
 							<li>
-								<h3 class="texto-evento-grande">Gift 1 - Alcohol de la graduación - <a class="ver-evento" href="party.php" target="_blank">COMPARTIR PARTYGIFT</a></h3>
+								<h3 class="texto-evento-grande">Gift 1 - Alcohol de la graduación - <a class="ver-evento" href="{{ url('pg_party_party') }}" target="_blank">{% trans %}COMPARTIR PARTYGIFT{% endtrans %}</a></h3>
 								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio, doloremque voluptatum voluptate autem nihil eius exercitationem sequi inventore harum non quaerat velit maxime quas eligendi aliquam ipsam sit nisi amet!</p>
 								<ul class="gifts-partes">
-									<li>Gifts comprados: <span class="texto-evento-grande">50</span></li>
-									<li>Partes restantes: <span class="texto-evento-grande">20</span></li>
+									<li>{% trans %}Gifts comprados{% endtrans %}: <span class="texto-evento-grande">50</span></li>
+									<li>{% trans %}Partes restantes{% endtrans %}: <span class="texto-evento-grande">20</span></li>
 								</ul>
 							</li>
 							<li>
 								<a href=""><img class="basura-negro" src="{{ asset('img/basura-negro.png') }}" width="50"></a>
-								Valor<br/>
+								{% trans %}Valor{% endtrans %}<br/>
 								<span class="texto-evento-grande">$7,000 MXN</span><br/><br/>
-								Gift dividido en<br/>
+								{% trans %}Gift dividido en{% endtrans %}<br/>
 								<span class="texto-evento-grande">70 partes</span><br/><br/>
-								Valor por parte</br>
+								{% trans %}Valor por parte{% endtrans %}</br>
 								<span class="texto-evento-grande">$100 MXN</span><br/><br/>
 							</li>
 						</ul>
 						<ul class="evento-micuenta">
 							<li>
-								<h3 class="texto-evento-grande">Gift 2 - Viaje de graduación - <a class="ver-evento" href="party.php" target="_blank">COMPARTIR PARTYGIFT</a></h3>
+								<h3 class="texto-evento-grande">Gift 1 - Alcohol de la graduación - <a class="ver-evento" href="{{ url('pg_party_party') }}" target="_blank">{% trans %}COMPARTIR PARTYGIFT{% endtrans %}</a></h3>
 								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio, doloremque voluptatum voluptate autem nihil eius exercitationem sequi inventore harum non quaerat velit maxime quas eligendi aliquam ipsam sit nisi amet!</p>
 								<ul class="gifts-partes">
-									<li>Gifts comprados: <span class="texto-evento-grande">50</span></li>
-									<li>Partes restantes: <span class="texto-evento-grande">20</span></li>
+									<li>{% trans %}Gifts comprados{% endtrans %}: <span class="texto-evento-grande">50</span></li>
+									<li>{% trans %}Partes restantes{% endtrans %}: <span class="texto-evento-grande">20</span></li>
 								</ul>
 							</li>
 							<li>
 								<a href=""><img class="basura-negro" src="{{ asset('img/basura-negro.png') }}" width="50"></a>
-								Valor<br/>
+								{% trans %}Valor{% endtrans %}<br/>
 								<span class="texto-evento-grande">$7,000 MXN</span><br/><br/>
-								Gift dividido en<br/>
+								{% trans %}Gift dividido en{% endtrans %}<br/>
 								<span class="texto-evento-grande">70 partes</span><br/><br/>
-								Valor por parte</br>
+								{% trans %}Valor por parte{% endtrans %}</br>
 								<span class="texto-evento-grande">$100 MXN</span><br/><br/>
 							</li>
 						</ul>

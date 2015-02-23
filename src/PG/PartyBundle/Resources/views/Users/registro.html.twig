@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es">
+<html lang="{{app.request.locale}}">
 <head>
 	<meta charset="UTF-8">
 	<title>{%block title%}PartyGift{%endblock%}</title>
@@ -16,32 +16,32 @@
 <center>
 				<div class="header-registro"><img src="{{ asset('img/partygift-logo.png') }}" width="200"/></div>
 				<form action="{{ url('pg_party_registro') }}" method="post" id="registration-form" name="myForm" class="contacto-main">
-				<h3 class="registro">REGISTRO</h3>
+				<h3 class="registro">{% trans %}REGISTRO{% endtrans %}</h3>
 				<label>
-					<input type="text" data-validation="email" value="emailpasadoantes" name="email" placeholder="Correo electrónico" data-validation-error-msg="Por favor pon un correo electrónico real."/>
+					<input type="text" data-validation="email" value="emailpasadoantes" name="email" placeholder="{% trans %}Correo electrónico{% endtrans %}" data-validation-error-msg="{% trans %}Por favor pon un correo electrónico real.{% endtrans %}"/>
 				</label><br />
                 <label>
-					<input type="text" placeholder="Nombre" name="nombre" data-validation="required" data-validation-error-msg="Por favor pon tu nombre."/>
+					<input type="text" placeholder="{% trans %}Nombre{% endtrans %}" name="nombre" data-validation="required" data-validation-error-msg="{% trans %}Por favor pon tu nombre.{% endtrans %}"/>
 				</label><br />
                 <label>
-					<input type="text" placeholder="Apellido(s)" name="apellido_pat" data-validation="required" data-validation-error-msg="Por favor pon tus apellidos."/>
+					<input type="text" placeholder="{% trans %}Apellidos{% endtrans %}" name="apellido_pat" data-validation="required" data-validation-error-msg="{% trans %}Por favor pon tus apellidos.{% endtrans %}"/>
 				</label><br />
                 
-                 <span class="moneda">Moneda:</span> 
+                 <span class="moneda">{% trans %}Moneda{% endtrans %}:</span> 
                  <select name="divisa">
                  	{# Monedas #}
                  </select>
                 
                 <label>
-					<input type="password" placeholder="Contraseña (6-20 caracteres)" name="pass_confirmation" maxlength="20" data-validation-length="6-20" data-validation="strength" 
-		 data-validation-strength="2" data-validation-error-msg="Por favor pon una contraseña más fuerte."/>
+					<input type="password" placeholder="{% trans %}Contraseña{% endtrans %} (6-20 caracteres)" name="pass_confirmation" maxlength="20" data-validation-length="6-20" data-validation="strength" 
+		 data-validation-strength="2" data-validation-error-msg="{% trans %}Por favor pon una contraseña más fuerte.{% endtrans %}"/>
 				</label><br />
                 <label>
-					<input type="password" placeholder="Confirmar contraseña" name="pass" maxlength="20" data-validation="confirmation" data-validation-error-msg="Las contraseñas no coinciden."/>
+					<input type="password" placeholder="{% trans %}Confirmar contraseña{% endtrans %}" name="pass" maxlength="20" data-validation="confirmation" data-validation-error-msg="{% trans %}Las contraseñas no coinciden.{% endtrans %}"/>
 				</label><br />
 				
 				
-				<input type="submit" value="Enviar">
+				<input type="submit" value="{% trans %}Enviar{% endtrans %}">
 				 </form>
 		</center>
 <script>

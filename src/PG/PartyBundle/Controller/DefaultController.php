@@ -11,4 +11,9 @@ class DefaultController extends Controller
     {
         return $this->render('PGPartyBundle:Default:index.html.twig');
     }
+
+    public function partyAction()
+    {
+        return $this->render('PGPartyBundle:Default:party.html.twig');
+    }
 }

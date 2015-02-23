@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="{{app.request.locale}}">
+<head>
+	<meta charset="UTF-8">
+	<title>{%block title%}PartyGift - Peda de Graduación{%endblock%}</title>
+<link href="{{asset('css/style.css')}}" rel="stylesheet" type="text/css">
+<link href="{{asset('css/animate.css')}}" rel="stylesheet" type="text/css">
+<link href="{{asset('css/jquery.modal.css')}}" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+<script type="text/javascript" src="{{asset('js/jquery-1.9.0.min.js')}}"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<script type="text/javascript" src="{{asset('js/jquery.scrollTo-1.4.3.1-min.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/jquery.modal.js')}}"></script>
+</head>
+<body class="body-party">
+<div class="all-wrapper no-bg">
+	<header class="party-header">
+        <div class="max-wrapper">
+            <h1 class="logo">
+                <a href="{{url('pg_party_homepage')}}">
+                <img src="{{ asset('img/partygift-logo.png') }}" />
+                <span class="oculto">Party Gift</span>
+                </a>
+            </h1>
+            {% include ':plantillasParciales:cuentaBox.html.twig' %}
+            <div class="ingreso-face">
+                <div class="ingresar">
+                    {% trans %}Ingresar{% endtrans %}
+                </div>
+                <div id="login" class="login wow bounceIn">
+                    <form action="#">
+                        <input type="text" placeholder="correo">
+                        <input type="password" placeholder="contraseña">
+                        <input type="submit" value="Acceder">
+                        <img class="facebook" src="{{ asset('img/facebook.png') }}" width="30" alt="">
+                        <br>
+                        <a href=""><span class="small-font recuperar-pass">{% trans %}Recuperar contraseña{% endtrans %}</span></a>
+                    </form>
+                </div>
+                <img class="facebook" src="{{ asset('img/facebook.png') }}" width="40" height="40" alt="Facebook"/>
+            </div>
+        </div>
+        
+	</header>
+
+    <div class="espacio-header"></div>
+    <div class="main-content">
+       
+        <div id="evento-desplegar" class="evento-desplegar show">
+            <div class="max-wrapper">
+                <ul>
+                    <li>
+                        <h2>{% trans %}bucketgift de <span class="rosa-persona">Gustavo</span>{% endtrans %}</h2><br/>
+                        <?php $url_actual = "http://" . $_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"]; ?>
+                        <div class="fb-share-button" data-href="{{ path(app.request.get('_route')) }}?>" data-layout="button_count"></div>
+                        <br/><br/>
+                        <a class="twitter-share-button"
+  href="<?php echo($url_actual); ?>"></a>
+						<script>
+                        window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return;js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);t._e=[];t.ready=function(f){t._e.push(f);};return t;}(document,"script","twitter-wjs"));
+                        </script>
+                    </li>
+                    <li>
+                        <h3 class="texto-evento-grande">Peda de graduación</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio, doloremque voluptatum voluptate autem nihil eius exercitationem sequi inventore harum non quaerat velit maxime quas eligendi aliquam ipsam sit nisi amet!</p>
+                        
+                        <form action="">
+                        {% trans %}¿Cuántas partes deseas regalar?{% endtrans %}
+                            <select>
+                                <option>1</option>
+                            </select>
+                            <input type="submit" value="{% trans %}Agregar{% endtrans %}">
+                        </form>
+                    </li>
+                    <li>
+                        {% trans %}Valor{% endtrans %}<br/>
+                        <span class="texto-evento-grande">$7,000 MXN</span><br/><br/>
+                        {% trans %}Gift dividido en{% endtrans %}<br/>
+                        <span class="texto-evento-grande">70 partes</span><br/><br/>
+                        {% trans %}Valor por parte{% endtrans %}</br>
+                        <span class="texto-evento-grande">$100 MXN</span><br/><br/>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        {% block footer %}
+            {% include ':plantillasParciales:footer.html.twig' %}
+        {% endblock %}
+    </div>
+</div>
+
+	{% block modales %}
+        {% include ':plantillasParciales:modalCarrito.html.twig' %}
+    {% endblock %}}
+
+<script>
+$( "div.ingresar" ).click(function() {
+  $( "div#login" ).toggleClass( "show" );
+});
+
+$( "#buscar-click" ).click(function() {
+  $( "div.eventos" ).toggleClass( "show" );
+});
+
+$( "#buscar-click" ).click(function() {
+  $( "#evento-desplegar" ).toggleClass( "hide" );
+});
+
+$( ".evento-tr" ).click(function() {
+  $( "#evento-desplegar" ).toggleClass( "hide" );
+  $( "#evento-desplegar" ).toggleClass( "show" );
+});
+
+function enviaformulario() {
+   win = window.open('','myWin','toolbars=0,width=400,height=600');            
+   document.myForm.target='myWin';
+   document.myForm.submit();
+}
+</script>
+
+<script src="{{ asset('js/wow.min.js') }}"></script>
+<script>
+ new WOW().init();
+</script>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&appId=164094660959&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+</body>
+</html>

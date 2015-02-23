@@ -11,6 +11,12 @@ pg_party_homepage:
     requirements:
         _locale: en|es
 
+pg_party_party:
+    path:     /{_locale}/party
+    defaults: { _controller: PGPartyBundle:Default:party }
+    requirements:
+        _locale: en|es
+
 pg_party_miCuenta:
     path:     /{_locale}/micuenta
     defaults: { _controller: PGPartyBundle:Account:miCuenta }

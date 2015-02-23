@@ -21,6 +21,8 @@ apellidos: last name
 Ingresar: Login
 correo: e-mail
 contraseña: password
+Contraseña: Password
+Confirmar contraseña: Confirm password
 Acceder: Login
 Recuperar contraseña: Password recovery
 Mi cuenta: My account
@@ -54,6 +56,25 @@ cuenta de paypal: paypal account
 monto: amount
 Para poder retirar el saldo de tu cuenta, es necesario que tengas una cuenta PayPal (correo electrónico registrado en PayPal). Si no lo tienes, es muy fácil, rápido y seguro, sólo tienes que ingresar a www.PayPal.com o dar click en el ícono del lado derecho y registrarte para vincular tu correo electrónico a tu cuenta PayPal. Recuerda que sólo podrás retirar el saldo de tu cuenta a través de PayPal. Si tienes preguntas, no dudes en contactarnos.: To withdraw your account balance, you need to have a PayPal account (PayPal registered email). If you don´t, it's easy, safe and fast, you only need to go to www.PayPal.com by clicking on the icon to the right and register to link your email with your PayPal account. Remember that you can only withdraw your balance via PayPal. If you have any questions, don´t hesitate to contact us.
 enviar: send
+Enviar: Send
+¿Quién me regaló partygifts?: Who gave me partygifts?
+Agrega partygifts: Add partygifts
+COMPARTIR PARTYGIFT: SHARE PARTYGIFT
+Gifts comprados: Gifts bought
+Partes restantes: Remaining parts
+REGISTRO: REGISTER
+Por favor pon un correo electrónico real.: Please provide a real email address.
+Por favor pon tu nombre.: Please provide your name.
+Por favor pon tus apellidos.: Please provide your last name.
+Por favor pon una contraseña más fuerte.: Please provide a stronger password.
+Las contraseñas no coinciden.: Passwords do not match.
+Descripción: Description
+Cantidad: Quantity
+Subtotal: Subtotal
+Remover: Remove
+
+
+
 
 
 
