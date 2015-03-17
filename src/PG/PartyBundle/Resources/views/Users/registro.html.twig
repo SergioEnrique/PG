@@ -18,26 +18,44 @@
 				<form action="{{ url('pg_party_registro') }}" method="post" id="registration-form" name="myForm" class="contacto-main">
 				<h3 class="registro">{% trans %}REGISTRO{% endtrans %}</h3>
 				<label>
-					<input type="text" data-validation="email" value="emailpasadoantes" name="email" placeholder="{% trans %}Correo electrónico{% endtrans %}" data-validation-error-msg="{% trans %}Por favor pon un correo electrónico real.{% endtrans %}"/>
+					<input type="text" data-validation="email" value="{{emailpasado}}" id="registroPartyForm_email" name="registroPartyForm[email]" placeholder="{% trans %}Correo electrónico{% endtrans %}" data-validation-error-msg="{% trans %}Por favor pon un correo electrónico real.{% endtrans %}"/>
 				</label><br />
                 <label>
-					<input type="text" placeholder="{% trans %}Nombre{% endtrans %}" name="nombre" data-validation="required" data-validation-error-msg="{% trans %}Por favor pon tu nombre.{% endtrans %}"/>
+					<input type="text" placeholder="{% trans %}Nombre{% endtrans %}" id="registroPartyForm_nombre" name="registroPartyForm[nombre]" data-validation="required" data-validation-error-msg="{% trans %}Por favor pon tu nombre.{% endtrans %}"/>
 				</label><br />
                 <label>
-					<input type="text" placeholder="{% trans %}Apellidos{% endtrans %}" name="apellido_pat" data-validation="required" data-validation-error-msg="{% trans %}Por favor pon tus apellidos.{% endtrans %}"/>
+					<input type="text" placeholder="{% trans %}Apellidos{% endtrans %}" id="registroPartyForm_apellidos" name="registroPartyForm[apellidos]" data-validation="required" data-validation-error-msg="{% trans %}Por favor pon tus apellidos.{% endtrans %}"/>
 				</label><br />
                 
                  <span class="moneda">{% trans %}Moneda{% endtrans %}:</span> 
-                 <select name="divisa">
-                 	{# Monedas #}
-                 </select>
+                 <select id="registroPartyForm_moneda" name="registroPartyForm[moneda]">
+                 	<option value="ARS">ARS - Peso Argentino</option>
+					<option value="AUD">AUD - Australian Dollar</option>
+					<option value="BOB">BOB - Boliviano</option>
+					<option value="BRL">BRL - Real Brasileiro</option>
+					<option value="CAD">CAD - Canadian Dollar</option>
+					<option value="CLP">CLP - Peso Chileno</option>
+					<option value="COP">COP - Peso Colombiano</option>
+					<option value="DKK">DKK - Danish Krone</option>
+					<option value="EUR">EUR - Euro</option>
+					<option value="GBP">GBP - Great Britain Pound</option>
+					<option value="GTQ">GTQ - Quetzal Guatemalteco</option>
+					<option value="HKD">HKD - Hong Kong Dollar</option>
+					<option value="MXN">MXN - Peso Mexicano</option>
+					<option value="NOK">NOK - Norwegian Krone</option>
+					<option value="NZD">NZD - Nueva Zelanda Dollar</option>
+					<option value="PEN">PEN - Sol Peruano</option>
+					<option value="SEK">SEK - Swedish Krone</option>
+					<option value="USD">USD - US Dollar</option>
+					<option value="VEF">VEF - Bolivar Venezolano</option>
+				</select>
                 
                 <label>
-					<input type="password" placeholder="{% trans %}Contraseña{% endtrans %} (6-20 caracteres)" name="pass_confirmation" maxlength="20" data-validation-length="6-20" data-validation="strength" 
+					<input type="password" placeholder="{% trans %}Contraseña{% endtrans %} (6-20 caracteres)" id="registroPartyForm_userPass" name="registroPartyForm[userPass]" maxlength="20" data-validation-length="6-20" data-validation="strength" 
 		 data-validation-strength="2" data-validation-error-msg="{% trans %}Por favor pon una contraseña más fuerte.{% endtrans %}"/>
 				</label><br />
                 <label>
-					<input type="password" placeholder="{% trans %}Confirmar contraseña{% endtrans %}" name="pass" maxlength="20" data-validation="confirmation" data-validation-error-msg="{% trans %}Las contraseñas no coinciden.{% endtrans %}"/>
+					<input type="password" placeholder="{% trans %}Confirmar contraseña{% endtrans %}" id="registroPartyForm_userPass2" name="registroPartyForm[userPass2]"maxlength="20" data-validation="" data-validation-error-msg="{% trans %}Las contraseñas no coinciden.{% endtrans %}"/>
 				</label><br />
 				
 				

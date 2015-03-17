@@ -1,0 +1,212 @@
+<script>
+
+// Url del bote de basura para que aparezca en los nuevos
+var urlBote = "{{asset('img/bote.png')}}";
+var urlPunto = "{{asset('img/punto.png')}}";
+
+$(document).ready(function()
+{
+	$("form[name='nw_principalbundle_tareacalendario']").submit(submitForm);
+
+	$('#bodyTareas').on('click', '.completation', function() {
+
+		var myID = $(this).data("id");
+		var ajaxURL = "{{url('nw_principal_novios_tarea_calendario_operaciones')}}"+"/"+myID+"/completar";
+
+		$.getJSON(ajaxURL, function(serverInfo){
+			completar(serverInfo);
+		});
+		
+		$("#"+myID).find(".completation").toggle();
+		$("#"+myID).find(".descompletation").toggle();
+	});
+
+	$('#bodyTareas').on('click', '.descompletation', function() {
+
+		var myID = $(this).data("id");
+		var ajaxURL = "{{url('nw_principal_novios_tarea_calendario_operaciones')}}"+"/"+myID+"/descompletar";
+
+		$.getJSON(ajaxURL, function(serverInfo){
+			descompletar(serverInfo);
+		});
+
+		$("#"+myID).find(".completation").toggle();
+		$("#"+myID).find(".descompletation").toggle();
+	});
+
+	// Para eliminar una tarea
+	$('#bodyTareas').on('click', '.elimination', function() {// Esa es para cuando se agregan DOM nuevos
+	//$('.elimination').click(function(){ // Esta es solo para los DOM que ya existían
+
+		var myID = $(this).data("id");
+		var ajaxURL = "{{url('nw_principal_novios_tarea_calendario_operaciones')}}"+"/"+myID+"/delete";
+
+		$.getJSON(ajaxURL, function(serverInfo){
+			eliminar(serverInfo);
+		});
+
+		$("#"+myID).remove();
+		$("#tarea-"+myID).remove();
+		$("tarea_descripcion_"+myID).remove();
+	});
+});
+
+function completar(serverInfo){
+    var completado = serverInfo.completado;
+
+    if(completado){
+	    return true;
+	}
+	else{
+		return false;
+	}
+}
+
+function descompletar(serverInfo){
+    var descompletado = serverInfo.descompletado;
+
+    if(descompletado){
+	    return true;
+	}
+	else{
+		return false;
+	}
+}
+
+function eliminar(serverInfo){
+    var eliminado = serverInfo.eliminado;
+
+    if(eliminado){
+	    return true;
+	}
+	else{
+		return false;
+	}
+}
+
+function submitForm(){
+
+	var values = {};
+
+	$.each($("form[name='nw_principalbundle_tareacalendario']").serializeArray(), function(i, field) {
+		values[field.name] = field.value;
+	});
+
+	$.ajax({
+		type        : 'POST',
+		url         : $("form[name='nw_principalbundle_tareacalendario']").attr("action"),
+		data        : values,
+		success     : function(data) {
+			if(data.responseCode == 200 ){
+				ajaxSuccess(data);
+				return true;
+			}
+			else{
+				alert("No se agregó la nueva tarea. Intente nuevamente: "+data.algunDato);
+			}		
+		}
+	});
+	return false;
+}
+
+function ajaxSuccess(data)
+{
+	var nuevaTareaModal = '<tr id="'+data.newID+'" class="tarea_link">';
+    nuevaTareaModal+=	'<td width="35">';
+    nuevaTareaModal+=	'<img id="tarea_selected_'+data.newID+'" src="'+urlPunto+'" class="invisible desaparecible">';
+    nuevaTareaModal+=	'</td>';
+    nuevaTareaModal+=	'	<td>'+data.compromiso+'</td>';
+    nuevaTareaModal+=	'	<td>'+data.categoria+'</td>';
+    nuevaTareaModal+=	'	<td style="text-align:center;">'+data.vencimiento+'</td>';
+    nuevaTareaModal+=	'	<td style="text-align:center;">';
+	nuevaTareaModal+=	'		<a href="#" class="descompletation" data-id="'+data.newID+'" style="display:none;">';
+	nuevaTareaModal+=	'			<span class="cuadro_confirmacion" style="margin-left:35px;">&nbsp;✓</span>';
+	nuevaTareaModal+=	'		</a>';
+	nuevaTareaModal+=	'		<a href="#" class="completation" data-id="'+data.newID+'" style="display:block;">';
+	nuevaTareaModal+=	'			<span class="cuadro_confirmacion" style="margin-left:35px;"></span>';
+	nuevaTareaModal+=	'		</a>';
+    nuevaTareaModal+=	'	</td>';
+    nuevaTareaModal+=	'	<td style="text-align:center;">';
+    nuevaTareaModal+=	'		<a href="#" class="elimination" data-id="'+data.newID+'">';
+    nuevaTareaModal+=	'			<img src="'+urlBote+'" style="width:25px;">';
+    nuevaTareaModal+=	'		</a>';
+    nuevaTareaModal+=	'	</td>';
+    nuevaTareaModal+=	'</tr>';
+
+    var nuevaTareaDetalle = '<div id="tarea_descripcion_'+data.newID+'" class="row calendario-tarea-descripcion invisible desaparecible">';
+	nuevaTareaDetalle += '				<div class="col-xs-7">';
+	nuevaTareaDetalle += '					<div class="row">';
+	nuevaTareaDetalle += '						<div class="col-xs-8">';
+	nuevaTareaDetalle += '							<h3 class="rosa">'+data.compromiso+'</h3>';
+	nuevaTareaDetalle += '						</div>';
+	nuevaTareaDetalle += '						<div class="col-xs-4">';
+	nuevaTareaDetalle += '							<p style="text-align:right">Vence: <span class="text-important">'+data.vencimiento+'</span></p>';
+	nuevaTareaDetalle += '						</div>';
+	nuevaTareaDetalle += '					</div>';
+	nuevaTareaDetalle += '					<div class="row">';
+	nuevaTareaDetalle += '						<div class="col-xs-12">';
+	nuevaTareaDetalle += '							<p>'+data.descripcion+'';
+	nuevaTareaDetalle += '							</p>';
+	nuevaTareaDetalle += '						</div>';
+	nuevaTareaDetalle += '					</div>';
+	nuevaTareaDetalle += '				</div>';
+	nuevaTareaDetalle += '				<div class="col-xs-5">';
+
+	if(data.nombre) // No mostrar datos de contacto si no hay
+	{
+		nuevaTareaDetalle += '					<div class="row">';
+		nuevaTareaDetalle += '						<div class="col-xs-12">';
+		nuevaTareaDetalle += '							<h3 class="rosa">Contacto</h3>';
+		nuevaTareaDetalle += '						</div>';
+		nuevaTareaDetalle += '					</div>';
+		nuevaTareaDetalle += '					<div class="row">';
+		nuevaTareaDetalle += '						<div class="col-xs-4">';
+		nuevaTareaDetalle += '							<p class="text-important">Nombre:</p>';
+		nuevaTareaDetalle += '						</div>';
+		nuevaTareaDetalle += '						<div class="col-xs-8">';
+		nuevaTareaDetalle += '							<p>'+data.nombre+'</p>';
+		nuevaTareaDetalle += '						</div>';
+		nuevaTareaDetalle += '					</div>';
+		nuevaTareaDetalle += '					<div class="row">';
+		nuevaTareaDetalle += '						<div class="col-xs-4">';
+		nuevaTareaDetalle += '							<p class="text-important">Teléfono:</p>';
+		nuevaTareaDetalle += '						</div>';
+		nuevaTareaDetalle += '						<div class="col-xs-8">';
+		nuevaTareaDetalle += '							<p>'+data.telefono+'</p>';
+		nuevaTareaDetalle += '						</div>';
+		nuevaTareaDetalle += '					</div>';
+		nuevaTareaDetalle += '					<div class="row">';
+		nuevaTareaDetalle += '						<div class="col-xs-4">';
+		nuevaTareaDetalle += '							<p class="text-important">Email:</p>';
+		nuevaTareaDetalle += '						</div>';
+		nuevaTareaDetalle += '						<div class="col-xs-8">';
+		nuevaTareaDetalle += '							<p>'+data.email+'</p>';
+		nuevaTareaDetalle += '						</div>';
+		nuevaTareaDetalle += '					</div>';
+		nuevaTareaDetalle += '					<div class="row">';
+		nuevaTareaDetalle += '						<div class="col-xs-4">';
+		nuevaTareaDetalle += '							<p class="text-important">Dirección:</p>';
+		nuevaTareaDetalle += '						</div>';
+		nuevaTareaDetalle += '						<div class="col-xs-8">';
+		nuevaTareaDetalle += '							<p>'+data.direccion+'</p>';
+		nuevaTareaDetalle += '						</div>';
+		nuevaTareaDetalle += '					</div>';
+	}
+
+	nuevaTareaDetalle += '				</div>';
+	nuevaTareaDetalle += '			</div>';
+
+	var nuevaTareaNormal = '<div class="row" id="tarea-'+data.newID+'">';
+	nuevaTareaNormal +=	'		<div class="col-xs-8" style="font-size:14px;">'+data.compromiso+'</div>';
+	nuevaTareaNormal +=	'			<div class="col-xs-4" style="font-size:14px;">'+data.vencimiento+'</div>';
+	nuevaTareaNormal +=	'		</div>';
+
+	$("#bodyTareas").append(nuevaTareaModal);
+	$("#tablaTareas").append(nuevaTareaDetalle);
+	$("#tareasNormal").append(nuevaTareaNormal);
+
+    return true;
+}
+
+
+</script>

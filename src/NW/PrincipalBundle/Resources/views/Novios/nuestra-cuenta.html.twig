@@ -1,0 +1,283 @@
+{# src/NW/PrincipalBundle/Resources/views/Novios/nuestra-cuenta.html.twig #}
+
+	{% extends 'NWPrincipalBundle:Novios:administrador.html.twig' %}
+
+{% block partederecha %}
+
+			<div class="row">
+				<div class="col-xs-8"></div>
+				<div class="col-xs-4" style="text-align:right;">
+					<div class="punto-verde-bueno hacerTooltip" style="float:left; margin-right:20px; margin-top:2px;" data-toggle="tooltip" data-placement="left" title="Aquí podrás administrar tu cuenta: actualizar tus datos personales y cambiar tu contraseña.">?</div>
+					<h1 style="float:left;">Nuestra Cuenta</h1>	
+				</div>	
+			</div>
+
+			<div class="row" style="margin-top:10px; margin-left: 0px;">
+				<h5 class="art" style="float:left;">Solicitar retiro de dinero a cuenta de PayPal</h5>
+			</div>
+
+			<div class="row">
+				
+				{{form_start(formSolicitudRetiro)}}
+					<div class="col-xs-4">
+						{{ form_widget(formSolicitudRetiro.amount, { 'attr': {'class': 'input_registro_novios', 'placeholder': 'Cantidad en MXN' } }) }}
+						<span class="error-formulario">{{ form_errors(formSolicitudRetiro.amount) }}</span>
+					</div>
+					<div class="col-xs-4">
+						{{ form_widget(formSolicitudRetiro.cuentaPaypal, { 'attr': {'class': 'input_registro_novios', 'placeholder': 'correo de PayPal' } }) }}
+						<span class="error-formulario">{{ form_errors(formSolicitudRetiro.cuentaPaypal) }}</span>
+					</div>
+					<div class="col-xs-2">
+						<!-- El formulario se debería enviar a NWPrincipalBundle:Default:changePass -->
+						{{ form_widget(formSolicitudRetiro.Solicitar, { 'attr': {'class': 'botoncitoRosa', 'style': 'width:100px; margin-top:2px; bottom:0px;' } }) }}
+					</div>
+					<div class="col-xs-2">
+						<div class="punto-verde-bueno hacerTooltip" style="float:left; margin-right:20px; margin-top:7px;" data-toggle="tooltip" data-placement="top" title="Para poder retirar el saldo de tu cuenta, es necesario que tengas una cuenta PayPal (correo electrónico registrado en PayPal). Si no lo tienes, es muy fácil, rápido y seguro, sólo tienes que ingresar a www.PayPal.com o dar click en el ícono del lado derecho y registrarte para vincular tu correo electrónico a tu cuenta PayPal. Recuerda que sólo podrás retirar el saldo de tu cuenta a través de PayPal. Si tienes preguntas, no dudes en contactarnos.">?</div>
+						<a href="https://www.paypal.com/mx/cgi-bin/webscr?cmd=_minimal-signup" target="_blank">
+							<img src="{{asset('img/paypal.png')}}" width="30px" alt="Regístrate en PayPal">
+						</a>
+					</div>
+				{{form_end(formSolicitudRetiro)}}
+			</div>
+
+			<!-- NUESTROS DATOS -->
+			<div class="row" style="margin-top:20px;">
+					<div class="col-xs-10">
+						<h5 class="art" style="float:left;">Nuestros datos</h5>
+					</div>
+					<div class="col-xs-2">
+						<h5 class="art" data-toggle="modal" data-target="#myModal" style="float:left; cursor:pointer; cursor: hand;">Editar</h5>
+
+
+							<!-- EDITAR DATOS -->
+						
+				<!-- Modal -->
+				<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				  	<div class="modal-dialog">
+					    <div class="modal-content" style="border: rgba(204,0,153,0.7) 2px solid; padding:10px;">
+					      	<div class="modal-header">
+						      	<div class="row">
+						      		<div class="col-xs-5">
+							        	<h4 class="modal-title rosa" id="myModalLabel">Actualiza tus datos</h4>
+						        	</div>
+						        	<div class="col-xs-1">
+										
+						        	</div>
+						        	<div class="col-xs-5">
+										<img src="{{asset('img/nw.png')}}" width="100%">
+						        	</div>
+						        	<div class="col-xs-1">
+										<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					        		</div>
+					        	</div>
+				     		 </div>
+
+						      
+						      <div class="modal-body">
+						      	{{ form_start(formNovios) }}
+						      			<p>La novia</p>
+																<div class="row left">
+								        	<img src="{{asset('img/mini-punto.png')}}">
+								        	{{ form_widget(formNovios.novias.nombre, { 'attr': {'class': 'input_registro_novios input5 ', 'placeholder': 'Nombre' } }) }}
+								        	<img src="{{asset('img/mini-punto.png')}}">
+								        	{{ form_widget(formNovios.novias.direccion, { 'attr': {'class': 'input_registro_novios input5 ', 'placeholder': 'Dirección completa' } }) }}
+								        </div>
+								        <br>
+								        <div class="row left2">
+								        	{{ form_widget(formNovios.novias.sNombre, { 'attr': {'class': 'input_registro_novios input5 ', 'placeholder': 'Segundo Nombre' } }) }}
+								        	<img src="{{asset('img/mini-punto.png')}}">
+								        	{{ form_widget(formNovios.novias.eMail, { 'attr': {'class': 'input_registro_novios input5 ', 'placeholder': 'E-Mail (PRINCIPAL)' } }) }}
+								        </div>
+								        <br>
+								        <div class="row left2">
+								        	{{ form_widget(formNovios.novias.aPaterno, { 'attr': {'class': 'input_registro_novios input5 ', 'placeholder': 'Apellido Paterno' } }) }}
+								        	<img src="{{asset('img/mini-punto.png')}}">
+									        {{ form_label(formNovios.novias.pais, 'País') }}
+				        					{{ form_widget(formNovios.novias.pais, { 'attr': {'class': 'input_registro_novios select1'} }) }}
+								        </div>
+								        <br>
+								        <div class="row left2">
+								        	{{ form_widget(formNovios.novias.aMaterno, { 'attr': {'class': 'input_registro_novios input5 ', 'placeholder': 'Apellido Materno' } }) }}
+											<img src="{{asset('img/mini-punto.png')}}">
+									        {{ form_label(formNovios.novias.estado, 'Estado') }}
+				        					{{ form_widget(formNovios.novias.estado, { 'attr': {'class': 'input_registro_novios select2'} }) }}
+								        </div>
+								        <br>
+								        <div class="row left">
+								        	<img src="{{asset('img/mini-punto.png')}}">
+								        	{{ form_widget(formNovios.novias.lada, { 'attr': {'class': 'input_registro_novios miniinput', 'placeholder': 'LADA' } }) }}
+								        	{{ form_widget(formNovios.novias.telefono, { 'attr': {'class': 'input_registro_novios miniinput2', 'placeholder': 'Teléfono de casa u oficina' } }) }}
+								        	<img src="{{asset('img/mini-punto.png')}}">
+								        	{{ form_widget(formNovios.novias.ciudad, { 'attr': {'class': 'input_registro_novios input5 ', 'placeholder': 'Ciudad' } }) }}
+								        </div>
+								        <br>
+								        <div class="row left">
+								        	<img src="{{asset('img/mini-punto.png')}}">
+								        	{{ form_widget(formNovios.novias.celular, { 'attr': {'class': 'input_registro_novios input5 ', 'placeholder': 'Teléfono celular' } }) }}
+								        	<img src="{{asset('img/mini-punto.png')}}">
+								        	{{ form_widget(formNovios.novias.cp, { 'attr': {'class': 'input_registro_novios input5 ', 'placeholder': 'Código postal' } }) }}
+								        </div>
+								        <br>
+								        <!-- No mames
+								        <input type="checkbox" name="opciones" id="opciones_1" value="opcion_1" checked>
+									    ¿La dirección del novio es la misma que de la novia?-->
+								        <br>
+							      	
+							      	<p>El novio</p>
+							      	<div class="row left">
+								        	<img src="{{asset('img/mini-punto.png')}}">
+								        	{{ form_widget(formNovios.novios.nombre, { 'attr': {'class': 'input_registro_novios input5 ', 'placeholder': 'Nombre' } }) }}
+								        	<img src="{{asset('img/mini-punto.png')}}">
+								        	{{ form_widget(formNovios.novios.direccion, { 'attr': {'class': 'input_registro_novios input5 ', 'placeholder': 'Dirección completa' } }) }}
+								        </div>
+								        <br>
+								        <div class="row left2">
+								        	{{ form_widget(formNovios.novios.sNombre, { 'attr': {'class': 'input_registro_novios input5 ', 'placeholder': 'Segundo Nombre' } }) }}
+								        	<img src="{{asset('img/mini-punto.png')}}">
+								        	{{ form_widget(formNovios.novios.eMail, { 'attr': {'class': 'input_registro_novios input5 ', 'placeholder': 'E-Mail' } }) }}
+								        </div>
+								        <br>
+								        <div class="row left2">
+								        	{{ form_widget(formNovios.novios.aPaterno, { 'attr': {'class': 'input_registro_novios input5 ', 'placeholder': 'Apellido Paterno' } }) }}
+								        	<img src="{{asset('img/mini-punto.png')}}">
+									        {{ form_label(formNovios.novios.pais, 'País') }}
+				        					{{ form_widget(formNovios.novios.pais, { 'attr': {'class': 'input_registro_novios select1'} }) }}
+								        </div>
+								        <br>
+								        <div class="row left2">
+								        	{{ form_widget(formNovios.novios.aMaterno, { 'attr': {'class': 'input_registro_novios input5 ', 'placeholder': 'Apellido Materno' } }) }}
+											<img src="{{asset('img/mini-punto.png')}}">
+									        {{ form_label(formNovios.novios.estado, 'Estado') }}
+				        					{{ form_widget(formNovios.novios.estado, { 'attr': {'class': 'input_registro_novios select2'} }) }}
+								        </div>
+								        <br>
+								        <div class="row left">
+								        	<img src="{{asset('img/mini-punto.png')}}">
+								        	{{ form_widget(formNovios.novios.lada, { 'attr': {'class': 'input_registro_novios miniinput', 'placeholder': 'LADA' } }) }}
+								        	{{ form_widget(formNovios.novios.telefono, { 'attr': {'class': 'input_registro_novios miniinput2', 'placeholder': 'Teléfono de casa u oficina' } }) }}
+								        	<img src="{{asset('img/mini-punto.png')}}">
+								        	{{ form_widget(formNovios.novios.ciudad, { 'attr': {'class': 'input_registro_novios input5 ', 'placeholder': 'Ciudad' } }) }}
+								        </div>
+								        <br>
+								        <div class="row left">
+								        	<img src="{{asset('img/mini-punto.png')}}">
+								        	{{ form_widget(formNovios.novios.celular, { 'attr': {'class': 'input_registro_novios input5 ', 'placeholder': 'Teléfono celular' } }) }}
+								        	<img src="{{asset('img/mini-punto.png')}}">
+								        	{{ form_widget(formNovios.novios.cp, { 'attr': {'class': 'input_registro_novios input5 ', 'placeholder': 'Código postal' } }) }}
+								        </div>
+							        <br><br>
+							        <div class="row">
+	 														<div class="col-xs-9">
+	 									<span class="error-formulario">{{ form_errors(formNovios.terminosPrivacidad) }}</span>
+								       	{{ form_widget(formNovios.terminosCondiciones) }}
+								       	<a href="{{asset('documents/CondicionesDeUsoGeneralYDeRegistroYAvisoDePrivacidadNewlyWishesV2.pdf')}}">
+								       	Acepto los términos y condiciones</a>
+								       	<br />
+								       	<span class="error-formulario">{{ form_errors(formNovios.terminosPrivacidad) }}</span>
+										{{ form_widget(formNovios.terminosPrivacidad) }}
+										<a href="{{asset('documents/TerminosYCondicionesNWV4.pdf')}}">
+										Acepto los términos de privacidad</a>
+										<br />
+								        </div>
+								        <div class="col-xs-3">
+								        <img src="{{asset('img/mini-punto.png')}}">
+						        		<span>Datos obligatorios</span>	<br />
+						        		{{ form_widget(formNovios.Enviar, { 'attr': {'class': 'botoncitoRosa', 'style': 'width:100px; margin-top:2px; bottom:0px;' } }) }}
+						        		{{ form_end(formNovios) }}
+								        </div>
+							        </div>
+
+							       
+						      	</div>
+
+
+								
+
+						<!-- FIN EDITAR DATOS -->
+						    	</div>
+						      </div>
+
+						      	
+
+					
+					</div>
+			</div>
+			<div class="row borde_abajo"></div>
+			<!-- FIN NUESTROS DATOS -->
+
+			<!-- Datos de la novia -->
+			<div class="row" style="margin-top:20px;">
+					<div class="col-xs-12">
+						<p class="rosa"><i>La novia</i></p>
+						Nombre: <span class="rosa">{{ noviaInfo.nombreCompleto }}</span><br>
+						E-mail: <span class="rosa">{{ noviaInfo.email }}</span><br>
+						Teléfono Oficina: <span class="rosa">({{ noviaInfo.lada }}) {{ noviaInfo.telefono }}</span><br>
+						Teléfono Celular: <span class="rosa">{{ noviaInfo.celular }}</span><br>
+						Dirección: <span class="rosa">{{ noviaInfo.direccion }}</span><br>
+						País: <span class="rosa">México</span><br>
+						Estado: <span class="rosa">{{ noviaInfo.estado }}</span><br>
+						Ciudad: <span class="rosa">{{ noviaInfo.ciudad }}</span><br>
+						Código Postal: <span class="rosa">{{ noviaInfo.cp }}</span><br>
+					</div>
+			</div>
+			<!-- FIN DATOS DE LA NOVIA -->
+
+			<!-- Datos del novio -->
+			<div class="row" style="margin-top:20px;">
+					<div class="col-xs-12">
+						<p class="rosa"><i>El novio</i></p>
+						Nombre: <span class="rosa">{{ novioInfo.nombreCompleto }}</span><br>
+						E-mail: <span class="rosa">{{ novioInfo.email }}</span><br>
+						Teléfono Oficina: <span class="rosa">({{ novioInfo.lada }}) {{ novioInfo.telefono }}</span><br>
+						Teléfono Celular: <span class="rosa">{{ novioInfo.celular }}</span><br>
+						Dirección: <span class="rosa">{{ novioInfo.direccion }}</span><br>
+						País: <span class="rosa">México</span><br>
+						Estado: <span class="rosa">{{ novioInfo.estado }}</span><br>
+						Ciudad: <span class="rosa">{{ novioInfo.ciudad }}</span><br>
+						Código Postal: <span class="rosa">{{ novioInfo.cp }}</span><br>
+					</div>
+			</div>
+			<!-- FIN DATOS DEL NOVIO -->
+
+			<div class="row borde_abajo"></div>
+			<div class="row" style="margin-top:10px;">
+					<div class="col-xs-12">
+						<span class="rosa"><i>Cambiar contraseña</i></span>
+					</div>
+			</div>
+
+			<div class="row" style="margin-top:10px;">
+				{{ form_start(form) }}
+					<div class="col-xs-4">
+						{{ form_widget(form.oldPass, { 'attr': {'class': 'input_registro_novios', 'placeholder': 'Contraseña actual' } }) }}
+						<span class="error-formulario">{{ form_errors(form.oldPass) }}</span>
+					</div>
+					<div class="col-xs-4">
+						{{ form_widget(form.newPass, { 'attr': {'class': 'input_registro_novios', 'placeholder': 'Nueva Contraseña' } }) }}
+						<span class="error-formulario">{{ form_errors(form.newPass) }}</span>
+					</div>
+					<div class="col-xs-4">
+						{{ form_widget(form.Cambiar, { 'attr': {'class': 'botoncitoRosa', 'style': 'width:100px; margin-top:2px; bottom:0px;' } }) }}
+					</div>
+				{{ form_end(form) }}
+			</div>
+
+			<div class="row" style="margin-top:10px;">
+					<div class="col-xs-12">
+						<p>Define contraseña; ésta debe estar compuesta por 8 caracteres.</p>
+					</div>
+			</div>
+
+			<!-- FIN NUESTROS DATOS -->
+
+			
+			<!-- FIN DATOS DE LA CUENTA -->
+
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+
+
+{% endblock %}

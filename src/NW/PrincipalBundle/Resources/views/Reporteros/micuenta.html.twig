@@ -1,0 +1,71 @@
+{# src/NW/PrincipalBundle/Resources/views/Reporteros/micuenta.html.twig #}
+
+{% extends 'NWPrincipalBundle:Reporteros:administrador.html.twig' %}
+
+{% block partederecha %}
+
+<div class="row">
+	<div class="col-xs-9">
+
+	</div>
+	<div class="col-xs-3">
+		<h1>Mi Cuenta</h1>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-xs-9">
+		<strong class="esc">Mis Datos</strong>
+	</div>
+	<div class="col-xs-3">
+		<a class="art3" data-toggle="modal" data-target="#miCuenta"><span class="esc"> Editar </span> </a>
+	</div>
+</div>
+
+<div class="row">
+	<hr />
+	<h5>Nombre / Razón social:<span class="esc"> {{ reportero.nombreRazon }} {{ reportero.apellidoPaterno }} {{ reportero.apellidoMaterno }} </span></h5>
+	<h5>Email:<span class="esc"> {{ reportero.email }} </span></h5>
+	<h5>Teléfono oficina:<span class="esc"> ({{ reportero.lada }}) {{ reportero.telefono }} </span></h5>
+	<h5>Teléfono celular:<span class="esc"> {{ reportero.celular }} </span></h5>
+	<h5>RFC:<span class="esc"> {{ reportero.rfc }} </span></h5>
+	<h5>Dirección:<span class="esc"> {{ reportero.direccion }} </span></h5>
+	<h5>País:<span class="esc"> México </span></h5>
+	<h5>Estado:<span class="esc"> {{ reportero.estado }} </span></h5>
+	<h5>Ciudad:<span class="esc"> {{ reportero.ciudad }} </span></h5>
+	<h5>Código postal:<span class="esc"> {{ reportero.cp }} </span></h5>
+</div>
+
+<div class="row">
+	<hr />
+	<span class="esc"> Cambiar contraseña </span >
+		<br>
+	</div>
+	<div class="row" style="margin-top:10px;">
+		{{ form_start(formPassword) }}
+		<div class="col-xs-4">
+			{{ form_widget(formPassword.oldPass, { 'attr': {'class': 'input_registro_novios', 'placeholder': 'Contraseña actual' } }) }}
+		</div>
+		<div class="col-xs-4">
+			{{ form_widget(formPassword.newPass, { 'attr': {'class': 'input_registro_novios', 'placeholder': 'Nueva Contraseña' } }) }}
+		</div>
+		<div class="col-xs-4">
+			<!-- El formulario se debería enviar a NWPrincipalBundle:Default:changePass pero he podido ) -->
+			{{ form_widget(formPassword.Cambiar, { 'attr': {'class': 'enviar_form', 'style': '' } }) }}
+		</div>
+		{{ form_end(formPassword) }}
+	</div>
+	<br>
+	Define contraseña; ésta debe estar compuesta por 8 caracteres.
+	<br>
+	<br>
+	<br>
+	<br>
+</div>
+
+{% endblock %}
+
+{% block modales %}
+	{{ parent() }}
+	{% include 'NWPrincipalBundle:Reporteros:modalEditarReportero.html.twig' %}
+{% endblock %}

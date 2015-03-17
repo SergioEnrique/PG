@@ -1,0 +1,59 @@
+nw_payment_homepage:
+    pattern:  /payment
+    defaults: { _controller: NWPaymentBundle:Default:index }
+
+nw_payment_prepare_order_purchase:
+    pattern:  /payment/order_purchase/prepare
+    defaults: { _controller: NWPaymentBundle:OrderPurchase:prepare }
+
+nw_payment_prepare_simple_purchase_authorize_net:
+    pattern:  /payment/simple_purchase/authorize_net/prepare
+    defaults: { _controller: NWPaymentBundle:SimplePurchaseAuthorizeNetAim:prepare }
+
+nw_payment_prepare_obtain_credit_card_authorize_net:
+    pattern:  /payment/simple_purchase/authorize_net/prepare-obtain-credit-card
+    defaults: { _controller: NWPaymentBundle:SimplePurchaseAuthorizeNetAim:prepareObtainCreditCard }
+
+nw_payment_prepare_simple_purchase_be2bill:
+    pattern:  /payment/simple_purchase/be2bill/prepare
+    defaults: { _controller: NWPaymentBundle:SimplePurchaseBe2Bill:prepare }
+
+nw_payment_prepare_obtain_credit_card_be2bill:
+    pattern:  /payment/simple_purchase/be2bill/prepare-obtain-credit-card
+    defaults: { _controller: NWPaymentBundle:SimplePurchaseBe2Bill:prepareObtainCreditCard }
+
+nw_payment_prepare_simple_purchase_be2bill_onsite:
+    pattern:  /payment/simple_purchase/be2bill/prepare_onsite
+    defaults: { _controller: NWPaymentBundle:SimplePurchaseBe2Bill:prepareOnsite }
+
+nw_payment_prepare_simple_purchase_offline:
+    pattern:  /payment/simple_purchase/offline/prepare
+    defaults: { _controller: NWPaymentBundle:SimplePurchaseOffline:prepare }
+
+nw_payment_prepare_simple_purchase_paypal_express_via_omnipay:
+    pattern:  /payment/simple_purchase/paypal_express_via_omnipay/prepare
+    defaults: { _controller: NWPaymentBundle:SimplePurchasePaypalExpressViaOmnipay:prepare }
+
+nw_payment_prepare_simple_purchase_stripe_via_omnipay:
+    pattern:  /payment/simple_purchase/stripe_via_omnipay/prepare
+    defaults: { _controller: NWPaymentBundle:SimplePurchaseStripeViaOmnipay:prepare }
+
+nw_payment_prepare_simple_purchase_paypal_pro:
+    pattern:  /payment/simple_purchase/paypal_express_pro/prepare
+    defaults: { _controller: NWPaymentBundle:SimplePurchasePaypalPro:prepare }
+
+nw_payment_prepare_obtain_credit_card_paypal_pro:
+    pattern:  /payment/simple_purchase/paypal_express_pro/prepare-obtain-credit-card
+    defaults: { _controller: NWPaymentBundle:SimplePurchasePaypalPro:prepareObtainCreditCard }
+
+nw_payment_details_view:
+    pattern:  /payment/details
+    defaults: { _controller: NWPaymentBundle:Details:view }
+
+nw_payment_order_done:
+    pattern:  /payment/order/done
+    defaults: { _controller: NWPaymentBundle:Details:viewOrder }
+
+nw_payment_notifications_list:
+    pattern:  /payment/notifications/list
+    defaults: { _controller: NWPaymentBundle:Notifications:list }

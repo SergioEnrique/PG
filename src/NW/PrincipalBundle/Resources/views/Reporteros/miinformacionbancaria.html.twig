@@ -1,0 +1,110 @@
+{# src/NW/PrincipalBundle/Resources/views/Reporteros/miinformacionbancaria.html.twig #}
+
+{% extends 'NWPrincipalBundle:Reporteros:administrador.html.twig' %}
+
+{% block partederecha %}
+		
+			<div class="container">
+				<div class="flow">
+					<div class="col-xs-6">
+						
+					</div>
+					<div class="col-xs-1 puntov">
+						<img class="img-responsive" src="{{asset('img/puntov.png')}}">
+					</div>
+					<div class="col-xs-5">
+						<h1 class="art">Mi Información Bancaria</h1>
+					</div>
+				</div>
+				<br>
+				<br>
+				<br>
+				<br>
+				<div class="row">
+					<div>
+						<h1 class="art">
+							Mis Cuentas Bancarias
+						</h1>
+					</div>
+					<hr />
+				</div>
+				<div class="flow">
+					<p class="col-xs-12 parrafo">
+						En caso de que vendas algún producto o servicio con nosotros, podrás disponer del dinero en el momento que quieras. Tu cuenta CLABE servirá para poder transferir tu dinero a tu cuenta bancaria
+					</p>
+				</div>
+				<div class="row">
+					<div class="col-xs-4">
+						<h5 class="art">
+							CLABE
+						</h5>
+						<p>
+							<input type="checkbox" name="option1" value=""> ***************6789 <br>
+							<input type="checkbox" name="option1" value=""> ***************6790 <br>
+							<input type="checkbox" name="option1" value=""> ***************6791 <br>
+							<input type="checkbox" name="option1" value=""> ***************6792 <br>
+							<input type="checkbox" name="option1" value=""> ***************6793 <br>
+						</p>
+						<p>
+							Selecciona las cuentas que quieres eliminar
+						</p>
+					</div>
+					<div class="col-xs-4">
+						<h5 class="art">
+							Banco
+						</h5>
+						<p>
+							Banamex <br>
+							Bancomer <br>
+							Banorte <br>
+							Inbursa <br>
+							Santander <br>
+						</p>
+					</div>
+					<div class="col-xs-4">
+						<h5 class="art">
+							Define una nueva cuenta
+						</h5>
+						<input type="text" name="clabe" value="Clabe" class="formu">
+						<input type="text" name="confirma clabe" value="Confirma clabe" class="formu">
+						<select name="Banco" class="formu">
+						   <option value="1">Banamex </option> 
+						   <option value="2">Bancomer</option> 
+						   <option value="3">Banorte </option>
+						   <option value="4">Inbursa </option> 
+						   <option value="5">Santander </option> 
+						</select>
+					</div>
+				</div>
+				<div class="row">
+					<div>
+						<h1 class="art">
+							Mi Tarjeta de Crédito
+						</h1>
+					</div>
+					<hr />
+					<div class="col-xs-12">
+						<p>
+							De acuerdo a tu perfil, se te hará un cobro mensual directo a tu tarjeta de crédito
+						</p>
+					</div>
+					<div class="col-xs-6">
+						<h5 class="art">
+							Tarjeta vigente
+						</h5>
+						<p>
+							 ***************599
+						</p>
+					</div>
+					<div class="col-xs-6">
+						<h5 class="art">
+							Define una nueva cuenta
+						</h5>
+						<img class="img-responsive" src="{{asset('img/paypallogo.png')}}">
+					</div>
+				</div>
+				
+ 
+
+
+	{% endblock %}

@@ -1,0 +1,22 @@
+<div class="row">
+	<div class="caja gris2">
+		<p>Encuentra lo que necesitas</p>
+		{{ form_start(formBuscarArticulo) }}
+		<div class="col-xs-5">
+			{{ form_widget(formBuscarArticulo.categorias, { 'attr': {'class': 'form-control input11', 'style': '', 'placeholder': '' } }) }}
+			<!-- La ubicación no se puede ocupar porque los artículos no tienen ubicación según el pdf
+			{{ form_widget(formBuscarArticulo.estado, { 'attr': {'class': 'form-control', 'style': '', 'placeholder': '' } }) }}
+			-->
+		</div>
+		<div class="col-xs-7">
+			{{ form_widget(formBuscarArticulo.otro, { 'attr': {'class': 'form-control input11', 'style': '', 'placeholder': '¿no está en el menú? escribea aquí lo que necesitas' } }) }}<br />
+			{{ form_widget(formBuscarArticulo.proveedor, { 'attr': {'class': 'form-control input11', 'style': '', 'placeholder': 'nombre del proveedor que buscas' } }) }}
+		</div>
+		<div class="col-xs-7">
+		</div>
+		<div class="col-xs-5">
+			{{ form_widget(formBuscarArticulo.Buscar, { 'attr': {'class': 'enviar_form', 'style': 'width: 120px;float: right;margin-top:20px;', 'placeholder': '' } }) }}<br>
+		</div>
+		{{ form_end(formBuscarArticulo) }}
+	</div>
+</div>

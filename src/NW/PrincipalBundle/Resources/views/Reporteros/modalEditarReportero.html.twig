@@ -1,0 +1,88 @@
+<!-- Modal Editar Reportero -->
+<div class="modal fade" id="miCuenta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content" style="border: rgba(204,0,153,0.7) 2px solid; padding:10px;">
+			<div class="modal-header2">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<div class="col-xs-7">
+					<h4 class="modal-title rosa" id="myModalLabel">Actualiza tus datos</h4>
+				</div>
+				<div class="col-xs-5">
+					<img class="logo-modal" src="{{asset('img/nw.png')}}">	
+				</div>
+			</div>
+			<div class="modal-body">
+				{{ form_start(formReportero) }}
+				<div class="row">
+					<div class="col-xs-12 left">
+						<div class="row left">
+							<img src="{{asset('img/mini-punto.png')}}">
+							{{ form_widget(formReportero.nombreRazon, { 'attr': {'class': 'input_registro_novios input5 ', 'placeholder': 'Nombre o Razón Social' } }) }}
+							<img src="{{asset('img/mini-punto.png')}}">
+							{{ form_widget(formReportero.direccion, { 'attr': {'class': 'input_registro_novios input5 ', 'placeholder': 'Dirección completa' } }) }}
+						</div>
+						<br>
+						<div class="row left2">
+							{{ form_widget(formReportero.apellidoPaterno, { 'attr': {'class': 'input_registro_novios input5 ', 'placeholder': 'Apellido Paterno' } }) }}
+							<img src="{{asset('img/mini-punto.png')}}">
+							{{ form_label(formReportero.pais, 'País') }}
+							{{ form_widget(formReportero.pais, { 'attr': {'class': 'input_registro_novios select1'} }) }}
+						</div>
+						<br>
+						<div class="row left2">
+							{{ form_widget(formReportero.apellidoMaterno, { 'attr': {'class': 'input_registro_novios input5 ', 'placeholder': 'Apellido Materno' } }) }}
+							<img src="{{asset('img/mini-punto.png')}}">
+							{{ form_label(formReportero.estadoId, 'Estado') }}
+							{{ form_widget(formReportero.estadoId, { 'attr': {'class': 'input_registro_novios select2'} }) }}
+						</div>
+						<br>
+						<div class="row left">
+							<img src="{{asset('img/mini-punto.png')}}">
+							{{ form_widget(formReportero.rfc, { 'attr': {'class': 'input_registro_novios2', 'placeholder': 'RFC' } }) }}
+							<img src="{{asset('img/mini-punto.png')}}">
+							{{ form_widget(formReportero.ciudad, { 'attr': {'class': 'input_registro_novios input5 ', 'placeholder': 'Ciudad' } }) }}
+						</div>
+						<br>
+						<div class="row left">
+							<img src="{{asset('img/mini-punto.png')}}">
+							{{ form_widget(formReportero.email, { 'attr': {'class': 'input_registro_novios input5 ', 'placeholder': 'E-Mail' } }) }}
+							{{ form_widget(formReportero.cp, { 'attr': {'class': 'input_registro_novios input5 ', 'placeholder': 'Código postal' } }) }}
+						</div>
+						<br>
+						<div class="row left">
+							<img src="{{asset('img/mini-punto.png')}}">
+							{{ form_widget(formReportero.lada, { 'attr': {'class': 'input_registro_novios miniinput', 'placeholder': 'LADA' } }) }}
+							{{ form_widget(formReportero.telefono, { 'attr': {'class': 'input_registro_novios miniinput2', 'placeholder': 'Teléfono de casa u oficina' } }) }}
+						</div>
+						<br>
+						<div class="row left">
+							<img src="{{asset('img/mini-punto.png')}}">
+							{{ form_widget(formReportero.celular, { 'attr': {'class': 'input_registro_novios input5 ', 'placeholder': 'Teléfono celular' } }) }}
+						</div>
+						<br>
+						<br>
+						<div class="row">
+							<div class="col-xs-12">
+								{{ form_label(formReportero.terminosCondiciones, 'Acepto los términos y condiciones') }}&nbsp;&nbsp;{{ form_widget(formReportero.terminosCondiciones) }}<br />
+								{{ form_label(formReportero.terminosPrivacidad, 'Acepto los términos de privacidad') }}&nbsp;&nbsp;{{ form_widget(formReportero.terminosPrivacidad) }} <br />
+							</div>
+						</div>
+						<br>
+						<div class="row left">
+							<img src="{{asset('img/mini-punto.png')}}">
+							<span>Datos obligatorios</span>	<br />
+						</div>
+					</div>
+				</div>
+				<!-- no se ocupan en este formulario
+					{{ form_widget(formReportero.userName, {'attr': {'value': 'false'}}) }}
+					{{ form_widget(formReportero.userPass, {'attr': {'value': 'false'}}) }}
+				-->
+				{{ form_widget(formReportero.Aceptar, { 'attr': {'class': 'btn btn-default enviar_form2'}}) }}
+				{{ form_end(formReportero) }}
+			</div>
+
+		</div>
+	</div>
+</div>
+<!-- FIN MODAL Editar Reportero -->

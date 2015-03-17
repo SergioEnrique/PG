@@ -1,0 +1,37 @@
+# src/NW/PrincipalBundle/Resources/config/doctrine/cosasRegaladas.orm.yml
+NW\PrincipalBundle\Entity\cosasRegaladas:
+    type: entity 
+    table: cosas_regaladas
+    manyToOne:
+        user:
+            targetEntity: NW\UserBundle\Entity\User
+            inversedBy: cosasRegaladas
+            joinColumn:
+                name: usuarioId
+                referencedColumnName: id
+        regalo:
+            targetEntity: MesaRegalos
+            inversedBy: cosasRegaladas
+            joinColumn:
+                name: regaloId
+                referencedColumnName: id
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        usuarioId:
+            type: integer
+        regaloId:
+            type: integer
+        regaladorName:
+            type: string
+            length: 150
+        regaladorMail:
+            type: string
+            length: 80
+        cantidad:
+            type: integer
+        amount:
+            type: float

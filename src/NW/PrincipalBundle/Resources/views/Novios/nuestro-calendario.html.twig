@@ -1,0 +1,51 @@
+{# src/NW/PrincipalBundle/Resources/views/Novios/nuestro-calendario.html.twig #}
+{% extends 'NWPrincipalBundle:Novios:administrador.html.twig' %}
+
+{% block partederecha %}
+
+	<div class="row">
+		<div class="col-xs-8"></div>
+		<div class="col-xs-4" style="text-align:right;">
+			<div class="punto-verde-bueno hacerTooltip" style="float:left; margin-right:20px; margin-top:2px;" data-toggle="tooltip" data-placement="left" title="Aquí podrás establecer todos tus compromisos, día por día. Es la agenda de tu boda, utilízala para organizar tus actividades para que no se te pase nada.">?</div>
+			<h1 style="float:left;">Nuestro Calendario</h1>	
+		</div>	
+	</div>
+
+	<div class="row" style="font-size:17px;">
+		<b>Pendientes para este día -</b><span style="color: rgb(204,0,153);"> {{diaActual}}</span><br />
+	</div>
+
+	<div id="tareasNormal" class="row" style="border-top-color: rgb(214, 214, 214); border-top-width: 1px; border-top-style: solid; margin-top: 25px; padding:10px;">
+		
+		{% for tarea in tareas %}
+			{% if tarea.show %}
+			<div class="row" id="tarea-{{tarea.id}}">
+				<div class="col-xs-8" style="font-size:14px;">{{ tarea.compromiso }}</div>
+				<div class="col-xs-4" style="font-size:14px;">{{ tarea.vencimiento }}</div>
+			</div>
+			{% endif %}
+		{% endfor %}
+
+	</div>
+
+	<div class="row" style="margin-top:40px;">
+		<a href="#" data-toggle="modal" data-target="#Tareas" class="modal-link">
+			Ver detalle / agregar
+		</a>
+	</div>
+
+	<div class="row" style="margin-top:40px;">
+		<div id="calendar" class='calendar-view'></div>
+	</div>
+
+{% endblock %}
+
+{% block modales %}
+	{{ parent() }}
+	{% include 'NWPrincipalBundle:Novios:modalTareas.html.twig' %}
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+    {% include 'NWPrincipalBundle:Novios:ajaxRequests.js.twig' %}
+{% endblock %}

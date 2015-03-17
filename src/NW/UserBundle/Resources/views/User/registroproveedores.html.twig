@@ -1,0 +1,429 @@
+{# src/NW/PrincipalBundle/Resources/views/registroproveedores.html.twig #}
+
+{% extends '::base.html.twig' %}
+
+	{% block body %}
+	
+		{% include ':plantillasParciales:top.html.twig' %}
+
+		{{ form_start(form) }}
+
+		<!-- Modal -->
+		{#Temporalmente no se ocupa hasta habilitar proveedores
+		<div class="modal fade" id="seleccionDePlan" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content" style="border: rgba(204,0,153,0.7) 2px solid; padding:10px;">
+					<div class="modal-header2">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+					</div>
+					<div class="modal-body">
+						<div class="container contrata corrector minplanes">
+							<div class="row">
+								<div class="col-xs-6">
+									<h1>Contrata tu plan</h1>
+								</div>
+								<div class="col-xs-6">
+									<img class="img-responsive logo" src="/web/img/nw.png"></div>
+								</div>
+							</div>
+							<div class="row minplanes">
+								<table class="table table-striped">
+									<tbody>
+										<tr height="20px">
+											<td class="planes2"></td>
+											<td class="planes" colspan="5">Planes</td>
+										</tr>
+										<tr>
+											<th class="funcionalidades"> Funcionalidades </th>
+											<th> Anuncio <br> especial </th>
+											<th> Anuncio <br> Plus </th>
+											<th class="top"> Básico </th>
+											<th class="top"> Estándar </th>
+											<th class="top"> Plus </th>
+										</tr>
+										<tr>
+											<td> Anuncio en la página principal </td>
+											<td>&nbsp;</td>
+											<td><img src="{{ asset('img/punto.png') }}"></td>
+											<td>&nbsp;</td>
+											<td>&nbsp;</td>
+											<td><img src="{{ asset('img/punto.png') }}"></td>
+										</tr>
+										<tr>
+											<td> Anuncio especial en el costado de la página </td>
+											<td><img src="{{ asset('img/punto.png') }}"></td>
+											<td>&nbsp;</td>
+											<td>&nbsp;</td>
+											<td><img src="{{ asset('img/punto.png') }}"></td>
+											<td><img src="{{ asset('img/punto.png') }}"></td>
+										</tr>
+										<tr>
+											<td> Micrositio con mi catálogo de productos / servicios </td>
+											<td>&nbsp;</td>
+											<td>&nbsp;</td>
+											<td><img src="{{ asset('img/punto.png') }}"></td>
+											<td><img src="{{ asset('img/punto.png') }}"></td>
+											<td><img src="{{ asset('img/punto.png') }}"></td>
+										</tr>
+										<tr>
+											<td> Cargar / modificar artículos </td>
+											<td>&nbsp;</td>
+											<td>&nbsp;</td>
+											<td><img src="{{ asset('img/punto.png') }}"></td>
+											<td><img src="{{ asset('img/punto.png') }}"></td>
+											<td><img src="{{ asset('img/punto.png') }}"></td>
+										</tr>
+										<tr>
+											<td> Incluir promociones en página principal </td>
+											<td>&nbsp;</td>
+											<td>&nbsp;</td>
+											<td>&nbsp;</td>
+											<td><img src="{{ asset('img/punto.png') }}"></td>
+											<td><img src="{{ asset('img/punto.png') }}"></td>
+										</tr>
+										<tr>
+											<td> Vender a través de la plataforma </td>
+											<td>&nbsp;</td>
+											<td>&nbsp;</td>
+											<td><img src="{{ asset('img/punto.png') }}"></td>
+											<td><img src="{{ asset('img/punto.png') }}"></td>
+											<td><img src="{{ asset('img/punto.png') }}"></td>
+										</tr>
+										<tr>
+											<td> Transferir ventas a mi cuenta bancaria </td>
+											<td>&nbsp;</td>
+											<td>&nbsp;</td>
+											<td><img src="{{ asset('img/punto.png') }}"></td>
+											<td><img src="{{ asset('img/punto.png') }}"></td>
+											<td><img src="{{ asset('img/punto.png') }}"></td>
+										</tr>
+										<tr>
+											<td> Modificar / actualizar información bancaria </td>
+											<td>&nbsp;</td>
+											<td>&nbsp;</td>
+											<td><img src="{{ asset('img/punto.png') }}"></td>
+											<td><img src="{{ asset('img/punto.png') }}"></td>
+											<td><img src="{{ asset('img/punto.png') }}"></td>
+										</tr>
+										<tr>
+											<td> Incluir banners promocionales </td>
+											<td>&nbsp;</td>
+											<td>&nbsp;</td>
+											<td><img src="{{ asset('img/punto.png') }}"></td>
+											<td><img src="{{ asset('img/punto.png') }}"></td>
+											<td><img src="{{ asset('img/punto.png') }}"></td>
+										</tr>
+										<tr>
+											<td> Administración de inventario por producto </td>
+											<td>&nbsp;</td>
+											<td>&nbsp;</td>
+											<td><img src="{{ asset('img/punto.png') }}"></td>
+											<td><img src="{{ asset('img/punto.png') }}"></td>
+											<td><img src="{{ asset('img/punto.png') }}"></td>
+										</tr>
+										<tr>
+											<td> Conocer opiniones de clientes </td>
+											<td>&nbsp;</td>
+											<td>&nbsp;</td>
+											<td><img src="{{ asset('img/punto.png') }}"></td>
+											<td><img src="{{ asset('img/punto.png') }}"></td>
+											<td><img src="{{ asset('img/punto.png') }}"></td>
+										</tr>
+										<tr>
+											<td> Estado de cuenta detallado </td>
+											<td>&nbsp;</td>
+											<td>&nbsp;</td>
+											<td><img src="{{ asset('img/punto.png') }}"></td>
+											<td><img src="{{ asset('img/punto.png') }}"></td>
+											<td><img src="{{ asset('img/punto.png') }}"></td>
+										</tr>
+										<tr>
+											<td> Cargar / modificar códigos de venta </td>
+											<td>&nbsp;</td>
+											<td>&nbsp;</td>
+											<td><img src="{{ asset('img/punto.png') }}"></td>
+											<td><img src="{{ asset('img/punto.png') }}"></td>
+											<td><img src="{{ asset('img/punto.png') }}"></td>
+										</tr>
+										<tr>
+											<td class="funcionalidades"> Costo mensual (3 meses gratis al registrarte) </td>
+											<td class="term">{{ form_widget(form.plan.0) }}{{ form_label(form.plan.0, '$299') }}</td>
+											<td class="term">{{ form_widget(form.plan.1) }}{{ form_label(form.plan.0, '$599') }}</td>
+											<td class="term">{{ form_widget(form.plan.2) }}{{ form_label(form.plan.0, '$299') }}</td>
+											<td class="term">{{ form_widget(form.plan.3) }}{{ form_label(form.plan.0, '$499') }}</td>
+											<td class="term">{{ form_widget(form.plan.4) }}{{ form_label(form.plan.0, '$999') }}</td>
+										</tr>
+									</tbody>
+								</table>
+								<div class="row">
+									<div class="col-xs-9">
+									</div>
+									<div class="col-xs-3">
+										<button id="enviar_form2" name="" class="btn btn-success" data-dismiss="modal">Continuar</button>
+									</div>
+								</div>
+
+								<br>
+							</div>	
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- FIN DE MODAL -->
+		#}
+
+		<div class="container">
+			<div class="container">
+
+				<div class="row">
+					<p>Para ti que ofreces un servicio o un producto, para cumplir los sueños de tus clientes en el día más importante de su vida, creamos NewlyWishes. Una plataforma en la nube totamente amigable y automatizada, que te permitirá promover y vender tus productos y servicios. Nuestro negocio, es que tú hagas negocio. De lo demás, nosotros nos encargamos.</p>
+				</div>
+				<div class="row proximamenteTemporal">
+					<p>Próximamente, Agosto 2015</p>
+					<p>Se de los primeros en pre-registrarte</p>
+				</div>
+				<div class="row">
+					<div class="col-xs-4 columnaTemporal">
+						<div class="row">
+							<div class="imagenDiv1Temporal">
+								<img src="{{ asset('img/la_publicidad.png') }}">
+							</div>
+						</div>
+						<div class="row">
+							<strong class="strong1Temporal">La Publicidad</strong><br /><br />
+							<p>Nosotros nos encargamos de la publicidad. Tú no tendrás que preocuparte por atraer clientes a tu página, sólo tendrás que preocuparte de dar un producto o un servicio excepcional, pero sabemos que eso ya lo haces.</p>
+							<p>Con tu membresía, la publicidad ya está incluida.</p>
+						</div>
+					</div>
+					<div class="col-xs-4 columnaTemporal">
+						<div class="row">
+							<div class="imagenDiv1Temporal">
+								<img src="{{ asset('img/la_venta_y_entrega.png') }}">
+							</div>
+						</div>
+						<div class="row">
+							<strong class="strong1Temporal">La venta y la entrega</strong><br /><br />
+							<p>Nosotros nos encargamos de la administración de la venta (cobrar y pagarte), a través de la red de pago más segura del mundo (PayPal). También nos encargamos de la logística de entrega (en caso de que se trate de un producto físico, que podemos lograr a través del servicio de entrega de DHL a nivel nacional).</p>
+						</div>
+					</div>
+					<div class="col-xs-4 columnaTemporal">
+						<div class="row">
+							<div class="imagenDiv1Temporal">
+								<img src="{{ asset('img/la_facilidad.png') }}">
+							</div>
+						</div>
+						<div class="row">
+							<strong class="strong1Temporal">La facilidad</strong><br /><br />	<p>Todo al alcance de unos clicks, donde quieras y con cualquier dispositivo. Con NewlyWishes llegarás a tus clientes y podrás administrar tus ventas en segundos. Con NewlyWishes no tendrás que configurar nada, sólo debes registrarte, subir tus productos y comenzar a vender, así de fácil.</p>
+							<p>Es más, como proveedor de NewlyWishes tendrás un micrositio exclusivo para tu marca, tus productos y servicios. Tu tienda virtual y hasta tu herramienta de punto de venta si así lo necesitas.</p>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<br /><br />
+					<p>Además, siempre tendrás apoyo y asesoría por si te atoras en algo. Pondremos a tu disposición videos tutoriales, documentos y un buzón de preguntas donde te prometemos que en menos de medio día, responderemos a todas tus dudas o comentarios.</p><br /><br />
+				</div>
+
+				<div class="row">
+					<img src="{{ asset('img/user/registrate.jpg') }}">
+					<div class="col-xs-12 paso-registro-proveedor">
+						<br /><br />
+						<p>Si eres un proveedor nuevo y deseas anunciarte con nosotros, por favor regístrate.</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="row">
+						<div class="col-xs-12 form-label puntosRosas">
+							
+					<span class="error-formulario">{{ form_errors(form.tipoPersona) }}</span>
+					<img src="{{ asset('img/punto.png') }}" style="top: 11px;left: 11px;position: absolute;">
+							{{ form_widget(form.tipoPersona) }}
+							<br />
+						</div>
+						<div class="col-xs-4 puntosRosas">
+							
+					<span class="error-formulario">{{ form_errors(form.nombreRazon) }}</span>
+					<img src="{{ asset('img/punto.png') }}">
+							{{ form_widget(form.nombreRazon, { 'attr': {'class': 'input_registro_novios', 'placeholder': 'Nombre o razón social' } }) }}
+							<br/>
+							{{ form_widget(form.apellidoPaterno, { 'attr': {'class': 'input_registro_novios', 'placeholder': 'Apellido Paterno' } }) }}
+							<br/>
+							{{ form_widget(form.apellidoMaterno, { 'attr': {'class': 'input_registro_novios', 'placeholder': 'Apellido Materno' } }) }}
+							<br />
+							{{ form_widget(form.nombreComercial, { 'attr': {'class': 'input_registro_novios', 'placeholder': 'Nombre Comercial' } }) }}
+							<br/>
+							
+					<span class="error-formulario">{{ form_errors(form.rfc) }}</span>
+					<img src="{{ asset('img/punto.png') }}" alt="Registro" width="210">
+							{{ form_widget(form.rfc, { 'attr': {'class': 'input_registro_novios', 'placeholder': 'RFC' } }) }}
+						</div>
+						<div class="col-xs-4 puntosRosas">
+							
+					<span class="error-formulario">{{ form_errors(form.email) }}</span>
+					<img src="{{ asset('img/punto.png') }}">
+							{{ form_widget(form.email, { 'attr': {'class': 'input_registro_novios', 'placeholder': 'E-Mail' } }) }}
+							<div class="col-xs-3" style="padding: 0 10px 0 0;">
+								
+			
+					<span class="error-formulario">{{ form_errors(form.lada) }}</span>
+					<img src="{{ asset('img/punto.png') }}" alt="Registro" width="210">
+								{{ form_widget(form.lada, { 'attr': {'class': 'input_registro_novios', 'placeholder': 'LADA'} }) }}
+							</div>
+							<div class="col-xs-9" style="padding: 0;">
+								{{ form_widget(form.telefono, { 'attr': {'class': 'input_registro_novios', 'placeholder': 'Teléfono de oficina'} }) }}
+							</div>
+							<div class="col-xs-12" style="padding: 0;">
+								
+			
+					<span class="error-formulario">{{ form_errors(form.celular) }}</span>
+					<img src="{{ asset('img/punto.png') }}" alt="Registro" width="210">
+								{{ form_widget(form.celular, { 'attr': {'class': 'input_registro_novios', 'placeholder': 'Celular' } }) }}
+							</div>
+						</div>
+						<div class="col-xs-4 puntosRosas">
+							
+					<span class="error-formulario">{{ form_errors(form.direccion) }}</span>
+					<img src="{{ asset('img/punto.png') }}">
+							{{ form_widget(form.direccion, { 'attr': {'class': 'input_registro_novios', 'placeholder': 'Dirección' } }) }}
+							<br/>
+
+					<img src="{{ asset('img/punto.png') }}" alt="Registro" width="210">
+							{{ form_widget(form.pais, { 'attr': {'class': 'input_registro_novios'} }) }}
+							<br />
+							
+					<span class="error-formulario">{{ form_errors(form.estado) }}</span>
+					<img src="{{ asset('img/punto.png') }}">
+							{{ form_widget(form.estado, { 'attr': {'class': 'input_registro_novios'} }) }}
+							<br />
+							
+					<span class="error-formulario">{{ form_errors(form.ciudad) }}</span>
+					<img src="{{ asset('img/punto.png') }}">
+							{{ form_widget(form.ciudad, { 'attr': {'class': 'input_registro_novios', 'placeholder': 'Ciudad' } }) }}
+							<br/>
+			
+					<span class="error-formulario">{{ form_errors(form.cp) }}</span>
+					<img src="{{ asset('img/punto.png') }}" alt="Registro" width="210">
+							{{ form_widget(form.cp, { 'attr': {'class': 'input_registro_novios', 'placeholder': 'Código postal' } }) }}
+						</div>
+					</div>
+					<!-- DATOS DEL USUARIO -->
+					<div class="row">
+						<div class="col-xs-12">
+							<p>Define una contraseña segura</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-4 puntosRosas">
+							
+					<span class="error-formulario">{{ form_errors(form.userName) }}</span>
+					<img src="{{ asset('img/punto.png') }}" alt="Registro">
+							{{ form_widget(form.userName, { 'attr': {'class': 'input_registro_novios', 'placeholder': 'Usuario' } }) }}
+							<br/>
+			
+					<span class="error-formulario">{{ form_errors(form.userPass) }}</span>
+					<img src="{{ asset('img/punto.png') }}" alt="Registro" width="210">
+							{{ form_widget(form.userPass, { 'attr': {'class': 'input_registro_novios', 'placeholder': 'Contraseña' } }) }}
+						</div>
+						<div class="col-xs-4 puntosRosas">
+							
+					<span class="error-formulario">{{ form_errors(form.terminosCondiciones) }}</span>
+					<img src="{{ asset('img/punto.png') }}" alt="Registro">
+							{{ form_widget(form.terminosCondiciones) }} 
+							<a href="{{asset('documents/TerminosYCondicionesNWNovios.pdf')}}" target="_blank">
+								Acepto los términos y condiciones generales
+							</a>
+							<br />
+							
+					<span class="error-formulario">{{ form_errors(form.terminosPrivacidad) }}</span>
+					<img src="{{ asset('img/punto.png') }}" alt="Registro">
+							{{ form_widget(form.terminosPrivacidad) }}
+							<a href="{{asset('documents/CondicionesDeUsoGeneralYDeRegistroYAvisoDePrivacidadNewlyWishesNovios.pdf')}}" target="_blank">
+								Acepto las Condiciones de Uso General y de Registro y Aviso de privacidad
+							</a>
+							<br />
+						</div>
+						<div class="col-xs-4">
+
+						</div>
+					</div>
+					<div class="row" style="margin-top:40px">
+						<div class="col-xs-12 puntosRosas">
+							<p><img src="{{ asset('img/punto.png') }}" alt="Registro"> Datos obligatorios</p>
+						</div>
+					</div>
+				</div>
+				{# <!--
+				<div class="row" style="margin-top:50px;">
+					<img src="{{ asset('img/user/escogeplan.jpg') }}"><br />
+					<div class="col-xs-12 paso-registro-proveedor">
+						<div class="row">
+							<div class="col-xs-8">
+								<p>Por favor selecciona el plan que más se ajuste a tus necesidades</p><br />
+								<button type="button" class="blue-button">
+									<a href="#" data-toggle="modal" data-target="#seleccionDePlan">Escoge tu plan aquí</a>
+								</button>
+							</div>
+							<div class="col-xs-4">
+								<div id="planSeleccionado" style="visibility:hidden">
+									<p>Has seleccionado el plan:</p>
+									<span class="text-important" style="font-size:18px" id="planSeleccionadoSpan"></span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				-->#}
+				<div class="row" style="margin-top:50px;">
+					<img src="{{ asset('img/user/confirmar.jpg') }}">
+					<div class="col-xs-12 paso-registro-proveedor">
+						{{ form_widget(form.Aceptar, { 'attr': {'class': 'enviar_form' } }) }}
+					</div>
+				</div>
+
+				<div class="container">
+					<div class="row">
+						<div class="col-xs-12" style="height:30px; background-color:rgba(255,255,255,1);">
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		{{ form_end(form) }}
+
+	{% endblock %}
+
+	{% block javascripts %}
+		{{ parent() }}
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$('input[name="form[plan]"]').change(function(){
+					$('#planSeleccionado').css('visibility', 'visible');
+
+					var plan = $('input[name="form[plan]"]:checked').val();
+
+					switch(plan) {
+						case 'anuncioEspecial':
+						    plan = 'Anuncio Especial';
+						    break;
+						case 'anuncioPlus':
+						    plan = 'Anuncio Plus';
+						    break;
+						case 'basico':
+						    plan = 'Básico';
+						    break;
+						case 'estandar':
+						    plan = 'Estándar';
+						    break;
+						case 'plus':
+						    plan = 'Plus';
+						    break;
+						default:
+						    plan = plan;
+					}
+
+					$('#planSeleccionadoSpan').html(plan);
+				});
+			});
+		</script>
+	{% endblock %}

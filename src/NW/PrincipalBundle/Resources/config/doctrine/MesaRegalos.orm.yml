@@ -1,0 +1,44 @@
+# src/NW/PrincipalBundle/Resources/config/doctrine/MesaRegalos.orm.yml
+NW\PrincipalBundle\Entity\MesaRegalos:
+    type: entity 
+    table: regalos 
+    manyToOne:
+        bucketGift:
+            targetEntity: PG\PartyBundle\Entity\BucketGift
+            inversedBy: mesaregalos
+            joinColumn:
+                name: eventoId
+                referencedColumnName: id
+        catregalos:
+            targetEntity: CatRegalos
+            inversedBy: mesaregalos
+            joinColumn:
+                name: categoria
+                referencedColumnName: id
+    oneToMany:
+        cosasRegaladas:
+            targetEntity: cosasRegaladas
+            mappedBy: regalo
+    id:
+        id:
+            type: integer
+            generator: 
+                strategy: AUTO
+    fields:
+        eventoId:
+            type: integer
+        categoria:
+            type: integer
+        regalo:
+            type: string
+            length: 100
+        precioTotal:  
+            type: float
+        cantidad:
+            type: integer
+        horcruxes:
+            type: integer
+        horcruxesPagados:
+            type: integer
+        descripcion:
+            type: text

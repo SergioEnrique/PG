@@ -1,0 +1,221 @@
+{# src/NW/PrincipalBundle/Resources/views/Proveedores/nuestra-mesa-de-regalos.html.twig #}
+
+	{% extends 'NWPrincipalBundle:Novios:administrador.html.twig' %}
+
+{% block partederecha %}
+			<div class="container">
+				
+				<div class="row">
+					<div class="col-xs-7"></div>
+					<div class="col-xs-5" style="text-align:right;">
+						<div class="punto-verde-bueno hacerTooltip" style="float:left; margin-right:20px; margin-top:2px;" data-toggle="tooltip" data-placement="left" title="¿Por qué amarrarte a las mesas de regalos de siempre? Aquí podrás crear tu mesa de regalos como te guste. Y lo mejor, el dinero te lo depositaremos en efectivo para que lo uses como quieras. Esto lo podrás hacer desde la opción “Nuestra cuenta” en el menú del lado izquierdo.">?</div>
+						<h1 style="float:left;">Nuestra Mesa de Regalos</h1>	
+					</div>	
+				</div>
+
+				<div class="row" style="margin-top:15px;">
+					<div class="col-xs-6">
+						
+					</div>
+					<div class="col-xs-6 text-right">
+						<a href="{{path('nw_principal_regalos_operaciones')}}/descargar/{{usuarioId}}" class="linkVerde">
+							Generar detalle en PDF <br>¿quién nos regaló?<br><br>
+						</a>
+					</div>
+					<div class="col-xs-5">
+					
+					</div>
+					<div class="col-xs-6">
+						<p class=" verde2">
+							Agrega un nuevo artículo
+						</p>
+					</div>
+					<div class="col-xs-1">
+						<!-- CHECKLIST -->
+						<!-- Button trigger modal -->
+						<input type="image" src="{{asset('img/novios/mas.png')}}" data-toggle="modal" data-target="#myModal" style="width:40px; height:60px; margin-top:-20px; margin-left:-30px;">
+						 
+
+						<!-- Modal -->
+						<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						  <div class="modal-dialog">
+						    <div class="modal-content" style="border: rgba(204,0,153,0.7) 2px solid; padding:10px;">
+						      <div class="modal-header">
+						      	<div class="row">
+						      		<div class="col-xs-5">
+							        	<h4 class="modal-title rosa" id="myModalLabel">Mi mesa de regalos<br>Nuevo artículo</h4>
+						        	</div>
+						        	<div class="col-xs-1">
+										
+						        	</div>
+						        	<div class="col-xs-5">
+										<img src="{{asset('img/nw.png')}}" width="100%">
+						        	</div>
+						        	<div class="col-xs-1">
+										<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						        	</div>
+						        </div>
+						      </div>
+						      
+						      <div class="modal-body">
+						      	{{ form_start(formRegalo) }}
+						      	<div class="row">
+						      		<div class="col-xs-6">
+
+						      			<div class="row">
+						      				<div class="col-xs-12">
+						      					<span class="error-formulario">{{ form_errors(formRegalo.regalo) }}</span>
+						      					{{ form_widget(formRegalo.regalo, { 'attr': {'class': 'input_small', 'style': '', 'placeholder': 'Nombre del artículo' } }) }}
+						      					<br>
+						      					<span class="error-formulario">{{ form_errors(formRegalo.descripcion) }}</span>
+						      					{{ form_widget(formRegalo.descripcion, { 'attr': {'class': 'textarea_small', 'style': 'height:200px;', 'placeholder': 'Descripción' } }) }}
+						      				</div>
+						      			</div>
+
+						      		</div>
+						      		<div class="col-xs-6">
+						      			<div class="row">
+						      				<div class="col-xs-10">
+						      					<span class="error-formulario">{{ form_errors(formRegalo.precioTotal) }}</span>
+						      					{{ form_widget(formRegalo.precioTotal, { 'attr': {'class': 'input_small', 'style': '', 'placeholder': 'Valor del artículo' } }) }}
+						      					<div class="col-xs-2">
+						      					</div>
+						      				</div>
+						      			</div>
+
+						      			{# Comisión de la compra por separado. YA NO SE USA
+						      			<div class="row">
+						      				<div class="col-xs-2">
+						      					{{ form_widget(formRegalo.absorberComision) }}
+						      				</div>
+						      				<div class="col-xs-8">
+						      					<i>¿Deseas absorber la comisión de la compra?</i>
+						      				</div>
+						      				<div class="col-xs-2 tooltipAncho">
+						      					<div class="punto-verde-bueno hacerTooltip" style="float:left; margin-right:20px; margin-top:2px;" data-toggle="tooltip" data-placement="right" title="Sobre los regalos que tus invitados compren a través de NewlyWishes, se aplica una pequeña comisión de 7% adicional al valor del regalo. Puedes elegir que esa comisión no sea cargada a tus invitados. En caso de ser así, se descontará del valor de cada regalo. Tú decides.">?</div>
+						      				</div>
+						      			</div>
+						      			#}
+
+						      			<div class="row" style="margin-top:20px;">
+						      				<div class="col-xs-6">
+						      					Número de artículos
+						      				</div>
+						      				<div class="col-xs-4">
+						      					<span class="error-formulario">{{ form_errors(formRegalo.cantidad) }}</span>
+						      					{{ form_widget(formRegalo.cantidad, { 'attr': {'class': 'input_registro_novios'} }) }}
+						      				</div>
+						      				<div class="col-xs-2">
+
+						      				</div>											
+						      			</div>
+
+
+						      			<div class="row" style="margin-top:20px;">
+						      				<div class="col-xs-6">
+						      					¿En cuántas partes desea dividir este artículo?
+						      				</div>
+						      				<div class="col-xs-4">
+						      					<span class="error-formulario">{{ form_errors(formRegalo.horcruxes) }}</span>
+						      					{{ form_widget(formRegalo.horcruxes, { 'attr': {'class': 'input_registro_novios'} }) }}
+						      				</div>
+						      				<div class="col-xs-2 tooltipAncho">
+						      					<div class="punto-verde-bueno hacerTooltip" style="float:left; margin-right:20px; margin-top:2px;" data-toggle="tooltip" data-placement="right" title="Para cada regalo, puedes elegir dividirlo en partes, para permitirles a tus invitados que entre muchos te regalen cosas como 1 sala o 1 refrigerador. Cada uno de tus invitados podrá decir cuánto regalarte sin forzarlo a un monto en específico.">?</div>
+						      				</div>											
+						      			</div>
+
+						      			<div class="row" style="margin-top:20px;">
+
+						      				<div class="col-xs-10">
+						      					{{ form_widget(formRegalo.categoria, { 'attr': {'class': 'input_registro_novios'} }) }}
+						      				</div>
+
+						      				<div class="col-xs-2">
+
+						      				</div>											
+						      			</div>
+						      		</div>
+
+						      		<div class="row">
+
+						      			<div class="row" style="margin-top:30px;">
+						      				<div class="col-xs-12">
+						      					{{ form_widget(formRegalo.Agregar, { 'attr': {'class': 'botoncitoRosa', 'style': 'width:120px; float:right; margin-right:50px; margin-top:30px;' } }) }}
+						      				</div>
+						      			</div>
+
+						      		</div>
+								{{ form_end(formRegalo) }}
+								</div>
+
+						      </div>
+						    </div>
+						  </div>
+						</div>
+						<!-- FIN AGREGAR CHECKLIST -->
+					</div>
+				</div>
+				<hr/>
+
+				{% for regalo in regalos %}
+				<!-- Nuevo artículo -->
+				<div class="row">
+					<div class="col-xs-7">
+						<h1 class="art">
+							{{ regalo.regalo }} – {{ regalo.categoria }}
+						</h1> <br>
+						<p>
+							{{ regalo.descripcion }}
+						</p> 
+					</div>
+					<div class="col-xs-3">
+						<p class="columna_dos">
+							Valor <br>
+							<span class="art">${{ regalo.precioTotal|number_format(2, '.', ',') }}</span> <br>
+							{{ regalo.cantidad }} Artículo(s) dividido(s) en 
+							<span class="art">{{ regalo.horcruxes }}</span> partes c/u
+						</p>
+					</div>
+					<div class="col-xs-2 bote2">
+
+						{# if not regalo regalado #}
+						{% if regalo.regaloregalado %}
+							<a href="{{url('nw_principal_novios_regalo_delete', {'id': regalo.id})}}">
+								<img class="img-responsive" src="{{asset('img/bote.png')}}">
+							</a>
+						{% endif %}
+						{# endif #}
+
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-3">
+						<p>Artículos completados: <span class="art">{{ regalo.completados }}</span></p>	
+					</div>
+					<div class="col-xs-5">
+						<p>Partes faltantes para completar el regalo: <span class="art">{{ regalo.horcruxesFaltantes }}</span></p>
+					</div>
+				</div>
+				<hr />
+				<!-- Fin de artículo -->
+				{% endfor %}
+
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+			</div>
+		</div>
+		
+
+
+				
+					 
+
+						
+
+
+
+{% endblock %}

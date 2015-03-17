@@ -1,0 +1,98 @@
+{# src/NW/PrincipalBundle/Resources/views/funcionamiento.html.twig #}
+
+{% extends '::base.html.twig' %}
+
+	{% block body %}
+	
+		{% include ':plantillasParciales:top.html.twig' %}
+
+
+		
+		<div class="row">
+			<div class="row">
+				<div class="row">
+					<div class="caja gris2">
+						<p>Encuentra lo que necesitas</p>
+						<div class="col-xs-5">
+							<select class="form-control">
+								<option>que buscas</option>
+							</select>
+							<select class="form-control">
+								<option>donde vives</option>
+							</select>
+						</div>
+						<div class="col-xs-7">
+							<input type="text" class="form-control input11" placeholder="¿no está en el menú? escribea quí lo que necesitas">
+							<input type="text" class="form-control input11" placeholder="nombre del proveedor que buscas">
+						</div>
+						<div class="col-xs-7">
+
+						</div>
+						<div class="col-xs-5">
+							<input class="enviar4 botoon2" type="submit" id="enviar_form" value="Buscar" style="width:120px;"> <br>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-5">
+
+					</div>
+					<div class="col-xs-2">
+						<img class="carrito2" src="{{asset('img/novios/nuestras_compras.png')}}">
+					</div>
+					<div class="col-xs-3">
+						<div class="artcarrito2">
+							<span class="art">0 </span>Artículos en tu carrito <br> <span class="art">NewlyWishes</span>
+						</div>
+					</div>
+					<div class="col-xs-2">
+						<input class="enviar2" type="submit" id="enviar_form" value="Checkout" style="width:120px;"> <br>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-7">
+				<div class="noticia1">
+					<h1>Noticia 1 / Nota 1 / Reportaje 1</h1>
+					<p>
+						Descripción del proveedor…Loremipsumdolor sitamet, consectetueradipiscingelit. Aeneancommodoligulaegetdolor. Aeneanmassa. Cum sociisnatoquepenatibuset magnisdisparturientmontes, nasceturridiculusmus. <span class="art">Leer más</span>
+					</p>
+				</div>
+				<div class="noticia1">
+					<h1>Noticia 2 / Nota 2 / Reportaje 2</h1>
+					<p>
+						Descripción del proveedor…Loremipsumdolor sitamet, consectetueradipiscingelit. Aeneancommodoligulaegetdolor. Aeneanmassa. Cum sociisnatoquepenatibuset magnisdisparturientmontes, nasceturridiculusmus. <span class="art">Leer más</span>
+					</p>
+				</div><div class="noticia1">
+					<h1>Noticia 3 / Nota 3 / Reportaje 3</h1>
+					<p>
+						Descripción del proveedor…Loremipsumdolor sitamet, consectetueradipiscingelit. Aeneancommodoligulaegetdolor. Aeneanmassa. Cum sociisnatoquepenatibuset magnisdisparturientmontes, nasceturridiculusmus. <span class="art">Leer más</span>
+					</p>
+				</div><div class="noticia1">
+					<h1>Noticia 4 / Nota 4 / Reportaje 4</h1>
+					<p>
+						Descripción del proveedor…Loremipsumdolor sitamet, consectetueradipiscingelit. Aeneancommodoligulaegetdolor. Aeneanmassa. Cum sociisnatoquepenatibuset magnisdisparturientmontes, nasceturridiculusmus. <span class="art">Leer más</span>
+					</p>
+				</div>
+			</div>
+			<div class="derecha col-xs-5">
+				<img src="{{asset('img/anuncio-noticias.png')}}">
+				<img src="{{asset('img/anuncio-noticias.png')}}">
+			</div>
+		</div>
+
+		
+
+		
+		{% endblock %}
+
+
+
+
+
+					
+
+	    
+
+	

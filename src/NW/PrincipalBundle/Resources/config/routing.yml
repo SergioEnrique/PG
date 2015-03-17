@@ -1,0 +1,251 @@
+root:
+    path: /profile/
+    defaults:
+        _controller: FrameworkBundle:Redirect:redirect
+        route: nw_principal_novios_nuestra-cuenta
+        permanent: false
+
+nw_principal_admin_panel:
+    pattern:  /admin
+    defaults: { _controller: NWPrincipalBundle:Admin:panel }
+
+nw_principal_admin_operaciones:
+    pattern:  /admin/operaciones
+
+nw_principal_admin_operaciones_aceptar_retiro:
+    pattern:  /admin/operaciones/aceptar-retiro/{id}
+    defaults: { _controller: NWPrincipalBundle:Admin:aceptarRetiro }
+
+nw_principal_admin_operaciones_denegar_retiro:
+    pattern:  /admin/operaciones/denegar-retiro/{id}
+    defaults: { _controller: NWPrincipalBundle:Admin:denegarRetiro }
+
+nw_principal_novios_dudas_novios:
+    pattern: /novios/email/dudasnovios
+    defaults: { _controller: NWPrincipalBundle:Novios:dudasNovios}
+
+nw_principal_funcionamiento:
+    pattern:  /funcionamiento
+    defaults: { _controller: NWPrincipalBundle:Default:funcionamiento }
+
+nw_principal_noticia_completa:
+    pattern:  /noticia
+    defaults: { _controller: NWPrincipalBundle:Default:noticia }
+
+nw_principal_articulos:
+    pattern:  /articulos/
+    defaults: { _controller: NWPrincipalBundle:Default:listaArticulos}
+
+nw_principal_articulos_busqueda:
+    pattern:  /articulos/busqueda/{buscar}
+    defaults: { _controller: NWPrincipalBundle:Default:listaArticulos, buscar: boda }
+
+nw_principal_articulos_catname:
+    pattern:  /articulos/{catName}
+    defaults: { _controller: NWPrincipalBundle:Default:listaArticulos, catName: otros }
+
+nw_principal_proveedor:
+    pattern:  /proveedor/{proveedor}
+    defaults: { _controller: NWPrincipalBundle:Default:proveedor}
+
+nw_principal_proveedor_busqueda:
+    pattern:  /proveedor/busqueda/{buscar}
+    defaults: { _controller: NWPrincipalBundle:Default:proveedor, buscar: boda }
+
+nw_principal_buscar_novios:
+    pattern:  /buscarnovios
+    defaults: { _controller: NWPrincipalBundle:Default:buscarnovios }
+
+nw_principal_mesa_regalos:
+    pattern:  /mesa-de-regalos/{usuarioId}
+    defaults: { _controller: NWPrincipalBundle:Default:mesaDeRegalos }
+
+nw_principal_proveedores_micuenta:
+    pattern:  /proveedores/micuenta
+    defaults: { _controller: NWPrincipalBundle:Proveedores:micuenta }
+
+nw_principal_proveedores_misproductos:
+    pattern:  /proveedores/misproductos
+    defaults: { _controller: NWPrincipalBundle:Proveedores:misproductos }
+
+nw_principal_proveedores_producto_delete:
+    pattern:  /proveedores/producto/{id}/delete
+    defaults: { _controller: NWPrincipalBundle:Proveedores:ProductoDelete }
+
+nw_principal_proveedores_misbanners:
+    pattern:  /proveedores/misbanners
+    defaults: { _controller: NWPrincipalBundle:Proveedores:misbanners }
+
+nw_principal_proveedores_banner_delete:
+    pattern:  /proveedores/banner/{id}/delete
+    defaults: { _controller: NWPrincipalBundle:Proveedores:BannerDelete }
+
+nw_principal_proveedores_misanuncios:
+    pattern:  /proveedores/misanuncios
+    defaults: { _controller: NWPrincipalBundle:Proveedores:misanuncios }
+
+nw_principal_proveedores_misresenas:
+    pattern:  /proveedores/misresenas
+    defaults: { _controller: NWPrincipalBundle:Proveedores:misresenas }
+
+nw_principal_proveedores_miestadodecuenta:
+    pattern:  /proveedores/miestadodecuenta
+    defaults: { _controller: NWPrincipalBundle:Proveedores:miestadodecuenta }
+
+nw_principal_proveedores_miscodigos:
+    pattern:  /proveedores/miscodigos
+    defaults: { _controller: NWPrincipalBundle:Proveedores:miscodigos }
+
+nw_principal_proveedores_codigo_delete:
+    pattern:  /proveedores/codigo/{codigo}/delete
+    defaults: { _controller: NWPrincipalBundle:Proveedores:CodigoDelete }
+
+nw_principal_proveedores_miinformacionbancaria:
+    pattern:  /proveedores/miinformacionbancaria
+    defaults: { _controller: NWPrincipalBundle:Proveedores:miinformacionbancaria }
+
+nw_principal_proveedores_tutoriales:
+    pattern:  /proveedores/tutoriales
+    defaults: { _controller: NWPrincipalBundle:Proveedores:tutoriales }
+
+nw_principal_novios_index:
+    pattern:  /novios/index
+    defaults: { _controller: NWPrincipalBundle:Novios:index }
+
+nw_principal_novios_nuestra-boda:
+    pattern:  /novios/nuestra-boda
+    defaults: { _controller: NWPrincipalBundle:Novios:nuestraBoda }
+
+nw_principal_novios_padrino_delete:
+    pattern:  /novios/padrino/{id}/delete
+    defaults: { _controller: NWPrincipalBundle:Novios:PadrinoDelete }
+
+nw_principal_novios_nota_delete:
+    pattern:  /novios/nota/{id}/delete
+    defaults: { _controller: NWPrincipalBundle:Novios:NotaDelete }
+
+nw_principal_novios_nuestro-calendario:
+    pattern:  /novios/nuestro-calendario/{dia}/{mes}/{ano}
+    defaults: { _controller: NWPrincipalBundle:Novios:nuestroCalendario, dia:0, mes:0, ano:0 }
+
+nw_principal_novios_tarea_calendario_delete:
+    pattern:  /novios/tarea-calendario/{id}/delete
+    defaults: { _controller: NWPrincipalBundle:Novios:TareaCalendarioDelete }
+
+nw_principal_novios_tarea_calendario_operaciones:
+    pattern:  /novios/tarea-calendario
+    defaults: { _controller: NWPrincipalBundle:Novios:TareaCalendarioOperaciones }
+
+nw_principal_novios_tarea_calendario_completar:
+    pattern:  /novios/tarea-calendario/{id}/completar
+    defaults: { _controller: NWPrincipalBundle:Novios:TareaCalendarioCompletar }
+
+nw_principal_novios_tarea_calendario_descompletar:
+    pattern:  /novios/tarea-calendario/{id}/descompletar
+    defaults: { _controller: NWPrincipalBundle:Novios:TareaCalendarioDescompletar }
+
+nw_principal_novios_nuestro-checklist:
+    pattern:  /novios/nuestro-checklist
+    defaults: { _controller: NWPrincipalBundle:Novios:nuestroChecklist }
+
+nw_principal_novios_task_delete:
+    pattern:  /novios/task/{id}/delete
+    defaults: { _controller: NWPrincipalBundle:Novios:TaskDelete }
+
+nw_principal_novios_task_completar:
+    pattern:  /novios/task/{id}/completar
+    defaults: { _controller: NWPrincipalBundle:Novios:TaskCompletar }
+
+nw_principal_novios_task_descompletar:
+    pattern:  /novios/task/{id}/descompletar
+    defaults: { _controller: NWPrincipalBundle:Novios:TaskDescompletar }
+
+nw_principal_novios_nuestra-mesa-de-regalos:
+    pattern:  /novios/nuestra-mesa-de-regalos
+    defaults: { _controller: NWPrincipalBundle:Novios:nuestraMesaDeRegalos }
+
+nw_principal_novios_regalo_delete:
+    pattern:  /novios/regalo/{id}/delete
+    defaults: { _controller: NWPrincipalBundle:Novios:RegaloDelete }
+
+nw_principal_novios_nuestra-lista-de-invitados:
+    pattern:  /novios/nuestra-lista-de-invitados
+    defaults: { _controller: NWPrincipalBundle:Novios:nuestraListaDeInvitados }
+
+nw_principal_novios_invitado_delete:
+    pattern:  /novios/invitado/{id}/delete
+    defaults: { _controller: NWPrincipalBundle:Novios:InvitadoDelete }
+
+nw_principal_novios_invitado_confirmar:
+    pattern:  /novios/padrino/{id}/confirmar
+    defaults: { _controller: NWPrincipalBundle:Novios:InvitadoConfirmar }
+
+nw_principal_novios_invitado_desconfirmar:
+    pattern:  /novios/padrino/{id}/desconfirmar
+    defaults: { _controller: NWPrincipalBundle:Novios:InvitadoDesconfirmar }
+
+nw_principal_novios_nuestra-cuenta:
+    pattern:  /novios/nuestra-cuenta
+    defaults: { _controller: NWPrincipalBundle:Novios:nuestraCuenta }
+
+nw_principal_novios_nuestra-informacion-bancaria:
+    pattern:  /novios/nuestra-informacion-bancaria
+    defaults: { _controller: NWPrincipalBundle:Novios:nuestraInformacionBancaria }
+
+nw_principal_novios_nuestras-compras:
+    pattern:  /novios/nuestras-compras
+    defaults: { _controller: NWPrincipalBundle:Novios:nuestrasCompras }
+
+nw_principal_novios_cambiar_fecha_boda:
+    pattern:  /novios/fecha-boda/{fecha}
+    defaults: { _controller: NWPrincipalBundle:Novios:CambiarFechaBoda, fecha: 12-12-2014 }
+
+nw_principal_reporteros_micuenta:
+    pattern:  /reporteros/micuenta
+    defaults: { _controller: NWPrincipalBundle:Reporteros:micuenta }
+
+nw_principal_reporteros_misarticulos:
+    pattern:  /reporteros/miscarticulos
+    defaults: { _controller: NWPrincipalBundle:Reporteros:misarticulos }
+
+nw_principal_reporteros_enviar_articulo:
+    pattern:  /reporteros/articulo/{id}/enviar
+    defaults: { _controller: NWPrincipalBundle:Reporteros:enviarArticulo }
+
+nw_principal_reporteros_eliminar_articulo:
+    pattern:  /reporteros/articulo/{id}/eliminar
+    defaults: { _controller: NWPrincipalBundle:Reporteros:eliminarArticulo }
+
+nw_principal_reporteros_misarticulos:
+    pattern:  /reporteros/miscarticulos
+    defaults: { _controller: NWPrincipalBundle:Reporteros:misarticulos }
+
+nw_principal_reporteros_miestadodecuenta:
+    pattern:  /reporteros/miestadodecuenta
+    defaults: { _controller: NWPrincipalBundle:Reporteros:miestadodecuenta }
+
+nw_principal_reporteros_miinformacionbancaria:
+    pattern:  /reporteros/miinformacionbancaria
+    defaults: { _controller: NWPrincipalBundle:Reporteros:miinformacionbancaria }
+
+nw_principal_regalos_operaciones:
+    pattern:  /regalos-regalados
+
+nw_principal_regalos_operaciones_descargar:
+    pattern:  /regalos-regalados/descargar/{id}
+    defaults: { _controller: NWPrincipalBundle:Default:descargarRegalos }
+
+nw_principal_regalos_generar_pdf:
+    pattern:  /pdf/regalos/generar-pdf/{id}
+    defaults: { _controller: NWPrincipalBundle:Default:generarPdfRegalos }
+
+nw_principal_invitados_operaciones:
+    pattern:  /invitados
+
+nw_principal_invitados_operaciones_descargar:
+    pattern:  /invitados/descargar/{id}
+    defaults: { _controller: NWPrincipalBundle:Default:descargarInvitados }
+
+nw_principal_invitados_generar_pdf:
+    pattern:  /pdf/invitados/generar-pdf/{id}
+    defaults: { _controller: NWPrincipalBundle:Default:generarPdfInvitados }

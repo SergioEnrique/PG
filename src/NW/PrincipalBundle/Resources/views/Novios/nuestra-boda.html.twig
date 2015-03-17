@@ -1,0 +1,224 @@
+{# src/NW/PrincipalBundle/Resources/views/Proveedores/misbanners.html.twig #}
+
+	{% extends 'NWPrincipalBundle:Novios:administrador.html.twig' %}
+
+{% block partederecha %}
+
+			<div class="row">
+				<div class="col-xs-8">
+				</div>
+				<div class="col-xs-4" style="text-align:right;">
+					<div class="punto-verde-bueno hacerTooltip" style="float:left; margin-right:20px; margin-top:2px;" data-toggle="tooltip" data-placement="left" title="Aquí podrás definir aquellos aspectos importantes sobre tu boda, el lugar de la ceremonia religiosa, el lugar de la recepción, a tus padrinos (tantos como quieras) y agregar notas personales para que no se te escape nada.">?</div>
+					<h1 style="float:left;">Nuestra Boda</h1>	
+				</div>	
+			</div>
+				
+			<div class="row">
+					<div class="col-xs-12">
+						<h5 class="art" style="float:left;">Nuestro Presupuesto</h5><img src="{{asset('img/novios/flecha_abajo.png')}}" class="flecha_abajo">
+					</div>
+			</div>
+
+			<div class="row borde_abajo"><div class="col-xs-12"></div></div>
+				
+			<div class="row">
+					<div class="col-xs-12">
+					<p>Para administrar correctamente tu presupuesto, puedes descargar el formato que hemos preparado para ti.</p>
+					</div>
+			</div>
+				
+			<div class="row">
+					<div class="col-xs-11" style="text-align:right;">
+						<a href="{{asset('documents/FormatoDeAdminsitracionDePresupuestoV1.1.xlsx')}}" class="linkVerde">Descargar Excel</a>	
+					</div>
+					<div class="col-xs-1"></div>
+			</div>				
+				
+	
+			<!-- DATOS DE LA BODA -->
+			<div class="row" style="margin-top:20px;">
+					<div class="col-xs-12">
+						<h5 class="art" style="float:left;">Datos de la boda</h5><img src="{{asset('img/novios/flecha_abajo.png')}}" class="flecha_abajo">
+					</div>
+			</div>
+
+			<div class="row borde_abajo"></div>
+			<div class="row">
+					<div class="col-xs-12">
+					</div>
+			</div>
+			<div class="row">
+					<div class="col-xs-5">
+						<p class="rosa">Ceremonia religiosa</p>	
+					</div>
+					<div class="col-xs-5">
+						<p class="rosa">Dirección</p>	
+					</div>
+					<div class="col-xs-2" style="text-align:right;">
+					</div>
+			</div>
+
+			{{ form_start(formBoda) }}
+				<div class="row">
+					<div class="col-xs-5">
+						<span class="error-formulario">{{ form_errors(formBoda.ceremonia) }}</span>
+						{{ form_widget(formBoda.ceremonia, { 'attr': {'class': 'form-form invisible input_registro_novios', 'placeholder': 'Iglesia' } }) }}
+						<span class="texto-form">{{ formBoda.ceremonia.vars.value }}</span>
+					</div>
+					<div class="col-xs-5">
+						{{ form_widget(formBoda.ceremonia_direccion, { 'attr': {'class': 'form-form invisible textarea_registro', 'placeholder': 'Dirección' } }) }}
+						<span class="texto-form">{{ formBoda.ceremonia_direccion.vars.value }}</span>
+					</div>
+					<div class="col-xs-2" style="text-align:right;">
+						<img src="{{asset('img/novios/direccion_iglesia.png')}}" class="boton-editar">
+					</div>
+				</div>
+					
+				<div class="row">
+					<div class="col-xs-12">
+						<p class="rosa">Recepción</p>	
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-xs-5">
+						<span class="error-formulario">{{ form_errors(formBoda.recepcion) }}</span>
+						{{ form_widget(formBoda.recepcion, { 'attr': {'class': 'form-form invisible input_registro_novios', 'placeholder': 'Lugar' } }) }}
+						<span class="texto-form">{{ formBoda.recepcion.vars.value }}</span>	
+					</div>
+					<div class="col-xs-5">
+						{{ form_widget(formBoda.recepcion_direccion, { 'attr': {'class': 'form-form invisible textarea_registro', 'placeholder': 'Dirección' } }) }}	
+						<span class="texto-form">{{ formBoda.recepcion_direccion.vars.value }}</span>
+					</div>
+					<div class="col-xs-2" style="text-align:right;">
+						<input type="image" src="{{asset('img/novios/diskette.png')}}" name="image" style="float:left; margin-left:6px; width:40px; height:40px; ">
+					</div>
+				</div>
+			{{ form_end(formBoda) }}
+			
+			<!-- FIN DATOS DE LA BODA -->
+
+			<!-- NUESTROS PADRINOS -->
+			<div class="row" style="margin-top:20px;">
+					<div class="col-xs-12">
+						<h5 class="art" style="float:left;">Nuestros Padrinos</h5><img src="{{asset('img/novios/flecha_abajo.png')}}" class="flecha_abajo">
+					</div>
+				</div>
+
+				<div class="row borde_abajo"></div>
+				<div class="row">
+					<div class="col-xs-12">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-5">
+						<p class="rosa">Nombre</p>
+					</div>
+					<div class="col-xs-5">
+						<p class="rosa">Categoría</p>
+					</div>
+					<div class="col-xs-2">
+						<p class="rosa">Eliminar</p>
+					</div>
+				</div>
+
+				{% for padrino in padrinos %}
+				<div class="row">
+					<div class="col-xs-5">
+						<p class="">{{ padrino.padrino }}</p>	
+					</div>
+					<div class="col-xs-5">
+						<p class="">{{ padrino.categoria }}</p>	
+					</div>
+					<div class="col-xs-2">
+						<a href="{{url('nw_principal_novios_padrino_delete', {'id': padrino.id})}}">
+							<img src="{{asset('img/bote.png')}}" style="float:left; margin-left:6px; margin-bottom:15px; width:35px; height:35px; ">
+						</a>
+					</div>
+				</div>
+				{% endfor %}
+					
+				<div class="row">
+				{{ form_start(formPadrinos) }}
+					<div class="col-xs-5">
+						<span class="error-formulario">{{ form_errors(formPadrinos.padrino) }}</span>
+						{{ form_widget(formPadrinos.padrino, { 'attr': {'class': 'input_registro_novios', 'placeholder': 'Nuevo Padrino' } }) }}
+					</div>
+					<div class="col-xs-5">
+						<span class="error-formulario">{{ form_errors(formPadrinos.categoria) }}</span>
+						{{ form_widget(formPadrinos.categoria, { 'attr': {'class': 'input_registro_novios', 'placeholder': 'Padrino de...' } }) }}
+					</div>
+					<div class="col-xs-2">
+						<input type="image" src="{{asset('img/novios/mas.png')}}" name="image" style="float:left; width:40px; height:60px; margin-top:-14px;">
+					</div>
+				{{ form_end(formPadrinos) }}
+				</div>
+			<!-- FIN NUESTROS PADRINOS -->
+
+
+			<!-- NUESTRAS NOTAS -->
+			<div class="row" style="margin-top:20px;">
+				<div class="col-xs-12">
+					<h5 class="art" style="float:left;">Nuestras Notas</h5><img src="{{asset('img/novios/flecha_abajo.png')}}" class="flecha_abajo">
+				</div>
+			</div>
+
+			<div class="row borde_abajo"></div>
+			<div class="row">
+				<div class="col-xs-12">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-5">
+					<p class="rosa">Título</p>	
+				</div>
+				<div class="col-xs-5">
+					<p class="rosa">Descripción</p>	
+				</div>
+				<div class="col-xs-2">
+					<p class="rosa">Eliminar</p>	
+				</div>
+			</div>
+
+			{% for nota in notas %}
+			<div class="row">
+				<div class="col-xs-5">
+					<p class="">{{ nota.titulo }}</p>
+				</div>
+				<div class="col-xs-5">
+					<p class="">{{ nota.descripcion }}</p>	
+				</div>
+				<div class="col-xs-2">
+				<a href="{{url('nw_principal_novios_nota_delete', {'id': nota.id})}}">
+					<img src="{{asset('img/bote.png')}}" style="float:left; margin-left:6px; margin-bottom:15px; width:35px; height:35px; ">
+				</a>
+				</div>
+			</div>
+			{% endfor %}
+					
+			<div class="row">
+			{{ form_start(formNotas) }}
+				<div class="col-xs-5">
+					<span class="error-formulario">{{ form_errors(formNotas.titulo) }}</span>
+					{{ form_widget(formNotas.titulo, { 'attr': {'class': 'input_registro_novios', 'placeholder': 'Título' } }) }}
+				</div>
+				<div class="col-xs-5">
+					<span class="error-formulario">{{ form_errors(formNotas.descripcion) }}</span>
+					{{ form_widget(formNotas.descripcion, { 'attr': {'class': 'textarea_registro', 'placeholder': 'Descripción' } }) }}
+				</div>
+				<div class="col-xs-2">
+					<input type="image" src="{{asset('img/novios/mas.png')}}" name="formNotasSubmit" style="float:left; width:40px; height:60px; margin-top:-14px;">
+				</div>
+			{{ form_end(formNotas) }}
+			</div>
+			<!-- FIN NUESTRAS NOTAS -->
+
+
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+
+
+{% endblock %}

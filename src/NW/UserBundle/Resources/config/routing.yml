@@ -1,0 +1,39 @@
+#nw_user_newuser:
+#    pattern:  /asignarRoles
+#    defaults: { _controller: NWUserBundle:User:asignarRoles }
+
+nw_user_pruebas:
+    pattern:  /pruebas
+    defaults: { _controller: NWUserBundle:User:pruebas }
+
+nw_user_registronovios:
+    pattern:  /registronovios
+    defaults: { _controller: NWUserBundle:User:registronovios }
+
+nw_user_loginnovios:
+    pattern:  /login
+    defaults: { _controller: NWUserBundle:User:loginnovios }
+
+nw_user_loginproveedores:
+    pattern:  /loginproveedores
+    defaults: { _controller: NWUserBundle:User:loginproveedores }
+
+nw_user_registroproveedores:
+    pattern:  /registroproveedores
+    defaults: { _controller: NWUserBundle:User:registroproveedores }
+
+nw_user_registroreportero:
+    pattern:  /registroreportero
+    defaults: { _controller: NWUserBundle:User:registroReportero }
+
+nw_user_registro_exitoso:
+    pattern:  /registroexitoso
+    defaults: { _controller: NWUserBundle:User:registroExitoso }
+
+nw_user_postregistro_novios:
+    pattern:  /postregistronovios
+    defaults: { _controller: NWUserBundle:User:postregistronovios }
+
+nw_principal_changepass:
+    pattern:  /changepass/{id}
+    defaults: { _controller: NWUserBundle:User:changePass, id: false }

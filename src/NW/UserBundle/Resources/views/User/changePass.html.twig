@@ -1,0 +1,26 @@
+{# src/NW/UserBundle/Resources/views/User/changePass.html.twig #}
+{% extends '::base.html.twig' %}
+
+{% block body %}
+
+	{% include ':plantillasParciales:top.html.twig' %}
+
+		<div class="container">
+			<div class="cuadro img-responsive">
+				<br>
+
+				{% if exitoActualizacion %}
+					<img class="img-responsive proveedores" src="{{asset('img/bienvenido.png')}}" />
+					<p>Tu contraseña ha sido actualizada con éxito</p>
+					{% render controller("FOSUserBundle:Security:login") %}
+				{% else %}
+					<p>Tu nombre de usuario es: <b>{{ username }}</b></p>
+					<p>A continuación escribe una nueva contraseña:</p>
+					{{ form_start(formChangePass) }}
+					{{ form_end(formChangePass) }}
+				{% endif %}
+
+			</div>
+		</div>
+
+{% endblock %}

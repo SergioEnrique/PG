@@ -1,0 +1,20 @@
+services:
+    nw.payment.payum.extension.store_notification:
+        class: NW\PaymentBundle\Payum\Extension\StoreNotificationExtension
+        arguments:
+            - @doctrine
+
+    nw.payment.payum.action.store_notification:
+        class: NW\PaymentBundle\Payum\Action\StoreNotificationAction
+        arguments:
+            - @doctrine
+
+    nw.payment.payum.api.factory:
+        class: NW\PaymentBundle\Payum\Api\Factory
+        arguments:
+            - @service_container
+
+    nw.payment.payum.paypal_express_checkout_api:
+        class: Payum\Paypal\ExpressCheckout\Nvp\Api
+        factory_service: nw.payment.payum.api.factory
+        factory_method: createPaypalExpressCheckoutApi

@@ -1,0 +1,28 @@
+# src/NW/PrincipalBundle/Resources/config/doctrine/SolicitudRetiro.orm.yml
+NW\PrincipalBundle\Entity\SolicitudRetiro:
+    type: entity
+    table: solicitudes_retiro
+    manyToOne:
+        usuario:
+            targetEntity: NW\UserBundle\Entity\User
+            inversedBy: solicitudesRetiro
+            joinColumn:
+                name: usuarioId
+                referencedColumnName: id
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        usuarioId:
+            type: integer
+        cuentaPaypal:
+            type: string
+            length: 100
+        fecha:
+            type: datetime
+        amount:
+            type: float
+        realizado:
+            type: boolean

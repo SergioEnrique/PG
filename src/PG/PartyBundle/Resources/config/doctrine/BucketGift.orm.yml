@@ -1,0 +1,26 @@
+PG\PartyBundle\Entity\BucketGift:
+    type:  entity
+    table: bucketgifts
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    manyToOne:
+        user:
+            targetEntity: NW\UserBundle\Entity\User
+            inversedBy: bucketGift
+            joinColumn:
+                name: usuarioId
+                referencedColumnName: id
+    oneToMany:
+        mesaregalos:
+            targetEntity:  NW\PrincipalBundle\Entity\MesaRegalos
+            mappedBy: bucketGift
+    fields:
+        usuarioId:
+            type: integer
+        fecha:
+            type: datetime
+        titulo:
+            type: text

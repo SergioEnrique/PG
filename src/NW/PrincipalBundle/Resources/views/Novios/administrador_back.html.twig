@@ -1,0 +1,250 @@
+{# src/NW/PrincipalBundle/Resources/views/Novios/administrador.html.twig #}
+
+	{% extends '::base.html.twig' %}
+
+	{% block body %}
+	<div class="container" style="padding:0px; margin-top:-30px; box-shadow:rgba(0,0,0,1) 0px 0px 30px;
+  -moz-box-shadow:rgba(0,0,0,1) 0px 0px 30px;
+  -ms-box-shadow:rgba(0,0,0,1) 0px 0px 30px;
+  -o-box-shadow:rgba(0,0,0,1) 0px 0px 30px;
+  -webkit-box-shadow:rgba(0,0,0,1) 0px 0px 30px;">
+	<div class="container corrector" style="padding-top:50px;">
+		<div class="row">
+			<div class="col-xs-6">
+				<div class="nw2">
+				<a href="{{url('nw_principal_homepage')}}">
+					<img class="img-responsive" src="{{asset('img/nw2.png')}}">
+					</a>
+				</div>
+			</div>
+			<div class="col-xs-6 text-center">
+				<br>
+				<h4>Hoy es <span class="esc">{{"now"|date("m/d/Y")}}</span></h4>
+				<br>
+				<a class="art3" data-toggle="modal" data-target="#dia"><h4 class="esc">¿Qué día es tu boda?</h4></a>
+			</div>
+		</div>
+	</div>
+	<div class="container" style="padding-top:20px;">
+		<div class="row">
+			<div class="col-xs-12">
+				<h4>Bienvenidos <span class="esc">{{novia}}</span> y <span class="esc">{{novio}}</span></h4>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<h4 style="font-size:16px;">Saldo de tu mesa de regalos: <span class="esc">$0.00 pesos</span></h4>
+			</div>
+		</div>
+	</div>
+
+	<div class="container"  style="padding-top:30px; padding-left:0px;">
+		<div class="row">
+			<div class="col-xs-3">
+
+				<nav class="menu_novios">
+					<ul>
+
+					  	<a href="{{url('nw_principal_novios_nuestra-boda')}}">
+					  	<li style="border-radius:10px 10px 0px 0px;">
+					  	<div class="row">
+					  		<div class="col-xs-8">
+					  		Nuestra Boda 
+					  		</div>
+					  		<div class="col-xs-2">
+					  		<img src="{{asset('img/novios/nuestra_boda.png')}}" class="imagen_menu_novios">
+					  		</div>
+					  	</div>
+					  	</li>
+					  	</a>
+
+					    <a href="{{url('nw_principal_novios_nuestro-calendario')}}">
+					    <li>
+					    <div class="row">
+						  	<div class="col-xs-8">
+						  	Nuestro Calendario 
+						  	</div>
+						  	<div class="col-xs-2">
+						  	<img src="{{asset('img/novios/nuestro_calendario.png')}}" class="imagen_menu_novios">
+							</div>
+						</div>
+					  	</li></a>
+
+					    <a href="{{url('nw_principal_novios_nuestro-checklist')}}">
+					    <li> 
+					    <div class="row">
+						  	<div class="col-xs-8">
+						  	Nuestro Checklist 
+						  	</div>
+						  	<div class="col-xs-2">
+						  	<img src="{{asset('img/novios/nuestro_checklist.png')}}" class="imagen_menu_novios">
+							</div>
+						</div>
+					  	</li></a>
+
+					    <a href="{{url('nw_principal_novios_nuestra-mesa-de-regalos')}}">
+					    <li>
+					    <div class="row">
+						  	<div class="col-xs-8">
+						    Nuestra Mesa de Regalos 
+						    </div>
+						    <div class="col-xs-2">
+						    <img src="{{asset('img/novios/nuestra_mesa_de_regalos.png')}}" class="imagen_menu_novios">
+							</div>
+						</div>
+					    </li></a>
+
+					    <a href="{{url('nw_principal_novios_nuestra-lista-de-invitados')}}">
+					    <li> 
+					    <div class="row">
+						  	<div class="col-xs-8">
+						  	Nuestra Lista de Invitados 
+							</div>
+							<div class="col-xs-2">
+						  	<img src="{{asset('img/novios/nuestra_lista_de_invitados.png')}}" class="imagen_menu_novios">
+							</div>
+						</div>
+					  	</li></a>
+
+					    <a href="{{url('nw_principal_novios_nuestra-cuenta')}}">
+					    <li>
+					    <div class="row">
+						  	<div class="col-xs-8">
+						  	Nuestra Cuenta 
+							</div>
+							<div class="col-xs-2">
+						  	<img src="{{asset('img/novios/nuestra_cuenta.png')}}" class="imagen_menu_novios">
+							</div>
+						</div>
+					  	</li></a>
+
+					    <a href="{{url('nw_principal_novios_nuestra-informacion-bancaria')}}">
+						<li>
+						<div class="row">
+						  	<div class="col-xs-8">
+						    Nuestra Información Bancaria 
+						    </div>
+							<div class="col-xs-2">
+						    <img src="{{asset('img/novios/nuestra_informacion_bancaria.png')}}" class="imagen_menu_novios">
+						    </div>
+						</div>
+					    </li></a>
+
+					    <a href="{{url('nw_principal_novios_nuestras-compras')}}">
+					    <li>
+					    <div class="row">
+						  	<div class="col-xs-8">
+						    Nuestras Compras 
+						    </div>
+						    <div class="col-xs-2">
+						    <img src="{{asset('img/novios/nuestras_compras.png')}}" class="imagen_menu_novios">
+						   	</div>
+						</div>
+					    </li></a>
+
+					    <li style="border-radius:0px 0px 10px 10px;">
+					    	<p class="tienes table-hover">Tienes alguna duda, comentario, sugerencia o simplemente quieres decirnos algo, <span class="esc"><a data-toggle="modal" data-target="#Quejas">escríbenos aquí</a></span>
+
+					    	<!-- CHECKLIST -->
+							<!-- Button trigger modal -->
+							
+							 
+
+							<!-- Modal -->
+							<div class="modal fade" id="Quejas" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+							  <div class="modal-dialog">
+							    <div class="modal-content" style="border: rgba(204,0,153,0.7) 2px solid; padding:10px;">
+							      <div class="modal-header">
+							      	<div class="row">
+							      		<div class="col-xs-5">
+								        	<h4 class="modal-title rosa" id="myModalLabel">Dudas, quejas, preguntas o comentarios</h4>
+							        	</div>
+							        	<div class="col-xs-1">
+											
+							        	</div>
+							        	<div class="col-xs-5">
+											<img src="{{asset('img/nw.png')}}" width="100%">
+							        	</div>
+							        	<div class="col-xs-1">
+											<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+							        	</div>
+							        </div>
+							      </div>
+							      
+							      <div class="modal-body">
+							      	<div class="row">
+							      		
+							      		<div class="col-xs-9">
+							      			<div class="row">
+								      			<div class="col-xs-12">
+								      				
+									        	</div>
+								        	</div>
+										</div>
+
+										<div class="col-xs-3">
+											<div class="row" style="margin-top:0px;">
+												<div class="col-xs-12">
+													
+												</div>
+											</div>
+										</div>
+										
+									</div>
+							      </div>
+							    </div>
+							  </div>
+							</div>
+						<!-- FIN AGREGAR CHECKLIST -->
+
+					    	</p>
+					    </li>
+					</ul>
+				</nav>
+
+			</div>
+			<div class="col-xs-9">
+				{% block partederecha %}
+				{% endblock %}
+			</div>
+		</div>
+	</div>
+
+	<!-- Editar anuncio-->
+	<!-- Button trigger modal -->
+	<!-- Modal -->
+	<div class="modal fade" id="dia" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content" style="border: rgba(204,0,153,0.7) 2px solid; padding:10px;">
+	      <div class="modal-header2">
+	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	        <div class="col-xs-7">
+	        	<h4 class="modal-title rosa" id="dia">¿Qué día es tu boda?</h4>
+	        </div>
+	        <div class="col-xs-5">
+        		<img class="logo-modal" src="{{asset('img/nw.png')}}">	
+	        </div>
+	      </div>
+	      <div class="modal-body">
+	      	<h3 class="pon">Escribe la fecha de tu boda</h3>
+	      </div>
+	      
+	      {{ form_start(formDiaBoda) }}
+		      <div>
+		      	{{ form_widget(formDiaBoda.fecha, { 'attr': {'class': 'input8'} }) }}
+		      </div>
+		      <div>
+		      	{{ form_widget(formDiaBoda.Guardar, { 'attr': {'class': '', 'style': 'width:120px;', 'placeholder': '' } }) }}
+		      </div>
+	      {{ form_end(formDiaBoda) }}
+	      
+	      <br><br>
+	    </div>
+	  </div>
+	</div>
+	
+			<!-- FIN CARGA DE ARTICULOS -->
+
+	{% endblock %}
+	{% block footer %}
+	{% endblock %}

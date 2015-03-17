@@ -1,0 +1,18 @@
+#parameters:
+#    nw_user.example.class: NW\UserBundle\Example
+
+#services:
+#    nw_user.example:
+#        class: %nw_user.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
+#    nw.security.roles:
+#        class: NW\UserBundle\Services\Roles
+#        arguments: ["%security.role_hierarchy.roles%"]
+
+parameters:
+    reportero_service.class: NW\UserBundle\Servicios\Reportero
+
+services:
+    reportero_service:
+        class:     %reportero_service.class%
+        arguments: [@doctrine.orm.entity_manager, @fos_user.user_manager, @security.encoder_factory]

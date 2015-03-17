@@ -1,0 +1,51 @@
+# NW/UserBundle/Resources/config/validation.yml
+NW\UserBundle\Entity\registronovios:
+    properties:
+        noviaNombre:
+            - NotBlank: ~
+        noviaSNombre:
+            - NotBlank: ~
+        noviaAPaterno:
+            - NotBlank: ~
+        noviaAMaterno:
+            - NotBlank: ~
+        noviaEMail:
+            - NotBlank: ~
+        noviaLada:
+            - NotBlank: ~
+        noviaTelefono:
+            - NotBlank: ~
+        noviaCelular:
+            - NotBlank: ~
+        noviaDireccion:
+            - NotBlank: ~
+        noviaEstado:
+            - NotBlank: ~
+        noviaCiudad:
+            - NotBlank: ~
+        noviaCP:
+            - NotBlank: ~
+        novioNombre:
+            - NotBlank: ~
+        novioSNombre:
+            - NotBlank: ~
+        novioAPaterno:
+            - NotBlank: ~
+        novioAMaterno:
+            - NotBlank: ~
+        novioEMail:
+            - NotBlank: ~
+        novioLada:
+            - NotBlank: ~
+        novioTelefono:
+            - NotBlank: ~
+        novioCelular:
+            - NotBlank: ~
+        novioDireccion:
+            - NotBlank: ~
+        novioEstado:
+            - NotBlank: ~
+        novioCiudad:
+            - NotBlank: ~
+        novioCP:
+            - NotBlank: ~

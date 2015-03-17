@@ -1,0 +1,29 @@
+<!-- Modal del día de laboda -->
+<div class="modal fade" id="dia" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content" style="border: rgba(204,0,153,0.7) 2px solid; padding:10px;">
+			<div class="modal-header2">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<div class="col-xs-7">
+					<h4 class="modal-title rosa" id="dia">¿Qué día es tu boda?</h4>
+				</div>
+				<div class="col-xs-5">
+					<img class="logo-modal" src="{{asset('img/nw.png')}}">	
+				</div>
+			</div>
+			<div class="modal-body">
+				<h3 class="pon">Escribe la fecha de tu boda</h3>
+			</div>
+			{{ form_start(formDiaBoda) }}
+			<div>
+				{{ form_widget(formDiaBoda.fecha, { 'attr': {'class': 'input8'} }) }}
+			</div>
+			<div>
+				{{ form_widget(formDiaBoda.Guardar, { 'attr': {'class': '', 'style': 'width:120px;', 'placeholder': '' } }) }}
+			</div>
+			{{ form_end(formDiaBoda) }}
+			<br><br>
+		</div>
+	</div>
+</div>
+<!-- Fin del modal de día de la boda -->

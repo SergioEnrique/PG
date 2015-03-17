@@ -1,12 +1,16 @@
 <div class="cuenta-box">
-	<div class="bucketgifts">
-		<a href="#carrito" rel="modal:open">
-			<img class="bucketazul" src="{{asset('img/bucketazul.png')}}" width="50"/>
-			<span class="bucket-number">5</span>
-		</a>
-	</div>
+	{% if app.user %}
+		<div class="bucketgifts">
+			<a href="#carrito" rel="modal:open">
+				<img class="bucketazul" src="{{asset('img/bucketazul.png')}}" width="50"/>
+				<span class="bucket-number">5</span>
+			</a>
+		</div>
+	{% endif %}
 	<div class="idioma-moneda">
 		<a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'es'})) }}">Español</a> | <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'en'})) }}">English</a>
 	</div>
-	<div class="datos">Edmond - <a href="{{ url('pg_party_miCuenta') }}">{% trans %}Mi cuenta{% endtrans %}</a></div>
+	{% if app.user %}
+		<div class="datos">{{ app.user.username }}{% if is_granted('ROLE_USER') %} - <a href="{{ url('pg_party_miCuenta') }}">{% trans %}Mi cuenta{% endtrans %}</a>{% endif %}</div>
+	{% endif %}
 </div>

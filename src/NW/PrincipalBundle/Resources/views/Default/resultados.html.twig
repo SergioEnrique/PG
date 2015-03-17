@@ -1,0 +1,68 @@
+{# src/NW/PrincipalBundle/Resources/views/formato.html.twig #}
+
+{% extends '::base.html.twig' %}
+
+	{% block body %}
+	
+		{% include ':plantillasParciales:top.html.twig' %}
+		
+		<div class="container">
+			{% include 'NWPrincipalBundle:Default:formBusquedaArticulos.html.twig' %}
+			{% include 'NWPrincipalBundle:Default:carrito.html.twig' %}
+		</div>
+		
+		<div class="container">
+			
+			<div class="row">
+				<div class="col-xs-8">
+					{% if resultados %}
+					{% for item in resultados %}
+					<div class="row" style="margin-top:20px;">
+						<div class="col-xs-8">
+							<div class="resultados">
+								<h1>{{item.nombre}}</h1>
+								<p>
+									{{item.descripcion}}<span class="art"></span>
+								</p>
+							</div>
+						</div>
+						<div class="col-xs-4">
+							<img class="resultados2" src="{{ asset(item.fotos.0.webPath) }}">
+						</div>
+					</div>
+					{% endfor %}
+					{% endif %}
+
+
+					<div class="noticia1">
+						<a href="{{url('nw_principal_noticia_completa')}}"><h1>Noticia 1 / Nota 1 / Reportaje 1</h1></a>
+						<p>
+							Descripción del proveedor…Loremipsumdolor sitamet, consectetueradipiscingelit. Aeneancommodoligulaegetdolor. Aeneanmassa. Cum sociisnatoquepenatibuset magnisdisparturientmontes, nasceturridiculusmus. 
+							<a href="{{url('nw_principal_noticia_completa')}}"><span class="art">Leer más</span></a>
+						</p>
+					</div>
+					<div class="noticia1">
+						<h1>Noticia 2 / Nota 2 / Reportaje 2</h1>
+						<p>
+							Descripción del proveedor…Loremipsumdolor sitamet, consectetueradipiscingelit. Aeneancommodoligulaegetdolor. Aeneanmassa. Cum sociisnatoquepenatibuset magnisdisparturientmontes, nasceturridiculusmus. <span class="art">Leer más</span>
+						</p>
+					</div><div class="noticia1">
+						<h1>Noticia 3 / Nota 3 / Reportaje 3</h1>
+						<p>
+							Descripción del proveedor…Loremipsumdolor sitamet, consectetueradipiscingelit. Aeneancommodoligulaegetdolor. Aeneanmassa. Cum sociisnatoquepenatibuset magnisdisparturientmontes, nasceturridiculusmus. <span class="art">Leer más</span>
+						</p>
+					</div><div class="noticia1">
+						<h1>Noticia 4 / Nota 4 / Reportaje 4</h1>
+						<p>
+							Descripción del proveedor…Loremipsumdolor sitamet, consectetueradipiscingelit. Aeneancommodoligulaegetdolor. Aeneanmassa. Cum sociisnatoquepenatibuset magnisdisparturientmontes, nasceturridiculusmus. <span class="art">Leer más</span>
+						</p>
+					</div>
+				</div>
+				<div class="derecha col-xs-4">
+					<img src="{{asset('img/anuncio-noticias.png')}}">
+					<img src="{{asset('img/anuncio-noticias.png')}}">
+				</div>
+			</div>
+		</div>
+
+	{% endblock %}

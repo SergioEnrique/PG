@@ -1,0 +1,319 @@
+{# src/NW/PrincipalBundle/Resources/views/formato.html.twig #}
+
+{% extends '::base.html.twig' %}
+
+	{% block body %}
+	
+		{% include ':plantillasParciales:top.html.twig' %}
+		
+		<div class="container">
+			{% include 'NWPrincipalBundle:Default:formBusquedaArticulos.html.twig' %}
+			{% include 'NWPrincipalBundle:Default:carrito.html.twig' %}
+		</div>
+
+		<hr>
+		<div class="row">
+			<div class="col-xs-1">
+				
+			</div>
+			<div class="col-xs-2">
+				<img class="resultados2" width="177" src="{{asset(proveedor.logo)}}">
+			</div>
+			<div class="col-xs-7">
+				<h1>{{ proveedor.nombreComercial }}</h1>
+				<p>{{ proveedor.descripcion }}</p>
+			</div>
+		</div>
+		<div class="col-xs-1">
+			
+		</div>
+		<div class="col-xs-2">
+		<br />
+			{% if resenas.puntuacionFinal > 0 %}
+				{% for i in 1..resenas.puntuacionFinal %}
+				    <img src="{{asset('img/estrellaa.png')}}">
+				{% endfor %}
+			{% endif %}
+			{% for i in 1..5-resenas.puntuacionFinal %}
+			    <img src="{{asset('img/estrellag.png')}}">
+			{% endfor %}
+		</div>
+		<div class="col-xs-9">
+			<a class="art3" data-toggle="modal" data-target="#resenasModal"><h1>Valora el servicio de la empresa / reseñas</h1></a>
+		</div>
+		<div class="caja gris3">
+			<div class="col-xs-2">
+				<br>
+				<a class="art3" data-toggle="modal" data-target="#galeriaModal"><h1>Galería</h1></a>
+			</div>
+			<div class="col-xs-1">
+				<br>
+				<table style="display:inline;border-collapse:collapse;border:0"><tr>
+				<td style="padding:0"><img src="transparent.gif" width="2" height="70" style="background:grey">
+				</td></tr></table>
+			</div>
+			<div class="col-xs-9">
+				<input type="password" id="form_oldPass" name="form[oldPass]" required="required" class="input_registro_novios" placeholder="buscarproducto / servicio [nombre, descripción, código]">
+			</div>
+			<div class="col-xs-7">
+			
+		</div>
+		<div class="col-xs-3">
+			<input class="enviar4 botoon2" type="submit" id="enviar_form" value="Buscar" style="width:120px;"> 
+		</div>
+		</div>
+
+	{% for articulo in articulos %}
+	{% if articulo.estatus %}
+	<!-- Inicio de artículo -->
+	<div class="articuloCompleto">
+		<div class="container">
+			<div class="col-xs-10">
+				<h5 class="art articuloNombre">{{articulo.nombre}}</h5>	
+				<span class="articuloID" style="visibility:hidden">{{articulo.id}}</span>
+				<span class="articuloCategoria" style="visibility:hidden">{{articulo.categoria}}</span>
+			</div>
+			<div class="col-xs-2">
+			</div>
+		</div>	
+		<hr />
+		<div class="container">
+			<p>Descripción: </p>
+			<div class="col-xs-8">
+				<p class="articuloDescripcion">{{articulo.descripcion}}</p>
+			</div>
+			<div class="col-xs-1">
+				Valor <br>
+				<p class="art2">$<span class="articuloPrecio">{{articulo.precio}}</span></p> <br>
+				Valor promoción <br>
+				<p class="art2">$<span class="articuloPrecioPromocion">{{articulo.precioPromocion}}</span></p> <br>
+			</div>
+			<div class="col-xs-2">
+
+			</div>
+			<div class="col-xs-4">
+				Tamaños:<br />
+				{% for tamano in articulo.tamanos %}
+					{{tamano}}<br />
+				{% endfor %}
+				<span style="visibility:hidden" class="articuloTamanos">{% for tamano in articulo.tamanos %}{{tamano}},{% endfor %}</span>
+			</div>
+			<div class="col-xs-4">
+				<p>Inventario disponible: <span class="art articuloStock">{{articulo.stock}}</span></p>
+			</div>
+			<div class="col-xs-4">
+				<div id="fotos{{articulo.id}}" class="carousel slide">
+				    <ol class="carousel-indicators indicators-down">
+					    {% for foto in articulo.fotos %}
+					      <li data-target="#fotos{{articulo.id}}" data-slide-to="{{loop.index0}}" class="{% if loop.first %}active{% endif %}"></li>
+					    {% endfor %}
+				    </ol>
+
+				    <div class="carousel-inner">
+				    	{% for foto in articulo.fotos %}
+							<div class="item {% if loop.first %}active{% endif %}">
+						    	<img src="{{ asset(foto.webPath) }}" alt="" class="foto" />
+						    </div>
+						{% endfor %}
+						<span style="visibility:hidden" class="articuloFotos">{% for foto in articulo.fotos %}{{foto.id}},{% endfor %}</span>
+				    </div>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="col-xs-8">
+				<p>ID: <span class="art articuloidInterno">{{articulo.idInterno}}</span></p> <br>
+				<p>Tipo: <span class="art articuloTipo">{{articulo.tipo}}</span></p>
+			</div>
+		</div>
+	</div>
+	{% endif %}
+	<!-- Fin de artículo -->
+	{% endfor %}
+
+	<!-- MODAL DE GALERÍA -->
+	<div class="modal fade" id="galeriaModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content" style="border: rgba(204,0,153,0.7) 2px solid; padding:10px;">
+				<div class="modal-header2">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<div class="col-xs-7">
+						<h4 class="modal-title rosa" id="myModalLabel">{{ proveedor.nombreComercial }} - Galería</h4>
+					</div>
+					<div class="col-xs-5">
+						<img class="logo-modal" src="{{asset('img/nw.png')}}">	
+					</div>
+				</div>
+
+
+				<div class="modal-body">
+					<div id="fotosGaleria" class="carousel slide" style="margin-top:120px">
+					    <ol class="carousel-indicators indicators-down">
+						    {% for foto in proveedor.galeria %}
+						      <li data-target="#fotosGaleria" data-slide-to="{{loop.index0}}" class="{% if loop.first %}active{% endif %}"></li>
+						    {% endfor %}
+					    </ol>
+
+					    <div class="carousel-inner">
+					    	{% for foto in proveedor.galeria %}
+								<div class="item {% if loop.first %}active{% endif %}">
+							    	<img src="{{ asset(foto) }}" alt="" class="foto" />
+							    </div>
+							{% endfor %}
+					    </div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<!-- FIN DE MODAL DE GALERÍA -->
+
+	<!-- MODAL DE RESEÑAS -->
+	<div class="modal fade" id="resenasModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content" style="border: rgba(204,0,153,0.7) 2px solid; padding:10px;">
+				<div class="modal-header2">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<div class="col-xs-7">
+						<h4 class="modal-title rosa" id="myModalLabel">Reseñas de {{ proveedor.nombreComercial }}</h4>
+					</div>
+					<div class="col-xs-5">
+						<img class="logo-modal" src="{{asset('img/nw.png')}}">	
+					</div>
+				</div>
+
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-xs-4">
+							<img class="resultados2" width="177" src="{{asset(proveedor.logo)}}" />
+						</div>
+						<div class="col-xs-1 minest">
+							<div>
+								{% for i in 1..resenas.puntuacionFinal %}
+								    <img src="{{asset('img/estrellaa.png')}}">
+								{% endfor %}
+								{% if resenas.puntuacionFinal < 5 %}
+									{% for i in 1..5-resenas.puntuacionFinal %}
+									    <img src="{{asset('img/estrellag.png')}}">
+									{% endfor %}
+								{% endif %}
+							</div>
+							<div class="pargin_estrellas">
+								{% for i in 1..5 %}
+								    <img src="{{asset('img/estrellaa.png')}}">
+								{% endfor %}
+							</div>	
+							<div class="pargin_estrellas">
+								{% for i in 1..4 %}
+								    <img src="{{asset('img/estrellaa.png')}}">
+								{% endfor %}
+								{% for i in 1..1 %}
+								    <img src="{{asset('img/estrellag.png')}}">
+								{% endfor %}
+							</div> 
+							<div class="pargin_estrellas">
+								{% for i in 1..3 %}
+								    <img src="{{asset('img/estrellaa.png')}}">
+								{% endfor %}
+								{% for i in 1..2 %}
+								    <img src="{{asset('img/estrellag.png')}}">
+								{% endfor %}
+							</div> 
+							<div class="pargin_estrellas">
+								{% for i in 1..2 %}
+								    <img src="{{asset('img/estrellaa.png')}}">
+								{% endfor %}
+								{% for i in 1..3 %}
+								    <img src="{{asset('img/estrellag.png')}}">
+								{% endfor %}
+							</div>
+							<div class="pargin_estrellas">
+								{% for i in 1..1 %}
+								    <img src="{{asset('img/estrellaa.png')}}">
+								{% endfor %}
+								{% for i in 1..4 %}
+								    <img src="{{asset('img/estrellag.png')}}">
+								{% endfor %}
+							</div>
+						</div>
+						<div class="col-xs-5">
+							<br>
+							<div class="progress bar img-responsive">
+								<div class="progress-bar" role="progressbar" aria-valuenow="60"	aria-valuemin="0" aria-valuemax="100" style="width: {{resenas.porcentajeResenas.4}}%;">
+									<span class="sr-only"></span>
+								</div>
+							</div>
+							<div class="progress bar img-responsive">
+								<div class="progress-bar" role="progressbar" aria-valuenow="60"	aria-valuemin="0" aria-valuemax="100" style="width: {{resenas.porcentajeResenas.3}}%;">
+									<span class="sr-only"></span>
+								</div>
+							</div>
+							<div class="progress bar2 img-responsive">
+								<div class="progress-bar" role="progressbar" aria-valuenow="60"	aria-valuemin="0" aria-valuemax="100" style="width: {{resenas.porcentajeResenas.2}}%;">
+									<span class="sr-only"></span>
+								</div>
+							</div>
+							<div class="progress bar2 img-responsive">
+								<div class="progress-bar" role="progressbar" aria-valuenow="60"	aria-valuemin="0" aria-valuemax="100" style="width: {{resenas.porcentajeResenas.1}}%;">
+									<span class="sr-only"></span>
+								</div>
+							</div>
+							<div class="progress bar2 img-responsive">
+								<div class="progress-bar" role="progressbar" aria-valuenow="60"	aria-valuemin="0" aria-valuemax="100" style="width: {{resenas.porcentajeResenas.0}}%;">
+									<span class="sr-only"></span>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<hr />
+						<h4>Revisa las reseñas / Escribe una reseña</h4>
+					</div>
+					<div class="row">
+						{{form_start(formNuevaResena)}}
+						{{form_end(formNuevaResena)}}
+						<br />
+					</div>
+
+					{% for resena in resenas.resenas %}
+					<div class="row">
+						<div class="col-xs-5">
+							<div class="art">
+								<h4>{{resena.titulo}}</h4>
+							</div>
+						</div>
+						<div class="col-xs-5 minest2">
+							{% for i in 1..resena.puntuacion %}
+							    <img src="{{asset('img/estrellaa.png')}}">
+							{% endfor %}
+							{% if resena.puntuacion < 5 %}
+								{% for i in 1..5-resena.puntuacion %}
+								    <img src="{{asset('img/estrellag.png')}}">
+								{% endfor %}
+							{% endif %}
+						</div>
+						<div class="row">
+							<div class="col-xs-12 justify">
+								<p>
+									{{resena.resena}}
+								</p>
+								<br>
+								<br>
+							</div>
+						</div>
+						<br>
+						<br>
+					</div>
+					{% endfor %}
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<!-- FIN DE MODAL DE RESEÑAS -->
+	    
+
+	{% endblock %}

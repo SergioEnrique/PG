@@ -1,0 +1,39 @@
+{# src/NW/PrincipalBundle/Resources/Views/Default/changePass.html.twig #}
+
+{% extends '::base.html.twig' %}
+
+{% block body %}
+
+    {% include ':plantillasParciales:top.html.twig' %}
+
+        <div class="cuadro-buscar-novios">
+            <p style="text-align:left">Aquí podrás encontrar la mesa de regalos de los novios, así como direcciones, calendario y otra información que ellos compartan sus invitados</p><br />
+
+            {{ form_start(formBuscarNovios) }}
+            <div class="row">
+                <div class="col-xs-6">
+                    <img src="{{ asset('img/lanovia.jpg') }}"><br /><br /><br />
+                    {{ form_widget(formBuscarNovios.noviaNombre, { 'attr': {'class': 'form-control input-newly', 'style': 'width:240px;', 'placeholder': 'Nombre' } }) }}
+                    <br />
+                    {{ form_widget(formBuscarNovios.noviaApellidoP, { 'attr': {'class': 'form-control input-newly', 'style': 'width:240px;', 'placeholder': 'Apellido Paterno' } }) }}
+                    <br />
+                    {{ form_widget(formBuscarNovios.noviaApellidoM, { 'attr': {'class': 'form-control input-newly', 'style': 'width:240px;', 'placeholder': 'Apellido Materno' } }) }}
+                </div>
+                <div class="col-xs-6" style="border-left: solid 1px #cccccc;">
+                    <img src="{{ asset('img/elnovio.jpg') }}"><br /><br /><br />
+                    {{ form_widget(formBuscarNovios.novioNombre, { 'attr': {'class': 'form-control input-newly', 'style': 'width:240px;', 'placeholder': 'Nombre' } }) }}
+                    <br />
+                    {{ form_widget(formBuscarNovios.novioApellidoP, { 'attr': {'class': 'form-control input-newly', 'style': 'width:240px;', 'placeholder': 'Apellido Paterno' } }) }}
+                    <br />
+                    {{ form_widget(formBuscarNovios.novioApellidoM, { 'attr': {'class': 'form-control input-newly', 'style': 'width:240px;', 'placeholder': 'Apellido Materno' } }) }}
+                </div>
+            </div>
+
+            <div class="row" style="text-align:right;">
+                {{ form_widget(formBuscarNovios.Buscar, { 'attr': {'class': 'enviar4 botoon2 enviar_form', 'style': 'width:120px;', 'placeholder': '' } }) }}
+            </div>
+            {{ form_end(formBuscarNovios) }}
+
+        </div>
+
+{% endblock %}

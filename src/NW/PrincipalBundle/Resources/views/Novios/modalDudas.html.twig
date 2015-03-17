@@ -1,0 +1,57 @@
+<!-- Modal de Dudas -->
+<div class="modal fade" id="Quejas" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content" style="border: rgba(204,0,153,0.7) 2px solid; padding:10px;">
+			<div class="modal-header">
+				<div class="row">
+					<div class="col-xs-5">
+						<h4 class="modal-title rosa" id="myModalLabel">Dudas, quejas, preguntas o comentarios</h4>
+					</div>
+					<div class="col-xs-1">
+
+					</div>
+					<div class="col-xs-5">
+						<img src="{{asset('img/nw.png')}}" width="100%">
+					</div>
+					<div class="col-xs-1">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="modal-body">
+
+				<form action="{{path('nw_principal_novios_dudas_novios')}}" method="POST">
+					<div class="row">
+						<div class="col-xs-11">
+							<select class="input_small" name="asunto">
+								<option>Asunto</option>
+								<option value="Dudas sobre la mesa de regalos">Dudas sobre la mesa de regalos</option>
+				      			<option value="Error en la pagina">Error en la página</option>
+				      			<option value="Sugerencia">Sugerencia</option>
+				      			<option value="Queja">Queja</option>
+				      			<option value="Comentario">Comentario</option>
+				      			<option value="Pregunta">Pregunta</option>
+				      			<option value="Notificaciones">Notificaciones</option>
+				      			<option value="PayPal">PayPal</option>
+				      			<option value="Vender o anunciarme en NewlyWishes.com">Vender o anunciarme en NewlyWishes.com</option>
+							</select>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-11">
+							<textarea style="height:250px;" class="textarea_small" name="mensaje" placeholder="Mensaje"></textarea>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-11">
+							<input type="submit" id="enviar_form" placeholder="Enviar" style="float:right;">
+						</div>
+					</div>
+				</form>
+
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Fin del modal de dudas -->

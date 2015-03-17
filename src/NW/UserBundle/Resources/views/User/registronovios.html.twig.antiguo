@@ -1,0 +1,102 @@
+{# src/NW/PrincipalBundle/Resources/views/registronovios.html.twig #}
+
+{% extends '::base.html.twig' %}
+
+	{% block body %}
+	
+		{% include ':plantillasParciales:top.html.twig' %}
+
+		<div class="container" style="margin-top:0px; margin-bottom:0px; padding-left:50px; padding-right:50px; background-color:rgba(255,255,255,1);">
+      		{{ form_start(form) }}
+	      		<div class="row">
+	        		<div class="col-xs-10">
+	        			<h1><img src="{{ asset('img/registro.jpg') }}" alt="Registro" width="210"></h1>
+	        			<br />{{ form_errors(form) }}<br />
+						Si son una pareja que quiere simplificar la planeación de su boda, por favor regístrense.
+	        		</div>
+	      		</div>
+				<div class="row" style="margin-top:20px;">
+					<div class="col-xs-8">
+							<h3>Datos de la Novia:</h3>
+					</div>
+				</div>
+	      
+			    <div class="row">
+			        <div class="col-xs-4">
+			        	{{ form_widget(form.noviaNombre, { 'attr': {'class': 'input_registro_novios', 'placeholder': 'Nombre' } }) }}
+			        	{{ form_widget(form.noviaSNombre, { 'attr': {'class': 'input_registro_novios', 'placeholder': 'Segundo Nombre' } }) }}
+				        {{ form_widget(form.noviaAPaterno, { 'attr': {'class': 'input_registro_novios', 'placeholder': 'Apellido Paterno' } }) }}
+				        {{ form_widget(form.noviaAMaterno, { 'attr': {'class': 'input_registro_novios', 'placeholder': 'Apellido Materno' } }) }}
+			        </div>
+			        <div class="col-xs-4">
+			        	{{ form_widget(form.noviaEMail, { 'attr': {'class': 'input_registro_novios', 'placeholder': 'E-Mail' } }) }}
+				        {{ form_widget(form.noviaLada, { 'attr': {'class': 'input_registro_novios input_registro20', 'placeholder': 'LADA' } }) }}
+						{{ form_widget(form.noviaTelefono, { 'attr': {'class': 'input_registro_novios input_registro74', 'placeholder': 'Teléfono de casa u oficina' } }) }}
+						{{ form_widget(form.noviaCelular, { 'attr': {'class': 'input_registro_novios', 'placeholder': 'Teléfono celular' } }) }}
+			        </div>
+			        <div class="col-xs-4">
+				        {{ form_widget(form.noviaDireccion, { 'attr': {'class': 'input_registro_novios', 'placeholder': 'Dirección completa' } }) }}
+						{{ form_label(form.noviaPais, 'País') }}
+				        {{ form_widget(form.noviaPais, { 'attr': {'class': 'input_registro_novios input_registro70'} }) }}
+			            <br />
+				        {{ form_label(form.noviaEstado2, 'Estado') }}
+				        {{ form_widget(form.noviaEstado2, { 'attr': {'class': 'input_registro_novios input_registro70'} }) }}
+				        {{ form_widget(form.noviaCiudad, { 'attr': {'class': 'input_registro_novios', 'placeholder': 'Municipio o Delegación' } }) }}
+			    		{{ form_widget(form.noviaCP, { 'attr': {'class': 'input_registro_novios', 'placeholder': 'Código postal' } }) }}
+			        </div>
+			    </div>
+
+				<div class="row" style="margin-top:20px;">
+					<div class="col-xs-12">
+						<h3>Datos del Novio:</h3>
+					</div>
+				</div>  
+				
+				<div class="row">
+			        <div class="col-xs-4">
+			        	{{ form_widget(form.novioNombre, { 'attr': {'class': 'input_registro_novios', 'placeholder': 'Nombre' } }) }}
+			        	{{ form_widget(form.novioSNombre, { 'attr': {'class': 'input_registro_novios', 'placeholder': 'Segundo Nombre' } }) }}
+				        {{ form_widget(form.novioAPaterno, { 'attr': {'class': 'input_registro_novios', 'placeholder': 'Apellido Paterno' } }) }}
+				        {{ form_widget(form.novioAMaterno, { 'attr': {'class': 'input_registro_novios', 'placeholder': 'Apellido Materno' } }) }}
+			        </div>
+			        <div class="col-xs-4">
+			        	{{ form_widget(form.novioEMail, { 'attr': {'class': 'input_registro_novios', 'placeholder': 'E-Mail' } }) }}
+				        {{ form_widget(form.novioLada, { 'attr': {'class': 'input_registro_novios input_registro20', 'placeholder': 'LADA' } }) }}
+						{{ form_widget(form.novioTelefono, { 'attr': {'class': 'input_registro_novios input_registro74', 'placeholder': 'Teléfono de casa u oficina' } }) }}
+						{{ form_widget(form.novioCelular, { 'attr': {'class': 'input_registro_novios', 'placeholder': 'Teléfono celular' } }) }}
+			        </div>
+			        <div class="col-xs-4">
+				        {{ form_widget(form.novioDireccion, { 'attr': {'class': 'input_registro_novios', 'placeholder': 'Dirección completa' } }) }}
+						{{ form_label(form.novioPais, 'País') }}
+				        {{ form_widget(form.novioPais, { 'attr': {'class': 'input_registro_novios input_registro70'} }) }}
+			            <br />
+				        {{ form_label(form.novioEstado2, 'Estado') }}
+				        {{ form_widget(form.novioEstado2, { 'attr': {'class': 'input_registro_novios input_registro70'} }) }}
+				        {{ form_widget(form.novioCiudad, { 'attr': {'class': 'input_registro_novios', 'placeholder': 'Municipio o Delegación' } }) }}
+			    		{{ form_widget(form.novioCP, { 'attr': {'class': 'input_registro_novios', 'placeholder': 'Código postal' } }) }}
+			        </div>
+			    </div>
+
+				<div class="row" style="margin-top:20px;">
+			        <div class="col-xs-10">
+			        	<h3>Datos de Usuario:</h3>
+			        </div>
+				</div>
+					      
+				<div class="row">
+					<div class="col-xs-4">
+						{{ form_widget(form.userName, { 'attr': {'class': 'input_registro_novios', 'placeholder': 'Usuario' } }) }}
+						{{ form_widget(form.userPass, { 'attr': {'class': 'input_registro_novios', 'placeholder': 'Contraseña' } }) }}
+					</div>
+					<div class="col-xs-4">
+						{{ form_widget(form.terminosCondiciones) }} {{ form_label(form.terminosCondiciones, 'Acepto los términos y condiciones') }}<br />
+						{{ form_widget(form.terminosPrivacidad) }} {{ form_label(form.terminosPrivacidad, 'Acepto los términos de privacidad') }}<br />
+					</div>
+					<div class="col-xs-4">
+						{{ form_widget(form.Enviar) }}
+					</div>
+				</div>
+			{{ form_end(form) }}
+		</div><!-- CONTAINER -->
+
+	{% endblock %}

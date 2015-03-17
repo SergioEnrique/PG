@@ -1,0 +1,22 @@
+{# src/NW/PrincipalBundle/Resources/views/login.html.twig #}
+
+{% extends '::base.html.twig' %}
+
+	{% block body %}
+	
+		{% include ':plantillasParciales:top.html.twig' %}
+
+			<div class="container">
+				<div class="cuadro img-responsive">
+					<br>
+					<img class="img-responsive proveedores" src="{{asset('img/bienvenido.png')}}" />
+					<p style="font-size:14px; font-style:italic;">Ingreso a tu página</p>
+					{% render controller("FOSUserBundle:Security:login") %}
+
+				</div>
+				<div class="container" style="text-align:center">
+					<h4><a href="{{ path('nw_principal_changepass') }}" class="olv">Olvidé mi usuario / contraseña</a></h4>
+				</div>
+			</div>
+
+	{% endblock %}

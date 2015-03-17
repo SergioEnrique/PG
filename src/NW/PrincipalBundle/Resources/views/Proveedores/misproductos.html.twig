@@ -1,0 +1,540 @@
+{# src/NW/PrincipalBundle/Resources/views/Proveedores/misproductos.html.twig #}
+
+{% extends 'NWPrincipalBundle:Proveedores:administrador.html.twig' %}
+
+{% block partederecha %}
+
+<div class="container">
+	<div class="col-xs-6">
+
+	</div>
+	<div class="col-xs-1">
+		<img class="puntov" src="{{asset('img/puntov.png')}}">
+	</div>
+	<div class="col-xs-5">
+		<h1>Mis Productos / Servicios</h1>	
+	</div>
+	<div class="col-xs-5">
+		<p class="verde">Agrega un nuevo producto /servicio</p>	
+	</div>
+	<div class="col-xs-7">
+
+		<!-- CARGA DE ARTICULOS -->
+		<!-- Button trigger modal -->
+		<input type="image" src="{{asset('img/novios/mas.png')}}" data-toggle="modal" data-target="#myModal" style="width:40px; height:60px; margin-top:-24px; margin-left:-20px;">
+
+
+		<!-- Modal -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content" style="border: rgba(204,0,153,0.7) 2px solid; padding:10px;">
+				<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title rosa" id="myModalLabel">Nuevo Artículo</h4>
+					</div>
+
+					<div class="modal-body">
+						{{ form_start(formArticulo) }}
+						<div class="row">
+							<div class="col-xs-6">
+
+
+								<div class="row">
+									<div class="col-xs-10">
+										<img src="{{asset('img/punto.png')}}" style="margin-top:9px; margin-left:-8px; position:absolute; width:5px; height:5px;">
+										{{ form_widget(formArticulo.datos.nombre, { 'attr': {'class': 'input_small', 'style': '', 'placeholder': 'Nombre del artículo' } }) }}
+									</div>
+									<div class="col-xs-2">
+										<img class="puntov" src="{{asset('img/puntov.png')}}" style="margin-top:7px; margin-left:-20px;">
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-xs-10">
+										<img src="{{asset('img/punto.png')}}" style="margin-top:9px; margin-left:-8px; position:absolute; width:5px; height:5px;">
+										{{ form_widget(formArticulo.datos.descripcion, { 'attr': {'class': 'textarea_small', 'style': '', 'placeholder': 'Descripción' } }) }}
+									</div>
+									<div class="col-xs-2">
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-xs-10">
+										{{ form_widget(formArticulo.categoria.categorias, { 'attr': {'class': 'form-control', 'style': '', 'placeholder': '' } }) }} <br />
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-xs-10">
+										<img src="{{asset('img/punto.png')}}" style="margin-top:9px; margin-left:-8px; position:absolute; width:5px; height:5px;">
+										{{ form_widget(formArticulo.datos.idInterno, { 'attr': {'class': 'input_small', 'style': '', 'placeholder': 'ID (Asignar uno)' } }) }}
+									</div>
+									<div class="col-xs-2">
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-xs-10">
+										<img src="{{asset('img/punto.png')}}" style="margin-top:9px; margin-left:-8px; position:absolute; width:5px; height:5px;">
+										{{ form_widget(formArticulo.datos.stock, { 'attr': {'class': 'input_small', 'style': '', 'placeholder': 'Inventario Disponible' } }) }}
+									</div>
+									<div class="col-xs-2">
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-xs-10">
+										<img src="{{asset('img/punto.png')}}" style="margin-top:9px; margin-left:-8px; position:absolute; width:5px; height:5px;">
+										{{ form_widget(formArticulo.datos.precio, { 'attr': {'class': 'input_small', 'style': '', 'placeholder': 'Valor' } }) }}
+									</div>
+									<div class="col-xs-2">
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-xs-10">
+										{{ form_widget(formArticulo.datos.precioPromocion, { 'attr': {'class': 'input_small', 'style': '', 'placeholder': 'Valor Promoción' } }) }}
+									</div>
+									<div class="col-xs-2">
+										<img class="puntov" src="{{asset('img/puntov.png')}}" style="margin-top:7px; margin-left:-20px;">
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-xs-10">
+										<br><br>
+										Tamaños disponibles (sepáralos por una coma “,” y sin espacios)
+										<br>
+									</div>
+									<div class="col-xs-2">
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-xs-10">
+										<img src="{{asset('img/punto.png')}}" style="margin-top:9px; margin-left:-8px; position:absolute; width:5px; height:5px;">
+										{{ form_widget(formArticulo.datos.tamanos, { 'attr': {'class': 'input_small', 'style': '', 'placeholder': '' } }) }}
+									</div>
+									<div class="col-xs-2">
+									</div>
+								</div>
+
+								<br><img src="{{asset('img/punto.png')}}" style="margin-top:5px; margin-left:-8px; position:absolute; width:5px; height:5px;">Tipo <img class="puntov" src="{{asset('img/puntov.png')}}" style="margin-top:-3px; margin-left:30px;"><br>
+								{{ form_widget(formArticulo.datos.tipo) }}
+								<br><br>
+								<img src="{{asset('img/punto.png')}}" style="margin-top:5px; margin-left:-8px; position:absolute; width:5px; height:5px;">Estatus <img class="puntov" src="{{asset('img/puntov.png')}}" style="margin-top:-3px; margin-left:14px;"><br>
+								{{ form_widget(formArticulo.datos.estatus) }}
+								<br>
+								<img src="{{asset('img/punto.png')}}" style="margin-top:8px; margin-left:-8px; position:absolute; width:5px; height:5px;">
+								{{ form_widget(formArticulo.terminosCondiciones) }} {{ form_label(formArticulo.terminosCondiciones, 'Acepto los términos y condiciones') }}<br />
+								<img src="{{asset('img/punto.png')}}" style="margin-top:8px; margin-left:-8px; position:absolute; width:5px; height:5px;">
+								{{ form_widget(formArticulo.terminosPrivacidad) }} {{ form_label(formArticulo.terminosPrivacidad, 'Acepto los términos de privacidad') }}<br>
+								<img src="{{asset('img/punto.png')}}" style="margin-top:5px; margin-left:-8px; position:absolute; width:5px; height:5px;"> Datos obligatorios
+							</div>
+							<div class="col-xs-6">
+								<div class="row">
+									<div class="col-xs-12">
+										<img src="{{asset('img/nw.png')}}" width="100%">
+									</div>
+								</div>
+								<!-- CODIGO PARA LA EDICION Y NO PARA AGREGAR
+								<div class="row" style="margin-top:30px;">
+									<div class="col-xs-6">
+										<img class="cuadro_foto_principal" src="{{asset('img/foto.png')}}" width="100%">
+									</div>
+									<div class="col-xs-6" style="padding-top:10px;">
+										<img src="{{asset('img/bote.png')}}" width="40px" height="40%" style="margin-left:20%;"><br><br>
+										Eliminar esta foto
+									</div>
+								</div>
+								<div class="row" style="margin-top:10px;">
+									<div class="col-xs-4">
+										<div class="cuadro_upload_foto"></div>
+									</div>
+									<div class="col-xs-4">
+										<div class="cuadro_upload_foto"></div>
+									</div>
+									<div class="col-xs-4">
+										<div class="cuadro_upload_foto"></div>
+									</div>
+								</div>-->
+								<div class="row" style="margin-top:20px;">
+									<div class="col-xs-12">
+										{{ form_widget(formArticulo.foto.file, { 'attr': {'class': '', 'style': '', 'placeholder': '' } }) }}
+										<br><br>
+									</div>
+								</div>
+
+							</div>
+						</div>
+
+					</div>
+
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+						{{ form_widget(formArticulo.Agregar, { 'attr': {'class': 'btn btn-primary', 'style': '', 'placeholder': '' } }) }}
+					</div>
+
+					{{ form_end(formArticulo) }}
+				</div>
+			</div>
+		</div>
+		<!-- FIN CARGA DE ARTICULO NUEVO -->
+
+		<!-- MODAL DE EDICIÓN DE ARTÍCULO -->
+		<div class="modal fade" id="editarArticulo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content" style="border: rgba(204,0,153,0.7) 2px solid; padding:10px;">
+				<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title rosa">Editar Artículo</h4>
+					</div>
+
+					<div class="modal-body">
+						{{ form_start(formArticuloEdit) }}
+						<div class="row">
+							<div class="col-xs-6">
+
+
+								<div class="row">
+									<div class="col-xs-10">
+										<img src="{{asset('img/punto.png')}}" style="margin-top:9px; margin-left:-8px; position:absolute; width:5px; height:5px;">
+										{{ form_widget(formArticuloEdit.datos.nombre, { 'attr': {'class': 'input_small', 'style': '', 'placeholder': 'Nombre del artículo'} }) }}
+									</div>
+									<div class="col-xs-2">
+										<img class="puntov" src="{{asset('img/puntov.png')}}" style="margin-top:7px; margin-left:-20px;">
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-xs-10">
+										<img src="{{asset('img/punto.png')}}" style="margin-top:9px; margin-left:-8px; position:absolute; width:5px; height:5px;">
+										{{ form_widget(formArticuloEdit.datos.descripcion, { 'attr': {'class': 'textarea_small', 'style': '', 'placeholder': 'Descripción' } }) }}
+									</div>
+									<div class="col-xs-2">
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-xs-10">
+										{{ form_widget(formArticuloEdit.categoria.categorias, { 'attr': {'class': 'form-control', 'style': '', 'placeholder': '' } }) }} <br />
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-xs-10">
+										<img src="{{asset('img/punto.png')}}" style="margin-top:9px; margin-left:-8px; position:absolute; width:5px; height:5px;">
+										{{ form_widget(formArticuloEdit.datos.idInterno, { 'attr': {'class': 'input_small', 'style': '', 'placeholder': 'ID (Asignar uno)' } }) }}
+									</div>
+									<div class="col-xs-2">
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-xs-10">
+										<img src="{{asset('img/punto.png')}}" style="margin-top:9px; margin-left:-8px; position:absolute; width:5px; height:5px;">
+										{{ form_widget(formArticuloEdit.datos.stock, { 'attr': {'class': 'input_small', 'style': '', 'placeholder': 'Inventario Disponible' } }) }}
+									</div>
+									<div class="col-xs-2">
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-xs-10">
+										<img src="{{asset('img/punto.png')}}" style="margin-top:9px; margin-left:-8px; position:absolute; width:5px; height:5px;">
+										{{ form_widget(formArticuloEdit.datos.precio, { 'attr': {'class': 'input_small', 'style': '', 'placeholder': 'Valor' } }) }}
+									</div>
+									<div class="col-xs-2">
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-xs-10">
+										{{ form_widget(formArticuloEdit.datos.precioPromocion, { 'attr': {'class': 'input_small', 'style': '', 'placeholder': 'Valor Promoción' } }) }}
+									</div>
+									<div class="col-xs-2">
+										<img class="puntov" src="{{asset('img/puntov.png')}}" style="margin-top:7px; margin-left:-20px;">
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-xs-10">
+										<br><br>
+										Tamaños disponibles (sepáralos por una coma “,” y sin espacios)
+										<br>
+									</div>
+									<div class="col-xs-2">
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-xs-10">
+										<img src="{{asset('img/punto.png')}}" style="margin-top:9px; margin-left:-8px; position:absolute; width:5px; height:5px;">
+										{{ form_widget(formArticuloEdit.datos.tamanos, { 'attr': {'class': 'input_small', 'style': '', 'placeholder': '' } }) }}
+									</div>
+									<div class="col-xs-2">
+									</div>
+								</div>
+
+								<br><img src="{{asset('img/punto.png')}}" style="margin-top:5px; margin-left:-8px; position:absolute; width:5px; height:5px;">Tipo <img class="puntov" src="{{asset('img/puntov.png')}}" style="margin-top:-3px; margin-left:30px;"><br>
+								{{ form_widget(formArticuloEdit.datos.tipo) }}
+								<br><br>
+								<img src="{{asset('img/punto.png')}}" style="margin-top:5px; margin-left:-8px; position:absolute; width:5px; height:5px;">Estatus <img class="puntov" src="{{asset('img/puntov.png')}}" style="margin-top:-3px; margin-left:14px;"><br>
+								{{ form_widget(formArticuloEdit.datos.estatus) }}
+								<br>
+								<img src="{{asset('img/punto.png')}}" style="margin-top:8px; margin-left:-8px; position:absolute; width:5px; height:5px;">
+								{{ form_widget(formArticuloEdit.terminosCondiciones) }} {{ form_label(formArticuloEdit.terminosCondiciones, 'Acepto los términos y condiciones') }}<br />
+								<img src="{{asset('img/punto.png')}}" style="margin-top:8px; margin-left:-8px; position:absolute; width:5px; height:5px;">
+								{{ form_widget(formArticuloEdit.terminosPrivacidad) }} {{ form_label(formArticuloEdit.terminosPrivacidad, 'Acepto los términos de privacidad') }}<br>
+								<img src="{{asset('img/punto.png')}}" style="margin-top:5px; margin-left:-8px; position:absolute; width:5px; height:5px;"> Datos obligatorios
+							</div>
+							<div class="col-xs-6">
+								<div class="row">
+									<div class="col-xs-12">
+										<img src="{{asset('img/nw.png')}}" width="100%">
+									</div>
+								</div>
+								<!-- CODIGO PARA LA EDICION Y NO PARA AGREGAR
+								<div class="row" style="margin-top:30px;">
+									<div class="col-xs-6">
+										<img class="cuadro_foto_principal" src="{{asset('img/foto.png')}}" width="100%">
+									</div>
+									<div class="col-xs-6" style="padding-top:10px;">
+										<img src="{{asset('img/bote.png')}}" width="40px" height="40%" style="margin-left:20%;"><br><br>
+										Eliminar esta foto
+									</div>
+								</div>
+								<div class="row" style="margin-top:10px;">
+									<div class="col-xs-4">
+										<div class="cuadro_upload_foto"></div>
+									</div>
+									<div class="col-xs-4">
+										<div class="cuadro_upload_foto"></div>
+									</div>
+									<div class="col-xs-4">
+										<div class="cuadro_upload_foto"></div>
+									</div>
+								</div>-->
+								<div class="row" style="margin-top:20px;">
+									<div class="col-xs-12">
+										<span>Agregar otra foto:</span><br />
+										{{ form_widget(formArticuloEdit.foto.file, { 'attr': {'class': '', 'style': '', 'placeholder': '' } }) }}
+										<br><br>
+									</div>
+								</div>
+
+							</div>
+						</div>
+
+					</div>
+
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+						{{ form_widget(formArticuloEdit.Editar, { 'attr': {'class': 'btn btn-primary', 'style': '', 'placeholder': '' } }) }}
+					</div>
+
+					{{ form_end(formArticuloEdit) }}
+				</div>
+			</div>
+		</div>
+		<!-- FIN DE MODAL EDICIÓN DE ARTÍCULO-->
+
+	</div>
+	<div class="col-xs-5">
+		<p class="verde">Carga masiva</p>	
+	</div>
+	<!-- CARGA MASIVA DE ARTICULOS -->
+	<!-- Button trigger modal -->
+	<input type="image" src="{{asset('img/novios/mas.png')}}" data-toggle="modal" data-target="#masiva" style="width:40px; height:60px; margin-top:-24px; margin-left:-20px;">
+
+
+	<!-- Modal -->
+	<div class="modal fade" id="masiva" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content" style="border: rgba(204,0,153,0.7) 2px solid; padding:10px;">
+				<div class="modal-header2">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<div class="col-xs-7">
+						<h4 class="modal-title rosa" id="masiva">Actualiza tus datos</h4>
+					</div>
+					<div class="col-xs-5">
+						<img class="logo-modal" src="{{asset('img/nw.png')}}">	
+					</div>
+				</div>
+
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-xs-12 ingreso">
+							<input type="submit" id="enviar_form" value="Seleccionar Archivo" style="width:120px;">
+						</div>
+						<div class="col-xs-9">
+							<label for="ejemplo_archivo_1" class="cargar">Haz cargado el siguiente archivo</label>
+							<input type="file" id="ejemplo_archivo_1" class="cargar2">
+						</div>
+						<div class="col-xs-3 verde parrafito">
+							<p>Descargar formato para carga masiva de artículos (Excel)</p>
+						</div>
+						<div class="row left">
+							<label class="radio-inline">
+								<img src="{{asset('img/mini-punto.png')}}">
+								<input name="radioGroup" id="radio1" value="option1" type="radio" class="input2">He leído y acepto los <span class="art">términos y condiciones</span>
+							</label>
+							<br>
+							<label class="radio-inline">
+								<img src="{{asset('img/mini-punto.png')}}">
+								<input name="radioGroup" id="radio1" value="option1" type="radio" class="input2">He leído y acepto los <span class="art">términos y condiciones</span>
+							</label>
+						</div>
+						<br>
+						<div class="row left3">
+							<img src="{{asset('img/mini-punto.png')}}">
+							<span>Datos obligatorios</span>	
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- FIN CARGA DE ARTICULOS -->
+
+	{% for articulo in articulos %}
+	<!-- Inicio de artículo -->
+	<div class="articuloCompleto">
+		<div class="container">
+			<div class="col-xs-10">
+				<h5 class="art articuloNombre">{{articulo.nombre}}</h5>	
+				<span class="articuloID" style="visibility:hidden">{{articulo.id}}</span>
+				<span class="articuloCategoria" style="visibility:hidden">{{articulo.categoria}}</span>
+			</div>
+			<div class="col-xs-2">
+				<a href="#" data-toggle="modal" data-target="#editarArticulo" class="editarArticulo"><h5 class="art">Editar</h5></a>
+			</div>
+		</div>	
+		<hr />
+		<div class="container">
+			<p>Descripción: </p>
+			<div class="col-xs-8">
+				<p class="articuloDescripcion">{{articulo.descripcion}}</p>
+			</div>
+			<div class="col-xs-1">
+				Valor <br>
+				<p class="art2">$<span class="articuloPrecio">{{articulo.precio}}</span></p> <br>
+				Valor promoción <br>
+				<p class="art2">$<span class="articuloPrecioPromocion">{{articulo.precioPromocion}}</span></p> <br>
+			</div>
+			<div class="col-xs-1 bote">
+				<a href="{{url('nw_principal_proveedores_producto_delete', {'id': articulo.id})}}">
+					<img src="{{asset('img/bote.png')}}" alt="bote">
+				</a>
+			</div>
+			<div class="col-xs-2">
+
+			</div>
+			<div class="col-xs-4">
+				Tamaños:<br />
+				{% for tamano in articulo.tamanos %}
+					{{tamano}}<br />
+				{% endfor %}
+				<span style="visibility:hidden" class="articuloTamanos">{% for tamano in articulo.tamanos %}{{tamano}},{% endfor %}</span>
+			</div>
+			<div class="col-xs-4">
+				<p>Inventario disponible: <span class="art articuloStock">{{articulo.stock}}</span></p>
+				<p>Artículos vendidos: <span class="art">##</span></p>
+			</div>
+			<div class="col-xs-4">
+				<div id="fotos{{articulo.id}}" class="carousel slide">
+				    <ol class="carousel-indicators indicators-down">
+					    {% for foto in articulo.fotos %}
+					      <li data-target="#fotos{{articulo.id}}" data-slide-to="{{loop.index0}}" class="{% if loop.first %}active{% endif %}"></li>
+					    {% endfor %}
+				    </ol>
+
+				    <div class="carousel-inner">
+				    	{% for foto in articulo.fotos %}
+							<div class="item {% if loop.first %}active{% endif %}">
+						    	<img src="{{ asset(foto.webPath) }}" alt="" class="foto" />
+						    </div>
+						{% endfor %}
+						<span style="visibility:hidden" class="articuloFotos">{% for foto in articulo.fotos %}{{foto.id}},{% endfor %}</span>
+				    </div>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="col-xs-8">
+				<p>Estatus: <span class="art articuloEstatus">{% if articulo.estatus %}Activo{% else %}Inactivo{% endif %}</span></p> <br>
+				<p>ID: <span class="art articuloidInterno">{{articulo.idInterno}}</span></p> <br>
+				<p>Tipo: <span class="art articuloTipo">{{articulo.tipo}}</span></p>
+			</div>
+		</div>
+	</div>
+	<!-- Fin de artículo -->
+	{% endfor %}
+
+
+	<br>
+	<br>
+	<br>
+
+</div>
+
+<script>
+// Este Script obtiene los datos del artículo al que se le dió clic en "editar" y actualiza el modal de edición con dichos datos
+
+	var articuloNombre;
+	var articuloDescripcion;
+	var articuloPrecio;
+	var articuloPrecioPromocion;
+	var articuloTamanos;
+	var articuloStock;
+	var articuloFotos;
+	var articuloEstatus;
+	var articuloidInterno;
+	var articuloTipo;
+	var articuloID;
+	var categoria;
+
+	jQuery(document).ready(function(){
+		jQuery(".editarArticulo").click(function(){
+			var Padre = jQuery(this).closest(".articuloCompleto");
+
+			articuloNombre = Padre.find(".articuloNombre").text();
+			articuloDescripcion = Padre.find(".articuloDescripcion").text();
+			articuloPrecio = Padre.find(".articuloPrecio").text();
+			articuloPrecioPromocion = Padre.find(".articuloPrecioPromocion").text();
+			articuloTamanos = Padre.find(".articuloTamanos").text();
+			articuloStock = Padre.find(".articuloStock").text();
+			articuloFotos = Padre.find(".articuloFotos").text();
+			articuloidInterno = Padre.find(".articuloidInterno").text();
+			articuloTipo = Padre.find(".articuloTipo").text();
+			articuloID = Padre.find(".articuloID").text();
+			articuloCategoria = Padre.find(".articuloCategoria").text();
+
+			jQuery("#articuloEdit_datos_nombre").val(articuloNombre);
+			jQuery("#articuloEdit_datos_descripcion").val(articuloDescripcion);
+			jQuery("#articuloEdit_datos_stock").val(articuloStock);
+			jQuery("#articuloEdit_datos_precioPromocion").val(articuloPrecioPromocion);
+			jQuery("#articuloEdit_datos_tamanos").val(articuloTamanos);
+			jQuery("#articuloEdit_datos_idInterno").val(articuloidInterno);
+			jQuery("#articuloEdit_datos_precio").val(articuloPrecio);
+			jQuery("#articuloEdit_categoria_categorias").val(articuloCategoria);
+			jQuery("#articuloEdit_id").val(articuloID);
+			//jQuery("#articuloEdit_datos_").val();
+
+			if(articuloTipo == "Producto")
+			{
+				jQuery('input:radio[name="articuloEdit[datos][tipo]"]').filter('[value="Servicio"]').prop('checked', false);
+				jQuery('input:radio[name="articuloEdit[datos][tipo]"]').filter('[value="Producto"]').prop('checked', true);
+			}
+			else if(articuloTipo == "Servicio")
+			{
+				jQuery('input:radio[name="articuloEdit[datos][tipo]"]').filter('[value="Producto"]').prop('checked', false);
+				jQuery('input:radio[name="articuloEdit[datos][tipo]"]').filter('[value="Servicio"]').prop('checked', true);
+			}
+			
+		});
+	})
+
+</script>
+
+{% endblock %}

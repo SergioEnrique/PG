@@ -1,0 +1,17 @@
+# src/NW/PrincipalBundle/Resources/config/doctrine/CatRegalos.orm.yml
+NW\PrincipalBundle\Entity\CatRegalos:
+    type: entity 
+    table: cat_regalos
+    oneToMany:
+        mesaregalos:
+            targetEntity: MesaRegalos
+            mappedBy: catregalos
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        categoriaName:
+            type: string
+            length: 100

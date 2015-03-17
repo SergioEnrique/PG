@@ -1,0 +1,38 @@
+{# src/NW/PrincipalBundle/Resources/Views/Default/changePass.html.twig #}
+
+{% extends '::base.html.twig' %}
+
+    {% block body %}
+    
+        {% include ':plantillasParciales:top.html.twig' %}
+
+            <div class="container">
+                <div class="cuadro img-responsive">
+                    <br>
+                    <img class="img-responsive proveedores" src="{{asset('img/bienvenido.png')}}" />
+                    
+                    {% render controller("FOSUserBundle:Security:login") %}
+
+                </div>
+                <div class="container">
+                    <h4 class="olv">Olvidé mi usuario / contraseña</h4>
+                </div>
+            </div>
+            
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <br>
+                        <div class="proveedor">
+                            <h5 class="text-center"> ¿Eres proveedor nuevo?, haz click aquí </h5>
+                        </div>
+                        <br>
+                        <br>
+                    </div>
+                </div>
+            </div>
+
+    {% endblock %}
+
+    {% block footer %}
+    {% endblock %}

@@ -1,0 +1,73 @@
+{# src/NW/PrincipalBundle/Resources/views/formato.html.twig #}
+
+{% extends '::base.html.twig' %}
+
+{% block body %}
+
+	{% include ':plantillasParciales:top.html.twig' %}
+	
+	<div class="container">
+
+		<div class="row">
+			<!-- button to empty the cart -->
+			<a href="javascript:;" class="simpleCart_empty">Vaciar Carrito</a>
+		</div>
+
+		<div class="row">
+			<h2>Carrito</h2>
+			<!-- show the cart -->
+			<div class="simpleCart_items"></div>
+		</div>
+
+		<div class="row" style="margin-bottom: 12px;margin-right: 0px;text-align: right;">
+			<h3>Subtotal</h3>
+			<!-- grand total, including tax and shipping (ex. $28.49) -->
+			<div class="simpleCart_total"></div>
+			<h3>Comisiones</h3>
+			<div class="simpleCart_shipping"></div>
+			<h2>Total</h2>
+			<div class="simpleCart_grandTotal"></div>
+		</div>
+
+		<div class="row" style="text-align: right;">
+			<!-- create a checkout button -->
+			<a href="javascript:;" class="btn simpleCart_checkout">
+				<button type="button" class="btn btn-success">Pagar</button>
+			</a>
+
+		</div>
+	</div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        simpleCart({
+            checkout: {
+                type: "SendForm" , 
+                url: "{{ url('nw_paypal_express_checkout_prepare_purchase') }}",
+                method: "POST",
+            },
+            currency: "MXN",
+            language: "spanish-mx",
+            cartStyle: "table", 
+            cartColumns: [
+            	{ attr: "itemid" , label: "ID" } ,
+		        { attr: "name" , label: "Nombre" } ,
+		        { attr: "description" , label: "Descripción" } ,
+                { attr: "pareja" , label: "Pareja" } ,
+		        { attr: "price" , label: "Precio", view: 'currency' } ,
+		        { view: "decrement" , label: false , text: "-" } ,
+		        { attr: "quantity" , label: "Cantidad" } ,
+		        { view: "increment" , label: false , text: "+" } ,
+		        { attr: "total" , label: "SubTotal", view: 'currency' } ,
+		        { view: "remove" , text: "Remover" , label: false }
+            ]
+        });
+        simpleCart.shipping(function(){
+			return simpleCart.total()*.06+4;
+		});
+        
+    </script>
+{% endblock %}

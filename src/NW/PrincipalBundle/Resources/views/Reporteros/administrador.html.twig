@@ -1,0 +1,96 @@
+{# src/NW/PrincipalBundle/Resources/views/Reporteros/administrador.html.twig #}
+{% extends '::base.html.twig' %}
+
+{% block body %}
+
+	<div class="container" style="padding:0px; margin-top:-30px; box-shadow:rgba(0,0,0,1) 0px 0px 30px;
+  -moz-box-shadow:rgba(0,0,0,1) 0px 0px 30px;
+  -ms-box-shadow:rgba(0,0,0,1) 0px 0px 30px;
+  -o-box-shadow:rgba(0,0,0,1) 0px 0px 30px;
+  -webkit-box-shadow:rgba(0,0,0,1) 0px 0px 30px;">
+
+  	{% include ':plantillasParciales:menuGrisSuperior.html.twig' %}
+
+	<div class="container corrector" style="padding-top:50px;">
+		<div class="row" style="display: table">
+			<div class="col-xs-6 same-height">
+				<div class="nw2">
+					<a href="{{url('nw_principal_homepage')}}">
+						<img class="img-responsive" src="{{asset('img/nw2.png')}}">
+					</a>
+				</div>
+			</div>
+			<div class="col-xs-1 same-height">
+				<a href="{{ path('fos_user_security_logout') }}" class="text-important salir-link">
+					Salir
+				</a>
+			</div>
+			<div class="col-xs-5 text-center same-height">
+				<div class="row" style="text-align:right">
+					<div class="col-xs-12">
+						<h4>Hoy es <span class="esc">{{ today() }}</span></h4>
+					</div>
+				</div>
+				<div class="row">
+					<h4 class="esc">Sitio de reporteros</h4>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container" style="padding-top:20px;">
+		<div class="row">
+			<div class="col-xs-4">
+				<h4>Bienvenido <span class="esc">{{ reportero.nombreRazon }} {{ reportero.apellidoPaterno }} {{ reportero.apellidoMaterno }}</span></h4>
+			</div>
+			<div class="col-xs-3">
+				<h4>No. de Cuenta: <span class="esc">{{ reportero.id }}</span></h4>
+			</div>
+		</div>
+	</div>
+
+	<div class="container" style="padding-top:0px; font-size:12px;">
+		<div class="row">
+			<div class="col-xs-12">
+				<h4 style="font-size:16px;">Saldo de tus artículos vendidos: <span class="esc">${{reportero.saldo}} pesos</span></h4>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="container" style="padding-top:30px; padding-left:0px;">
+		<div class="row">
+			<div class="col-xs-3">
+				<nav class="menu_novios">
+						<ul>
+						  	<a href="{{ url('nw_principal_reporteros_micuenta') }}"><li style="border-radius:10px 10px 0px 0px;">Mi Cuenta</li></a>
+						    <a href="{{ url('nw_principal_reporteros_misarticulos') }}"><li> Mis Artículos </li></a>
+						    <a href="{{ url('nw_principal_reporteros_miestadodecuenta') }}"><li> Mi Estado de Cuenta </li></a>
+						    <!--<a href="{{ url('nw_principal_reporteros_miinformacionbancaria') }}"><li>Mis Información Bancaria </li></a>-->
+						    <li style="border-radius:0px 0px 10px 10px; text-align:center; color:rgba(0,0,0,1);">
+						    	<p>Tienes alguna duda, comentario, sugerencia o simplemente quieres decirnos algo, <span class="rosa"><a data-toggle="modal" data-target="#Quejas">escríbenos aquí</a></span>.</p>
+						    </li>
+						</ul>
+				</nav>
+
+			</div>
+			<div class="col-xs-9" style="padding-left:25px;">
+				{% block partederecha %}
+				{% endblock %}
+			</div>
+		</div>
+	</div>
+	</div>
+
+	{% block modales %}
+		{% include 'NWPrincipalBundle:Reporteros:modalQuejas.html.twig' %}
+	{% endblock %}
+
+{% endblock %}
+
+	{% block javascripts %}
+		{{ parent() }}  
+		<script type="text/javascript" src="{{asset('js/tooltip.js')}}"></script>
+	{% endblock %}
+
+{% block footer %}
+{% endblock %}

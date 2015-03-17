@@ -1,0 +1,157 @@
+<!-- Modal del tareas -->
+<div class="modal fade" id="Tareas" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content" style="border: rgba(204,0,153,0.7) 2px solid; padding:10px 30px;">
+			<div class="modal-header2">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title">Tareas para el <span class="rosa">{{diaActual}}</span></h4>
+			</div>
+			<div class="modal-body">
+				<div id="tablaTareas">
+					<div class="row">
+						<div class="col-xs-7">
+							
+							<br />
+							<p>Para ver el detalle de cualquier compromiso, sólo tienes que seleccionarlo.</p>
+						</div>
+						<div class="col-xs-5">
+							<img class="logo-modal" src="{{asset('img/nw.png')}}">	
+						</div>
+					</div>
+					
+					<div class="row">
+						<table class="table tabla-calendario">
+		                    <thead>
+		                        <tr>
+		                        	<th></th>
+		                            <th>Compromiso</th>
+		                            <th>Categoría</th>
+		                            <th style="text-align:center;">Vence</th>
+		                            <th style="text-align:center;">¿Hecho?</th>
+		                            <th style="text-align:center;">Eliminar</th>
+		                        </tr>
+		                    </thead>
+		                    <tbody id="bodyTareas">
+
+		                        {% for tarea in tareas %}
+		                        	{% if tarea.show %}
+										<tr id="{{tarea.id}}" class="tarea_link">
+				                        	<td width="35">
+				                        		<img id="tarea_selected_{{ tarea.id }}" src="{{ asset('img/punto.png') }}" class="invisible desaparecible">
+				                        	</td>
+				                        	<td>{{ tarea.compromiso }}</td>
+				                        	<td>{{ tarea.categoria }}</td>
+				                        	<td style="text-align:center;">{{ tarea.vencimiento }}</td>
+				                        	<td style="text-align:center;">
+												<a href="#" class="descompletation" data-id="{{tarea.id}}" style="{% if tarea.hecho %}display:block;{% else %}display:none;{% endif %}">
+													<span class="cuadro_confirmacion" style="margin-left:35px;">&nbsp;✓</span>
+												</a>
+												<a href="#" class="completation" data-id="{{tarea.id}}" style="{% if tarea.hecho %}display:none;{% else %}display:block;{% endif %}">
+													<span class="cuadro_confirmacion" style="margin-left:35px;"></span>
+												</a>
+				                        	</td>
+				                        	<td style="text-align:center;">
+				                        		<a href="#" class="elimination" data-id="{{tarea.id}}">
+				                        			<img src="{{asset('img/bote.png')}}" style="width:25px;" />
+				                        		</a>
+				                        	</td>
+				                        </tr>
+				                    {% endif %}
+								{% endfor %}
+
+		                    </tbody>
+		                </table>
+					</div>
+
+					{% for tarea in tareas %}
+					<div id="tarea_descripcion_{{ tarea.id }}" class="row calendario-tarea-descripcion invisible desaparecible">
+						<div class="col-xs-7">
+							<div class="row">
+								<div class="col-xs-8">
+									<h3 class="rosa">{{ tarea.compromiso }}</h3>
+								</div>
+								<div class="col-xs-4">
+									<p style="text-align:right">Vence: <span class="text-important">{{ tarea.vencimiento }}</span></p>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-12">
+									<p>{{ tarea.descripcion }}
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-5">
+						{% if tarea.contactoNombre %}
+							<div class="row">
+								<div class="col-xs-12">
+									<h3 class="rosa">Contacto</h3>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-4">
+									<p class="text-important">Nombre:</p>
+								</div>
+								<div class="col-xs-8">
+									<p>{{ tarea.contactoNombre }}</p>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-4">
+									<p class="text-important">Teléfono:</p>
+								</div>
+								<div class="col-xs-8">
+									<p>{{ tarea.contactoTelefono }}</p>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-4">
+									<p class="text-important">Email:</p>
+								</div>
+								<div class="col-xs-8">
+									<p>{{ tarea.contactoEmail }}</p>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-4">
+									<p class="text-important">Dirección:</p>
+								</div>
+								<div class="col-xs-8">
+									<p>{{ tarea.contactoDireccion }}</p>
+								</div>
+							</div>
+						{% endif %}
+						</div>
+					</div>
+					{% endfor %}
+				</div>
+				{{ form_start(formTareaCalendario) }}
+				<div class="row" style="margin-top:30px">
+					<div class="col-xs-12">
+						<h3 class="rosa">Nuevo compromiso para este día</h3>
+					</div>
+					<div class="col-xs-5">
+						{{ form_widget(formTareaCalendario.compromiso, { 'attr': {'class': 'input-newly', 'style': 'width:100%; margin-top:10px;', 'placeholder': 'Compromiso' } }) }}
+						{{ form_widget(formTareaCalendario.descripcion, { 'attr': {'class': 'input-newly', 'style': 'width:100%; height:191px; margin-top:10px;', 'placeholder': 'Comentario / Descripción' } }) }}
+					</div>
+					<div class="col-xs-4">
+						{{ form_widget(formTareaCalendario.categoriaId, { 'attr': {'class': 'input-newly', 'style': 'width:100%; margin:10px 0;' } }) }}
+						<span class="text-important">¿Tienes que contactar a alguien?</span>
+						{{ form_widget(formTareaCalendario.contactoNombre, { 'attr': {'class': 'input-newly', 'style': 'width:100%; margin-top:10px;', 'placeholder': 'Nombre' } }) }}
+						{{ form_widget(formTareaCalendario.contactoTelefono, { 'attr': {'class': 'input-newly', 'style': 'width:100%; margin-top:10px;', 'placeholder': 'Teléfono' } }) }}
+						{{ form_widget(formTareaCalendario.contactoEmail, { 'attr': {'class': 'input-newly', 'style': 'width:100%; margin-top:10px;', 'placeholder': 'Email' } }) }}
+						{{ form_widget(formTareaCalendario.contactoDireccion, { 'attr': {'class': 'input-newly', 'style': 'width:100%; margin-top:10px;', 'placeholder': 'Dirección' } }) }}
+					</div>
+					<div class="col-xs-3" style="padding-top: 52px;">
+						<span class="text-important">¿Vence?</span><br />
+						{{ form_widget(formTareaCalendario.hora, { 'attr': {'class': 'input-newly', 'style': 'width:45%; margin-top:10px; padding:6px 3px; float:left;' } }) }}
+						{{ form_widget(formTareaCalendario.minuto, { 'attr': {'class': 'input-newly', 'style': 'width:45%; margin-top:10px; padding:6px 3px; float:right;' } }) }}
+					</div>
+				</div>
+				{{ form_widget(formTareaCalendario.Agregar, { 'attr': {'class': 'enviar_form', 'style': 'margin-top: -31px;' } }) }}
+				{{ form_end(formTareaCalendario) }}
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Fin del modal de tareas -->

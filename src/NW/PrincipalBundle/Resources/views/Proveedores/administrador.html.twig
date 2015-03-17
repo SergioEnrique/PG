@@ -1,0 +1,166 @@
+{# src/NW/PrincipalBundle/Resources/views/Proveedores/administrador.html.twig #}
+
+{% extends '::base.html.twig' %}
+
+	{% block body %}
+	<div class="container" style="padding:0px; margin-top:-30px; box-shadow:rgba(0,0,0,1) 0px 0px 30px;
+  -moz-box-shadow:rgba(0,0,0,1) 0px 0px 30px;
+  -ms-box-shadow:rgba(0,0,0,1) 0px 0px 30px;
+  -o-box-shadow:rgba(0,0,0,1) 0px 0px 30px;
+  -webkit-box-shadow:rgba(0,0,0,1) 0px 0px 30px;">
+
+  	{% include ':plantillasParciales:menuGrisSuperior.html.twig' %}
+
+	<div class="container corrector" style="padding-top:50px;">
+		<div class="row">
+			<div class="col-xs-6">
+				<div class="nw2">
+					<a href="{{url('nw_principal_homepage')}}">
+					<img class="img-responsive" src="{{asset('img/nw2.png')}}">
+					</a>
+				</div>
+			</div>
+			<div class="col-xs-6 text-center">
+				<br>
+				<h4>Hoy es <span class="esc">{{"now"|date("m/d/Y")}}</span></h4>
+				<br>
+				<h4 class="esc">Sitio de proveedores / anunciantes</h4>
+			</div>
+		</div>
+	</div>
+	<div class="container" style="padding-top:20px;">
+		<div class="row">
+			<div class="col-xs-4">
+				<h4>Bienvenido <span class="esc">{{ proveedor.nombre }}</span></h4>
+			</div>
+			<div class="col-xs-3">
+				<h4>No. de Cuenta: <span class="esc">{{ proveedor.cuenta }}</span></h4>
+			</div>
+		</div>
+	</div>
+
+	<div class="container" style="padding-top:0px; font-size:12px;">
+		<div class="row">
+			<div class="col-xs-12">
+				<h4 style="font-size:16px;">Saldo de tus ventas: <span class="esc">$0.00 pesos</span></h4>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="container" style="padding-top:30px; padding-left:0px;">
+		<div class="row">
+			<div class="col-xs-3">
+				<nav class="menu_novios">
+						<ul>
+						  	<a href="{{url('nw_principal_proveedores_micuenta')}}"><li style="border-radius:10px 10px 0px 0px;">Mi Cuenta </li></a>
+						    {% if is_granted('ROLE_PROVEEDOR_BASICO') %}<a href="{{url('nw_principal_proveedores_misproductos')}}"><li> Mis Productos / Servicios </li></a>{% endif %}
+						    {% if is_granted('ROLE_PROVEEDOR_BASICO') %}<a href="{{url('nw_principal_proveedores_misbanners')}}"><li> Mis Banners Promocionales </li></a>{% endif %}
+						    {% if is_granted('ROLE_PROVEEDOR_ANUNCIO') %}<a href="{{url('nw_principal_proveedores_misanuncios')}}"><li>Mis Anuncios </li></a>{% endif %}
+						    {% if is_granted('ROLE_PROVEEDOR_BASICO') %}<a href="{{url('nw_principal_proveedores_misresenas')}}"><li> Mis Reseñas y Opiniones </li></a>{% endif %}
+						    {#{% if is_granted('ROLE_PROVEEDOR_BASICO') %}<a href="{{url('nw_principal_proveedores_miestadodecuenta')}}"><li>Mi Estado de Cuenta</li></a>{% endif %}#}
+						    {% if is_granted('ROLE_PROVEEDOR_BASICO') %}<a href="{{url('nw_principal_proveedores_miscodigos')}}"><li>Mis Códigos de Venta </li></a>{% endif %}
+						    {#{% if is_granted('ROLE_PROVEEDOR_BASICO') %}<a href="{{url('nw_principal_proveedores_miinformacionbancaria')}}"><li> Mi Información Bancaria </li></a>{% endif %}#}
+						    {#<a href="{{url('nw_principal_proveedores_tutoriales')}}"><li> Tutoriales </li></a>#}
+						    <li style="border-radius:0px 0px 10px 10px; text-align:center; color:rgba(0,0,0,1);">
+						    	<p>Tienes alguna duda, comentario, sugerencia o simplemente quieres decirnos algo, <span class="rosa"><a data-toggle="modal" data-target="#Quejas">escríbenos aquí</a></span>.</p>
+
+						    	<!-- CHECKLIST -->
+							<!-- Button trigger modal -->
+							
+							 
+
+							<!-- Modal -->
+							<div class="modal fade" id="Quejas" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+							  <div class="modal-dialog">
+							    <div class="modal-content" style="border: rgba(204,0,153,0.7) 2px solid; padding:10px;">
+							      <div class="modal-header">
+							      	<div class="row">
+							      		<div class="col-xs-5">
+								        	<h4 class="modal-title rosa" id="myModalLabel" style="text-align:left">Dudas, quejas, preguntas o comentarios</h4>
+							        	</div>
+							        	<div class="col-xs-1">
+											
+							        	</div>
+							        	<div class="col-xs-5">
+											<img src="{{asset('img/nw.png')}}" width="100%">
+							        	</div>
+							        	<div class="col-xs-1">
+											<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+							        	</div>
+							        </div>
+							      </div>
+							      
+							      <div class="modal-body">
+							      	<div class="row">
+							      		
+							      		<div class="col-xs-11" style="text-align:left;">
+							      		Número de cuenta: <span class="rosa">2</span>
+							      		<br>
+							      		</div>
+
+							      	</div>
+
+							      	<div class="row">
+							      		
+							      		<div class="col-xs-11">
+
+							      		<select class="input_small">
+							      		<option>Asunto</option>
+							      		</select>
+
+							      		</div>
+
+							      	</div>
+
+							      	<div class="row">
+							      		
+							      		<div class="col-xs-11">
+							      		<textarea style="height:250px;" class="textarea_small" placeholder="Mensaje"></textarea>
+							      		</div>
+
+							      	</div>
+							      			
+							      	<div class="row">
+							      		
+							      		<div class="col-xs-11">
+							      		<input type="submit" id="enviar_form" placeholder="Enviar" style="float:right;">
+							      		</div>
+
+
+										<div class="col-xs-3">
+											<div class="row" style="margin-top:0px;">
+												<div class="col-xs-12">
+													
+												</div>
+											</div>
+										</div>
+										
+									</div>
+							      </div>
+							    </div>
+							  </div>
+							</div>
+						<!-- FIN AGREGAR CHECKLIST -->
+						    </li>
+						</ul>
+				</nav>
+
+			</div>
+			<div class="col-xs-9" style="padding-left:25px;">
+				{% block partederecha %}
+				{% endblock %}
+			</div>
+		</div>
+	</div>
+	</div>
+
+	{% endblock %}
+
+	{% block javascripts %}
+		{{ parent() }}  
+		<script type="text/javascript" src="{{asset('js/tooltip.js')}}"></script>
+	{% endblock %}
+
+	{% block footer %}
+	{% endblock %}

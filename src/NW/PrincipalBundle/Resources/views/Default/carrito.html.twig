@@ -1,0 +1,16 @@
+<div class="row" style="margin-right: 70px;">
+	<div style="float:right">
+		{#<form action="{{ url('nw_paypal_express_checkout_prepare_purchase') }}">
+		    <input class="enviar2" type="submit" id="enviar_form" value="Checkout" style="width:120px; margin-left:0!important;">
+		</form>#}
+		<a href="{{url('nw_paypal_express_checkout_carrito')}}" class="btn enviar2" style="min-width: 87px;margin-left: -1px;color: white;">Checkout</a>
+	</div>
+	<div style="float:right; margin: 20px 20px 10px 20px">
+		<span class="art simpleCart_quantity"></span> Artículos en tu carrito
+		<br />
+		<span class="art">NewlyWishes</span>
+	</div>
+	<div style="float:right">
+		<img class="carrito2" src="{{asset('img/novios/nuestras_compras.png')}}">
+	</div>
+</div>

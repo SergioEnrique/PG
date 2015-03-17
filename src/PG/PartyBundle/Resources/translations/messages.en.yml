@@ -43,7 +43,7 @@ partes: parts
 Valor por parte: Part value
 Agregar: Add
 Todos los derechos reservados: All rights reserved
-Bienvenido <span class="rosa-persona bold">Gustavo: Welcome <span class="rosa-persona bold">Gustavo
+Bienvenido <span class="rosa-persona bold">%name%</span>: Welcome <span class="rosa-persona bold">%name%</span>
 modificar datos: modify account data
 Saldo: Balance
 retirar: withdraw
@@ -72,11 +72,7 @@ Descripción: Description
 Cantidad: Quantity
 Subtotal: Subtotal
 Remover: Remove
-
-
-
-
-
+Hola %name%: Hello %name%
 
 
 

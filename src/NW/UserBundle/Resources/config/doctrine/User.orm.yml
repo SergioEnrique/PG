@@ -1,0 +1,31 @@
+# src/NW/UserBundle/Resources/config/doctrine/User.orm.yml
+NW\UserBundle\Entity\User:
+    type:  entity
+    table: fos_user
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        saldo:
+            type: float
+            nullable: true
+        moneda:
+            type: string
+            length: 3
+            nullable: true
+        facebookId:
+            type: string
+            length: 150
+            nullable: true
+    oneToMany:
+        bucketGift:
+            targetEntity:  PG\PartyBundle\Entity\BucketGift
+            mappedBy: user
+        solicitudesRetiro:
+            targetEntity: NW\PrincipalBundle\Entity\SolicitudRetiro
+            mappedBy: usuario
+        cosasRegaladas:
+            targetEntity: NW\PrincipalBundle\Entity\cosasRegaladas
+            mappedBy: user

@@ -14,6 +14,7 @@
 <script type="text/javascript" src="{{asset('js/jquery.modal.js')}}"></script>
 </head>
 <body>
+
 <div class="all-wrapper">
     <header>
         <div class="max-wrapper">
@@ -24,22 +25,32 @@
                 </a>
             </h1>
             {% include ':plantillasParciales:cuentaBox.html.twig' %}
+
+            {% if app.user == false %}
             <div class="ingreso-face">
                 <div class="ingresar">
                     {% trans %}Ingresar{% endtrans %}
                 </div>
                 <div id="login" class="login wow bounceIn">
-                    <form action="#">
-                        <input type="text" placeholder="{% trans %}correo{% endtrans %}">
-                        <input type="password" placeholder="{% trans %}contraseña{% endtrans %}">
-                        <input type="submit" value="{% trans %}Acceder{% endtrans %}">
+                    {% if error %}
+                        <div>{{ error.message }}</div>
+                    {% endif %}
+                    <form action="{{url('pg_pary_root')}}login_check" method="POST">
+                        <input type="text" id="username" name="_username" required="required" value="{{ last_username }}" placeholder="{% trans %}correo{% endtrans %}">
+                        <input type="password" id="password" name="_password" required="required" placeholder="{% trans %}contraseña{% endtrans %}">
+                        <input type="submit" id="_submit" name="_submit" value="{% trans %}Acceder{% endtrans %}">
                         <img class="facebook" src="{{asset('img/facebook.png')}}" width="30" alt="">
                         <br>
                         <a href=""><span class="small-font recuperar-pass">{% trans %}Recuperar contraseña{% endtrans %}</span></a>
+                        <input type="hidden" name="_target_path" value="{{url('pg_party_miCuenta')}}" />
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
                     </form>
                 </div>
-                <img class="facebook" src="{{asset('img/facebook.png')}}" width="40" height="40" alt="Facebook"/>
+                <a href="{{url('root')}}connect/facebook">
+                    <img class="facebook" src="{{asset('img/facebook.png')}}" width="40" height="40" alt="Facebook"/>
+                </a>
             </div>
+            {% endif %}
         </div>
         <nav class="main">
             <div class="max-wrapper">
@@ -117,13 +128,16 @@
             </div>
             <div class="crea wow fadeInRight" data-wow-duration="1s">
                 <h2>{% trans %}Crea un bucketgift{% endtrans %}</h2>
-                <h3>{% trans %}Primero debes registrarte{% endtrans %}</h3>
-                <form action="{{ url('pg_party_registro') }}" method="post" name="myForm">
-                    <input type="text" name="email" placeholder="{% trans %}correo{% endtrans %}" required><br/>
-                    <input type="checkbox" required> <span class="small-font">{% trans %}Acepto términos y condiciones{% endtrans %}</span><br/>
-                    <input class="registrate" type="submit" value="{% trans %}Regístrate{% endtrans %}" onClick="enviaformulario();"><img class="face-registro" src="{{asset('img/facebook.png')}}" width="30" height="30" />
-                </form>
-                <span class="small-font aviso-crea">{% trans %}Aviso de privacidad{% endtrans %}</span>
+
+                {% if app.user == false %}
+                    <h3>{% trans %}Primero debes registrarte{% endtrans %}</h3>
+                    <form action="{{ url('pg_party_registro') }}" method="get" name="myForm">
+                        <input type="text" name="email" placeholder="{% trans %}correo{% endtrans %}" required><br/>
+                        <input type="checkbox" required="required"> <span class="small-font">{% trans %}Acepto términos y condiciones{% endtrans %}</span><br/>
+                        <input class="registrate" type="submit" value="{% trans %}Regístrate{% endtrans %}" onClick="enviaformulario();"><img class="face-registro" src="{{asset('img/facebook.png')}}" width="30" height="30" />
+                    </form>
+                    <span class="small-font aviso-crea">{% trans %}Aviso de privacidad{% endtrans %}</span>
+                {% endif %}
             </div>
             <div id="zona-eventos" class="eventos">
                 <table cellpadding="0" cellspacing="0">
@@ -203,7 +217,7 @@
 
     {% block modales %}
         {% include ':plantillasParciales:modalCarrito.html.twig' %}
-    {% endblock %}}
+    {% endblock %}
 
 <script>
 $( "div.ingresar" ).click(function() {

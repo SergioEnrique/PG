@@ -1,0 +1,87 @@
+<script>
+	$(document).ready(function() {
+	
+		var date = new Date();
+		var d = date.getDate();
+		var m = date.getMonth();
+		var y = date.getFullYear();
+		
+		$('#calendar').fullCalendar({
+			editable: true,
+			header: {
+				left: 'prev',
+				center: 'title',
+				right: 'next'
+			},
+			monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
+			monthNamesShort: ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'],
+			dayNames: ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'],
+			dayNamesShort: ['D','L','M','M','J','V','S'],
+			buttonText: {
+				prev: "<span class='arrow-left'></span>",
+				next: "<span class='arrow-right'></span>",
+			},
+			buttonIcons: {
+				prev: 'arrow-left',
+				next: 'circle-triangle-e'
+			},
+			events: [
+				/*{
+					title: 'All Day Event',
+					start: new Date(2014, 11, 1)
+				},
+				{
+					title: 'Long Event',
+					start: new Date(2014, 11, d-5),
+					end: new Date(2014, 11, d-2)
+				},
+				{
+					id: 999,
+					title: 'Repeating Event',
+					start: new Date(2014, 11, d-3, 16, 0),
+					allDay: false
+				},
+				{
+					id: 999,
+					title: 'Repeating Event',
+					start: new Date(2014, 11, d+4, 16, 0),
+					allDay: false
+				},
+				{
+					title: 'Meeting',
+					start: new Date(2014, 11, d, 10, 30),
+					allDay: false
+				},
+				{
+					title: 'Lunch',
+					start: new Date(2014, 11, d, 11, 0),
+					end: new Date(2014, 11, d, 14, 0),
+					allDay: false
+				},
+				{
+					title: 'Birthday Party',
+					start: new Date(2014, 11, d+1, 19, 0),
+					end: new Date(2014, 11, d+1, 22, 30),
+					allDay: false
+				},
+				{
+					title: 'Dia de la boda',
+					start: new Date({{fechaBodaFormat.javascript}}),
+					end: new Date({{fechaBodaFormat.javascript}}),
+					allDay: true
+				}*/
+			]
+		});
+
+		$('#calendar').fullCalendar('gotoDate', new Date({{fechaBodaFormat.javascript}}));
+
+		$('.fc-day[data-date="{{ fechaBodaFormat.guiones }}"]').addClass('diaBoda');
+		$('.fc-day[data-date="{{ fechaBodaFormat.guiones }}"]').find('.fc-day-content').html('Día de la boda');
+
+		$('.fc-button').click(function(){
+			$('.fc-day[data-date="{{ fechaBodaFormat.guiones }}"]').addClass('diaBoda');
+			$('.fc-day[data-date="{{ fechaBodaFormat.guiones }}"]').find('.fc-day-content').html('Día de la boda');
+		});
+
+	});
+</script>

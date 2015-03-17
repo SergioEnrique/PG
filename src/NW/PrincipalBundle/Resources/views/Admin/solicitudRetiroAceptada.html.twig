@@ -1,0 +1,14 @@
+{% extends '::correo.html.twig' %}
+
+{% block subject %}
+	Solicitud de retiro aceptada
+{% endblock %}
+
+{% block contenido %}
+	Tu solicitud de retiro en NewlyWishes.com ha sido aceptada.<br><br>
+
+	ID de solicitud: {{id}}<br>
+	Saldo anterior en NewlyWishes.com: ${{saldoViejo|number_format(2, '.', ',')}}<br>
+	Saldo nuevo en NewlyWishes.com: ${{saldoNuevo|number_format(2, '.', ',')}}<br>
+	Cantidad transferida a tu cuenta PayPal ({{cuentaPaypal}}): ${{amount|number_format(2, '.', ',')}}
+{% endblock %}

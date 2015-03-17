@@ -1,0 +1,58 @@
+NW\PrincipalBundle\Entity\SolicitudRetiro:
+    properties:
+        amount:
+           - NotBlank: ~
+        cuentaPaypal:
+            - NotBlank: ~
+            - Email:
+                checkMX: true
+
+NW\PrincipalBundle\Entity\Bodas:
+    properties:
+        ceremonia:
+            - NotBlank: ~
+        recepcion:
+            - NotBlank: ~
+
+NW\PrincipalBundle\Entity\Padrinos:
+    properties:
+        padrino:
+            - NotBlank: ~
+        categoria:
+            - NotBlank: ~
+
+NW\PrincipalBundle\Entity\Notas:
+    properties:
+        titulo:
+            - NotBlank: ~
+        descripcion:
+            - NotBlank: ~
+
+NW\PrincipalBundle\Entity\Checklist:
+    properties:
+        tarea:
+            - NotBlank: ~
+        categoria:
+            - NotBlank: ~
+        descripcion:
+            - NotBlank: ~
+
+NW\PrincipalBundle\Entity\MesaRegalos:
+    properties:
+        regalo:
+            - NotBlank: ~
+        precioTotal:
+            - NotBlank: ~
+        cantidad:
+            - NotBlank: ~
+        horcruxes:
+            - NotBlank: ~
+        descripcion:
+            - NotBlank: ~
+
+NW\PrincipalBundle\Entity\ListaInvitados:
+    properties:
+        nombre:
+            - NotBlank: ~
+        familia:
+            - NotBlank: ~

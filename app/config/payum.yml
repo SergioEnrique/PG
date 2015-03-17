@@ -1,0 +1,35 @@
+parameters:
+    paypal.express_checkout.usd_testuser_login: 'docserchek-buyer@gmail.com'
+    paypal.express_checkout.usd_testuser_password: '12345678'
+
+doctrine:
+    orm:
+        entity_managers:
+            default:
+                mappings:
+                    payum:
+                        is_bundle: false
+                        type: xml
+                        dir: %kernel.root_dir%/../vendor/payum/core/Payum/Core/Bridge/Doctrine/Resources/mapping
+                        prefix: Payum\Core\Model
+
+payum:
+    security:
+        token_storage:
+            NW\PaymentBundle\Entity\PaymentSecurityToken:
+                doctrine:
+                    driver: orm
+
+    storages:
+        NW\PaymentBundle\Entity\PaymentDetails:
+            payment:
+                all: true
+            doctrine: orm
+
+    contexts:
+        paypal_express_checkout_and_doctrine_orm:
+            paypal_express_checkout_nvp:
+                username:  'finanzas_api1.newlywishes.com'
+                password:  'VK2DTMWAEWCJCPD2'
+                signature: 'AINYvSVCr6Zo-kF-97-nOe6WFGnnAxBaA8EEj88v94r4nsqBD3xCEipt'
+                sandbox: false

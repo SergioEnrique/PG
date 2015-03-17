@@ -1,0 +1,99 @@
+{# src/NW/PrincipalBundle/Resources/views/Proveedores/misanuncios.html.twig #}
+
+{% extends 'NWPrincipalBundle:Proveedores:administrador.html.twig' %}
+
+{% block partederecha %}
+		
+		<div class="row">
+			<div class="col-xs-6">
+			
+			</div>
+			<div class="col-xs-1">
+				<img class="puntov" src="{{asset('img/puntov.png')}}">
+			</div>
+			<div class="col-xs-3">
+				<h1>Mis Anuncios</h1>	
+			</div>
+			<div>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<p>Sitio vinculado al anuncio: <span class="art">{{anuncioWebpage}}</span></p>
+			</div>
+			<div class="col-xs-5">
+				
+			</div>
+			<div class="col-xs-4">
+				<img src="{{asset(anuncioImagePath)}}" alt="" width="200">
+			</div>
+			<div class="col-xs-7">
+					
+			</div>
+			<div class="col-xs-2">
+				<a class="art3" data-toggle="modal" data-target="#anuncio"><h5 class="art">Editar</h5></a>
+			</div>
+			{% if anuncioImagePath != 'img/anuncio.jpg' %}
+			<div class="col-xs-6">
+				<br>
+				<p>Copia y pegar este código en tu página de internet, para redirigir a tus clientes a tu micrositio de NewlyWishes y para que puedan adquirir tus productos y servicios</p>
+			</div>
+			<div class="col-xs-12">
+
+			</div>
+			<div class="col-xs-12 cajatexto img-responsive">
+				&lt;a href="{{url('nw_principal_proveedor', {'proveedor': nombreComercial})}}"&gt;<br />
+					&nbsp;&nbsp;&nbsp;&nbsp;&lt;img src="http://newlywishes.com{{asset(anuncioImagePath)}}" width="200" /&gt;<br />
+				&lt;/a&gt;
+			</div>
+			{% endif %}
+		</div>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+
+
+		<!-- Editar anuncio-->
+		<!-- Button trigger modal -->
+		<!-- Modal -->
+		<div class="modal fade" id="anuncio" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		
+		  <div class="modal-dialog">
+		    <div class="modal-content" style="border: rgba(204,0,153,0.7) 2px solid; padding:10px;">
+		      <div class="modal-header2">
+		        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		        <div class="col-xs-7">
+		        	<h4 class="modal-title rosa" id="anuncio">Editar anuncio</h4>
+		        </div>
+		        <div class="col-xs-5">
+	        		<img class="logo-modal" src="{{asset('img/nw.png')}}">	
+		        </div>
+		      </div>
+		      
+		      <div class="modal-body">
+		      {{ form_start(formAnuncio) }}
+		      	<div class="row">
+		      		<div class="col-xs-9 left3">
+		      			{{ form_widget(formAnuncio.file, { 'attr': {'class': '', 'style': '', 'placeholder': '' } }) }}
+		      			<br>
+		      		</div>
+		      		<div class="col-xs-8">
+		      			{{ form_widget(formAnuncio.webpage, { 'attr': {'class': 'input_registro_novios input5 left4', 'style': '', 'placeholder': 'www.misitio.com' } }) }}
+		      		</div>
+		      		<div class="col-xs-2">
+		      			{{ form_widget(formAnuncio.Agregar, { 'attr': {'class': 'logo2 enviar_form', 'style': 'width:120px', 'placeholder': '' } }) }}
+		      		</div>
+		      	</div>
+		      {{ form_end(formAnuncio) }}
+		      </div>
+		    </div>
+		  </div>
+		
+		</div>
+		<!-- FIN de modal -->
+
+	{% endblock %}

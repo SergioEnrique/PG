@@ -1,0 +1,49 @@
+{# src/NW/PrincipalBundle/Resources/views/Reporteros/misarticulos.html.twig #}
+{% extends 'NWPrincipalBundle:Reporteros:administrador.html.twig' %}
+
+{% block partederecha %}
+
+	<div class="row" style="text-align:right;">
+			<h1>Mis artículos</h1>
+			<a href="#" data-toggle="modal" data-target="#nuevoArticulo">Nuevo artículo</a>
+	</div>
+
+	<div class="row" style="margin-top:20px;">
+		<table class="table" style="height:0!important; background-color: white;">
+                <thead>
+                    <tr>
+                        <th>Título</th>
+                        <th>Estatus</th>
+                        <th>Envío</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                	{% for articulo in articulos %}
+                    <tr>
+                        <td>{{ articulo.titulo }}</td>
+                        <td>{{ articulo.estatus }}</td>
+                        <td>
+                        	{% if articulo.estatus == 'Cargado' %}
+                        		<a href="{{url('nw_principal_reporteros_enviar_articulo', {'id': articulo.id})}}">Enviar</a>
+                        	{% else %}
+                        		Enviado
+                        	{% endif %}
+                        </td>
+                        <td>
+                        	<a href="{{url('nw_principal_reporteros_eliminar_articulo', {'id': articulo.id})}}">
+	                        	<img src="{{asset('img/bote.png')}}" width="40">
+							</a>
+						</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+		</table>
+	</div>
+
+{% endblock %}
+
+{% block modales %}
+	{{ parent() }}
+	{% include 'NWPrincipalBundle:Reporteros:modalNuevoArticulo.html.twig' %}
+{% endblock %}

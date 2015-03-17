@@ -1,0 +1,64 @@
+{# src/NW/PrincipalBundle/Resources/views/default/busqueda.html.twig #}
+
+{% extends '::base.html.twig' %}
+
+	{% block body %}
+	
+		{% include ':plantillasParciales:top.html.twig' %}
+
+	    <div class="container">
+	    	<div class="row">
+	    		<h1>Resultados de: {{busqueda}}</h1>
+	    	</div>
+			<div class="row">
+				<h2>Parejas encontradas:</h2>
+				{% if resultados.parejas %}
+	                <table class="table table-striped table-hover table-responsive" style="height:0!important">
+	                    <thead>
+	                        <tr>
+	                            <th>Novia</th>
+	                            <th>Novio</th>
+	                            <th>Fecha de la boda</th>
+	                        </tr>
+	                    </thead>
+	                    <tbody>
+	                        {% for pareja in resultados.parejas %}
+	                            <tr class='clickableRow' href='{{url('nw_principal_mesa_regalos', {'usuarioId': pareja.usuarioId})}}' style="cursor:pointer; cursor: hand">
+	                                <td>{{pareja.noviaNombre}}</td>
+	                                <td>{{pareja.novioNombre}}</td>
+	                                <td>{{pareja.fechaBoda}}</td>
+	                            </tr>
+	                        {% endfor %}
+	                    </tbody>
+	                </table>
+	            {% else %}
+	                <br /><strong>No se encontraron parejas con el criterio de búsqueda.</strong>
+	            {% endif %}
+			</div>
+			{# Articulos encontrados en pausa hasta que funcione proveedores
+			<div class="row">
+				<h2>Artículos encontrados:</h2>
+				{% if resultados.articulos %}
+					{% for item in resultados.articulos %}
+					<div class="row" style="margin-top:20px;">
+						<div class="col-xs-8">
+							<div class="resultados">
+								<h1>{{item.nombre}}</h1>
+								<p>
+									{{item.descripcion}}<span class="art"></span>
+								</p>
+							</div>
+						</div>
+						<div class="col-xs-4">
+							<img class="resultados2" src="{{ asset(item.fotos.0.webPath) }}">
+						</div>
+					</div>
+					{% endfor %}
+				{% else %}
+	                <br /><strong>No se encontraron artículos con el criterio de búsqueda.</strong>
+				{% endif %}
+			</div>
+			#}
+	    </div>
+
+	{% endblock %}

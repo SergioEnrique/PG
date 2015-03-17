@@ -1,0 +1,148 @@
+{# src/NW/PrincipalBundle/Resources/views/Proveedores/misbanners.html.twig #}
+
+	{% extends 'NWPrincipalBundle:Novios:administrador.html.twig' %}
+
+{% block partederecha %}
+
+			<div class="row">
+				<div class="col-xs-7"></div>
+				<div class="col-xs-5" style="text-align:right;">
+					<div class="punto-verde-bueno hacerTooltip" style="float:left; margin-right:20px; margin-top:2px;" data-toggle="tooltip" data-placement="left" title="Aquí podrás definir toda tu lista de invitados, así como confirmar su asistencia.">?</div>
+					<h1 style="float:left;">Nuestra Lista de Invitados</h1>	
+				</div>	
+			</div>
+				
+			<div class="row" style="margin-top:10px;">
+					<div class="col-xs-8">
+						Total de invitados: <span class="rosa">{{ totalInvitados }}</span>
+						<br>Total de confirmados: <span class="rosa">{{ confirmadosInvitados }}</span>
+					</div>
+					<div class="col-xs-4 text-center">
+						<a href="{{path('nw_principal_invitados_operaciones')}}/descargar/{{usuarioId}}" class="linkVerde">Generar lista en PDF</a>
+					</div>
+			</div>
+			<div class="row" style="margin-top:20px;">
+					<div class="col-xs-6"></div>
+					<div class="col-xs-5" style="text-align:right;">
+						<span class="verde" style="font-size:16px;">Agregar un nuevo invitado</span>
+					</div>
+					<div class="col-xs-1">
+					
+						<!-- AGREGAR INVITADO -->
+						<!-- Button trigger modal -->
+						<input type="image" src="{{asset('img/novios/mas.png')}}" data-toggle="modal" data-target="#myModal" style="width:40px; height:60px; margin-top:-20px; margin-left:-30px;">
+						 
+
+						<!-- Modal -->
+						<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						  <div class="modal-dialog">
+						    <div class="modal-content" style="border: rgba(204,0,153,0.7) 2px solid; padding:10px;">
+						      <div class="modal-header">
+						      	<div class="row">
+						      		<div class="col-xs-5">
+							        	<h4 class="modal-title rosa" id="myModalLabel">Mi lista de invitados<br>Nuevo invitado</h4>
+						        	</div>
+						        	<div class="col-xs-1">
+										
+						        	</div>
+						        	<div class="col-xs-5">
+										<img src="{{asset('img/nw.png')}}" width="100%">
+						        	</div>
+						        	<div class="col-xs-1">
+										<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						        	</div>
+						        </div>
+						      </div>
+						      
+						      <div class="modal-body">
+						      	<div class="row">
+						      		{{ form_start(formAgregar) }}
+						      		<div class="col-xs-9">
+						      			<div class="row">
+						      			<div class="col-xs-12">
+						      				<span class="error-formulario">{{ form_errors(formAgregar.nombre) }}</span>
+						      				{{ form_widget(formAgregar.nombre, { 'attr': {'class': 'input_small', 'placeholder': 'Nombre del invitado' } }) }}
+							        		<br>
+							        			<span class="error-formulario">{{ form_errors(formAgregar.familia) }}</span>
+							        		{{ form_widget(formAgregar.familia, { 'attr': {'class': 'input_small', 'placeholder': 'Apellido de la familia' } }) }}
+							        		<br>
+							        		{{ form_widget(formAgregar.telefono, { 'attr': {'class': 'input_small', 'placeholder': 'Teléfono' } }) }}
+							        	</div>
+							        	</div>
+	
+									</div>
+									<div class="col-xs-3">
+									
+									<div class="row" style="margin-top:0px;">
+										<div class="col-xs-12">
+											{{ form_widget(formAgregar.Agregar, { 'attr': {'class': 'botoncitoRosa', 'style': 'width:120px; margin-right:50px; bottom:0px;' } }) }}
+										</div>
+									</div>
+								  </div>
+								  {{ form_end(formAgregar) }}
+								</div>
+						      </div>
+						    </div>
+						  </div>
+						</div>
+						<!-- FIN AGREGAR INVITADO -->
+					</div>
+					
+			</div>
+
+
+			<!-- LISTA DE INVITADOS -->
+			<div class="row" style="margin-top:20px;">
+					<div class="col-xs-5">
+						<h5 class="art" style="float:left;">Familia</h5><img src="{{asset('img/novios/flecha_abajo.png')}}" class="flecha_abajo">
+					</div>
+					<div class="col-xs-5">
+						<h5 class="art" style="float:left;">Estatus</h5><img src="{{asset('img/novios/flecha_abajo.png')}}" class="flecha_abajo">
+					</div>
+					<div class="col-xs-2"></div>
+					<div class="col-xs-2">
+						<h5 class="art" style="float:left;">Eliminar</h5>
+					</div>
+			</div>
+
+			<!-- INVITADO -->
+			{% for invitado in invitados %}
+			<div class="row borde_abajo"></div>
+			<div class="row" style="margin-bottom:20px;">
+					<div class="col-xs-5">
+						<p class="rosa" style="font-size:14px;">{{ invitado.nombre }}</p>	
+						Familia: <span class="rosa">{{ invitado.familia }}</span><br>
+						Teléfono: <span class="rosa">{{ invitado.telefono }}</span>
+					</div>
+					<div class="col-xs-5">
+						{% if invitado.status %}
+							<a href="{{url('nw_principal_novios_invitado_desconfirmar', {'id': invitado.id})}}">
+								<span class="cuadro_confirmacion">&nbsp;✓</span>
+								<span class="rosa">Confirmado</span>
+							</a>
+						{% else %}
+							<a href="{{url('nw_principal_novios_invitado_confirmar', {'id': invitado.id})}}">
+								<span class="cuadro_confirmacion"></span>
+								<span class="rosa">No ha confirmado</span>
+							</a>
+						{% endif %}
+					</div>
+					<div class="col-xs-2" style="text-align:right;">
+					<a href="{{url('nw_principal_novios_invitado_delete', {'id': invitado.id})}}">
+						<img src="{{asset('img/bote.png')}}" style="float:left; width:40px; height:40px; ">
+					</a>
+					</div>
+			</div>
+			{% endfor %}
+			<!-- FIN INVITADO -->
+			
+			<!-- FIN DATOS DE LA BODA -->
+
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+
+
+{% endblock %}

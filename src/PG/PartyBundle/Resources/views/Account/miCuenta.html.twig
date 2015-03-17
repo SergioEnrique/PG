@@ -23,14 +23,13 @@
 						<span class="oculto">Party Gift</span>
 					</a>
 				</h1>
-				<div class="salir-cuenta"><a href="">{% trans %}salir{% endtrans %}</a></div>
+				<div class="salir-cuenta"><a href="{{ path('fos_user_security_logout') }}">{% trans %}salir{% endtrans %}</a></div>
 				{% include ':plantillasParciales:cuentaBox.html.twig' %}
 			</div>
 			<div class="cuenta-info-top">
 				<div class="max-wrapper">
 					<ul>
-						<li>{% trans %}Bienvenido <span class="rosa-persona bold">Gustavo{% endtrans %} <a href="#mis-datos" rel="modal:open">({% trans %}modificar datos{% endtrans %})</a>
-
+						<li>{% trans with {'%name%': app.user.username} %}Bienvenido <span class="rosa-persona bold">%name%</span>{% endtrans %} <a href="#mis-datos" rel="modal:open">({% trans %}modificar datos{% endtrans %})</a>
 						</li>
 						<li>{% trans %}Saldo{% endtrans %}: <span class="rosa-persona bold">$0.00</span></li>
 						<li><span class="rosa-persona bold show-paypal">{% trans %}retirar{% endtrans %}</span>

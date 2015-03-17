@@ -1,0 +1,10 @@
+{% extends '::correo.html.twig' %}
+
+{% block subject %}
+	Cambio de contraseña
+{% endblock %}
+
+{% block contenido %}
+	Tu contraseña de NewlyWishes ha sido actualizada correctamente.<br>
+	Por favor guárdala en un lugar seguro: "{{contrasena}}"
+{% endblock %}

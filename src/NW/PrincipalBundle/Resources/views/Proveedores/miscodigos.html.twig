@@ -1,0 +1,56 @@
+{# src/NW/PrincipalBundle/Resources/views/Proveedores/miscodigos.html.twig #}
+
+{% extends 'NWPrincipalBundle:Proveedores:administrador.html.twig' %}
+
+{% block partederecha %}
+
+<img class="img-responsive" src="{{asset('img/puntov.png')}}">
+
+<div class="container">
+	<div class="row"><h1 style="float:right">Mis códigos de venta</h1></div>
+	<div class="row" style="margin-top:50px">
+		<h3>Mi administración de códigos</h3>
+	</div>
+	<div class="row">
+		<table class="table" style="height:0!important; text-align:center">
+                <thead>
+                    <tr>
+                        <th>Código <img src="{{asset('img/puntov.png')}}"></th>
+                        <th>Cuenta vendedor <img src="{{asset('img/puntov.png')}}"></th>
+                        <th>% Vendedor <img src="{{asset('img/puntov.png')}}"></th>
+                        <th>% Descuento <img src="{{asset('img/puntov.png')}}"></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tfoot>
+                	<tr>
+                	{{ form_start(formNuevoCodigo) }}
+                		<td>{{ form_widget(formNuevoCodigo.codigo) }}</td>
+                        <td>{{ form_widget(formNuevoCodigo.vendedorId) }}</td>
+                        <td>{{ form_widget(formNuevoCodigo.porcentajeVendedor) }}</td>
+                        <td>{{ form_widget(formNuevoCodigo.porcentajeDescuento) }}</td>
+                        <td>{{ form_widget(formNuevoCodigo.Agregar) }}</td>
+                    {{ form_end(formNuevoCodigo) }}
+                	</tr>
+                </tfoot>
+                <tbody>
+                	{% for resultado in resultados %}
+                    <tr>
+                        <td>{{ resultado.codigo }}</td>
+                        <td>{{ resultado.vendedorId }}</td>
+                        <td>{{ resultado.porcentajeVendedor }}</td>
+                        <td>{{ resultado.porcentajeDescuento }}</td>
+                        <td>
+                        	<a href="{{url('nw_principal_proveedores_codigo_delete', {'codigo': resultado.codigo})}}">
+	                        	<img src="{{asset('img/bote.png')}}" width="40"><br />
+								Borrar Código
+							</a>
+						</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+		</table>
+	</div>
+</div>
+
+{% endblock %}

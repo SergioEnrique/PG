@@ -2,6 +2,7 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
+    - { resource: payum.yml }
 
 framework:
     #esi:             ~
@@ -64,10 +65,65 @@ doctrine:
         auto_generate_proxy_classes: "%kernel.debug%"
         auto_mapping: true
 
+services:
+    hwi_auth.oauth_user_provider:
+        class: HWI\Bundle\OAuthBundle\Security\Core\User\OAuthUserProvider
+
 # Swiftmailer Configuration
 swiftmailer:
-    transport: "%mailer_transport%"
-    host:      "%mailer_host%"
-    username:  "%mailer_user%"
-    password:  "%mailer_password%"
-    spool:     { type: memory }
+    transport:  smtp
+    encryption: ssl
+    auth_mode:  login
+    host:       smtp.gmail.com
+    username:   info@newlywishes.com
+    password:   'infonewlywishes'
+
+fos_user:
+    db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
+    firewall_name: secure_area
+    user_class: NW\UserBundle\Entity\User
+    from_email: 
+        address:  info@newlywishes.com
+        sender_name:  PartyGift
+    resetting:
+        email:
+            template:   NWUserBundle:User:resettingEmail.html.twig
+    service:
+        mailer: fos_user.mailer.twig_swift
+
+parameters:
+#   to override this service
+#   hwi_oauth.user.provider.fosub_bridge.class: NW\OAuthBundle\Security\Core\User\FOSUBUserProvider
+    hwi_oauth.registration.form.handler.fosub_bridge.class: NW\OAuthBundle\Form\FOSUBRegistrationFormHandler
+
+hwi_oauth:
+    http_client:
+        verify_peer: false
+    # name of the firewall in which this bundle is active, this setting MUST be set
+    firewall_name: secure_area
+    connect: 
+        confirmation: true
+        #account_connector: hwi_oauth.user.provider.fosub_bridge
+        #registration_form_handler: hwi_oauth.registration.form.handler.fosub_bridge
+        #registration_form: fos_user.registration.form
+    resource_owners:
+        facebook:
+            type:                facebook
+            client_id:           633611206766290
+            client_secret:       dc28ff80801cedf2cc1a2f34f48ea554
+            #options:
+            #    display: popup
+            scope:               "email"
+            infos_url:     "https://graph.facebook.com/me?fields=id,name,email,picture.type(square)"
+            paths:
+                email:           email
+                profilepicture:  picture.data.url
+
+    fosub:
+        # try 30 times to check if a username is available (foo, foo1, foo2 etc)
+        username_iterations: 30
+
+        # mapping between resource owners (see below) and properties
+        properties:
+            facebook: facebookId
+

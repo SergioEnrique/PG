@@ -5,6 +5,10 @@ root:
         path: /es
         permanent: true
 
+pg_pary_root:
+    path:     /
+    defaults: { _controller: PGPartyBundle:Default:index }
+
 pg_party_homepage:
     path:     /{_locale}/
     defaults: { _controller: PGPartyBundle:Default:index }

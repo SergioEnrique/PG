@@ -1,0 +1,141 @@
+{# src/NW/PrincipalBundle/Resources/views/index.html.twig #}
+
+{% extends '::base.html.twig' %}
+
+	{% block body %}
+	
+		{% include ':plantillasParciales:top.html.twig' %}
+
+		{% for flashMessage in app.session.flashbag.get('notice') %}
+		    <div class="alert alert-info">
+		        {{ flashMessage }}
+		    </div>
+		{% endfor %}
+	    {% include ':plantillasParciales:slider.html.twig' %}
+
+	    {% include ':plantillasParciales:pasosboda.html.twig' %}
+
+	    <div class="container" style="padding:30px; padding-top:0px;">
+		  <div class="row">
+		    <div class="col-xs-7">
+		      <h1>Entérate de ofertas, promociones y noticias en tu mail</h1>
+		      <p>Registra tu correo electrónico para que puedas recibir novedades, noticias y promociones de tu localidad.</p>
+		    </div>
+		    <div class="col-xs-1"></div>
+       		<div class="col-xs-5">
+		    	<div class="cajaGris">
+		    		<form class="form-horizontal">
+				        <fieldset>
+				          <legend></legend>
+				          <div class="control-group">
+				            <label class="control-label" for=""></label>
+				            <div class="controls">
+				              <input id="input_registro_novios" name="" type="text" placeholder="correo electrónico" class="input-xlarge input9 input_registro_novios" required>
+				            </div>
+				          </div>
+				          <div class="control-group">
+				            <label class="control-label" for=""></label>
+				            <div class="controls">
+				              <select id="registro_novios_estado" name="registro[novios][estado]" class="input_registro_novios input_registro70 input9"><option value="1">Aguascalientes</option><option value="2">Baja California</option><option value="3">Baja California Sur</option><option value="4">Campeche</option><option value="5">Chiapas</option><option value="6">Chihuahua</option><option value="7">Coahuila</option><option value="8">Colima</option><option value="9">Distrito Federal</option><option value="10">Durango</option><option value="11">Estado de México</option><option value="12">Guanajuato</option><option value="13">Guerrero</option><option value="14">Hidalgo</option><option value="15">Jalisco</option><option value="16">Michoacán</option><option value="17">Morelos</option><option value="18">Nayarit</option><option value="19">Nuevo León</option><option value="20">Oaxaca</option><option value="21">Puebla</option><option value="22">Querétaro</option><option value="23">Quintana Roo</option><option value="24">San Luis Potosí</option><option value="25">Sinaloa</option><option value="26">Sonora</option><option value="27">Tabasco</option><option value="28">Tamaulipas</option><option value="29">Tlaxcala</option><option value="30">Veracruz</option><option value="31">Yucatán</option><option value="32">Zacatecas</option></select>
+				            </div>
+				          </div>
+				          <div class="control-group">
+				            <label class="control-label" for=""></label>
+				            <div class="controls">
+				            	<a class="terminos" href="{{asset('documents/CondicionesDeUsoGeneralYDeRegistroYAvisoDePrivacidadNewlyWishesNovios.pdf')}}" target="_blank">Acepto términos y condiciones, así como política de privacidad</a>
+				                <input type="checkbox" id="checkbox-1-1" class="regular-checkbox" required="required">
+				                <label class="" for="checkbox-1-1" alt="Acepto términos y condiciones, así como política de privacidad"></label>
+				            </div>
+				          </div>
+				          <div class="control-group">
+				            <label class="control-label" for=""></label>
+				            <div class="controls">
+				              <button name="" class="btn btn-default enviar_form">Enviar</button>
+				            </div>
+				          </div>
+				        </fieldset>
+				      </form>
+		    	</div>
+		    </div>
+		  </div>
+		  
+		  {#
+		  <hr width=100% align="left" />
+		  <div class="row">
+		    <div class="col-xs-8">
+		      
+
+		      	{% for banner in banners %}
+			      	<div class="row">
+			      		<div class="col-xs-6">
+			      			<h1>{{ banner.nombre }}</h1>
+			      			<p>{{ banner.descripcion }}</p>
+			      		</div>
+			      		<div class="col-xs-6">
+			      			<img src="{{ asset(banner.imageWebPath) }}" style="width:100%" />
+			      		</div>
+			      	</div>
+			      	<hr width=100% align="left" />
+			    {% endfor %}
+
+		      <div class="row">
+		        <div class="col-xs-6">
+		          <h1>Promoción 2</h1>
+		          <p>Lorem ipsum dolor sit amet,
+		          consectetuer adipiscing elit. Aenean
+		          commodo ligula eget dolor. Aenean
+		          massa. Cum sociis natoque penatibus
+		          et magnis dis parturient montes,
+		          nascetur ridiculus mus. Donec quam
+		          felis, ultricies nec, pellentesque eu,
+		          pretium quis, sem.</p>
+		        </div>
+		        <div class="col-xs-6">
+		          <img src="{{ asset('img/vino.jpg') }}" style="width:100%" />
+		        </div>
+		      </div>
+		      <hr width=100% align="left" />
+		      <div class="row">
+		         <div class="col-xs-6">
+		          <h1>Promoción 3</h1>
+		          <p>Lorem ipsum dolor sit amet,
+		          consectetuer adipiscing elit. Aenean
+		          commodo ligula eget dolor. Aenean
+		          massa. Cum sociis natoque penatibus
+		          et magnis dis parturient montes,
+		          nascetur ridiculus mus. Donec quam
+		          felis, ultricies nec, pellentesque eu,
+		          pretium quis, sem.</p>
+		        </div>
+		        <div class="col-xs-6">
+		          <img src="{{ asset('img/palapa.jpg') }}" style="width:100%" />
+		        </div>
+		      </div>
+		    </div>
+		    <div class="col-xs-4">
+
+		    	{% for anuncio in anuncios %}
+		    		<img src="{{ asset(anuncio) }}" style="margin:0 20px 20px; width:90%;" />
+		    	{% endfor %}
+
+				<img src="{{ asset('img/flores.jpg') }}" style="margin:0 20px 20px; width:90%;" />
+				<img src="{{ asset('img/vestido.jpg') }}" style="margin:0 20px 20px; width:90%;" />
+		    </div>
+		  </div>
+		  #}
+
+		</div><!-- /.container -->
+	{% endblock %}
+
+	{# Se vacía el carrito si la transacción fue correcta #}
+	{% block javascripts %}
+		{{ parent() }}
+		{% set transaccion = app.session.flashbag.get("transaccion") %}
+		{% if (transaccion is not empty) %}
+		    <script>
+		    	$(document).ready(function(){
+				    simpleCart.empty();
+				});
+		    </script>
+		{% endif %}
+	{% endblock %}

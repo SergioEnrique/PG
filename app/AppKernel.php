@@ -18,6 +18,13 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new AppBundle\AppBundle(),
             new PG\PartyBundle\PGPartyBundle(),
+            new NW\PrincipalBundle\NWPrincipalBundle(),
+            new NW\UserBundle\NWUserBundle(),
+            new NW\PaymentBundle\NWPaymentBundle(),
+            new NW\PaypalExpressCheckoutBundle\NWPaypalExpressCheckoutBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
+            new Payum\Bundle\PayumBundle\PayumBundle(),
+            new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

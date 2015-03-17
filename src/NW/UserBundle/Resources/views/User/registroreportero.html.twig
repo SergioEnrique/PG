@@ -1,0 +1,148 @@
+{# src/NW/PrincipalBundle/Resources/views/registroreportero.html.twig #}
+
+{% extends '::base.html.twig' %}
+
+	{% block body %}
+	
+		{% include ':plantillasParciales:top.html.twig' %}
+
+		{#
+		<div class="container" style="margin-top:0px; margin-bottom:0px; padding-left:50px; padding-right:50px; background-color:rgba(255,255,255,1);">
+      		<div class="">
+			    <div class="cuadro img-responsive">
+					<br>
+					<img class="img-responsive proveedores" src="{{asset('img/reporteros.png')}}" />
+					
+					{% render controller("FOSUserBundle:Security:login") %}
+
+				</div>
+			    <h4 class="olv" style="text-align:center; margin-top:20px;">Olvidé mi usuario / contraseña</h4>
+			</div>
+		</div>
+		#}
+
+		{{ form_start(formReportero) }}
+
+		<div class="container" style="margin-top:0px; margin-bottom:0px; padding-left:50px; padding-right:50px; background-color:rgba(255,255,255,1);">
+
+			<div class="row" style="margin-top:20px;">
+				<img src="{{ asset('img/user/registrate.jpg') }}">
+				<div class="col-xs-12 paso-registro-proveedor">
+					<br /><br />
+					<p>Si eres un reportero nuevo y deseas publicar artículos, por favor regístrate.</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="row">
+					<div class="col-xs-4 puntosRosas">
+						<span class="error-formulario">{{ form_errors(formReportero.nombreRazon) }}</span>
+						<img src="{{ asset('img/punto.png') }}">
+						{{ form_widget(formReportero.nombreRazon, { 'attr': {'class': 'input_registro_novios', 'placeholder': 'Nombre o razón social' } }) }}
+						<br/>
+						{{ form_widget(formReportero.apellidoPaterno, { 'attr': {'class': 'input_registro_novios', 'placeholder': 'Apellido Paterno' } }) }}
+						<br/>
+						{{ form_widget(formReportero.apellidoMaterno, { 'attr': {'class': 'input_registro_novios', 'placeholder': 'Apellido Materno' } }) }}
+						<br/>
+						<span class="error-formulario">{{ form_errors(formReportero.rfc) }}</span>
+						<img src="{{ asset('img/punto.png') }}" alt="Registro" width="210">
+						{{ form_widget(formReportero.rfc, { 'attr': {'class': 'input_registro_novios', 'placeholder': 'RFC' } }) }}
+					</div>
+					<div class="col-xs-4 puntosRosas">
+						<span class="error-formulario">{{ form_errors(formReportero.email) }}</span>
+						<img src="{{ asset('img/punto.png') }}">
+						{{ form_widget(formReportero.email, { 'attr': {'class': 'input_registro_novios', 'placeholder': 'E-Mail' } }) }}
+						<div class="col-xs-3" style="padding: 0 10px 0 0;">
+							<span class="error-formulario">{{ form_errors(formReportero.lada) }}</span>
+							<img src="{{ asset('img/punto.png') }}" alt="Registro" width="210">
+							{{ form_widget(formReportero.lada, { 'attr': {'class': 'input_registro_novios', 'placeholder': 'LADA'} }) }}
+						</div>
+						<div class="col-xs-9" style="padding: 0;">
+							<span class="error-formulario">{{ form_errors(formReportero.telefono) }}</span>
+							{{ form_widget(formReportero.telefono, { 'attr': {'class': 'input_registro_novios', 'placeholder': 'Teléfono de oficina'} }) }}
+						</div>
+						<div class="col-xs-12" style="padding: 0;">
+							<span class="error-formulario">{{ form_errors(formReportero.celular) }}</span>
+							<img src="{{ asset('img/punto.png') }}" alt="Registro" width="210">
+							{{ form_widget(formReportero.celular, { 'attr': {'class': 'input_registro_novios', 'placeholder': 'Celular' } }) }}
+						</div>
+					</div>
+					<div class="col-xs-4 puntosRosas">
+						<span class="error-formulario">{{ form_errors(formReportero.direccion) }}</span>
+						<img src="{{ asset('img/punto.png') }}">
+						{{ form_widget(formReportero.direccion, { 'attr': {'class': 'input_registro_novios', 'placeholder': 'Dirección' } }) }}
+						<br/>
+		<img src="{{ asset('img/punto.png') }}" alt="Registro" width="210">
+						{{ form_widget(formReportero.pais, { 'attr': {'class': 'input_registro_novios'} }) }}
+						<br />
+						<span class="error-formulario">{{ form_errors(formReportero.estadoId) }}</span>
+						<img src="{{ asset('img/punto.png') }}">
+						{{ form_widget(formReportero.estadoId, { 'attr': {'class': 'input_registro_novios'} }) }}
+						<span class="error-formulario">{{ form_errors(formReportero.ciudad) }}</span>
+						<img src="{{ asset('img/punto.png') }}">
+						{{ form_widget(formReportero.ciudad, { 'attr': {'class': 'input_registro_novios', 'placeholder': 'Ciudad' } }) }}
+						<br/>
+						<span class="error-formulario">{{ form_errors(formReportero.cp) }}</span>
+						<img src="{{ asset('img/punto.png') }}" alt="Registro" width="210">
+						{{ form_widget(formReportero.cp, { 'attr': {'class': 'input_registro_novios', 'placeholder': 'Código postal' } }) }}
+					</div>
+				</div>
+				<!-- DATOS DEL USUARIO -->
+				<div class="row">
+					<div class="col-xs-12">
+						<p>Define una contraseña segura</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-4 puntosRosas">
+						<span class="error-formulario">{{ form_errors(formReportero.userName) }}</span>
+						<img src="{{ asset('img/punto.png') }}" alt="Registro">
+						{{ form_widget(formReportero.userName, { 'attr': {'class': 'input_registro_novios', 'placeholder': 'Usuario' } }) }}
+						<br/>
+						<span class="error-formulario">{{ form_errors(formReportero.userPass) }}</span>
+						<img src="{{ asset('img/punto.png') }}" alt="Registro" width="210">
+						{{ form_widget(formReportero.userPass, { 'attr': {'class': 'input_registro_novios', 'placeholder': 'Contraseña' } }) }}
+					</div>
+					<div class="col-xs-4 puntosRosas">
+						<span class="error-formulario">{{ form_errors(formReportero.terminosCondiciones) }}</span>
+						<img src="{{ asset('img/punto.png') }}" alt="Registro">
+						{{ form_widget(formReportero.terminosCondiciones) }} 
+						<a href="{{asset('documents/TerminosYCondicionesNWNovios.pdf')}}" target="_blank">
+							Acepto los términos y condiciones generales
+						</a>
+						<br />
+						<span class="error-formulario">{{ form_errors(formReportero.terminosPrivacidad) }}</span>
+						<img src="{{ asset('img/punto.png') }}" alt="Registro">
+						{{ form_widget(formReportero.terminosPrivacidad) }}
+						<a href="{{asset('documents/CondicionesDeUsoGeneralYDeRegistroYAvisoDePrivacidadNewlyWishesNovios.pdf')}}" target="_blank">
+							Acepto las Condiciones de Uso General y de Registro y Aviso de privacidad
+						</a>
+						<br />
+					</div>
+					<div class="col-xs-4">
+
+					</div>
+				</div>
+				<div class="row" style="margin-top:40px">
+					<div class="col-xs-12 puntosRosas">
+						<p><img src="{{ asset('img/punto.png') }}" alt="Registro"> Datos obligatorios</p>
+					</div>
+				</div>
+			</div>
+			<div class="row" style="margin-top:50px;">
+				<img src="{{ asset('img/user/confirmar.jpg') }}">
+				<div class="col-xs-12 paso-registro-proveedor">
+					{{ form_widget(formReportero.Aceptar, { 'attr': {'class': 'enviar_form' } }) }}
+				</div>
+			</div>
+			<div class="container">
+			    <div class="row">
+			        <div class="col-xs-12" style="height:30px; background-color:rgba(255,255,255,1);">
+			        </div>
+			    </div>
+			</div>
+		</div><!-- CONTAINER -->
+
+		{{ form_end(formReportero) }}
+		
+
+	{% endblock %}

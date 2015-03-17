@@ -1,0 +1,7 @@
+<script language="javascript">
+    window.onunload = refreshParent;
+    function refreshParent() {
+        window.opener.location.href = "{{url('pg_party_miCuenta')}}";
+    }
+    self.close();
+</script>

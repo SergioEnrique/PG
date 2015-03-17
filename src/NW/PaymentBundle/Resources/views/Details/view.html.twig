@@ -1,0 +1,27 @@
+{# src/NW/PrincipalBundle/Resources/Views/Default/mesaderegalos.html.twig #}
+
+{% extends '::base.html.twig' %}
+
+{% block body %}
+
+    {% include ':plantillasParciales:top.html.twig' %}
+
+    <div class="container">
+        <div class="row">
+        	{% if status == "capturado" %}
+                <p class="alert alert-success" style="font-size:16px">Transacción completada con éxito. Estado: {{ status }}</p>
+            {% else %}
+                <p class="alert alert-danger" style="font-size:16px">La transacción no pudo ser completada. Estado: {{ status }}</p>
+            {% endif %}
+        </div>
+        
+        <div class="row">
+        	<pre style="white-space: pre;">
+                    {{ details|json_encode(constant('JSON_PRETTY_PRINT'))|raw }}
+                
+            </pre>
+        </div>
+        
+    </div>
+
+{% endblock %}

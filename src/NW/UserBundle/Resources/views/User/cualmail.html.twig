@@ -1,0 +1,17 @@
+{# src/NW/UserBundle/Resources/views/User/cualmail.html.twig #}
+{% extends '::base.html.twig' %}
+
+{% block body %}
+
+	{% include ':plantillasParciales:top.html.twig' %}
+
+		<div class="container">
+			<div class="cuadro img-responsive" style="padding-top: 65px;">
+				<br>
+				<p style="font-size:14px; font-style:italic;">Ingresa tu usuario o correo electrónico, te mandaremos un mail con instrucciones para recuperar tu contraseña</p>
+				{% render controller("FOSUserBundle:Resetting:request") %}
+
+			</div>
+		</div>
+
+{% endblock %}

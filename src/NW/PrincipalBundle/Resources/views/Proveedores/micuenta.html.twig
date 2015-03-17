@@ -1,0 +1,483 @@
+{# src/NW/PrincipalBundle/Resources/views/Proveedores/micuenta.html.twig #}
+
+{% extends 'NWPrincipalBundle:Proveedores:administrador.html.twig' %}
+
+{% block partederecha %}
+
+
+				<div class="row">
+					<div class="col-xs-9">
+						
+					</div>
+					<div class="col-xs-3">
+						<h1>Mi Cuenta</h1>
+					</div>
+					<!-- Modal -->
+						<div class="modal fade" id="miCuenta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						  <div class="modal-dialog">
+						    <div class="modal-content" style="border: rgba(204,0,153,0.7) 2px solid; padding:10px;">
+						      <div class="modal-header2">
+						        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						        <div class="col-xs-7">
+						        	<h4 class="modal-title rosa" id="myModalLabel">Actualiza tus datos</h4>
+						        </div>
+						        <div class="col-xs-5">
+					        		<img class="logo-modal" src="{{asset('img/nw.png')}}">	
+						        </div>
+						      </div>
+
+						      
+						      
+						      <div class="modal-body">
+						      	{{ form_start(formProveedor) }}
+						      	<div class="row">
+						    		<div class="col-xs-12 left">
+						    			<img src="{{asset('img/mini-punto.png')}}">
+						      			{{ form_widget(formProveedor.tipoPersona) }}
+								        <br><br>
+								        <div class="row left">
+								        	<img src="{{asset('img/mini-punto.png')}}">
+								        	{{ form_widget(formProveedor.nombreRazon, { 'attr': {'class': 'input_registro_novios input5 ', 'placeholder': 'Nombre o Razón Social' } }) }}
+								        	<img src="{{asset('img/mini-punto.png')}}">
+								        	{{ form_widget(formProveedor.direccion, { 'attr': {'class': 'input_registro_novios input5 ', 'placeholder': 'Dirección completa' } }) }}
+								        </div>
+								        <br>
+								        <div class="row left2">
+								        	{{ form_widget(formProveedor.apellidoPaterno, { 'attr': {'class': 'input_registro_novios input5 ', 'placeholder': 'Apellido Paterno' } }) }}
+								        	<img src="{{asset('img/mini-punto.png')}}">
+											  {{ form_label(formProveedor.pais, 'País') }}
+											  {{ form_widget(formProveedor.pais, { 'attr': {'class': 'input_registro_novios select1'} }) }}
+								        </div>
+								        <br>
+								        <div class="row left2">
+								        	{{ form_widget(formProveedor.apellidoMaterno, { 'attr': {'class': 'input_registro_novios input5 ', 'placeholder': 'Apellido Materno' } }) }}
+											<img src="{{asset('img/mini-punto.png')}}">
+									        {{ form_label(formProveedor.estado, 'Estado') }}
+				        					{{ form_widget(formProveedor.estado, { 'attr': {'class': 'input_registro_novios select2'} }) }}
+								        </div>
+								        <br>
+								        <div class="row left">
+								        	<img src="{{asset('img/mini-punto.png')}}">
+								        	{{ form_widget(formProveedor.rfc, { 'attr': {'class': 'input_registro_novios2', 'placeholder': 'RFC' } }) }}
+								        	<img src="{{asset('img/mini-punto.png')}}">
+								        	{{ form_widget(formProveedor.ciudad, { 'attr': {'class': 'input_registro_novios input5 ', 'placeholder': 'Ciudad' } }) }}
+								        </div>
+								        <br>
+								        <div class="row left">
+								        	<img src="{{asset('img/mini-punto.png')}}">
+								        	{{ form_widget(formProveedor.email, { 'attr': {'class': 'input_registro_novios input5 ', 'placeholder': 'E-Mail' } }) }}
+								        	{{ form_widget(formProveedor.cp, { 'attr': {'class': 'input_registro_novios input5 ', 'placeholder': 'Código postal' } }) }}
+								        </div>
+								        <br>
+								        <div class="row left">
+								        	<img src="{{asset('img/mini-punto.png')}}">
+								        	{{ form_widget(formProveedor.lada, { 'attr': {'class': 'input_registro_novios miniinput', 'placeholder': 'LADA' } }) }}
+								        	{{ form_widget(formProveedor.telefono, { 'attr': {'class': 'input_registro_novios miniinput2', 'placeholder': 'Teléfono de casa u oficina' } }) }}
+								        </div>
+								        <br>
+								        <div class="row left">
+								        	<img src="{{asset('img/mini-punto.png')}}">
+								        	{{ form_widget(formProveedor.celular, { 'attr': {'class': 'input_registro_novios input5 ', 'placeholder': 'Teléfono celular' } }) }}
+								        </div>
+								        <br>
+								        <br>
+								        <div class="row">
+							        		<div class="col-xs-12">
+							        			{{ form_label(formProveedor.terminosCondiciones, 'Acepto los términos y condiciones') }}&nbsp;&nbsp;{{ form_widget(formProveedor.terminosCondiciones) }}<br />
+												{{ form_label(formProveedor.terminosPrivacidad, 'Acepto los términos de privacidad') }}&nbsp;&nbsp;{{ form_widget(formProveedor.terminosPrivacidad) }} <br />
+							        		</div>
+								        </div>
+								        <br>
+								        <div class="row left">
+						        			<img src="{{asset('img/mini-punto.png')}}">
+						        			<span>Datos obligatorios</span>	<br />
+							        	</div>
+							      	</div>
+						    	</div>
+						    	{{ form_widget(formProveedor.Enviar, { 'attr': {'class': 'btn btn-default enviar_form2'}}) }}
+						    	{{ form_end(formProveedor) }}
+						      </div>
+								
+						    </div>
+						  </div>
+						</div>
+					<!-- FIN MODAL -->
+				</div>
+				<div class="row">
+					<div class="col-xs-4">
+						<h4>Plan contratado: <span class="esc">{{ proveedor.planName }} </span></h4>
+					</div>
+					<!--Inicia Modal Planes-->
+					<div class="col-xs-3">
+						<a class="art3" data-toggle="modal" data-target="#myModal"><h5 class="art">Editar</h5></a>
+					</div>
+					<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						  <div class="modal-dialog">
+						    <div class="modal-content" style="border: rgba(204,0,153,0.7) 2px solid; padding:10px;">
+						    	<div class="modal-header2">
+						        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					        </div>
+							    <div class="container contrata corrector minplanes">
+								<div class="row">
+									<div class="col-xs-6">
+										<h1>Contrata tu plan</h1>
+									</div>
+									<div class="col-xs-6">
+										<img class="img-responsive logo" src="{{asset('img/nw.png')}}"></div>
+									</div>
+									<br>
+									<br>
+									<br>
+									<div class="usuario">
+										<h3>Usuario: {{ app.user.username }}</h3>
+									</div>
+									<br>
+									<br>
+
+								</div>
+									<div class="container minplanes">
+										{{ form_start(formProveedorPlan) }}
+										<table class="table table-striped">
+											<tr height="20px">
+												<td class="planes2"></td>
+												<td class="planes" colspan="5">Planes</td>
+											</tr>
+										  <tr>
+										    <th class="funcionalidades"> Funcionalidades </th>
+										    <th> Anuncio <br> especial </th>
+										    <th> Anuncio <br> Plus </th>
+										    <th class="top"> Básico </th>
+										    <th class="top"> Estándar </th>
+										    <th class="top"> Plus </th>
+										  </tr>
+										  <tbody>
+											  <tr>
+											    <td> Anuncio en la página principal </td>
+											    <td>&nbsp;</td>
+											    <td><img src="{{asset('img/punto.png')}}"></td>
+											    <td>&nbsp;</td>
+											    <td>&nbsp;</td>
+											    <td><img src="{{asset('img/punto.png')}}"></td>
+											  </tr>
+											  <tr>
+											    <td> Anuncio especial en el costado de la página </td>
+											    <td><img src="{{asset('img/punto.png')}}"></td>
+											    <td>&nbsp;</td>
+											    <td>&nbsp;</td>
+											    <td><img src="{{asset('img/punto.png')}}"></td>
+											    <td><img src="{{asset('img/punto.png')}}"></td>
+											  </tr>
+											  <tr>
+											    <td> Micrositio con mi catálogo de productos / servicios </td>
+											    <td>&nbsp;</td>
+											    <td>&nbsp;</td>
+											    <td><img src="{{asset('img/punto.png')}}"></td>
+											    <td><img src="{{asset('img/punto.png')}}"></td>
+											    <td><img src="{{asset('img/punto.png')}}"></td>
+											  </tr>
+											  <tr>
+											    <td> Cargar / modificar artículos </td>
+											    <td>&nbsp;</td>
+											    <td>&nbsp;</td>
+											    <td><img src="{{asset('img/punto.png')}}"></td>
+											    <td><img src="{{asset('img/punto.png')}}"></td>
+											    <td><img src="{{asset('img/punto.png')}}"></td>
+											  </tr>
+											  <tr>
+											    <td> Incluir promociones en página principal </td>
+											    <td>&nbsp;</td>
+											    <td>&nbsp;</td>
+											    <td>&nbsp;</td>
+											    <td><img src="{{asset('img/punto.png')}}"></td>
+											    <td><img src="{{asset('img/punto.png')}}"></td>
+											  </tr>
+											  <tr>
+											    <td> Vender a través de la plataforma </td>
+											    <td>&nbsp;</td>
+											    <td>&nbsp;</td>
+											    <td><img src="{{asset('img/punto.png')}}"></td>
+											    <td><img src="{{asset('img/punto.png')}}"></td>
+											    <td><img src="{{asset('img/punto.png')}}"></td>
+											  </tr>
+											  <tr>
+											    <td> Transferir ventas a mi cuenta bancaria </td>
+											    <td>&nbsp;</td>
+											    <td>&nbsp;</td>
+											    <td><img src="{{asset('img/punto.png')}}"></td>
+											    <td><img src="{{asset('img/punto.png')}}"></td>
+											    <td><img src="{{asset('img/punto.png')}}"></td>
+											  </tr>
+											  <tr>
+											    <td> Modificar / actualizar información bancaria </td>
+											    <td>&nbsp;</td>
+											    <td>&nbsp;</td>
+											    <td><img src="{{asset('img/punto.png')}}"></td>
+											    <td><img src="{{asset('img/punto.png')}}"></td>
+											    <td><img src="{{asset('img/punto.png')}}"></td>
+											  </tr>
+											  <tr>
+											    <td> Incluir banners promocionales </td>
+											    <td>&nbsp;</td>
+											    <td>&nbsp;</td>
+											    <td><img src="{{asset('img/punto.png')}}"></td>
+											    <td><img src="{{asset('img/punto.png')}}"></td>
+											    <td><img src="{{asset('img/punto.png')}}"></td>
+											  </tr>
+											  <tr>
+											    <td> Administración de inventario por producto </td>
+											    <td>&nbsp;</td>
+											    <td>&nbsp;</td>
+											    <td><img src="{{asset('img/punto.png')}}"></td>
+											    <td><img src="{{asset('img/punto.png')}}"></td>
+											    <td><img src="{{asset('img/punto.png')}}"></td>
+											  </tr>
+											  <tr>
+											    <td> Conocer opiniones de clientes </td>
+											    <td>&nbsp;</td>
+											    <td>&nbsp;</td>
+											    <td><img src="{{asset('img/punto.png')}}"></td>
+											    <td><img src="{{asset('img/punto.png')}}"></td>
+											    <td><img src="{{asset('img/punto.png')}}"></td>
+											  </tr>
+											  <tr>
+											    <td> Estado de cuenta detallado </td>
+											    <td>&nbsp;</td>
+											    <td>&nbsp;</td>
+											    <td><img src="{{asset('img/punto.png')}}"></td>
+											    <td><img src="{{asset('img/punto.png')}}"></td>
+											    <td><img src="{{asset('img/punto.png')}}"></td>
+											  </tr>
+											  <tr>
+											    <td> Cargar / modificar códigos de venta </td>
+											    <td>&nbsp;</td>
+											    <td>&nbsp;</td>
+											    <td><img src="{{asset('img/punto.png')}}"></td>
+											    <td><img src="{{asset('img/punto.png')}}"></td>
+											    <td><img src="{{asset('img/punto.png')}}"></td>
+											  </tr>
+										  </tbody>
+										  <tr>
+										    <td class="funcionalidades"> Costo mensual (3 meses gratis al registrarte) </td>
+											<td class="term">{{ form_widget(formProveedorPlan.plan.0) }}{{ form_label(formProveedorPlan.plan.0, '$299') }}</td>
+											<td class="term">{{ form_widget(formProveedorPlan.plan.1) }}{{ form_label(formProveedorPlan.plan.0, '$599') }}</td>
+											<td class="term">{{ form_widget(formProveedorPlan.plan.2) }}{{ form_label(formProveedorPlan.plan.0, '$299') }}</td>
+											<td class="term">{{ form_widget(formProveedorPlan.plan.3) }}{{ form_label(formProveedorPlan.plan.0, '$499') }}</td>
+											<td class="term">{{ form_widget(formProveedorPlan.plan.4) }}{{ form_label(formProveedorPlan.plan.0, '$999') }}</td>
+										  </tr>
+										</table>
+										<div class="row">
+											<div class="col-xs-9">
+													{{ form_label(formProveedorPlan.terminosCondiciones, 'Acepto los términos y condiciones') }}&nbsp;&nbsp;{{ form_widget(formProveedorPlan.terminosCondiciones) }}<br />
+													{{ form_label(formProveedorPlan.terminosPrivacidad, 'Acepto los términos de privacidad') }}&nbsp;&nbsp;{{ form_widget(formProveedorPlan.terminosPrivacidad) }} <br />
+											</div>
+											<div class="col-xs-3">
+												{{ form_widget(formProveedorPlan.Enviar, { 'attr': {'class': 'btn btn-default enviar_form2'}}) }}
+											</div>
+										</div>
+										{{ form_end(formProveedorPlan) }}
+										<br>
+									</div>	
+			      			</div>
+					      <div class="modal-body">
+					      	
+					      </div>
+			        </div>
+				</div>
+				<div class="row">
+					<div class="col-xs-9">
+						<strong class="esc"> Mis Datos </strong>
+					</div>
+					<div class="col-xs-3">
+						<a class="art3" data-toggle="modal" data-target="#miCuenta"><span class="esc"> Editar </span> </a>
+					</div>
+				</div>
+
+				
+
+
+				<hr />
+				<h5>Tipo de persona:<span class="esc"> {{ proveedor.tipoPersona }} </span></h5>
+				<h5>Nombre / Razón social:<span class="esc"> {{ proveedor.nombre }} </span></h5>
+				<h5>Email:<span class="esc"> {{ proveedor.email }} </span></h5>
+				<h5>Teléfono oficina:<span class="esc"> ({{ proveedor.lada }}) {{ proveedor.telefono }} </span></h5>
+				<h5>Teléfono celular:<span class="esc"> {{ proveedor.celular }} </span></h5>
+				<h5>RFC:<span class="esc"> {{ proveedor.rfc }} </span></h5>
+				<h5>Dirección:<span class="esc"> {{ proveedor.direccion }} </span></h5>
+				<h5>País:<span class="esc"> México </span></h5>
+				<h5>Estado:<span class="esc"> {{ proveedor.estado }} </span></h5>
+				<h5>Ciudad:<span class="esc"> {{ proveedor.ciudad }} </span></h5>
+				<h5>Código postal:<span class="esc"> {{ proveedor.cp }} </span></h5>
+				<div class="row">
+					<div class="col-xs-9">
+						<strong class="esc"> Mi Imagen </strong>
+					</div>
+					<div class="col-xs-3">
+						<a class="art3" data-toggle="modal" data-target="#imagen"><span class="esc"><span class="esc"> Editar </span></a>
+					</div>
+					<!-- Inicio de Modal de imagen de la empresa -->
+					<div class="modal fade" id="imagen" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content" style="border: rgba(204,0,153,0.7) 2px solid; padding:10px;">
+								<div class="modal-header2">
+									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+									<div class="col-xs-7">
+										<h4 class="modal-title rosa" id="imagen">Actualiza tu imagen</h4>
+									</div>
+									<div class="col-xs-5">
+										<img class="logo-modal" src="{{asset('img/nw.png')}}">	
+									</div>
+								</div>
+
+								<div class="modal-body">
+								{{ form_start(formProveedorPublico) }}
+									<h1>Logo</h1>
+									<div class="row">
+										<div class="col-xs-3">
+											<img class="ejlogo" width="177" src="{{asset(proveedor.logo)}}">
+										</div>
+										<div class="col-xs-4">
+											<label for="ejemplo_archivo_1" class="cargar">Cargar logo como imagen</label>
+											{{ form_widget(formProveedorPublico.file, {'attr': {'class': 'cargar2'}}) }}
+										</div>
+									</div>
+									<h1>Nombre comercial</h1>
+									{{ form_widget(formProveedorPublico.nombreComercial, { 'attr': {'class': 'input7', 'placeholder': 'Nombre de la empresa'}}) }}
+									<h1>Descripción de los que ofreces</h1>
+									{{ form_widget(formProveedorPublico.descripcion, { 'attr': {'class': 'input6', 'placeholder': ''}}) }}
+									<h1>Galería de imágenes</h1>
+									<div class="row">
+										<div class="col-xs-3">
+											{{ form_widget(formProveedorPublico.fileGaleria, {'attr': {'class': 'cargar2'}}) }}
+										</div>
+										<div class="col-xs-9">
+											<br>
+											<label for="ejemplo_archivo_2">Cargar nueva imagen a la galería</label>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-xs-4">
+
+										</div>
+										<div class="col-xs-3">
+										<!--
+											<img class="bote_top" src="{{asset('img/bote.png')}}">
+											<p>Eliminar esta foto</p>
+										-->
+										</div>
+										<div class="col-xs-5">
+											<div id="galeria2" class="carousel slide">
+											    <ol class="carousel-indicators indicators-down">
+												    {% for foto in proveedor.galeria %}
+												      <li data-target="#galeria2" data-slide-to="{{loop.index0}}" class="{% if loop.first %}active{% endif %}"></li>
+												    {% endfor %}
+											    </ol>
+
+											    <div class="carousel-inner">
+											    	{% for foto in proveedor.galeria %}
+														<div class="item {% if loop.first %}active{% endif %}">
+													    	<img src="{{ asset(foto) }}" alt="" class="foto" />
+													    </div>
+													{% endfor %}
+											    </div>
+											</div>
+										</div>
+										<div class="row left">
+											{{ form_label(formProveedorPublico.terminosCondiciones, 'Acepto los términos y condiciones') }}&nbsp;&nbsp;{{ form_widget(formProveedorPublico.terminosCondiciones) }}<br />
+											{{ form_label(formProveedorPublico.terminosPrivacidad, 'Acepto los términos de privacidad') }}&nbsp;&nbsp;{{ form_widget(formProveedorPublico.terminosPrivacidad) }} <br />
+										</div>
+										<br>
+										<div class="row left3">
+											<img src="{{asset('img/mini-punto.png')}}">
+											<span>Datos obligatorios</span>	
+										</div>
+									</div>
+								</div>
+								{{ form_widget(formProveedorPublico.Actualizar, { 'attr': {'class': 'btn btn-default enviar_form2'}}) }}
+						    	{{ form_end(formProveedorPublico) }}
+							</div>
+						</div>
+					</div>
+					<!-- FIN DE MODAL DE IMAGEN DE EMPRESA -->
+				</div>
+				<hr />
+				<div class="row">
+					<div class="col-xs-3">
+						<span> Logo </span>
+					</div>
+					<div class="col-xs-3">
+						<span> Nombre Comercial </span>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-3">
+						<img class="ejlogo" width="177" src="{{ asset(proveedor.logo) }}">
+					</div>
+					<div class="col-xs-3">
+						<h3 class="esc">{{ proveedor.nombreComercial }}</h3>
+					</div>
+				</div>
+				Descripción de los que ofreces
+				<br>
+				<br>
+				{{ proveedor.descripcion }}
+				<br>
+				<br>
+				<br>
+				<h5>Galería de imágenes</h5>
+				<br>
+				<div id="galeria" class="carousel slide">
+				    <ol class="carousel-indicators indicators-down">
+					    {% for foto in proveedor.galeria %}
+					      <li data-target="#galeria" data-slide-to="{{loop.index0}}" class="{% if loop.first %}active{% endif %}"></li>
+					    {% endfor %}
+				    </ol>
+
+				    <div class="carousel-inner">
+				    	{% for foto in proveedor.galeria %}
+							<div class="item {% if loop.first %}active{% endif %}">
+						    	<img src="{{ asset(foto) }}" alt="" class="foto" />
+						    </div>
+						{% endfor %}
+				    </div>
+				</div>
+				<br>
+				<h4 class="esc"> 
+					Mi Contraseña
+					{% if statusForm %}
+						(Se ha actualizado satisfactoriamente)
+					{% endif %}
+				</h4>
+				<hr />
+				<span class="esc"> Cambiar contraseña </span >
+				<br>
+				<div class="row" style="margin-top:10px;">
+				<!-- <form action="{{ path('nw_principal_changepass') }}" method="post"> -->
+				{{ form_start(form) }}
+					<div class="col-xs-4">
+						{{ form_widget(form.oldPass, { 'attr': {'class': 'input_registro_novios', 'placeholder': 'Contraseña actual' } }) }}
+					</div>
+					<div class="col-xs-4">
+						{{ form_widget(form.newPass, { 'attr': {'class': 'input_registro_novios', 'placeholder': 'Nueva Contraseña' } }) }}
+					</div>
+					<div class="col-xs-4">
+						<!-- El formulario se debería enviar a NWPrincipalBundle:Default:changePass -->
+						{{ form_widget(form.Cambiar) }}
+					</div>
+				{{ form_end(form) }}
+			</div>
+				<br>
+				Define contraseña; ésta debe estar compuesta por 8 caracteres.
+				<br>
+				<br>
+				<br>
+				<br>
+
+</div>
+</div>
+		</div>
+		</div>
+
+
+	    
+
+{% endblock %}

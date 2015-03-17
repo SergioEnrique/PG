@@ -1,0 +1,38 @@
+{# Se verifica si es un artíuclo o un proveedor #}
+{% if item.articulo %}
+
+	<div class="row">
+		<div class="col-xs-1">
+		</div>
+		<div class="col-xs-8">
+			<div class="resultados">
+				<h1>{{item.nombre}}</h1>
+				<p>
+					{{item.descripcion}}<span class="art"></span>
+				</p>
+			</div>
+		</div>
+		<div class="col-xs-1">
+			<img class="resultados2" src="{{ asset(item.fotos.0.webPath) }}" style="max-width:177px">
+		</div>
+	</div>
+
+{% else %}
+
+	<div class="row">
+		<div class="col-xs-1">
+		</div>
+		<div class="col-xs-8">
+			<div class="resultados">
+				<a href="{{ url('nw_principal_proveedor', {'proveedor': item.url } ) }}"><h1>{{item.nombreComercial}}</h1></a>
+				<p>
+					{{item.descripcion}}<span class="art"></span>
+				</p>
+			</div>
+		</div>
+		<div class="col-xs-1">
+			<img class="resultados2" src="{{ asset(item.logo) }}" style="max-width:177px">
+		</div>
+	</div>
+
+{% endif %}

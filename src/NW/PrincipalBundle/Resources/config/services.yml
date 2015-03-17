@@ -1,0 +1,47 @@
+#parameters:
+#    nw_principal.controller.forms.class: NW\PrincipalBundle\Controller\FormsController
+#services:
+#    nw_principal.forms.controller:
+#        class: "%nw_principal.controller.forms.class%"
+#services:
+#    nw_principal.forms.controller.manyForms:
+#        class: NW\PrincipalBundle\Controller\FormsController\manyFormsAction
+parameters:
+    articulos_buscador.class: NW\PrincipalBundle\Articulos\BuscadorArticulos
+    resenas_service.class: NW\PrincipalBundle\Servicios\Resenas
+    busqueda_novios_service.class: NW\PrincipalBundle\Servicios\BusquedaNovios
+    mesa_regalos_service.class: NW\PrincipalBundle\Servicios\MesaRegalos
+    reportero_service.class: NW\UserBundle\Servicios\Reportero
+    busquedas_service.class: NW\PrincipalBundle\Servicios\Busquedas
+    today_twig_extension.class: NW\PrincipalBundle\Twig\TodayExtension
+
+services:
+    articulos_buscador:
+        class:     %articulos_buscador.class%
+        arguments: [@router, @doctrine.orm.entity_manager]
+    resenas_service:
+        class:     %resenas_service.class%
+        arguments: [@router, @doctrine.orm.entity_manager]
+    busquedas_service:
+        class:     %busquedas_service.class%
+        arguments: [@router, @doctrine.orm.entity_manager]
+    busqueda_novios_service:
+        class:     %busqueda_novios_service.class%
+        arguments: [@router, @doctrine.orm.entity_manager]
+    mesa_regalos_service:
+        class:     %mesa_regalos_service.class%
+        arguments: [@router, @doctrine.orm.entity_manager, @form.factory]
+    reportero_service:
+        class:     %reportero_service.class%
+        arguments: [@doctrine.orm.entity_manager, @fos_user.user_manager, @security.encoder_factory]
+    today_twig_extension:
+        class: %today_twig_extension.class%
+        tags:
+            - { name: twig.extension }
+    payum.buzz.client: # Overwriting this payum service as doesnt work with paypal sandbox
+        class: %payum.buzz.client.class%
+        calls:
+            - [setTimeout, [200]]
+            - [setOption, [64,false]] #CURLOPT_SSL_VERIFYPEER
+            - [setOption, [81,false]] #CURLOPT_SSL_VERIFYHOST
+            - [setOption, [32,4]] #CURLOPT_SSLVERSION
