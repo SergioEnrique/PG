@@ -35,6 +35,8 @@ class UsersController extends Controller
             $user->setMoneda($formRegistroPary["moneda"]->getData());
             $user->setEnabled(true);
             $user->setSaldo(0);
+            $user->setNombre($formRegistroPary["nombre"]->getData());
+            $user->setApellidos($formRegistroPary["apellidos"]->getData());
 
             $em->persist($user);
             $em->flush();

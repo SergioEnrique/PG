@@ -29,7 +29,7 @@
 			<div class="cuenta-info-top">
 				<div class="max-wrapper">
 					<ul>
-						<li>{% trans with {'%name%': app.user.username} %}Bienvenido <span class="rosa-persona bold">%name%</span>{% endtrans %} <a href="#mis-datos" rel="modal:open">({% trans %}modificar datos{% endtrans %})</a>
+						<li>{% trans with {'%name%': app.user.nombre} %}Bienvenido <span class="rosa-persona bold">%name%</span>{% endtrans %} <a href="#mis-datos" rel="modal:open">({% trans %}modificar datos{% endtrans %})</a>
 						</li>
 						<li>{% trans %}Saldo{% endtrans %}: <span class="rosa-persona bold">$0.00</span></li>
 						<li><span class="rosa-persona bold show-paypal">{% trans %}retirar{% endtrans %}</span>

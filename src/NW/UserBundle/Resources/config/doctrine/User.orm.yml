@@ -8,6 +8,12 @@ NW\UserBundle\Entity\User:
             generator:
                 strategy: AUTO
     fields:
+        nombre:
+            type: string
+            length: 100
+        apellidos:
+            type: string
+            length: 100
         saldo:
             type: float
             nullable: true
