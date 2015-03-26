@@ -239,10 +239,30 @@ $( ".evento-tr" ).click(function() {
 });
 
 function enviaformulario() {
-   win = window.open('','myWin','toolbars=0,width=400,height=600');            
-   document.myForm.target='myWin';
-   document.myForm.submit();
+    win = window.open('','myWin','toolbars=0,width=400,height=600');            
+    document.myForm.target='myWin';
+    document.myForm.submit();
+    checarmicuenta();
 }
+
+function checarmicuenta()
+{
+    // Hacer la petición cada cierto tiempo
+    setInterval(function(){
+        // Variable de direccion URL para checar JSON
+        var ajaxURL = "{{url('pg_party_checarmicuenta')}}";
+
+        // Hacer petición jSon y ver si micuenta ya está accesible (checarlo en una pagina json independiente)
+        $.getJSON(ajaxURL, function(serverInfo){
+            if(serverInfo.responseCode == 200)
+            {
+                // Si sí está accesible entonces actualiza esta página
+                location.href = "{{url('pg_party_miCuenta')}}";
+            }
+        });
+    }, 1000);
+}
+
 </script>
 
 <script src="{{asset('js/wow.min.js')}}"></script>

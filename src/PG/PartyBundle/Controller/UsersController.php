@@ -55,4 +55,29 @@ class UsersController extends Controller
             'emailpasado' => $request->query->get('email'),
         ));
     }
+
+    // Pagina que checa si el usuario ya está registrado y responde con JSON
+    public function checarmicuentaAction()
+    {
+        // Container de seguridad (para revisar si hay logueo)
+        $securityContext = $this->container->get('security.context');
+
+        // Si el usuario está logueado
+        if ($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) // true es que sí está logueado
+        {
+            // La petición funciona
+            $return["responseCode"] = 200;
+            $responseCode = 200;
+            $return = json_encode($return);
+        }
+        else{
+            // La petición no funciona
+            $return["responseCode"] = 500;
+            $responseCode = 500;
+            $return = json_encode($return);
+        }
+
+        // Regresa el resultado en JSON
+        return new Response($return, $responseCode, array('Content-Type'=>'application/json'));
+    }
 }

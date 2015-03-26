@@ -32,3 +32,7 @@ pg_party_registro:
     defaults: { _controller: PGPartyBundle:Users:registro }
     requirements:
         _locale: en|es
+
+pg_party_checarmicuenta:
+    path:     /checarmicuenta
+    defaults: { _controller: PGPartyBundle:Users:checarmicuenta }
