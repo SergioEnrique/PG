@@ -46,7 +46,7 @@
                         <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
                     </form>
                 </div>
-                <a href="{{url('root')}}connect/facebook">
+                <a href="{{url('root')}}connect/facebook" target="popup" onclick="window.open('{{url('root')}}connect/facebook','name','width=400,height=600')">
                     <img class="facebook" src="{{asset('img/facebook.png')}}" width="40" height="40" alt="Facebook"/>
                 </a>
             </div>
