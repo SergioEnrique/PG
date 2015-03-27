@@ -158,15 +158,53 @@ class FOSUBRegistrationFormHandler implements RegistrationFormHandlerInterface
     protected function setUserInformation(UserInterface $user, UserResponseInterface $userInformation)
     {
         $accessor = PropertyAccess::createPropertyAccessor();
-        $accessor->setValue($user, 'username', $this->getUniqueUserName($userInformation->getNickname()));
+        $accessor->setValue($user, 'username', $this->getUniqueUserName($userInformation->getEmail()));
 
         if ($accessor->isWritable($user, 'email')) {
             $accessor->setValue($user, 'email', $userInformation->getEmail());
         }
 
-        // Setteando saldo en 0 para el nuevo usuario
-        $accessor->setValue($user, 'saldo', 0);
+        // Nombre del usuario partido
+        $nombresUsuario = explode(" ", $userInformation->getRealname(), 2);
 
+        // Setteando saldo en 0 para el nuevo usuario
+        $accessor->setValue($user, 'saldo', 1);
+
+        // Nombre del usuario
+        $accessor->setValue($user, 'nombre', $nombresUsuario[0]);
+
+        // Apellidos del usuario
+        $accessor->setValue($user, 'apellidos', $nombresUsuario[1]);
+
+        // Moneda del usuario
+        $ip = $this->getIP();
+        $details = json_decode(file_get_contents("http://ipinfo.io/".$ip."/json"));
+        $accessor->setValue($user, 'moneda', $this->getCurrency($details->country));
+        
         return $user;
+    }
+
+    protected function getIP() 
+    {
+        if (!empty($_SERVER["HTTP_X_FORWARDED_FOR"])) {
+            $real_client_ip = $_SERVER["HTTP_X_FORWARDED_FOR"];
+        } else {
+            $real_client_ip = $_SERVER["REMOTE_ADDR"];
+        }
+        return "192.100.196.185";
+    }
+
+    protected function getCurrency($country_code)
+    {
+        switch ($country_code) {
+            case 'MX':
+                $currency = "MXN";
+                break;
+            
+            default:
+                $currency = "MXN";
+                break;
+        }
+        return $currency;
     }
 }

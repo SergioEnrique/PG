@@ -75,7 +75,7 @@ class ConnectController extends BaseConnectController
             // Authenticate the user
             $this->authenticateUser($request, $form->getData(), $error->getResourceOwnerName(), $error->getRawToken());
 
-            return new RedirectResponse($this->container->get('router')->generate('nw_user_postregistro_novios'));
+            return new Response("quepedo");
         }
 
         // reset the error in the session
