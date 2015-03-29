@@ -45,6 +45,22 @@ class UsersController extends Controller
             $this->get('security.context')->setToken($token);
             $this->get( 'event_dispatcher' )->dispatch(AuthenticationEvents::AUTHENTICATION_SUCCESS, new AuthenticationEvent( $token ) );
 
+            // Envio de correo de registro exitoso
+            $message = \Swift_Message::newInstance()
+            ->setSubject("Te registraste con éxito en PartyGift")
+            ->setFrom("info@newlywishes.com")
+            ->setTo($formRegistroPary["email"]->getData())
+            ->setContentType("text/html")
+            ->setBody(
+                $this->renderView(
+                    'PGPartyBundle:Users:correoRegistroExitoso.html.twig', array(
+                        'password' => $password,
+                        'email' => $userInformation->getEmail(),
+                    )
+                )
+            );
+            $this->get('mailer')->send($message);
+
             // Operaciones de registro exitoso
             return $this->render('PGPartyBundle:Users:registroExitoso.html.twig');
 

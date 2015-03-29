@@ -68,6 +68,8 @@ doctrine:
 services:
     hwi_auth.oauth_user_provider:
         class: HWI\Bundle\OAuthBundle\Security\Core\User\OAuthUserProvider
+        arguments: [ @router ]
+        scope: request
 
 # Swiftmailer Configuration
 swiftmailer:

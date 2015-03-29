@@ -39,14 +39,16 @@
                         <input type="text" id="username" name="_username" required="required" value="{{ last_username }}" placeholder="{% trans %}correo{% endtrans %}">
                         <input type="password" id="password" name="_password" required="required" placeholder="{% trans %}contraseña{% endtrans %}">
                         <input type="submit" id="_submit" name="_submit" value="{% trans %}Acceder{% endtrans %}">
-                        <img class="facebook" src="{{asset('img/facebook.png')}}" width="30" alt="">
+                        <a href="{{url('root')}}connect/facebook">
+                            <img class="facebook" src="{{asset('img/facebook.png')}}" width="30" alt="">
+                        </a>
                         <br>
                         <a href=""><span class="small-font recuperar-pass">{% trans %}Recuperar contraseña{% endtrans %}</span></a>
                         <input type="hidden" name="_target_path" value="{{url('pg_party_miCuenta')}}" />
                         <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
                     </form>
                 </div>
-                <a href="{{url('root')}}connect/facebook" target="popup" onclick="window.open('{{url('root')}}connect/facebook','name','width=400,height=600')">
+                <a href="{{url('root')}}connect/facebook">
                     <img class="facebook" src="{{asset('img/facebook.png')}}" width="40" height="40" alt="Facebook"/>
                 </a>
             </div>

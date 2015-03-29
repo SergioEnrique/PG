@@ -1,0 +1,9 @@
+{% extends '::correo.html.twig' %}
+
+{% block subject %}
+	Registro en PartyGift
+{% endblock %}
+
+{% block contenido %}
+	Te has registrado correctamente en PartyGift, puedes iniciar sesión con tu contraseña: {{password}}
+{% endblock %}

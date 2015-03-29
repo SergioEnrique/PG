@@ -75,7 +75,18 @@ class ConnectController extends BaseConnectController
             // Authenticate the user
             $this->authenticateUser($request, $form->getData(), $error->getResourceOwnerName(), $error->getRawToken());
 
-            return new Response("quepedo");
+            // Respuesta HTML
+            /*$respuestaHTML = "<script language=\"javascript\">
+                                window.onunload = refreshParent;
+                                function refreshParent() {
+                                    window.opener.location.href = \"".$this->container->get('router')->generate('pg_party_miCuenta')."\";
+                                }
+                                self.close();
+                            </script>";
+
+            return new Response($respuestaHTML);*/
+
+            return new RedirectResponse($this->container->get('router')->generate('pg_party_miCuenta'));
         }
 
         // reset the error in the session
@@ -105,12 +116,31 @@ class ConnectController extends BaseConnectController
             $nickname = $nicknameOriginal;
         }
 
+        // Generar contraseña aleatoria
+        $password = $this->randomPassword();
+
+        // Envio de correo de registro exitoso
+        $message = \Swift_Message::newInstance()
+        ->setSubject("Te registraste con éxito en PartyGift")
+        ->setFrom("info@newlywishes.com")
+        ->setTo($userInformation->getEmail())
+        ->setContentType("text/html")
+        ->setBody(
+            $this->container->get('templating')->render(
+                'PGPartyBundle:Users:correoRegistroExitosoFacebook.html.twig', array(
+                    'password' => $password,
+                    'email' => $userInformation->getEmail(),
+                )
+            )
+        );
+        $this->container->get('swiftmailer.mailer')->send($message);
+
         return $this->container->get('templating')->renderResponse('HWIOAuthBundle:Connect:registration.html.' . $this->getTemplatingEngine(), array(
             'key' => $key,
             'form' => $form->createView(),
             'userInformation' => $userInformation,
             'nickname' => $nickname,
-            'password' => $this->randomPassword(),
+            'password' => $password,
         ));
     }
 

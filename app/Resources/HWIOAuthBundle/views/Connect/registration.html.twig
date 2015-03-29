@@ -20,7 +20,7 @@
                     <form action="{{ path('hwi_oauth_connect_registration', {'key': key}) }}" {{ form_enctype(form) }} method="POST" class="hwi_oauth_registration_register">
                         <div class="row">
                             <div class="col-xs-offset-4 col-xs-4 puntosRosas">
-                                <div class="invisible">
+                                <div class="invisible" style="visibility:hidden; height:10px;">
                                     <span class="error-formulario">{{ form_errors(form.username) }}</span>
                                     {{ form_widget(form.username, { 'attr': {'class': 'input_registro_novios', 'value': userInformation.getEmail, 'placeholder': 'Nombre de usuario' } }) }}
                                     <br/>
