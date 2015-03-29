@@ -54,6 +54,7 @@ Para comenzar primero crea un bucketgift y después selecciónalo para crear tus
 Nuevo bucketgift: New bucketgift
 cuenta de paypal: paypal account
 monto: amount
+Para cada partygift, puedes elegir dividirlo en partes, para permitirles a tus invitados que entre muchos te regalen cosas como la renta del salón o la comida que se va a comprar. Cada uno de tus invitados podrá decir cuánto regalarte sin forzarlo a un monto en específico.: For each partygift, you can choose to split it into parts, to allow your guests to buy you a gift between everyone, like the rent of the saloon or the food you're going to buy. Each of your guests may decide how much they want to give, without forcing them to pay for a specific amount.
 Para poder retirar el saldo de tu cuenta, es necesario que tengas una cuenta PayPal (correo electrónico registrado en PayPal). Si no lo tienes, es muy fácil, rápido y seguro, sólo tienes que ingresar a www.PayPal.com o dar click en el ícono del lado derecho y registrarte para vincular tu correo electrónico a tu cuenta PayPal. Recuerda que sólo podrás retirar el saldo de tu cuenta a través de PayPal. Si tienes preguntas, no dudes en contactarnos.: To withdraw your account balance, you need to have a PayPal account (PayPal registered email). If you don´t, it's easy, safe and fast, you only need to go to www.PayPal.com by clicking on the icon to the right and register to link your email with your PayPal account. Remember that you can only withdraw your balance via PayPal. If you have any questions, don´t hesitate to contact us.
 enviar: send
 Enviar: Send
@@ -73,9 +74,11 @@ Cantidad: Quantity
 Subtotal: Subtotal
 Remover: Remove
 Hola %name%: Hello %name%
-
-
-
+Nuevo: New
+Nombre del gift: Gift name
+Valor del gift: Gift value
+Número de artículos: Number of items
+¿En cuántas partes quieres dividir este artículo?: In how many parts you'd like to split this gift?
 
 
 

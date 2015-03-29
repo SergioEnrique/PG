@@ -57,9 +57,28 @@
 				<label for="">{% trans %}Apellidos{% endtrans %}:</label>
 				<input type="text" placeholder="Bojalil"><br/>
 				<label for="">{% trans %}Moneda{% endtrans %}</label>
-				<select name="" id="">
-					{#<?php monedas(); ?>#}
-				</select><br/>
+				<select id="registroPartyForm_moneda" name="registroPartyForm[moneda]">
+                 	<option value="ARS">ARS - Peso Argentino</option>
+					<option value="AUD">AUD - Australian Dollar</option>
+					<option value="BOB">BOB - Boliviano</option>
+					<option value="BRL">BRL - Real Brasileiro</option>
+					<option value="CAD">CAD - Canadian Dollar</option>
+					<option value="CLP">CLP - Peso Chileno</option>
+					<option value="COP">COP - Peso Colombiano</option>
+					<option value="DKK">DKK - Danish Krone</option>
+					<option value="EUR">EUR - Euro</option>
+					<option value="GBP">GBP - Great Britain Pound</option>
+					<option value="GTQ">GTQ - Quetzal Guatemalteco</option>
+					<option value="HKD">HKD - Hong Kong Dollar</option>
+					<option value="MXN">MXN - Peso Mexicano</option>
+					<option value="NOK">NOK - Norwegian Krone</option>
+					<option value="NZD">NZD - Nueva Zelanda Dollar</option>
+					<option value="PEN">PEN - Sol Peruano</option>
+					<option value="SEK">SEK - Swedish Krone</option>
+					<option value="USD">USD - US Dollar</option>
+					<option value="VEF">VEF - Bolivar Venezolano</option>
+				</select>
+				<br/>
 				<h3>{% trans %}Cambiar contraseña{% endtrans %}</h3><br/>
 				<label for="" class="cambiar-pass">{% trans %}Contraseña actual{% endtrans %}:</label>
 				<input type="password"><br/>
@@ -81,29 +100,48 @@
 		</div>
 
 		<div id="nuevo-party" class="modal" style="display:none;">
-			<h2>Nuevo <span class="bolder">party</span>gift</h2><br/>
+			<h2>{% trans %}Nuevo{% endtrans %} <span class="bolder">party</span>gift</h2><br/>
 			<form action="">
-				<label for="">Nombre del gift:</label>
+				<label for="">{% trans %}Nombre del gift{% endtrans %}:</label>
 				<input type="text" placeholder=""><br/>
-				<label for="" class="label-descripcion">Descripción:</label>
+				<label for="" class="label-descripcion">{% trans %}Descripción{% endtrans %}:</label>
 				<textarea></textarea><br/>
-				<label for="">Moneda</label>
-				<select name="" id="">
-					{#<?php monedas(); ?>#}
-				</select><br/>
-				<label for="">Valor del gift:</label>
+				<label for="">{% trans %}Moneda{% endtrans %}</label>
+				<select id="registroPartyForm_moneda" name="registroPartyForm[moneda]">
+                 	<option value="ARS">ARS - Peso Argentino</option>
+					<option value="AUD">AUD - Australian Dollar</option>
+					<option value="BOB">BOB - Boliviano</option>
+					<option value="BRL">BRL - Real Brasileiro</option>
+					<option value="CAD">CAD - Canadian Dollar</option>
+					<option value="CLP">CLP - Peso Chileno</option>
+					<option value="COP">COP - Peso Colombiano</option>
+					<option value="DKK">DKK - Danish Krone</option>
+					<option value="EUR">EUR - Euro</option>
+					<option value="GBP">GBP - Great Britain Pound</option>
+					<option value="GTQ">GTQ - Quetzal Guatemalteco</option>
+					<option value="HKD">HKD - Hong Kong Dollar</option>
+					<option value="MXN">MXN - Peso Mexicano</option>
+					<option value="NOK">NOK - Norwegian Krone</option>
+					<option value="NZD">NZD - Nueva Zelanda Dollar</option>
+					<option value="PEN">PEN - Sol Peruano</option>
+					<option value="SEK">SEK - Swedish Krone</option>
+					<option value="USD">USD - US Dollar</option>
+					<option value="VEF">VEF - Bolivar Venezolano</option>
+				</select>
+				<br/>
+				<label for="">{% trans %}Valor del gift{% endtrans %}:</label>
 				<input type="text" placeholder="$"><br/>
 
-				<label for="">Número de artículos</label>
+				<label for="">{% trans %}Número de artículos{% endtrans %}</label>
 				<select name="" id="">
 					<option value="">1</option>
 				</select><br/>
-				<label for="">¿En cuántas partes quieres dividir este artículo? <div class="info-ball info-modal tooltip" title="Para cada partygift, puedes elegir dividirlo en partes, para permitirles a tus invitados que entre muchos te regalen cosas como la renta del salón o la comida que se va a comprar. Cada uno de tus invitados podrá decir cuánto regalarte sin forzarlo a un monto en específico.">?</div></label>
+				<label for="">{% trans %}¿En cuántas partes quieres dividir este artículo?{% endtrans %} <div class="info-ball info-modal tooltip" title="{% trans %}Para cada partygift, puedes elegir dividirlo en partes, para permitirles a tus invitados que entre muchos te regalen cosas como la renta del salón o la comida que se va a comprar. Cada uno de tus invitados podrá decir cuánto regalarte sin forzarlo a un monto en específico.{% endtrans %}">?</div></label>
 				<select name="" id="">
 					<option value="">1</option>
 				</select><br/>
 
-				<input type="submit" value="Agregar">
+				<input type="submit" value="{% trans %}Agregar{% endtrans %}">
 			</form>
 		</div>
 
