@@ -266,11 +266,9 @@ function checarmicuenta()
     }, 1000);
 }
 
-{% if app.session.flashbag.get('notice') is not null %}
-    $( document ).ready(function() {
-        $("#errores").dialog({modal: true});
-    });
-{% endif %}
+$(document).ready(function() {
+    $("#errores").dialog({modal: true});
+});
 
 </script>
 

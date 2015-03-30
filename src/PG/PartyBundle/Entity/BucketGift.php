@@ -181,4 +181,22 @@ class BucketGift
     {
         return $this->user;
     }
+
+    public function getFechaFormateada()
+    {
+        return $this->fecha->format('d / m / Y');
+    }
+
+    private $status = false;
+
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    public function setActive()
+    {
+        $this->status = true;
+        return true;
+    }
 }

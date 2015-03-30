@@ -73,11 +73,8 @@
 
 		<div id="nuevo-bucket" class="modal" style="display:none;">
 			<h2>{% trans %}Nuevo bucketgift{% endtrans %}</h2><br/>
-			<form action="">
-				<label for="">{% trans %}Evento{% endtrans %}:</label>
-				<input type="text" placeholder="{% trans %}Evento{% endtrans %}"><br/>
-				<label for="">{% trans %}Fecha{% endtrans %}:</label>
-				<input type="text" class="elegir-fecha" placeholder="{% trans %}Fecha{% endtrans %}"><br/>
+			<form action="{{ path('pg_party_miCuenta') }}" method="post" {{ form_enctype(formBucketGift) }}>
+				{{ form_widget(formBucketGift) }}
 				<input type="submit" value="{% trans %}Agregar{% endtrans %}">
 			</form>
 		</div>
@@ -140,16 +137,13 @@
 								<div class="sin-bucketgifts"><div class="triangulo-negro"></div>{% trans %}Para comenzar primero crea un bucketgift y después selecciónalo para crear tus partygifts.{% endtrans %}</div>
 							</td>
 						</tr>
-						<tr>
-							<td><img class="tooltip" src="{{asset('img/calendario.png')}}" width="25" title="15 / Enero / 2016"/></td>
-							<td class="abrir-evento">Quince años de mi hermana</td>
-							<td><a href=""><img src="{{asset('img/basura-gris.png')}}" width="40"/></a></td>
-						</tr>
-						<tr>
-							<td><img class="tooltip" src="{{asset('img/calendario.png')}}" width="25" title="20 / Mayo / 2015"/></td>
-							<td class="abrir-evento">Peda de graduación</td>
-							<td><a href=""><img src="{{asset('img/basura-gris.png')}}" width="40"/></a></td>
-						</tr>
+						{% for bucketgift in bucketGifts %}
+							<tr>
+								<td><img class="tooltip" src="{{asset('img/calendario.png')}}" width="25" title="{{bucketgift.getFechaFormateada}}"/></td>
+								<td class="abrir-evento" data-id="{{bucketgift.id}}">{{bucketgift.titulo}}</td>
+								<td><a href=""><img src="{{asset('img/basura-gris.png')}}" width="40"/></a></td>
+							</tr>
+						{% endfor %}
 					</table>
 				</nav>
 				<section id="eventos-cuenta" style="display:none;">
@@ -157,52 +151,58 @@
 						<h2>Para comenzar primero crea un <span class="bolder">bucket</span>gift y después seleccionalo para crear tus <span class="bolder">party</span>gifts.</h2>
 					</div>
 					<div class="evento-seleccion" style="display:none;">
-						<ul class="menu-eventos header-eventos">
-							<li><h2>Peda de graduación</h2></li>
-							<li>20 / Mayo / 2015</li>
-						</ul>
-						<ul class="menu-eventos">
-							<li><a href="#">{% trans %}¿Quién me regaló partygifts?{% endtrans %} (PDF)</a></li>
-							<li><a href="#nuevo-party" rel="modal:open">{% trans %}Agrega partygifts{% endtrans %}</a></li>
-						</ul>
-						<ul class="evento-micuenta">
-							<li>
-								<h3 class="texto-evento-grande">Gift 1 - Alcohol de la graduación - <a class="ver-evento" href="{{ url('pg_party_party') }}" target="_blank">{% trans %}COMPARTIR PARTYGIFT{% endtrans %}</a></h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio, doloremque voluptatum voluptate autem nihil eius exercitationem sequi inventore harum non quaerat velit maxime quas eligendi aliquam ipsam sit nisi amet!</p>
-								<ul class="gifts-partes">
-									<li>{% trans %}Gifts comprados{% endtrans %}: <span class="texto-evento-grande">50</span></li>
-									<li>{% trans %}Partes restantes{% endtrans %}: <span class="texto-evento-grande">20</span></li>
+	
+						{% for bucketgift in bucketGifts %}
+							<div class="evento-contenido hide" id="evento-{{bucketgift.id}}">
+								<ul class="menu-eventos header-eventos">
+									<li><h2>{{bucketgift.titulo}}</h2></li>
+									<li>{{bucketgift.getFechaFormateada}}</li>
 								</ul>
-							</li>
-							<li>
-								<a href=""><img class="basura-negro" src="{{ asset('img/basura-negro.png') }}" width="50"></a>
-								{% trans %}Valor{% endtrans %}<br/>
-								<span class="texto-evento-grande">$7,000 MXN</span><br/><br/>
-								{% trans %}Gift dividido en{% endtrans %}<br/>
-								<span class="texto-evento-grande">70 partes</span><br/><br/>
-								{% trans %}Valor por parte{% endtrans %}</br>
-								<span class="texto-evento-grande">$100 MXN</span><br/><br/>
-							</li>
-						</ul>
-						<ul class="evento-micuenta">
-							<li>
-								<h3 class="texto-evento-grande">Gift 1 - Alcohol de la graduación - <a class="ver-evento" href="{{ url('pg_party_party') }}" target="_blank">{% trans %}COMPARTIR PARTYGIFT{% endtrans %}</a></h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio, doloremque voluptatum voluptate autem nihil eius exercitationem sequi inventore harum non quaerat velit maxime quas eligendi aliquam ipsam sit nisi amet!</p>
-								<ul class="gifts-partes">
-									<li>{% trans %}Gifts comprados{% endtrans %}: <span class="texto-evento-grande">50</span></li>
-									<li>{% trans %}Partes restantes{% endtrans %}: <span class="texto-evento-grande">20</span></li>
+								<ul class="menu-eventos">
+									<li><a href="#">{% trans %}¿Quién me regaló partygifts?{% endtrans %} (PDF)</a></li>
+									<li><a href="#nuevo-party" rel="modal:open">{% trans %}Agrega partygifts{% endtrans %}</a></li>
 								</ul>
-							</li>
-							<li>
-								<a href=""><img class="basura-negro" src="{{ asset('img/basura-negro.png') }}" width="50"></a>
-								{% trans %}Valor{% endtrans %}<br/>
-								<span class="texto-evento-grande">$7,000 MXN</span><br/><br/>
-								{% trans %}Gift dividido en{% endtrans %}<br/>
-								<span class="texto-evento-grande">70 partes</span><br/><br/>
-								{% trans %}Valor por parte{% endtrans %}</br>
-								<span class="texto-evento-grande">$100 MXN</span><br/><br/>
-							</li>
-						</ul>
+								<ul class="evento-micuenta">
+									<li>
+										<h3 class="texto-evento-grande">Gift {{loop.index}} - Alcohol de la graduación - <a class="ver-evento" href="{{ url('pg_party_party') }}" target="_blank">{% trans %}COMPARTIR PARTYGIFT{% endtrans %}</a></h3>
+										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio, doloremque voluptatum voluptate autem nihil eius exercitationem sequi inventore harum non quaerat velit maxime quas eligendi aliquam ipsam sit nisi amet!</p>
+										<ul class="gifts-partes">
+											<li>{% trans %}Gifts comprados{% endtrans %}: <span class="texto-evento-grande">50</span></li>
+											<li>{% trans %}Partes restantes{% endtrans %}: <span class="texto-evento-grande">20</span></li>
+										</ul>
+									</li>
+									<li>
+										<a href=""><img class="basura-negro" src="{{ asset('img/basura-negro.png') }}" width="50"></a>
+										{% trans %}Valor{% endtrans %}<br/>
+										<span class="texto-evento-grande">$7,000 MXN</span><br/><br/>
+										{% trans %}Gift dividido en{% endtrans %}<br/>
+										<span class="texto-evento-grande">70 partes</span><br/><br/>
+										{% trans %}Valor por parte{% endtrans %}</br>
+										<span class="texto-evento-grande">$100 MXN</span><br/><br/>
+									</li>
+								</ul>
+								<ul class="evento-micuenta">
+									<li>
+										<h3 class="texto-evento-grande">Gift {{loop.index}} - Alcohol de la graduación - <a class="ver-evento" href="{{ url('pg_party_party') }}" target="_blank">{% trans %}COMPARTIR PARTYGIFT{% endtrans %}</a></h3>
+										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio, doloremque voluptatum voluptate autem nihil eius exercitationem sequi inventore harum non quaerat velit maxime quas eligendi aliquam ipsam sit nisi amet!</p>
+										<ul class="gifts-partes">
+											<li>{% trans %}Gifts comprados{% endtrans %}: <span class="texto-evento-grande">50</span></li>
+											<li>{% trans %}Partes restantes{% endtrans %}: <span class="texto-evento-grande">20</span></li>
+										</ul>
+									</li>
+									<li>
+										<a href=""><img class="basura-negro" src="{{ asset('img/basura-negro.png') }}" width="50"></a>
+										{% trans %}Valor{% endtrans %}<br/>
+										<span class="texto-evento-grande">$7,000 MXN</span><br/><br/>
+										{% trans %}Gift dividido en{% endtrans %}<br/>
+										<span class="texto-evento-grande">70 partes</span><br/><br/>
+										{% trans %}Valor por parte{% endtrans %}</br>
+										<span class="texto-evento-grande">$100 MXN</span><br/><br/>
+									</li>
+								</ul>
+							</div>
+						{% endfor %}
+						
 					</div> 
 				</section>
 			</div>
@@ -216,7 +216,7 @@
 {% block modales %}
 	{% include ':plantillasParciales:modalCarrito.html.twig' %}
 	{% include ':plantillasParciales:modalErrores.html.twig' %}
-{% endblock %}}
+{% endblock %}
 
 <script>
 	$( ".show-paypal" ).click(function() {
@@ -227,12 +227,32 @@
 		$( "div.eventos" ).toggleClass( "show" );
 	});
 
-	$( ".abrir-evento" ).click(function() {
-		$( ".evento-seleccion" ).toggleClass( "show" );
-		$( ".sin-evento" ).toggleClass( "hide" );
-		$( ".sin-bucketgifts" ).toggleClass( "hide" );
-		$( "#eventos-cuenta" ).toggleClass( "show-inline" );
+	var panelActivo = false;
 
+	$( ".abrir-evento" ).click(function() {
+		if(!panelActivo || !$(this).hasClass("active"))
+		{
+			$( ".evento-seleccion" ).addClass( "show" );
+			$( ".sin-evento" ).addClass( "hide" );
+			$( ".sin-bucketgifts" ).addClass( "hide" );
+			$( "#eventos-cuenta" ).addClass( "show-inline" );
+			$(".abrir-evento").removeClass("active");
+			$(this).addClass("active");
+			$(".evento-contenido").addClass("hide");
+			$("#evento-"+$(this).data("id")).removeClass("hide");
+			panelActivo = true;
+		}
+		else if(panelActivo && $(this).hasClass("active"))
+		{
+			$( ".evento-seleccion" ).removeClass( "show" );
+			$( ".sin-evento" ).removeClass( "hide" );
+			$( ".sin-bucketgifts" ).removeClass( "hide" );
+			$( "#eventos-cuenta" ).removeClass( "show-inline" );
+			$(".abrir-evento").removeClass("active");
+			$(".evento-contenido").addClass("hide");
+			panelActivo = false;
+		}
+		
 	});
 
 	$( "#buscar-click" ).click(function() {
@@ -264,18 +284,29 @@
 	};
 	$.datepicker.setDefaults($.datepicker.regional['es']);
 	$(function() {
-		$( ".elegir-fecha" ).datepicker({
+		$( "#pg_partybundle_bucketgift_date" ).datepicker({
 			inline: true,
 			showOtherMonths: true
 		})
 		.datepicker('widget').wrap('<div class="ll-skin-lugo"/>');
 	});
 
-	{% if app.session.flashbag.get('notice') is not null %}
-	    $( document ).ready(function() {
-	        $("#errores").dialog({modal: true});
-	    });
-	{% endif %}
+	$(document).ready(function() {
+    	$("#errores").dialog({modal: true});
+    	{% for bucketgift in bucketGifts %}
+    		{% if bucketgift.getStatus %}
+    			$( ".evento-seleccion" ).addClass( "show" );
+				$( ".sin-evento" ).addClass( "hide" );
+				$( ".sin-bucketgifts" ).addClass( "hide" );
+				$( "#eventos-cuenta" ).addClass( "show-inline" );
+				$(".abrir-evento").removeClass("active");
+				$('*[data-id="{{bucketgift.id}}"]').addClass("active");
+				$(".evento-contenido").addClass("hide");
+				$("#evento-{{bucketgift.id}}").removeClass("hide");
+				panelActivo = true;
+    		{% endif %}
+    	{% endfor %}
+    });
 
 </script>
 <script>
