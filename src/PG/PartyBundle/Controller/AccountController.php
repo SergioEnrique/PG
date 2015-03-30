@@ -89,6 +89,11 @@ class AccountController extends Controller
                     $em->flush();
 
                     $bucketGift->setActive();
+
+                    // Se borra el formulario para que puedan añadir nuevos BucketGifts
+                    $bucketGift = new BucketGift;
+                    $bucketGift->setUser($user);
+                    $formBucketGift = $this->createForm(new BucketGiftType, $bucketGift);
                 }
             }
     	}
