@@ -36,3 +36,7 @@ pg_party_registro:
 pg_party_checarmicuenta:
     path:     /checarmicuenta
     defaults: { _controller: PGPartyBundle:Users:checarmicuenta }
+
+pg_party_modificarcuenta:
+    path:      /modificarcuenta
+    defaults:  { _controller: PGPartyBundle:Account:modificarCuenta }

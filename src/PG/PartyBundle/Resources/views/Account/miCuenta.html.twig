@@ -49,35 +49,12 @@
 
 		<div id="mis-datos" class="modal" style="display:none;">
 			<h2>{% trans %}Mis datos{% endtrans %}</h2><br/>
-			<form action="">
-				<label for="">{% trans %}Correo electrónico{% endtrans %}:</label>
-				<input type="text" placeholder="edmond@rombomedia.com.mx"><br/>
-				<label for="">{% trans %}Nombre{% endtrans %}:</label>
-				<input type="text" placeholder="Edmond"><br/>
-				<label for="">{% trans %}Apellidos{% endtrans %}:</label>
-				<input type="text" placeholder="Bojalil"><br/>
-				<label for="">{% trans %}Moneda{% endtrans %}</label>
-				<select id="registroPartyForm_moneda" name="registroPartyForm[moneda]">
-                 	<option value="ARS">ARS - Peso Argentino</option>
-					<option value="AUD">AUD - Australian Dollar</option>
-					<option value="BOB">BOB - Boliviano</option>
-					<option value="BRL">BRL - Real Brasileiro</option>
-					<option value="CAD">CAD - Canadian Dollar</option>
-					<option value="CLP">CLP - Peso Chileno</option>
-					<option value="COP">COP - Peso Colombiano</option>
-					<option value="DKK">DKK - Danish Krone</option>
-					<option value="EUR">EUR - Euro</option>
-					<option value="GBP">GBP - Great Britain Pound</option>
-					<option value="GTQ">GTQ - Quetzal Guatemalteco</option>
-					<option value="HKD">HKD - Hong Kong Dollar</option>
-					<option value="MXN">MXN - Peso Mexicano</option>
-					<option value="NOK">NOK - Norwegian Krone</option>
-					<option value="NZD">NZD - Nueva Zelanda Dollar</option>
-					<option value="PEN">PEN - Sol Peruano</option>
-					<option value="SEK">SEK - Swedish Krone</option>
-					<option value="USD">USD - US Dollar</option>
-					<option value="VEF">VEF - Bolivar Venezolano</option>
-				</select>
+
+
+
+			<form action="{{ path('pg_party_modificarcuenta') }}" method="post" {{ form_enctype(formModificarCuenta) }}>
+				{{ form_errors(formModificarCuenta) }}
+			    {{ form_widget(formModificarCuenta) }}
 				<br/>
 				<h3>{% trans %}Cambiar contraseña{% endtrans %}</h3><br/>
 				<label for="" class="cambiar-pass">{% trans %}Contraseña actual{% endtrans %}:</label>
@@ -86,6 +63,10 @@
 				<input type="password"><br/>
 				<input type="submit" value="{% trans %}guardar cambios{% endtrans %}">
 			</form>
+
+
+
+
 		</div>
 
 		<div id="nuevo-bucket" class="modal" style="display:none;">
