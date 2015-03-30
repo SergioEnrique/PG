@@ -52,3 +52,4 @@ security:
         - { path: ^/usuarios/, role: ROLE_USER }
         - { path: ^/es/micuenta, role: ROLE_USER }
         - { path: ^/en/micuenta, role: ROLE_USER }
+        - { path: ^/micuenta$, role: ROLE_USER }

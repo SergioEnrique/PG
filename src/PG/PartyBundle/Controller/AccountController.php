@@ -109,9 +109,16 @@ class AccountController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $bucketGift = $em->getRepository('PGPartyBundle:BucketGift')->find($id);
-        $em->remove($bucketGift);
-        $em->flush();
 
-        return $this->redirect($this->generateUrl('pg_party_miCuenta'));
+        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY') || $this->getUser()->getId() != $bucketGift->getUser()->getId()) {
+            throw $this->createAccessDeniedException();
+        }
+        else{
+
+            $em->remove($bucketGift);
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('pg_party_miCuenta'));
+        }
     }
 }

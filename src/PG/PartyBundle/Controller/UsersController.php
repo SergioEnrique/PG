@@ -29,9 +29,11 @@ class UsersController extends Controller
             $userManager = $this->get('fos_user.user_manager'); 
             $user = $userManager->createUser(); 
 
+            $password = $formRegistroPary["userPass"]->getData();
+
             $user->setUsername($formRegistroPary["email"]->getData());
             $user->setEmail($formRegistroPary["email"]->getData());
-            $user->setPlainPassword($formRegistroPary["userPass"]->getData());
+            $user->setPlainPassword($password);
             $user->setMoneda($formRegistroPary["moneda"]->getData());
             $user->setEnabled(true);
             $user->setSaldo(0);
@@ -54,8 +56,8 @@ class UsersController extends Controller
             ->setBody(
                 $this->renderView(
                     'PGPartyBundle:Users:correoRegistroExitoso.html.twig', array(
-                        'password' => $formRegistroPary["userPass"]->getData(),
-                        'email' => $userInformation->getEmail(),
+                        'password' => $password,
+                        'email' => $formRegistroPary["email"]->getData(),
                     )
                 )
             );
