@@ -39,6 +39,9 @@ class ModificarCuentaType extends AbstractType
                 'VEF' => "VEF - Bolivar Venezolano",
             ),
         ));
+
+        $builder->add('oldPass', "password", array("mapped" => false, "required" => false, "label" => "Contraseña actual"));
+        $builder->add('newPass', "password", array("mapped" => false, "required" => false, "label" => "Nueva contraseña"));
     }
 
     /**

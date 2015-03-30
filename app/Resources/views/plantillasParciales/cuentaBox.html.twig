@@ -11,4 +11,5 @@
 	{% if app.user %}
 		<div class="datos">{{ app.user.nombre }}{% if is_granted('ROLE_USER') %} - <a href="{{ url('pg_party_miCuenta') }}">{% trans %}Mi cuenta{% endtrans %}</a>{% endif %}</div>
 	{% endif %}
+
 </div>

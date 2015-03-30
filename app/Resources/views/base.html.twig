@@ -219,6 +219,7 @@
 
     {% block modales %}
         {% include ':plantillasParciales:modalCarrito.html.twig' %}
+        {% include ':plantillasParciales:modalErrores.html.twig' %}
     {% endblock %}
 
 <script>
@@ -264,6 +265,12 @@ function checarmicuenta()
         });
     }, 1000);
 }
+
+{% if app.session.flashbag.get('notice') is not null %}
+    $( document ).ready(function() {
+        $("#errores").dialog({modal: true});
+    });
+{% endif %}
 
 </script>
 

@@ -52,15 +52,17 @@
 
 
 
-			<form action="{{ path('pg_party_modificarcuenta') }}" method="post" {{ form_enctype(formModificarCuenta) }}>
+			<form action="{{ path('pg_party_miCuenta') }}" method="post" {{ form_enctype(formModificarCuenta) }}>
 				{{ form_errors(formModificarCuenta) }}
-			    {{ form_widget(formModificarCuenta) }}
+			    {{ form_row(formModificarCuenta.email) }}
+				{{ form_row(formModificarCuenta.nombre) }}
+				{{ form_row(formModificarCuenta.apellidos) }}
+				{{ form_row(formModificarCuenta.moneda) }}
 				<br/>
 				<h3>{% trans %}Cambiar contraseña{% endtrans %}</h3><br/>
-				<label for="" class="cambiar-pass">{% trans %}Contraseña actual{% endtrans %}:</label>
-				<input type="password"><br/>
-				<label for="" class="cambiar-pass">{% trans %}Nueva contraseña{% endtrans %}:</label>
-				<input type="password"><br/>
+				{{ form_row(formModificarCuenta.oldPass) }}
+				{{ form_row(formModificarCuenta.newPass) }}
+				{{ form_rest(formModificarCuenta) }}
 				<input type="submit" value="{% trans %}guardar cambios{% endtrans %}">
 			</form>
 
@@ -213,6 +215,7 @@
 
 {% block modales %}
 	{% include ':plantillasParciales:modalCarrito.html.twig' %}
+	{% include ':plantillasParciales:modalErrores.html.twig' %}
 {% endblock %}}
 
 <script>
@@ -267,6 +270,13 @@
 		})
 		.datepicker('widget').wrap('<div class="ll-skin-lugo"/>');
 	});
+
+	{% if app.session.flashbag.get('notice') is not null %}
+	    $( document ).ready(function() {
+	        $("#errores").dialog({modal: true});
+	    });
+	{% endif %}
+
 </script>
 <script>
 	$(function() {

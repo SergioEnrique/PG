@@ -54,7 +54,7 @@ class UsersController extends Controller
             ->setBody(
                 $this->renderView(
                     'PGPartyBundle:Users:correoRegistroExitoso.html.twig', array(
-                        'password' => $password,
+                        'password' => $formRegistroPary["userPass"]->getData(),
                         'email' => $userInformation->getEmail(),
                     )
                 )
