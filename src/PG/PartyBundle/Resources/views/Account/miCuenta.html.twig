@@ -141,7 +141,7 @@
 							<tr>
 								<td><img class="tooltip" src="{{asset('img/calendario.png')}}" width="25" title="{{bucketgift.getFechaFormateada}}"/></td>
 								<td class="abrir-evento" data-id="{{bucketgift.id}}">{{bucketgift.titulo}}</td>
-								<td><a href=""><img src="{{asset('img/basura-gris.png')}}" width="40"/></a></td>
+								<td><a href="{{url('pg_party_bucketgift_delete', {'id': bucketgift.id})}}"><img src="{{asset('img/basura-gris.png')}}" width="40"/></a></td>
 							</tr>
 						{% endfor %}
 					</table>

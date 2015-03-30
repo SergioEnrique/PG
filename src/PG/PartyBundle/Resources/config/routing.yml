@@ -40,3 +40,7 @@ pg_party_checarmicuenta:
 pg_party_modificarcuenta:
     path:      /modificarcuenta
     defaults:  { _controller: PGPartyBundle:Account:modificarCuenta }
+
+pg_party_bucketgift_delete:
+    pattern:  /micuenta/bucketgift/{id}/delete
+    defaults: { _controller: PGPartyBundle:Account:bucketGiftDelete }

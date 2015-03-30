@@ -99,4 +99,14 @@ class AccountController extends Controller
             'bucketGifts' => $bucketGifts,
         ));
     }
+
+    public function bucketGiftDeleteAction($id) // Controlador que borra un BucketGift según el id pasado
+    {
+        $em = $this->getDoctrine()->getManager();
+        $bucketGift = $em->getRepository('PGPartyBundle:BucketGift')->find($id);
+        $em->remove($bucketGift);
+        $em->flush();
+
+        return $this->redirect($this->generateUrl('pg_party_miCuenta'));
+    }
 }
