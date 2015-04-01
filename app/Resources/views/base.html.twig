@@ -120,13 +120,13 @@
         <section id="busca-crea">
             <div class="busca wow fadeInLeft" data-wow-duration="1s">
                 <h2>{% trans %}Busca un bucketgift{% endtrans %}</h2><br/>
-                
-                    <input type="text" placeholder="{% trans %}nombre{% endtrans %}"><br/>
-                    <input type="text" placeholder="{% trans %}apellidos{% endtrans %}"><br/>
-                    <input type="text" placeholder="{% trans %}evento{% endtrans %}"><br/>
-                    <input type="text" placeholder="party ID"><br/>
-                    <input id="buscar-click" onClick="javascript:$.scrollTo('#footer',600, {offset:-10} );" type="submit" value="{% trans %}Buscar{% endtrans %}">
-                
+                    <form id="formBusqueda" action="{{path('pg_party_busqueda')}}" method="post"}}>
+                        <input type="text" name="nombre" placeholder="{% trans %}nombre{% endtrans %}"><br/>
+                        <input type="text" name="apellidos" placeholder="{% trans %}apellidos{% endtrans %}"><br/>
+                        <input type="text" name="evento" placeholder="{% trans %}evento{% endtrans %}"><br/>
+                        <input type="text" name="bucketid" placeholder="bucket ID"><br/>
+                        <input id="buscar-click" onClick="javascript:$.scrollTo('#footer',600, {offset:-10} );" type="submit" value="{% trans %}Buscar{% endtrans %}">
+                    </form>
             </div>
             <div class="crea wow fadeInRight" data-wow-duration="1s">
                 <h2>{% trans %}Crea un bucketgift{% endtrans %}</h2>
@@ -148,7 +148,7 @@
                         <td>{% trans %}Apellidos{% endtrans %}</td>
                         <td>{% trans %}Evento{% endtrans %}</td>
                         <td>{% trans %}Fecha{% endtrans %}</td>
-                        <td>Party ID</td>
+                        <td>Bucket ID</td>
                     </tr>
                     <tr class="evento-tr">
                         <td>Gustavo</td>
@@ -268,7 +268,39 @@ function checarmicuenta()
 
 $(document).ready(function() {
     $("#errores").dialog({modal: true});
+    $("#formBusqueda").submit(submitForm);
 });
+
+//// REALIZAR BÚSQUEDA CON AJAX \\\\
+function submitForm(){
+
+    var values = {};
+
+    $.each($("#formBusqueda").serializeArray(), function(i, field) {
+        values[field.name] = field.value;
+    });
+
+    $.ajax({
+        type        : 'POST',
+        url         : $("#formBusqueda").attr("action"),
+        data        : values,
+        success     : function(data) {
+            if(data.responseCode == 200 ){
+                ajaxSuccess(data);
+                return true;
+            }
+            else{
+                alert("No se agregó la nueva tarea. Intente nuevamente: "+data.algunDato);
+            }       
+        }
+    });
+    return false;
+}
+
+function ajaxSuccess(data)
+{
+    alert("Nombre: "+data.nombre);
+}
 
 </script>
 

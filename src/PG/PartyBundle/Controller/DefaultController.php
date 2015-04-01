@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\SecurityContext;
 
+use Symfony\Component\HttpFoundation\Request;
+
 class DefaultController extends Controller
 {
     public function indexAction()
@@ -53,5 +55,27 @@ class DefaultController extends Controller
             'partyGift' => $partyGift,
             'nombre' => $nombre,
         ));
+    }
+
+    public function busquedaAction(Request $request)
+    {
+        // Si se encontraron datos y es peticion ajax
+        if($this->getRequest()->isXmlHttpRequest() && true)
+        {
+            // La petición funciona
+            $return["responseCode"] = 200;
+            $return["nombre"] = $request->request->get('nombre');
+            $responseCode = 200;
+            $return = json_encode($return);
+        }
+        else{
+            // La petición no funciona
+            $return["responseCode"] = 500;
+            $responseCode = 500;
+            $return = json_encode($return);
+        }
+
+        // Regresa el resultado en JSON
+        return new Response($return, $responseCode, array('Content-Type'=>'application/json'));
     }
 }

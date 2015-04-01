@@ -48,3 +48,7 @@ pg_party_bucketgift_delete:
 pg_party_partygift_delete:
     pattern:  /micuenta/partygift/{id}/delete
     defaults: { _controller: PGPartyBundle:Account:partyGiftDelete }
+
+pg_party_busqueda:
+    path:     /busqueda
+    defaults: { _controller: PGPartyBundle:Default:busqueda }
