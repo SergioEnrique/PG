@@ -359,4 +359,9 @@ class MesaRegalos
     {
         return number_format($this->getPrecioTotal()/$this->getHorcruxes(), 2, '.', ',');
     }
+
+    public function getHorcruxesComprables()
+    {
+        return $this->getCantidad() * $this->getHorcruxes() - $this->getHorcruxesPagados();
+    }
 }

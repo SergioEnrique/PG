@@ -16,7 +16,7 @@ pg_party_homepage:
         _locale: en|es
 
 pg_party_party:
-    path:     /{_locale}/partygift
+    path:     /{_locale}/partygift/{id}
     defaults: { _controller: PGPartyBundle:Default:party }
     requirements:
         _locale: en|es

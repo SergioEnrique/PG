@@ -39,8 +39,19 @@ class DefaultController extends Controller
         );
     }
 
-    public function partyAction()
+    public function partyAction($id)
     {
-        return $this->render('PGPartyBundle:Default:party.html.twig');
+        // Obtener el partygift según su ID
+        $em = $this->getDoctrine()->getManager();
+        $partyGiftRepo = $em->getRepository('NWPrincipalBundle:MesaRegalos');
+        $partyGift = $partyGiftRepo->find($id);
+
+        // Buscar el nombre del creador del partygift
+        $nombre = $partyGift->getBucketGift()->getUser()->getNombre();
+
+        return $this->render('PGPartyBundle:Default:party.html.twig', array(
+            'partyGift' => $partyGift,
+            'nombre' => $nombre,
+        ));
     }
 }

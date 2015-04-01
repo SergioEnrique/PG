@@ -131,7 +131,7 @@
 								{% for partygift in bucketgift.mesaregalos %}
 									<ul class="evento-micuenta">
 										<li>
-											<h3 class="texto-evento-grande">Gift {{loop.index}} - {{partygift.regalo}} - <a class="ver-evento" href="{{ url('pg_party_party') }}" target="_blank">{% trans %}COMPARTIR PARTYGIFT{% endtrans %}</a></h3>
+											<h3 class="texto-evento-grande">Gift {{loop.index}} - {{partygift.regalo}} - <a class="ver-evento" href="{{ url('pg_party_party', {'id': partygift.id}) }}" target="_blank">{% trans %}COMPARTIR PARTYGIFT{% endtrans %}</a></h3>
 											<p>{{partygift.descripcion}}</p>
 											<ul class="gifts-partes">
 												<li>{% trans %}Gifts comprados{% endtrans %}: <span class="texto-evento-grande">{{partygift.horcruxesPagados}}</span></li>

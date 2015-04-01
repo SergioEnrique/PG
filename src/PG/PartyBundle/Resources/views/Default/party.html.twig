@@ -50,9 +50,9 @@
             <div class="max-wrapper">
                 <ul>
                     <li>
-                        <h2>{% trans %}bucketgift de <span class="rosa-persona">Gustavo</span>{% endtrans %}</h2><br/>
+                        <h2>{% trans %}bucketgift de <span class="rosa-persona">%nombre%</span>{% endtrans %}</h2><br/>
                         <?php $url_actual = "http://" . $_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"]; ?>
-                        <div class="fb-share-button" data-href="{{ path(app.request.get('_route')) }}?>" data-layout="button_count"></div>
+                        <div class="fb-share-button" data-href="{{ path(app.request.get('_route'), {'id': partyGift.id}) }}?>" data-layout="button_count"></div>
                         <br/><br/>
                         <a class="twitter-share-button"
   href="<?php echo($url_actual); ?>"></a>
@@ -61,24 +61,26 @@
                         </script>
                     </li>
                     <li>
-                        <h3 class="texto-evento-grande">Peda de graduación</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio, doloremque voluptatum voluptate autem nihil eius exercitationem sequi inventore harum non quaerat velit maxime quas eligendi aliquam ipsam sit nisi amet!</p>
+                        <h3 class="texto-evento-grande">{{partyGift.bucketGift.titulo}} - {{partyGift.regalo}}</h3>
+                        <p style="width:425px;">{{partyGift.descripcion}}</p>
                         
                         <form action="">
                         {% trans %}¿Cuántas partes deseas regalar?{% endtrans %}
                             <select>
-                                <option>1</option>
+                                {% for i in 1..partyGift.getHorcruxesComprables %}
+                                    <option>{{i}}</option>
+                                {% endfor %}
                             </select>
                             <input type="submit" value="{% trans %}Agregar{% endtrans %}">
                         </form>
                     </li>
                     <li>
                         {% trans %}Valor{% endtrans %}<br/>
-                        <span class="texto-evento-grande">$7,000 MXN</span><br/><br/>
+                        <span class="texto-evento-grande">${{partyGift.getPrecioTotalFormateado}} {{partyGift.moneda}}</span><br/><br/>
                         {% trans %}Gift dividido en{% endtrans %}<br/>
-                        <span class="texto-evento-grande">70 partes</span><br/><br/>
+                        <span class="texto-evento-grande">{{partyGift.horcruxes}} partes</span><br/><br/>
                         {% trans %}Valor por parte{% endtrans %}</br>
-                        <span class="texto-evento-grande">$100 MXN</span><br/><br/>
+                        <span class="texto-evento-grande">${{partyGift.getPrecioParteFormateado}} {{partyGift.moneda}}</span><br/><br/>
                     </li>
                 </ul>
             </div>
