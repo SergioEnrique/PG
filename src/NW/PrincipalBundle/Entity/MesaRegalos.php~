@@ -349,4 +349,32 @@ class MesaRegalos
     {
         return $this->catregalos;
     }
+    /**
+     * @var string
+     */
+    private $moneda;
+
+
+    /**
+     * Set moneda
+     *
+     * @param string $moneda
+     * @return MesaRegalos
+     */
+    public function setMoneda($moneda)
+    {
+        $this->moneda = $moneda;
+
+        return $this;
+    }
+
+    /**
+     * Get moneda
+     *
+     * @return string 
+     */
+    public function getMoneda()
+    {
+        return $this->moneda;
+    }
 }

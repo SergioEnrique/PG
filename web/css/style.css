@@ -20,6 +20,16 @@ input[type=text],input[type=password]{
 	color:#FFFFFF;
 	border:none;	
 }
+input[type=number]{
+	height:30px;
+	box-sizing:border-box;
+	padding:10px;
+	color:#FFFFFF;
+	border:none;	
+	display: inline-block;
+ 	background: #262626;
+  	width: 44%;
+}
 input[type=submit]{
 	background:#8447B0;
 	color:#FFFFFF;

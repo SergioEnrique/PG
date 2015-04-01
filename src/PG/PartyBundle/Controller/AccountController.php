@@ -7,9 +7,11 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 
 use PG\PartyBundle\Entity\BucketGift;
+use NW\PrincipalBundle\Entity\MesaRegalos;
 
 use PG\PartyBundle\Form\ModificarCuentaType;
 use PG\PartyBundle\Form\BucketGiftType;
+use NW\PrincipalBundle\Form\MesaRegalosType;
 
 class AccountController extends Controller
 {
@@ -35,6 +37,12 @@ class AccountController extends Controller
 
         // Generar formulario para nuevo BucketGift
         $formBucketGift = $this->createForm(new BucketGiftType, $bucketGift);
+
+        // Crear nuevo PartyGift independiente
+        $partyGift = new MesaRegalos;
+
+        // Crear nuevo formulario de PartyGift
+        $formPartyGift = $this->createForm(new MesaRegalosType, $partyGift);
 
     	// Recuperando formularios
     	if('POST' === $request->getMethod()) {
@@ -96,11 +104,35 @@ class AccountController extends Controller
                     $formBucketGift = $this->createForm(new BucketGiftType, $bucketGift);
                 }
             }
+            // Formulario de Nuevo PartyGift
+            else if ($request->request->has($formPartyGift->getName())) {
+                $formPartyGift->handleRequest($request);
+                if($formPartyGift->isValid())
+                {
+                    $bucketGiftId = $formPartyGift['bucketGiftId']->getData();
+                    $bucketGiftEntity = $em->getRepository('PGPartyBundle:BucketGift');
+                    $miBucketGift = $bucketGiftEntity->find($bucketGiftId);
+
+                    $partyGift->setBucketGift($miBucketGift);
+                    $partyGift->setHorcruxesPagados(0);
+
+                    $em->persist($partyGift);
+                    $em->flush();
+
+                    // Se marca el bucketgift como activo
+                    $bucketGifts->get($bucketGifts->indexOf($miBucketGift))->setActive();
+
+                    // Se borra el formulario para hacer nuevo partygift
+                    $partyGift = new MesaRegalos;
+                    $formPartyGift = $this->createForm(new MesaRegalosType, $partyGift);
+                }
+            }
     	}
 
         return $this->render('PGPartyBundle:Account:micuenta.html.twig', array(
         	'formModificarCuenta' => $formModificarCuenta->createView(),
             'formBucketGift' => $formBucketGift->createView(),
+            'formPartyGift' => $formPartyGift->createView(),
             'bucketGifts' => $bucketGifts,
         ));
     }
@@ -115,7 +147,31 @@ class AccountController extends Controller
         }
         else{
 
+            // Remover todos los partygifts
+            $partyGiftsArray = $bucketGift->getMesaRegalos()->toArray();
+            foreach ($partyGiftsArray as $key => $partyGift) {
+                $em->remove($partyGift);
+            }
+
+            // Remover el bucketgift
             $em->remove($bucketGift);
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('pg_party_miCuenta'));
+        }
+    }
+
+    public function partyGiftDeleteAction($id) // Controlador que borra un PartyGift según el id pasado
+    {
+        $em = $this->getDoctrine()->getManager();
+        $partyGift = $em->getRepository('NWPrincipalBundle:MesaRegalos')->find($id);
+
+        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY') || $this->getUser()->getId() != $partyGift->getBucketGift()->getUser()->getId()) {
+            throw $this->createAccessDeniedException();
+        }
+        else{
+
+            $em->remove($partyGift);
             $em->flush();
 
             return $this->redirect($this->generateUrl('pg_party_miCuenta'));

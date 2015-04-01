@@ -16,7 +16,7 @@ pg_party_homepage:
         _locale: en|es
 
 pg_party_party:
-    path:     /{_locale}/bucketgift
+    path:     /{_locale}/partygift
     defaults: { _controller: PGPartyBundle:Default:party }
     requirements:
         _locale: en|es
@@ -44,3 +44,7 @@ pg_party_modificarcuenta:
 pg_party_bucketgift_delete:
     pattern:  /micuenta/bucketgift/{id}/delete
     defaults: { _controller: PGPartyBundle:Account:bucketGiftDelete }
+
+pg_party_partygift_delete:
+    pattern:  /micuenta/partygift/{id}/delete
+    defaults: { _controller: PGPartyBundle:Account:partyGiftDelete }

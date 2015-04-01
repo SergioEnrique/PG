@@ -20,11 +20,6 @@ class MesaRegalos
     private $eventoId;
 
     /**
-     * @var integer
-     */
-    private $categoria;
-
-    /**
      * @var string
      */
     private $regalo;
@@ -108,29 +103,6 @@ class MesaRegalos
     public function getEventoId()
     {
         return $this->eventoId;
-    }
-
-    /**
-     * Set categoria
-     *
-     * @param integer $categoria
-     * @return MesaRegalos
-     */
-    public function setCategoria($categoria)
-    {
-        $this->categoria = $categoria;
-
-        return $this;
-    }
-
-    /**
-     * Get categoria
-     *
-     * @return integer 
-     */
-    public function getCategoria()
-    {
-        return $this->categoria;
     }
 
     /**
@@ -348,5 +320,43 @@ class MesaRegalos
     public function getCatregalos()
     {
         return $this->catregalos;
+    }
+    /**
+     * @var string
+     */
+    private $moneda;
+
+
+    /**
+     * Set moneda
+     *
+     * @param string $moneda
+     * @return MesaRegalos
+     */
+    public function setMoneda($moneda)
+    {
+        $this->moneda = $moneda;
+
+        return $this;
+    }
+
+    /**
+     * Get moneda
+     *
+     * @return string 
+     */
+    public function getMoneda()
+    {
+        return $this->moneda;
+    }
+
+    public function getPrecioTotalFormateado()
+    {
+        return number_format($this->getPrecioTotal(), 2, '.', ',');
+    }
+
+    public function getPrecioParteFormateado()
+    {
+        return number_format($this->getPrecioTotal()/$this->getHorcruxes(), 2, '.', ',');
     }
 }

@@ -27,8 +27,6 @@ NW\PrincipalBundle\Entity\MesaRegalos:
     fields:
         eventoId:
             type: integer
-        categoria:
-            type: integer
         regalo:
             type: string
             length: 100
@@ -42,3 +40,6 @@ NW\PrincipalBundle\Entity\MesaRegalos:
             type: integer
         descripcion:
             type: text
+        moneda:
+            type: string
+            length: 3
