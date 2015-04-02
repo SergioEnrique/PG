@@ -236,7 +236,7 @@ function submitForm(){
         values[field.name] = field.value;
     });
 
-    $("#resultadosBusqueda").empty();
+    $(".evento-tr").remove();
     $(".evento-desplegar").empty();
     $("div.eventos").addClass("show");
     $(".evento-desplegar").removeClass( "show" );
