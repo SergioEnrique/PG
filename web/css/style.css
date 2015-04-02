@@ -344,7 +344,7 @@ section#busca-crea input[type=submit]{
 /* FIN TABLA EVENTOS */
 
 /* EVENTO DESPLEGABLE */
-#evento-desplegar{
+.evento-desplegar{
 	display:none;
 	width:100%;
 	background:#FFFFFF;
@@ -352,17 +352,17 @@ section#busca-crea input[type=submit]{
 	margin-top:20px;	
 	margin-bottom:0px;
 }
-#evento-desplegar ul{
+.evento-desplegar ul{
 	display:inline-block;
 	vertical-align:top;
 	padding:0;
 	margin:0;	
 	list-syle:none;
 }
-#evento-desplegar h2{
+.evento-desplegar h2{
 	font-weight:400;	
 }
-#evento-desplegar ul li{
+.evento-desplegar ul li{
 	display:inline-block;
 	vertical-align:top;
 	width:45%;
@@ -370,10 +370,10 @@ section#busca-crea input[type=submit]{
 	padding:0 20px 0 0;
 	box-sizing:border-box;
 }
-#evento-desplegar ul li:first-child{
+.evento-desplegar ul li:first-child{
 	width:34%;
 }
-#evento-desplegar ul li:last-child{
+.evento-desplegar ul li:last-child{
 	padding-left:20px;
 	width:20%;
 }
@@ -385,12 +385,12 @@ section#busca-crea input[type=submit]{
 .rosa-persona{
 	color:#A262A7;
 }
-#evento-desplegar input[type=submit]{
+.evento-desplegar input[type=submit]{
 	width:90px;
 	background:#A0D562;
 	color:#262626;	
 }
-#evento-desplegar select{
+.evento-desplegar select{
 	display:inline-block;
 	width:50px;	
 	height:30px !important;

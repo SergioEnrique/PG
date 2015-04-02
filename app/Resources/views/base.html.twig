@@ -142,7 +142,7 @@
                 {% endif %}
             </div>
             <div id="zona-eventos" class="eventos">
-                <table cellpadding="0" cellspacing="0">
+                <table cellpadding="0" cellspacing="0" id="resultadosBusqueda">
                     <tr class="titulos-eventos">
                         <td>{% trans %}Nombre{% endtrans %}</td>
                         <td>{% trans %}Apellidos{% endtrans %}</td>
@@ -150,66 +150,13 @@
                         <td>{% trans %}Fecha{% endtrans %}</td>
                         <td>Bucket ID</td>
                     </tr>
-                    <tr class="evento-tr">
-                        <td>Gustavo</td>
-                        <td>Solorio Serrano</td>
-                        <td>Peda de graduación</td>
-                        <td>11/mayo/2015</td>
-                        <td>230</td>
-                    </tr>
-                    <tr class="evento-tr">
-                        <td>Gustavo</td>
-                        <td>Solorio Serrano</td>
-                        <td>Peda de graduación</td>
-                        <td>11/mayo/2015</td>
-                        <td>230</td>
-                    </tr>
-                    <tr class="evento-tr">
-                        <td>Gustavo</td>
-                        <td>Solorio Serrano</td>
-                        <td>Peda de graduación</td>
-                        <td>11/mayo/2015</td>
-                        <td>230</td>
-                    </tr>
                 </table>
             </div>
         </section>
        
-        <div id="evento-desplegar" class="evento-desplegar">
-            <div class="max-wrapper">
-                <ul>
-                    <li>
-                        <h2>{% trans %}bucketgift de <span class="rosa-persona">Gustavo</span>{% endtrans %}</h2><br/>
-                        <div class="fb-share-button" data-href="{{ path(app.request.get('_route')) }}" data-layout="button_count"></div>
-                        <br/><br/>
-                        <a class="twitter-share-button" href="{{ path(app.request.get('_route')) }}"></a>
-                        <script>
-                        window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return;js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);t._e=[];t.ready=function(f){t._e.push(f);};return t;}(document,"script","twitter-wjs"));
-                        </script>
-                    </li>
-                    <li>
-                        <h3 class="texto-evento-grande">Peda de graduación</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio, doloremque voluptatum voluptate autem nihil eius exercitationem sequi inventore harum non quaerat velit maxime quas eligendi aliquam ipsam sit nisi amet!</p>
-                        
-                        <form action="">
-                        {% trans %}¿Cuántas partes deseas regalar?{% endtrans %}
-                            <select>
-                                <option>1</option>
-                            </select>
-                            <input type="submit" value="{% trans %}Agregar{% endtrans %}">
-                        </form>
-                    </li>
-                    <li>
-                        {% trans %}Valor{% endtrans %}<br/>
-                        <span class="texto-evento-grande">$7,000 MXN</span><br/><br/>
-                        {% trans %}Gift dividido en{% endtrans %}<br/>
-                        <span class="texto-evento-grande">70 {% trans %}partes{% endtrans %}</span><br/><br/>
-                        {% trans %}Valor por parte{% endtrans %}</br>
-                        <span class="texto-evento-grande">$100 MXN</span><br/><br/>
-                    </li>
-                </ul>
-            </div>
+        <div class="evento-desplegar">
         </div>
+
         <div class="pre-footer"><div class="party-logo-footer"><img src="{{asset('img/partygift-logo.png')}}" width="275" height="86" /></div></div>
         {% block footer %}
             {% include ':plantillasParciales:footer.html.twig' %}
@@ -227,18 +174,27 @@ $( "div.ingresar" ).click(function() {
   $( "div#login" ).toggleClass( "show" );
 });
 
-$( "#buscar-click" ).click(function() {
-  $( "div.eventos" ).toggleClass( "show" );
-});
+var panelActivo = false;
 
-$( "#buscar-click" ).click(function() {
-  $( "#evento-desplegar" ).toggleClass( "hide" );
-});
+$("#resultadosBusqueda").on("click", ".evento-tr", function(){
+    if(!panelActivo || !$(this).hasClass("active"))
+    {
+        $(".evento-tr").removeClass("active");
+        $(this).addClass("active");
+        panelActivo = true;
 
-$( ".evento-tr" ).click(function() {
-    javascript:$.scrollTo('#footer',600, {offset:-10});
-  $("#evento-desplegar").toggleClass( "hide" );
-  $("#evento-desplegar").toggleClass( "show" );
+        $(".evento-desplegar").addClass( "show" );
+        $(".mipartygift").addClass("hide");
+        $(".bucket-"+$(this).data("id")).removeClass("hide");
+        javascript:$.scrollTo('.evento-desplegar', 800, {offset:-174} );
+    }
+    else if(panelActivo && $(this).hasClass("active"))
+    {
+        $(".evento").removeClass("active");
+        panelActivo = false;
+        $(".mipartygift").addClass("hide");
+        $(".evento-desplegar").removeClass( "show" );
+    }
 });
 
 function enviaformulario() {
@@ -280,6 +236,10 @@ function submitForm(){
         values[field.name] = field.value;
     });
 
+    $("#resultadosBusqueda").empty();
+    $(".evento-desplegar").empty();
+    $("div.eventos").addClass("show");
+
     $.ajax({
         type        : 'POST',
         url         : $("#formBusqueda").attr("action"),
@@ -299,7 +259,21 @@ function submitForm(){
 
 function ajaxSuccess(data)
 {
-    alert("Nombre: "+data.nombre);
+    var filaResultado, filaResultadoAmpliado = "";
+
+    // Lo que se hace con los resultados
+    for (var i = data.result.length - 1; i >= 0; i--) {
+
+        filaResultado = "<tr data-id=\""+data.result[i].bucketid+"\" class=\"evento-tr\"><td>"+data.result[i].nombre+"</td><td>"+data.result[i].apellidos+"</td><td>"+data.result[i].evento+"</td><td>"+data.result[i].fecha+"</td><td>"+data.result[i].bucketid+"</td></tr>";
+
+        for (var j = data.result[i].partygifts.length - 1; j >= 0; j--) {
+            filaResultadoAmpliado = '<div class="max-wrapper mipartygift bucket-'+data.result[i].bucketid+'" style="margin-bottom:30px;"><ul><li><h2>bucketgift de <span class="rosa-persona">'+data.result[i].nombre+'</span></h2><br/></li><li><h3 class="texto-evento-grande">'+data.result[i].partygifts[j].regalo+'</h3><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio, doloremque voluptatum voluptate autem nihil eius exercitationem sequi inventore harum non quaerat velit maxime quas eligendi aliquam ipsam sit nisi amet!</p><form action="">¿Cuántas partes deseas regalar?<select><option>1</option></select><input type="submit" value="Agregar"></form></li><li>Valor<br/><span class="texto-evento-grande">$7,000 MXN</span><br/><br/>Gift dividido en<br/><span class="texto-evento-grande">70 partes</span><br/><br/>Valor por parte</br><span class="texto-evento-grande">$100 MXN</span><br/><br/></li></ul></div>';
+            $(".evento-desplegar").append(filaResultadoAmpliado);
+        };
+
+        $("#resultadosBusqueda").append(filaResultado);
+        
+    };
 }
 
 </script>

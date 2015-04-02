@@ -59,12 +59,59 @@ class DefaultController extends Controller
 
     public function busquedaAction(Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
+
         // Si se encontraron datos y es peticion ajax
-        if($this->getRequest()->isXmlHttpRequest() && true)
+        if($this->getRequest()->isXmlHttpRequest())
         {
+            $usuariosRepo = $em->getRepository('NWUserBundle:User');
+            $bucketsRepo = $em->getRepository('PGPartyBundle:BucketGift');
+
+            $query = $bucketsRepo->createQueryBuilder('b') // Tabla de BucketGifts
+                ->innerJoin('b.user', 'u'); // Tabla de Usuarios
+
+            if($request->request->get('nombre'))
+            {
+                $query->orWhere('u.nombre LIKE :nombre');
+                $parametros['nombre'] = '%'.$request->request->get('nombre').'%';
+            }
+            if($request->request->get('apellidos'))
+            {
+                $query->orWhere('u.apellidos LIKE :apellidos');
+                $parametros['apellidos'] = '%'.$request->request->get('apellidos').'%';
+            }
+            if($request->request->get('evento'))
+            {
+                $query->orWhere('b.titulo LIKE :evento');
+                $parametros['evento'] = '%'.$request->request->get('evento').'%';
+            }
+            if($request->request->get('bucketid'))
+            {
+                $query->orWhere('b.id = :bucketid');
+                $parametros['bucketid'] = $request->request->get('bucketid');
+            }
+
+            $query->setParameters($parametros);
+            $result = $query->getQuery()->getResult();
+
+            $resultados=array();
+            foreach ($result as $key => $value) {
+                $resultados[$key]['nombre'] = $result[$key]->getUser()->getNombre();
+                $resultados[$key]['apellidos'] = $result[$key]->getUser()->getApellidos();
+                $resultados[$key]['evento'] = $result[$key]->getTitulo();
+                $resultados[$key]['bucketid'] = $result[$key]->getId();
+                $resultados[$key]['fecha'] = $result[$key]->getFechaformateada();
+                $resultados[$key]['partygifts'] = array();
+                foreach ($result[$key]->getMesaRegalos()->toArray() as $index => $partygift) {
+                    $resultados[$key]['partygifts'][$index] = $partygift->getAsArray();
+                }
+                
+            }
+
+            $return["result"] = $resultados;
+
             // La petición funciona
             $return["responseCode"] = 200;
-            $return["nombre"] = $request->request->get('nombre');
             $responseCode = 200;
             $return = json_encode($return);
         }
