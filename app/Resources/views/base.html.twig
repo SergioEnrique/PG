@@ -267,7 +267,11 @@ function ajaxSuccess(data)
         filaResultado = "<tr data-id=\""+data.result[i].bucketid+"\" class=\"evento-tr\"><td>"+data.result[i].nombre+"</td><td>"+data.result[i].apellidos+"</td><td>"+data.result[i].evento+"</td><td>"+data.result[i].fecha+"</td><td>"+data.result[i].bucketid+"</td></tr>";
 
         for (var j = data.result[i].partygifts.length - 1; j >= 0; j--) {
-            filaResultadoAmpliado = '<div class="max-wrapper mipartygift bucket-'+data.result[i].bucketid+'" style="margin-bottom:30px;"><ul><li><h2>bucketgift de <span class="rosa-persona">'+data.result[i].nombre+'</span></h2><br/></li><li><h3 class="texto-evento-grande">'+data.result[i].partygifts[j].regalo+'</h3><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio, doloremque voluptatum voluptate autem nihil eius exercitationem sequi inventore harum non quaerat velit maxime quas eligendi aliquam ipsam sit nisi amet!</p><form action="">¿Cuántas partes deseas regalar?<select><option>1</option></select><input type="submit" value="Agregar"></form></li><li>Valor<br/><span class="texto-evento-grande">$7,000 MXN</span><br/><br/>Gift dividido en<br/><span class="texto-evento-grande">70 partes</span><br/><br/>Valor por parte</br><span class="texto-evento-grande">$100 MXN</span><br/><br/></li></ul></div>';
+            filaResultadoAmpliado = '<div class="max-wrapper mipartygift bucket-'+data.result[i].bucketid+'" style="margin-bottom:30px;"><ul><li><h2>partygift de <span class="rosa-persona">'+data.result[i].nombre+'</span></h2><br/></li><li><h3 class="texto-evento-grande">'+data.result[i].partygifts[j].regalo+'</h3><p>'+data.result[i].partygifts[j].descripcion+'</p><form action="">¿Cuántas partes deseas regalar?<select>';
+            for (var k = 1; k <= data.result[i].partygifts[j].partesFaltantes; k++) {
+                filaResultadoAmpliado += '<option>'+k+'</option>';
+            };
+            filaResultadoAmpliado += '</select><input type="submit" value="Agregar"></form></li><li>Valor<br/><span class="texto-evento-grande">$'+data.result[i].partygifts[j].precioTotalFormateado+' '+data.result[i].partygifts[j].moneda+'</span><br/><br/>Gift dividido en<br/><span class="texto-evento-grande">'+data.result[i].partygifts[j].horcruxes+' partes</span><br/><br/>Valor por parte</br><span class="texto-evento-grande">$'+data.result[i].partygifts[j].valorPorParte+' '+data.result[i].partygifts[j].moneda+'</span><br/><br/></li></ul></div>';
             $(".evento-desplegar").append(filaResultadoAmpliado);
         };
 
