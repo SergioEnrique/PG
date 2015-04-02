@@ -239,6 +239,7 @@ function submitForm(){
     $("#resultadosBusqueda").empty();
     $(".evento-desplegar").empty();
     $("div.eventos").addClass("show");
+    $(".evento-desplegar").removeClass( "show" );
 
     $.ajax({
         type        : 'POST',
