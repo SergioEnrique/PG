@@ -965,6 +965,102 @@ tr.carritoVaciado{
 	margin-top:-25px;
 	margin-right:20px;	
 }
+.invisible {
+  position: absolute;
+  visibility: hidden;
+}
+
+
+.simpleCart_items table{
+    padding:0px;
+    margin:0px;    
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:12px;
+    border-collapse: separate;
+    border-spacing: 0 5px;
+    width: 100%;
+}
+.simpleCart_items table tr th,  .simpleCart_items table tr td{
+    padding:10px;
+    border:rgba(0,0,0,1) 0px solid;
+    vertical-align:central;
+}
+.simpleCart_items table tr td{
+    border-radius:4px;
+}
+
+.simpleCart_items table tr.headerRow{
+}
+
+.simpleCart_items table tr.headerRow th{
+        margin:0px;
+        font-weight:bold;
+        background-color: black;
+}
+.simpleCart_items table tr.headerRow th:first-child{
+        border-radius:5px 0px 0 5px;
+}
+.simpleCart_items table tr.headerRow th:last-child{
+        border-radius:0 5px 5px 0px;
+}
+.item-quantity{
+    text-align:center;  
+    font-size:12px;
+}
+.item-decrement, .item-increment {
+  font-size: 20px;
+  background: rgba(193,193,193,0.2);
+  padding: 12px 17px!important;
+}
+.simpleCart_items table a{
+    text-decoration:none;
+    color:white;   
+}
+
+.item-remove{
+    background:#2ABEF4;
+    font-weight:bold;
+    text-transform:uppercase;
+    font-size:12px;
+  	font-family: 'Century Gothic', 'Open Sans', sans-serif;
+}
+.item-remove a{
+	color: black!important;
+}
+.itemRow{
+	color:white;
+}
+
+.headerRow{
+	color: #2AC2FF;
+  	font-family: 'Century Gothic', 'Open Sans', sans-serif;
+}
+
+.simpleCart_total, .simpleCart_shipping, .simpleCart_grandTotal{
+	color: white;
+}
+
+.botonPagar{
+	margin-bottom: 0;
+	text-align: center;
+	vertical-align: middle;
+	cursor: pointer;
+	background-image: none;
+	border: 1px solid transparent;
+	white-space: nowrap;
+	padding: 13px 19px;
+	font-size: 14px;
+	line-height: 1.42857143;
+	border-radius: 4px;
+	-webkit-user-select: none;
+	background: #2ABEF4;
+	font-weight: bold;
+	text-transform: uppercase;
+	margin-top: 23px;
+	font-size: 12px;
+	font-family: 'Century Gothic', 'Open Sans', sans-serif;
+}
+
 /* FIN CARRITO */
 
 .show{display:block !important;}

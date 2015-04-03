@@ -368,6 +368,7 @@ class MesaRegalos
     public function getAsArray()
     {
         return array(
+            'id' => $this->id,
             'precioTotalFormateado' => $this->getPrecioTotalFormateado(),
             'regalo' => $this->regalo,
             'descripcion' => $this->descripcion,

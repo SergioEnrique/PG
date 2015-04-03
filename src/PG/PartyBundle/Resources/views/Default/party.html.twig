@@ -11,6 +11,7 @@
 <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
 <script type="text/javascript" src="{{asset('js/jquery.scrollTo-1.4.3.1-min.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/jquery.modal.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/simpleCart.min.js')}}"></script>
 </head>
 <body class="body-party">
 <div class="all-wrapper no-bg">
@@ -23,22 +24,33 @@
                 </a>
             </h1>
             {% include ':plantillasParciales:cuentaBox.html.twig' %}
+            {% if app.user == false %}
             <div class="ingreso-face">
                 <div class="ingresar">
                     {% trans %}Ingresar{% endtrans %}
                 </div>
                 <div id="login" class="login wow bounceIn">
-                    <form action="#">
-                        <input type="text" placeholder="correo">
-                        <input type="password" placeholder="contraseña">
-                        <input type="submit" value="Acceder">
-                        <img class="facebook" src="{{ asset('img/facebook.png') }}" width="30" alt="">
+                    {% if error %}
+                        <div>{{ error.message }}</div>
+                    {% endif %}
+                    <form action="{{url('pg_pary_root')}}login_check" method="POST">
+                        <input type="text" id="username" name="_username" required="required" value="{{ last_username }}" placeholder="{% trans %}correo{% endtrans %}">
+                        <input type="password" id="password" name="_password" required="required" placeholder="{% trans %}contraseña{% endtrans %}">
+                        <input type="submit" id="_submit" name="_submit" value="{% trans %}Acceder{% endtrans %}">
+                        <a href="{{url('root')}}connect/facebook">
+                            <img class="facebook" src="{{asset('img/facebook.png')}}" width="30" alt="">
+                        </a>
                         <br>
                         <a href=""><span class="small-font recuperar-pass">{% trans %}Recuperar contraseña{% endtrans %}</span></a>
+                        <input type="hidden" name="_target_path" value="{{url('pg_party_miCuenta')}}" />
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
                     </form>
                 </div>
-                <img class="facebook" src="{{ asset('img/facebook.png') }}" width="40" height="40" alt="Facebook"/>
+                <a href="{{url('root')}}connect/facebook">
+                    <img class="facebook" src="{{asset('img/facebook.png')}}" width="40" height="40" alt="Facebook"/>
+                </a>
             </div>
+            {% endif %}
         </div>
         
 	</header>
@@ -47,10 +59,10 @@
     <div class="main-content">
        
         <div id="evento-desplegar" class="evento-desplegar show">
-            <div class="max-wrapper">
+            <div class="max-wrapper simpleCart_shelfItem">
                 <ul>
                     <li>
-                        <h2>{% trans %}bucketgift de <span class="rosa-persona">%nombre%</span>{% endtrans %}</h2><br/>
+                        <h2>{% trans %}partygift de <span class="rosa-persona">%nombre%</span>{% endtrans %}</h2><br/>
                         <?php $url_actual = "http://" . $_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"]; ?>
                         <div class="fb-share-button" data-href="{{ path(app.request.get('_route'), {'id': partyGift.id}) }}?>" data-layout="button_count"></div>
                         <br/><br/>
@@ -61,18 +73,18 @@
                         </script>
                     </li>
                     <li>
-                        <h3 class="texto-evento-grande">{{partyGift.bucketGift.titulo}} - {{partyGift.regalo}}</h3>
-                        <p style="width:440px;">{{partyGift.descripcion}}</p>
+                        <h3 class="texto-evento-grande item_name">{{partyGift.regalo}}</h3>
+                        <p style="width:500px;" class="item_description">{{partyGift.descripcion}}</p>
+
+                        <span class="invisible item_itemid">{{partyGift.id}}</span>
                         
-                        <form action="">
                         {% trans %}¿Cuántas partes deseas regalar?{% endtrans %}
-                            <select>
+                            <select class="item_Quantity">
                                 {% for i in 1..partyGift.getHorcruxesComprables %}
                                     <option>{{i}}</option>
                                 {% endfor %}
                             </select>
-                            <input type="submit" value="{% trans %}Agregar{% endtrans %}">
-                        </form>
+                            <input type="submit" class="item_add" href="javascript:;" value="{% trans %}Agregar{% endtrans %}">
                     </li>
                     <li>
                         {% trans %}Valor{% endtrans %}<br/>
@@ -80,7 +92,7 @@
                         {% trans %}Gift dividido en{% endtrans %}<br/>
                         <span class="texto-evento-grande">{{partyGift.horcruxes}} partes</span><br/><br/>
                         {% trans %}Valor por parte{% endtrans %}</br>
-                        <span class="texto-evento-grande">${{partyGift.getPrecioParteFormateado}} {{partyGift.moneda}}</span><br/><br/>
+                        <span class="texto-evento-grande"><span class="item_price">${{partyGift.getPrecioParteFormateado}}</span> {{partyGift.moneda}}</span><br/><br/>
                     </li>
                 </ul>
             </div>
@@ -118,7 +130,42 @@ function enviaformulario() {
    document.myForm.target='myWin';
    document.myForm.submit();
 }
+
+simpleCart({
+    checkout: {
+        type: "SendForm" , 
+        url: "{{ url('nw_paypal_express_checkout_prepare_purchase') }}",
+        method: "POST",
+    },
+    currency: "MXN",
+    language: "spanish-mx",
+    cartStyle: "table", 
+    cartColumns: [
+        { attr: "itemid" , label: "ID" } ,
+        { attr: "name" , label: "Gift" } ,
+        { attr: "description" , label: "Descripción" },
+        { attr: "price" , label: "Precio", view: 'currency' } ,
+        { view: "decrement" , label: false , text: "-" } ,
+        { attr: "quantity" , label: "Cantidad" } ,
+        { view: "increment" , label: false , text: "+" } ,
+        { attr: "total" , label: "SubTotal", view: 'currency' } ,
+        { view: "remove" , text: "Remover" , label: false }
+    ]
+});
+simpleCart.shipping(function(){
+    return simpleCart.total()*.06+4;
+});
+
 </script>
+
+{% set transaccion = app.session.flashbag.get("transaccion") %}
+{% if (transaccion is not empty) %}
+    <script>
+        $(document).ready(function(){
+            simpleCart.empty();
+        });
+    </script>
+{% endif %}
 
 <script src="{{ asset('js/wow.min.js') }}"></script>
 <script>

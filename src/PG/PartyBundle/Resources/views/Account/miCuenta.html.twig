@@ -12,6 +12,7 @@
 	<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
 	<script type="text/javascript" src="{{asset('js/jquery.scrollTo-1.4.3.1-min.js')}}"></script>
 	<script type="text/javascript" src="{{asset('js/jquery.modal.js')}}"></script>
+	<script type="text/javascript" src="{{asset('js/simpleCart.min.js')}}"></script>
 </head>
 <body class="body-micuenta">
 	<div class="all-wrapper body-micuenta">
@@ -264,7 +265,42 @@
 	$(function() {
 		$( ".tooltip" ).tooltip();
 	});
+
+	simpleCart({
+        checkout: {
+            type: "SendForm" , 
+            url: "{{ url('nw_paypal_express_checkout_prepare_purchase') }}",
+            method: "POST",
+        },
+        currency: "MXN",
+        language: "spanish-mx",
+        cartStyle: "table", 
+        cartColumns: [
+            { attr: "itemid" , label: "ID" } ,
+            { attr: "name" , label: "Gift" } ,
+            { attr: "description" , label: "Descripción" },
+            { attr: "price" , label: "Precio", view: 'currency' } ,
+            { view: "decrement" , label: false , text: "-" } ,
+            { attr: "quantity" , label: "Cantidad" } ,
+            { view: "increment" , label: false , text: "+" } ,
+            { attr: "total" , label: "SubTotal", view: 'currency' } ,
+            { view: "remove" , text: "Remover" , label: false }
+        ]
+    });
+    simpleCart.shipping(function(){
+        return simpleCart.total()*.06+4;
+    });
 </script>
+
+{% set transaccion = app.session.flashbag.get("transaccion") %}
+{% if (transaccion is not empty) %}
+    <script>
+        $(document).ready(function(){
+            simpleCart.empty();
+        });
+    </script>
+{% endif %}
+
 <script src="js/wow.min.js"></script>
 <script>
 	new WOW().init();

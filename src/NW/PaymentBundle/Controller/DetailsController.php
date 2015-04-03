@@ -58,7 +58,7 @@ class DetailsController extends PayumController
                 
                 $mesaRegalosEntity = $em->getRepository('NWPrincipalBundle:MesaRegalos');
                 $regaloObject = $mesaRegalosEntity->find($itemId);
-                $usuarioObject = $regaloObject->getUser();
+                $usuarioObject = $regaloObject->getBucketGift()->getUser();
 
                 // Se actualiza el regalo con las nuevas partes compradas
                 $horcruxesPagadosAnterior = $regaloObject->getHorcruxesPagados();
@@ -97,44 +97,29 @@ class DetailsController extends PayumController
 
             // Se manda correo al comprador con la confirmación de su compra
             $message = \Swift_Message::newInstance()
-            ->setSubject("Tu regalo ha sido entregado correctamente en NewlyWishes.com")
+            ->setSubject("Tu regalo ha sido entregado correctamente en PartyGift")
             ->setFrom("info@newlywishes.com")
             ->setTo($details["EMAIL"])
             ->setContentType("text/html")
             ->setBody(
                 $this->renderView(
-                    'NWPrincipalBundle:Novios:regalasteAlgo.html.twig', array(
+                    'PGPartyBundle:Default:correoRegalasteAlgo.html.twig', array(
                         'details' => $details, 
-                        'noviosUser' => $usuarioObject,
+                        'usuario' => $usuarioObject,
                     )
                 )
             );
             $this->get('mailer')->send($message);
 
-            // Se le manda un correo a los novios de que les han regalado algo de su mesa de regalos
-            // Novio
+            // Se le manda un correo al usuario de que le han regalado algo de su BucketGift
             $message = \Swift_Message::newInstance()
-            ->setSubject("Un invitado te ha regalado algo en NewlyWishes.com")
+            ->setSubject("Un invitado te ha regalado algo en PartyGift")
             ->setFrom("info@newlywishes.com")
-            ->setTo($usuarioObject->getNovios()->getEMail())
+            ->setTo($usuarioObject->getEmail())
             ->setContentType("text/html")
             ->setBody(
                 $this->renderView(
-                    'NWPrincipalBundle:Novios:teRegalaronAlgo.html.twig', array(
-                        'details' => $details,  
-                    )
-                )
-            );
-            $this->get('mailer')->send($message);
-            // Novia
-            $message = \Swift_Message::newInstance()
-            ->setSubject("Un invitado te ha regalado algo en NewlyWishes.com")
-            ->setFrom("info@newlywishes.com")
-            ->setTo($usuarioObject->getNovias()->getEMail())
-            ->setContentType("text/html")
-            ->setBody(
-                $this->renderView(
-                    'NWPrincipalBundle:Novios:teRegalaronAlgo.html.twig', array(
+                    'PGPartyBundle:Default:correoTeRegalaronAlgo.html.twig', array(
                         'details' => $details,  
                     )
                 )
@@ -157,7 +142,7 @@ class DetailsController extends PayumController
             $this->get('session')->getFlashBag()->set('error', 'Payment failed');
         }
 
-        return $this->redirect($this->generateURL('nw_principal_homepage'));
+        return $this->redirect($this->generateURL('pg_party_homepage'));
     }
 
     public function viewOrderAction(Request $request)

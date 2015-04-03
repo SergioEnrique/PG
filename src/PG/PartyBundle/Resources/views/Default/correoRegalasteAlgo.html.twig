@@ -1,0 +1,23 @@
+{% extends '::correo.html.twig' %}
+
+{% block subject %}
+	Compra realizada en PartyGift
+{% endblock %}
+
+{% block contenido %}
+	Hola {{details.FIRSTNAME}} {{details.LASTNAME}}<br><br>
+
+	Este correo es la confirmacion de compra realizada en la mesa de regalos (BucketGift) de {{usuario.nombre}} {{usuario.apellidos}} en PartyGift<br><br>
+
+	Los datos de la compra son: <br><br>
+
+	{% for regalo in details.regalos %}
+		{{ regalo.cantidad }} - {{ regalo.nombre }} - precio unitario: ${{ regalo.precio }} {{details.PAYMENTREQUEST_0_CURRENCYCODE}}<br>
+	{% endfor %}
+	<br>
+	Total: ${{details.AMT}} {{details.PAYMENTREQUEST_0_CURRENCYCODE}}<br><br>
+
+	ID de transacción PayPal: {{details.PAYMENTREQUEST_0_TRANSACTIONID}}<br>
+	ID de transacción PartyGift: {{details.INVNUM}}<br>
+	(conserva estos datos para futuras aclaraciones)
+{% endblock %}

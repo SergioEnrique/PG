@@ -2,41 +2,21 @@
     <h2>Checkout</h2> 
     <div class="bucketgifts">
         <img class="bucketazul" src="{{asset('img/bucketazul.png')}}" width="50"/>
-        <span class="bucket-number">5</span>
+        <span class="bucket-number simpleCart_quantity"></span>
     </div>
     <br/><br/>
-    <table class="carritoEd" cellpadding="0" cellspacing="0">
-        <tr class="carritoP">
-            <td>Gift</td>
-            <td>{% trans %}Descripción{% endtrans %}</td>
-            <td>{% trans %}Evento{% endtrans %}</td>
-            <td></td>
-            <td>{% trans %}Cantidad{% endtrans %}</td>
-            <td></td>
-            <td>{% trans %}Subtotal{% endtrans %}</td>
-            <td></td>
-        </tr>
-        <tr class="carritoEspacio"></tr>
-        <tr class="carritoVaciado">
-            <td>Refrescos</td>
-            <td>Coca y manzana</td>
-            <td>Megapeda</td>
-            <td class="carritoSigno"><a class="carritoLink" href="">-</a></td>
-            <td class="carritoCantidad">5</td>
-            <td class="carritoSigno"><a class="carritoLink" href="">+</a></td>
-            <td>$3,000.00 MXN</td>
-            <td class="carritoRemover"><a class="carritoLink" href="">{% trans %}Remover{% endtrans %}</a></td>
-        </tr>
-        <tr class="carritoEspacio"></tr>
-        <tr class="carritoVaciado">
-            <td>Refrescos</td>
-            <td>Coca y manzana</td>
-            <td>Megapeda</td>
-            <td class="carritoSigno"><a class="carritoLink" href="">-</a></td>
-            <td class="carritoCantidad">5</td>
-            <td class="carritoSigno"><a class="carritoLink" href="">+</a></td>
-            <td>$3,000.00 MXN</td>
-            <td class="carritoRemover"><a class="carritoLink" href="">{% trans %}Remover{% endtrans %}</a></td>
-        </tr>
-    </table>
+    <div class="simpleCart_items"></div>
+    <div class="row" style="margin-bottom: 12px;margin-right: 0px;text-align: right;">
+        <h3>Subtotal</h3>
+        <!-- grand total, including tax and shipping (ex. $28.49) -->
+        <div class="simpleCart_total"></div>
+        <h3>Comisiones</h3>
+        <div class="simpleCart_shipping"></div>
+        <h2>Total</h2>
+        <div class="simpleCart_grandTotal"></div>
+        <a href="javascript:;" class="btn simpleCart_checkout">
+            <button type="button" class="botonPagar">Pagar</button>
+        </a>
+    </div>
+
 </div>

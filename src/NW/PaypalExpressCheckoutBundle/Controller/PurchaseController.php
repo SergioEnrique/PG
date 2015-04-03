@@ -47,7 +47,7 @@ class PurchaseController extends Controller
 
             // Se genera un nuevo modelo con detalles del pago
             /** @var $paymentDetails PaymentDetails */
-            $paymentDetails = $storage->createModel();
+            $paymentDetails = $storage->create();
 
             // Costo total de la compra (dos decimales sin punto) $1.25 = 125
             $totalAmount = 0;
@@ -84,7 +84,7 @@ class PurchaseController extends Controller
             $totalAmount += ($totalAmount * .06) + 4;
             $paymentDetails['PAYMENTREQUEST_0_AMT'] = $totalAmount;
 
-            $storage->updateModel($paymentDetails);
+            $storage->update($paymentDetails);
 
             $captureToken = $this->getTokenFactory()->createCaptureToken(
                 $paymentName,
@@ -95,7 +95,7 @@ class PurchaseController extends Controller
             $paymentDetails['RETURNURL'] = $captureToken->getTargetUrl();
             $paymentDetails['CANCELURL'] = $captureToken->getTargetUrl();
             $paymentDetails['INVNUM'] = $paymentDetails->getId();
-            $storage->updateModel($paymentDetails);
+            $storage->update($paymentDetails);
 
             return $this->redirect($captureToken->getTargetUrl());
         }
