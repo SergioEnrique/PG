@@ -3,6 +3,8 @@
 namespace NW\PrincipalBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Mapping\ClassMetadata;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * SolicitudRetiro
@@ -39,11 +41,21 @@ class SolicitudRetiro
      */
     private $realizado;
 
-    /**
-     * @var \NW\UserBundle\Entity\User
-     */
-    private $usuario;
+    // Maximo retiro segun el dinero que tenga el usuario en su cuenta, con base en este se establece el contraint
+    private static $maximoRetiro;
 
+    public function setMaximoRetiro($maximoRetiro)
+    {
+        self::$maximoRetiro = $maximoRetiro;
+    }
+
+    public static function loadValidatorMetadata(ClassMetadata $metadata)
+    {
+        $metadata->addPropertyConstraint('amount', new Assert\Range(array(
+            'min'        => 1,
+            'max'        => self::$maximoRetiro,
+        )));
+    }
 
     /**
      * Get id
@@ -169,6 +181,11 @@ class SolicitudRetiro
     {
         return $this->realizado;
     }
+    /**
+     * @var \NW\UserBundle\Entity\User
+     */
+    private $usuario;
+
 
     /**
      * Set usuario
@@ -191,5 +208,10 @@ class SolicitudRetiro
     public function getUsuario()
     {
         return $this->usuario;
+    }
+
+    public function getFechaFormat()
+    {
+        return $this->fecha->format('d-m-Y H:i:s');
     }
 }

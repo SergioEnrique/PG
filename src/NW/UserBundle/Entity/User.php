@@ -286,4 +286,9 @@ class User extends BaseUser
     {
         return $this->apellidos;
     }
+
+    public function getSaldoFormateado()
+    {
+        return number_format($this->saldo, 2, '.', ',');
+    }
 }

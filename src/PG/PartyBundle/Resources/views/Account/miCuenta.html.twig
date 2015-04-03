@@ -32,12 +32,13 @@
 					<ul>
 						<li>{% trans with {'%name%': app.user.nombre} %}Bienvenido <span class="rosa-persona bold">%name%</span>{% endtrans %} <a href="#mis-datos" rel="modal:open">({% trans %}modificar datos{% endtrans %})</a>
 						</li>
-						<li>{% trans %}Saldo{% endtrans %}: <span class="rosa-persona bold">$0.00</span></li>
+						<li>{% trans %}Saldo{% endtrans %}: <span class="rosa-persona bold">${{app.user.getSaldoFormateado}}</span></li>
 						<li><span class="rosa-persona bold show-paypal">{% trans %}retirar{% endtrans %}</span>
 							<div id="login" class="login wow bounceIn retiro-paypal">
-								<form action="#">
-									<input type="text" placeholder="{% trans %}monto{% endtrans %}">
-									<input type="password" placeholder="{% trans %}cuenta de paypal{% endtrans %}">
+								<form action="{{ path('pg_party_miCuenta') }}" name="nw_principalbundle_solicitudretiro" method="post" {{ form_enctype(formModificarCuenta) }}>
+									<input type="text" id="nw_principalbundle_solicitudretiro_amount" name="nw_principalbundle_solicitudretiro[amount]" required="required" placeholder="{% trans %}monto{% endtrans %}">
+									<input id="nw_principalbundle_solicitudretiro_cuentaPaypal" name="nw_principalbundle_solicitudretiro[cuentaPaypal]" required="required" type="text" placeholder="{% trans %}cuenta de paypal{% endtrans %}">
+									{{form_widget(formSolicitudRetiro._token)}}
 									<input type="submit" value="{% trans %}enviar{% endtrans %}">
 								</form>
 							</div>

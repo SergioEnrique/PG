@@ -8,10 +8,12 @@ use Symfony\Component\HttpFoundation\Request;
 
 use PG\PartyBundle\Entity\BucketGift;
 use NW\PrincipalBundle\Entity\MesaRegalos;
+use NW\PrincipalBundle\Entity\SolicitudRetiro;
 
 use PG\PartyBundle\Form\ModificarCuentaType;
 use PG\PartyBundle\Form\BucketGiftType;
 use NW\PrincipalBundle\Form\MesaRegalosType;
+use NW\PrincipalBundle\Form\SolicitudRetiroType;
 
 class AccountController extends Controller
 {
@@ -43,6 +45,11 @@ class AccountController extends Controller
 
         // Crear nuevo formulario de PartyGift
         $formPartyGift = $this->createForm(new MesaRegalosType, $partyGift);
+
+        // Formulario de solicitud de retiro estableciendo el maximo que puede retirar
+        $nuevaSolicitudRetiro = new SolicitudRetiro();
+        $nuevaSolicitudRetiro->setMaximoRetiro($user->getSaldo());
+        $formSolicitudRetiro = $this->createForm(new SolicitudRetiroType(), $nuevaSolicitudRetiro);
 
     	// Recuperando formularios
     	if('POST' === $request->getMethod()) {
@@ -127,12 +134,78 @@ class AccountController extends Controller
                     $formPartyGift = $this->createForm(new MesaRegalosType, $partyGift);
                 }
             }
+            // Formulario de solicitud de retiro
+            else if ($request->request->has($formSolicitudRetiro->getName())) {
+                // handle form de solicitud de retiro
+                $formSolicitudRetiro->handleRequest($request);
+                if ($formSolicitudRetiro->isValid()) {
+                    // Mandar solicitud de retiro solo si no tiene solicitudes anteriores sin aceptar
+                    $solicitudesRepository = $em->getRepository('NWPrincipalBundle:SolicitudRetiro');
+                    $solicitudSinAprobarObject = $solicitudesRepository->findOneBy(array('realizado' => false));
+
+                    if (!is_object($solicitudSinAprobarObject)) {
+                        // Aqui pasa todo
+                        $nuevaSolicitudRetiro->setUsuario($user);
+                        $nuevaSolicitudRetiro->setFecha(new \DateTime());
+                        $nuevaSolicitudRetiro->setRealizado(false);
+
+                        $em->persist($nuevaSolicitudRetiro);
+                        $em->flush();
+
+                        // Enviar correo al usuario de que se solicitó un retiro
+                        $message = \Swift_Message::newInstance()
+                        ->setSubject("Solicitud de Retiro en PartyGift")
+                        ->setFrom("info@newlywishes.com")
+                        ->setTo($user->getEmail())
+                        ->setContentType("text/html")
+                        ->setBody(
+                            $this->renderView(
+                                'PGPartyBundle:Users:correoSolicitudRetiro.html.twig', array(
+                                    'vacio' => "vacio",
+                                )
+                            )
+                        );
+                        $this->get('mailer')->send($message);
+
+                        // PartyGift finanzas o admin
+                        $message = \Swift_Message::newInstance()
+                        ->setSubject("Solicitud de Retiro en NewlyWishes.com")
+                        ->setFrom("info@newlywishes.com")
+                        ->setTo("docser@gmail.com")
+                        ->setContentType("text/html")
+                        ->setBody(
+                            $this->renderView(
+                                'PGPartyBundle:Users:correoSolicitudRetiro.html.twig', array(
+                                    'vacio' => "vacio",
+                                )
+                            )
+                        );
+                        $this->get('mailer')->send($message);
+
+                        // Se manda un mensaje de travesura realizada
+                        $this->get('session')->getFlashBag()->set(
+                            'notice',
+                            'Se ha enviado la solicitud para retirar su dinero en la cuenta de paypal indicada. Por favor espere a que sea aprobada.'
+                        );
+                    }
+                    else
+                    {
+                        // Se manda un mensaje de travesura no realizada
+                        $this->get('session')->getFlashBag()->set(
+                            'notice',
+                            'Ya tienes una solicitud de retiro en espera, espera a que sea procesada antes de mandar otra.'
+                        );   
+                    }
+                    
+                }
+            }
     	}
 
         return $this->render('PGPartyBundle:Account:micuenta.html.twig', array(
         	'formModificarCuenta' => $formModificarCuenta->createView(),
             'formBucketGift' => $formBucketGift->createView(),
             'formPartyGift' => $formPartyGift->createView(),
+            'formSolicitudRetiro' => $formSolicitudRetiro->createView(),
             'bucketGifts' => $bucketGifts,
         ));
     }
