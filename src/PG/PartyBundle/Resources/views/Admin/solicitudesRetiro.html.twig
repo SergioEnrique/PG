@@ -1,0 +1,39 @@
+{# src/NW/PrincipalBundle/Resources/views/Admin/solicitudesRetiro.html.twig #}
+
+    <div class="row">
+        <div class="panel panel-default" style="border: none;">
+            <table class="table table-striped table-hover table-responsive" style="height: inherit;">
+                <thead>
+                    <tr>
+                        <th>Usuario</th>
+                        <th>Cuenta Paypal</th>
+                        <th>Fecha</th>
+                        <th>Monto solicitado</th>
+                        <th>Saldo disponible</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for solicitud in solicitudes %}
+                    {% if solicitud.realizado == false %}
+                    <tr>
+                        <td>{{solicitud.usuario.username}}</td>
+                        <td>{{solicitud.cuentaPaypal}}</td>
+                        <td>{{solicitud.getFechaFormat}}</td>
+                        <td>${{solicitud.amount|number_format(2, '.', ',')}}</td>
+                        <td>${{solicitud.usuario.saldo|number_format(2, '.', ',')}}</td>
+                        <td>
+                            <a href="{{path('pg_party_admin_operaciones')}}/aceptar-retiro/{{solicitud.id}}">
+                                <img src="{{asset('img/palomita.png')}}" width="20">
+                            </a>
+                             <a href="{{path('pg_party_admin_operaciones')}}/denegar-retiro/{{solicitud.id}}">
+                                <img src="{{asset('img/xminus.png')}}" width="23">
+                            </a>
+                        </td>
+                    </tr>
+                    {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>

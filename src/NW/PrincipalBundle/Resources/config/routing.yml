@@ -5,21 +5,6 @@ root:
         route: nw_principal_novios_nuestra-cuenta
         permanent: false
 
-nw_principal_admin_panel:
-    pattern:  /admin
-    defaults: { _controller: NWPrincipalBundle:Admin:panel }
-
-nw_principal_admin_operaciones:
-    pattern:  /admin/operaciones
-
-nw_principal_admin_operaciones_aceptar_retiro:
-    pattern:  /admin/operaciones/aceptar-retiro/{id}
-    defaults: { _controller: NWPrincipalBundle:Admin:aceptarRetiro }
-
-nw_principal_admin_operaciones_denegar_retiro:
-    pattern:  /admin/operaciones/denegar-retiro/{id}
-    defaults: { _controller: NWPrincipalBundle:Admin:denegarRetiro }
-
 nw_principal_novios_dudas_novios:
     pattern: /novios/email/dudasnovios
     defaults: { _controller: NWPrincipalBundle:Novios:dudasNovios}

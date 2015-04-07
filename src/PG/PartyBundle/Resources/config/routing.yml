@@ -15,6 +15,21 @@ pg_party_homepage:
     requirements:
         _locale: en|es
 
+pg_party_admin_panel:
+    pattern:  /admin
+    defaults: { _controller: PGPartyBundle:Admin:panel }
+
+pg_party_admin_operaciones:
+    pattern:  /admin/operaciones
+
+pg_party_admin_operaciones_aceptar_retiro:
+    pattern:  /admin/operaciones/aceptar-retiro/{id}
+    defaults: { _controller: PGPartyBundle:Admin:aceptarRetiro }
+
+pg_party_admin_operaciones_denegar_retiro:
+    pattern:  /admin/operaciones/denegar-retiro/{id}
+    defaults: { _controller: PGPartyBundle:Admin:denegarRetiro }
+
 pg_party_party:
     path:     /{_locale}/partygift/{id}
     defaults: { _controller: PGPartyBundle:Default:party }
