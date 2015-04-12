@@ -94,13 +94,19 @@ class DefaultController extends Controller
             $query->setParameters($parametros);
             $result = $query->getQuery()->getResult();
 
-            $resultados=array();
+            $resultados = array();
             foreach ($result as $key => $value) {
                 $resultados[$key]['nombre'] = $result[$key]->getUser()->getNombre();
                 $resultados[$key]['apellidos'] = $result[$key]->getUser()->getApellidos();
                 $resultados[$key]['evento'] = $result[$key]->getTitulo();
                 $resultados[$key]['bucketid'] = $result[$key]->getId();
                 $resultados[$key]['fecha'] = $result[$key]->getFechaformateada();
+
+                $resultados[$key]['nombreFormateado'] = $this->get('translator')->trans(
+                    'partygift de <span class="rosa-persona">%name%</span>',
+                    array('%name%' => $result[$key]->getUser()->getNombre())
+                );
+
                 $resultados[$key]['partygifts'] = array();
                 foreach ($result[$key]->getMesaRegalos()->toArray() as $index => $partygift) {
                     $resultados[$key]['partygifts'][$index] = $partygift->getAsArray();

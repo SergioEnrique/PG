@@ -62,7 +62,7 @@
             <div class="max-wrapper simpleCart_shelfItem">
                 <ul>
                     <li>
-                        <h2>{% trans %}partygift de <span class="rosa-persona">%nombre%</span>{% endtrans %}</h2><br/>
+                        <h2>{% trans with {'%name%': nombre} %}partygift de <span class="rosa-persona">%name%</span>{% endtrans %}</h2><br/>
                         <?php $url_actual = "http://" . $_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"]; ?>
                         <div class="fb-share-button" data-href="{{ path(app.request.get('_route'), {'id': partyGift.id}) }}?>" data-layout="button_count"></div>
                         <br/><br/>
@@ -90,7 +90,7 @@
                         {% trans %}Valor{% endtrans %}<br/>
                         <span class="texto-evento-grande">${{partyGift.getPrecioTotalFormateado}} {{partyGift.moneda}}</span><br/><br/>
                         {% trans %}Gift dividido en{% endtrans %}<br/>
-                        <span class="texto-evento-grande">{{partyGift.horcruxes}} partes</span><br/><br/>
+                        <span class="texto-evento-grande">{{partyGift.horcruxes}} {% trans %}partes{% endtrans %}</span><br/><br/>
                         {% trans %}Valor por parte{% endtrans %}</br>
                         <span class="texto-evento-grande"><span class="item_price">${{partyGift.getPrecioParteFormateado}}</span> {{partyGift.moneda}}</span><br/><br/>
                     </li>

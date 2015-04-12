@@ -40,6 +40,3 @@ NW\PrincipalBundle\Entity\MesaRegalos:
             type: integer
         descripcion:
             type: text
-        moneda:
-            type: string
-            length: 3

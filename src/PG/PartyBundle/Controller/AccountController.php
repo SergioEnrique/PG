@@ -42,6 +42,8 @@ class AccountController extends Controller
 
         // Crear nuevo PartyGift independiente
         $partyGift = new MesaRegalos;
+        $partyGift->setCantidad(1);
+        $partyGift->setHorcruxes(1);
 
         // Crear nuevo formulario de PartyGift
         $formPartyGift = $this->createForm(new MesaRegalosType, $partyGift);
@@ -131,6 +133,8 @@ class AccountController extends Controller
 
                     // Se borra el formulario para hacer nuevo partygift
                     $partyGift = new MesaRegalos;
+                    $partyGift->setCantidad(1);
+                    $partyGift->setHorcruxes(1);
                     $formPartyGift = $this->createForm(new MesaRegalosType, $partyGift);
                 }
             }

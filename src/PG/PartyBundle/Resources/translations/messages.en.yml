@@ -44,6 +44,7 @@ Valor por parte: Part value
 Agregar: Add
 Todos los derechos reservados: All rights reserved
 Bienvenido <span class="rosa-persona bold">%name%</span>: Welcome <span class="rosa-persona bold">%name%</span>
+partygift de <span class="rosa-persona">%name%</span>: <span class="rosa-persona">%name%'s</span> partygift
 modificar datos: modify account data
 Saldo: Balance
 retirar: withdraw
@@ -77,9 +78,10 @@ Hola %name%: Hello %name%
 Nuevo: New
 Nombre del gift: Gift name
 Valor del gift: Gift value
-Número de artículos: Number of items
+Número de gifts: Number of gifts
 ¿En cuántas partes quieres dividir este artículo?: In how many parts you'd like to split this gift?
 Para ayuda, comunícate a: For customer support, contact us at
-
-
+Comisiones: Commissions
+Pagar: Pay
+Precio: Price
 

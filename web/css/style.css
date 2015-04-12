@@ -426,7 +426,7 @@ section#busca-crea input[type=submit]{
 .cuenta-info-top ul li{
 	padding:0;
 	margin:0;
-	width:16%;
+	width:14%;
 	font-size:18px;
 	color:#00B0F0;
 	display:inline-block;
@@ -1059,6 +1059,36 @@ tr.carritoVaciado{
 	margin-top: 23px;
 	font-size: 12px;
 	font-family: 'Century Gothic', 'Open Sans', sans-serif;
+}
+
+.item_add{
+	cursor: pointer;
+}
+
+.item-remove{
+	width: 78px;
+	height: 47px;
+	padding: 0!important;
+}
+
+.item-increment, .item-decrement{
+	width: 41px;
+	height: 47px;
+	padding: 0!important;
+}
+
+.item-decrement a, .item-increment a{
+	width: 100%;
+	height: 100%;
+	display: block;
+	padding: 12px 14px;
+}
+
+.item-remove a{
+	width: 100%;
+	height: 100%;
+	display: block;
+	padding: 16px 10px;
 }
 
 /* FIN CARRITO */

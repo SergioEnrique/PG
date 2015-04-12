@@ -25,6 +25,7 @@
                 <span class="oculto">Party Gift</span>
                 </a>
             </h1>
+            <div class="salir-cuenta"><a href="/app_dev.php/logout">{% trans %}salir{% endtrans %}</a></div>
             {% include ':plantillasParciales:cuentaBox.html.twig' %}
 
             {% if app.user == false %}
@@ -61,7 +62,15 @@
                     <li><a href="javascript:$.scrollTo('#que',800, {offset:-174} );">{% trans %}Qué es{% endtrans %}</a></li>
                     <li><a href="javascript:$.scrollTo('#como',800, {offset:-170} );">{% trans %}Cómo funciona{% endtrans %}</a></li>
                     <li><a href="javascript:$.scrollTo('#busca-crea',800, {offset:-194} );">{% trans %}Busca un bucketgift{% endtrans %}</a></li>
-                    <li><a href="javascript:$.scrollTo('#busca-crea',800, {offset:-194} );">{% trans %}Crea un bucketgift{% endtrans %}</a></li>
+                    <li>
+                        {% if app.user %}
+                            <a href="{{ url('pg_party_miCuenta') }}">
+                        {% else %}
+                            <a href="javascript:$.scrollTo('#busca-crea',800, {offset:-194} );">
+                        {% endif %}
+                            {% trans %}Crea un bucketgift{% endtrans %}
+                        </a>
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -126,13 +135,12 @@
                         <input type="text" name="apellidos" placeholder="{% trans %}apellidos{% endtrans %}"><br/>
                         <input type="text" name="evento" placeholder="{% trans %}evento{% endtrans %}"><br/>
                         <input type="text" name="bucketid" placeholder="bucket ID"><br/>
-                        <input id="buscar-click" onClick="javascript:$.scrollTo('#footer',600, {offset:-10} );" type="submit" value="{% trans %}Buscar{% endtrans %}">
+                        <input id="buscar-click" style="cursor: pointer;" onClick="javascript:$.scrollTo('#footer',600, {offset:-10} );" type="submit" value="{% trans %}Buscar{% endtrans %}">
                     </form>
             </div>
             <div class="crea wow fadeInRight" data-wow-duration="1s">
-                <h2>{% trans %}Crea un bucketgift{% endtrans %}</h2>
-
                 {% if app.user == false %}
+                    <h2>{% trans %}Crea un bucketgift{% endtrans %}</h2>
                     <h3>{% trans %}Primero debes registrarte{% endtrans %}</h3>
                     <form action="{{ url('pg_party_registro') }}" method="get" name="myForm">
                         <input type="text" name="email" placeholder="{% trans %}correo{% endtrans %}" required><br/>
@@ -267,18 +275,28 @@ function ajaxSuccess(data)
 
         filaResultado = "<tr data-id=\""+data.result[i].bucketid+"\" class=\"evento-tr\"><td>"+data.result[i].nombre+"</td><td>"+data.result[i].apellidos+"</td><td>"+data.result[i].evento+"</td><td>"+data.result[i].fecha+"</td><td>"+data.result[i].bucketid+"</td></tr>";
 
+        var contadorFilas = 0;
         for (var j = data.result[i].partygifts.length - 1; j >= 0; j--) {
-            filaResultadoAmpliado = '<div class="max-wrapper simpleCart_shelfItem mipartygift bucket-'+data.result[i].bucketid+'" style="margin-bottom:30px;"><ul><li><h2>partygift de <span class="rosa-persona">'+data.result[i].nombre+'</span></h2><br/></li><li><h3 class="texto-evento-grande item_name">'+data.result[i].partygifts[j].regalo+'</h3><p class="item_description">'+data.result[i].partygifts[j].descripcion+'</p><span class="invisible item_itemid">'+data.result[i].partygifts[j].id+'</span>¿Cuántas partes deseas regalar?<select class="item_Quantity">';
-            for (var k = 1; k <= data.result[i].partygifts[j].partesFaltantes; k++) {
-                filaResultadoAmpliado += '<option>'+k+'</option>';
-            };
-            filaResultadoAmpliado += '</select><input type="submit" class="item_add" href="javascript:;" value="Agregar"></li><li>Valor<br/><span class="texto-evento-grande">$'+data.result[i].partygifts[j].precioTotalFormateado+' '+data.result[i].partygifts[j].moneda+'</span><br/><br/>Gift dividido en<br/><span class="texto-evento-grande">'+data.result[i].partygifts[j].horcruxes+' partes</span><br/><br/>Valor por parte</br><span class="texto-evento-grande"><span class="item_price">$'+data.result[i].partygifts[j].valorPorParte+'</span> '+data.result[i].partygifts[j].moneda+'</span><br/><br/></li></ul></div>';
-            $(".evento-desplegar").append(filaResultadoAmpliado);
-        };
+            if (data.result[i].partygifts[j].partesFaltantes > 0)
+            {
+                filaResultadoAmpliado = '<div class="max-wrapper simpleCart_shelfItem mipartygift bucket-'+data.result[i].bucketid+'" style="margin-bottom:30px;"><ul><li><h2>'+data.result[i].nombreFormateado+'</h2><br/></li><li><h3 class="texto-evento-grande item_name">'+data.result[i].partygifts[j].regalo+'</h3><p class="item_description">'+data.result[i].partygifts[j].descripcion+'</p><span class="invisible item_itemid">'+data.result[i].partygifts[j].id+'</span>{% trans %}¿Cuántas partes deseas regalar?{% endtrans %}<select class="item_Quantity">';
+                for (var k = 1; k <= data.result[i].partygifts[j].partesFaltantes; k++) {
+                    filaResultadoAmpliado += '<option>'+k+'</option>';
+                };
+                filaResultadoAmpliado += '</select><input type="submit" class="item_add" href="javascript:;" value="{% trans %}Agregar{% endtrans %}"></li><li>{% trans %}Valor{% endtrans %}<br/><span class="texto-evento-grande">$'+data.result[i].partygifts[j].precioTotalFormateado+' '+data.result[i].partygifts[j].moneda+'</span><br/><br/>{% trans %}Gift dividido en{% endtrans %}<br/><span class="texto-evento-grande">'+data.result[i].partygifts[j].horcruxes+' {% trans %}partes{% endtrans %}</span><br/><br/>{% trans %}Valor por parte{% endtrans %}</br><span class="texto-evento-grande"><span class="item_price">$'+data.result[i].partygifts[j].valorPorParte+'</span> '+data.result[i].partygifts[j].moneda+'</span><br/><br/></li></ul></div>';
+                $(".evento-desplegar").append(filaResultadoAmpliado);
+                contadorFilas++;
+            }
+            if (contadorFilas <= 0)
+            {
+                $(".evento-desplegar").append('<div class="max-wrapper simpleCart_shelfItem mipartygift bucket-'+data.result[i].bucketid+'" style="margin-bottom:30px;">Ya se compraron todas las partes del gift: "'+data.result[i].partygifts[j].regalo+'"</div>');
+            }
+        }
 
         $("#resultadosBusqueda").append(filaResultado);
+        contadorFilas = 0;
         
-    };
+    }
 }
 
 simpleCart({
@@ -293,13 +311,13 @@ simpleCart({
     cartColumns: [
         { attr: "itemid" , label: "ID" } ,
         { attr: "name" , label: "Gift" } ,
-        { attr: "description" , label: "Descripción" },
-        { attr: "price" , label: "Precio", view: 'currency' } ,
+        { attr: "description" , label: "{% trans %}Descripción{% endtrans %}" },
+        { attr: "price" , label: "{% trans %}Precio{% endtrans %}", view: 'currency' } ,
         { view: "decrement" , label: false , text: "-" } ,
-        { attr: "quantity" , label: "Cantidad" } ,
+        { attr: "quantity" , label: "{% trans %}Cantidad{% endtrans %}" } ,
         { view: "increment" , label: false , text: "+" } ,
         { attr: "total" , label: "SubTotal", view: 'currency' } ,
-        { view: "remove" , text: "Remover" , label: false }
+        { view: "remove" , text: "{% trans %}Remover{% endtrans %}" , label: false }
     ]
 });
 simpleCart.shipping(function(){

@@ -65,5 +65,7 @@ pg_party_partygift_delete:
     defaults: { _controller: PGPartyBundle:Account:partyGiftDelete }
 
 pg_party_busqueda:
-    path:     /busqueda
+    path:     /{_locale}/busqueda
     defaults: { _controller: PGPartyBundle:Default:busqueda }
+    requirements:
+        _locale: en|es

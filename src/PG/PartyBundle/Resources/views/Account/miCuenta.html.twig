@@ -32,7 +32,7 @@
 					<ul>
 						<li>{% trans with {'%name%': app.user.nombre} %}Bienvenido <span class="rosa-persona bold">%name%</span>{% endtrans %} <a href="#mis-datos" rel="modal:open">({% trans %}modificar datos{% endtrans %})</a>
 						</li>
-						<li>{% trans %}Saldo{% endtrans %}: <span class="rosa-persona bold">${{app.user.getSaldoFormateado}}</span></li>
+						<li style="width:19%>{% trans %}Saldo{% endtrans %}: <span class="rosa-persona bold">${{app.user.getSaldoFormateado}} {{app.user.moneda}}</span></li>
 						<li><span class="rosa-persona bold show-paypal">{% trans %}retirar{% endtrans %}</span>
 							<div id="login" class="login wow bounceIn retiro-paypal">
 								<form action="{{ path('pg_party_miCuenta') }}" name="nw_principalbundle_solicitudretiro" method="post" {{ form_enctype(formModificarCuenta) }}>
@@ -77,7 +77,7 @@
 			<h2>{% trans %}Nuevo bucketgift{% endtrans %}</h2><br/>
 			<form action="{{ path('pg_party_miCuenta') }}" method="post" {{ form_enctype(formBucketGift) }}>
 				{{ form_widget(formBucketGift) }}
-				<input type="submit" value="{% trans %}Agregar{% endtrans %}">
+				<input type="submit" style="cursor:pointer;" value="{% trans %}Agregar{% endtrans %}">
 			</form>
 		</div>
 
@@ -85,11 +85,11 @@
 			<h2>{% trans %}Nuevo{% endtrans %} <span class="bolder">party</span>gift</h2><br/>
 			<form action="{{ path('pg_party_miCuenta') }}" method="post" {{ form_enctype(formModificarCuenta) }}>
 				
-				{{ form_widget(formPartyGift) }}			
+				{{ form_widget(formPartyGift) }}
 	
 				<br/>
 
-				<input type="submit" value="{% trans %}Agregar{% endtrans %}">
+				<input type="submit" style="cursor:pointer;" value="{% trans %}Agregar{% endtrans %}">
 			</form>
 		</div>
 
@@ -101,7 +101,7 @@
 					<table>
 						<tr>
 							<td colspan="2"><h2>{% trans %}Mis bucketgifts{% endtrans %}</h2></td>
-							<td><a href="#nuevo-bucket" rel="modal:open"><span class="signomas-rosa">+</span> <img src="{{asset('img/bucketazul.png')}}" width="30"/></a>
+							<td style="width:67px;"><a href="#nuevo-bucket" rel="modal:open"><span class="signomas-rosa">+</span> <img src="{{asset('img/bucketazul.png')}}" width="30"/></a>
 								<div class="sin-bucketgifts"><div class="triangulo-negro"></div>{% trans %}Para comenzar primero crea un bucketgift y después selecciónalo para crear tus partygifts.{% endtrans %}</div>
 							</td>
 						</tr>

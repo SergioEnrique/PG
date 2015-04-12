@@ -36,10 +36,10 @@ class MesaRegalosType extends AbstractType
                 'PEN' => "PEN - Sol Peruano",
                 'SEK' => "SEK - Swedish Krone",
                 'USD' => "USD - US Dollar",
-                'VEF' => "VEF - Bolivar Venezolano",    
+                'VEF' => "VEF - Bolivar Venezolano",
             ))) // Moneda
             ->add('precioTotal', 'number', array('label' => 'Valor del gift')) // Valor del gift
-            ->add('cantidad', 'integer', array('label' => 'Número de artículos')) // Numero de articulos
+            ->add('cantidad', 'integer', array('label' => 'Número de gifts')) // Numero de articulos
             ->add('horcruxes', 'integer', array('label' => '¿En cuántas partes quieres dividir este artículo?')) // En cuantas partes quieres dividir este articulo
             ->add('bucketGiftId', 'hidden', array('mapped' => false))
         ;
@@ -51,7 +51,7 @@ class MesaRegalosType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'NW\PrincipalBundle\Entity\MesaRegalos'
+            'data_class' => 'NW\PrincipalBundle\Entity\MesaRegalos',
         ));
     }
 
