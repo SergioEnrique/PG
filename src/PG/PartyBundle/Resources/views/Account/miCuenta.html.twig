@@ -32,7 +32,7 @@
 					<ul>
 						<li>{% trans with {'%name%': app.user.nombre} %}Bienvenido <span class="rosa-persona bold">%name%</span>{% endtrans %} <a href="#mis-datos" rel="modal:open">({% trans %}modificar datos{% endtrans %})</a>
 						</li>
-						<li style="width:19%>{% trans %}Saldo{% endtrans %}: <span class="rosa-persona bold">${{app.user.getSaldoFormateado}} {{app.user.moneda}}</span></li>
+						<li style="width:19%">{% trans %}Saldo{% endtrans %}: <span class="rosa-persona bold">${{app.user.getSaldoFormateado}} {{app.user.moneda}}</span></li>
 						<li><span class="rosa-persona bold show-paypal">{% trans %}retirar{% endtrans %}</span>
 							<div id="login" class="login wow bounceIn retiro-paypal">
 								<form action="{{ path('pg_party_miCuenta') }}" name="nw_principalbundle_solicitudretiro" method="post" {{ form_enctype(formModificarCuenta) }}>
@@ -59,7 +59,6 @@
 			    {{ form_row(formModificarCuenta.email) }}
 				{{ form_row(formModificarCuenta.nombre) }}
 				{{ form_row(formModificarCuenta.apellidos) }}
-				{{ form_row(formModificarCuenta.moneda) }}
 				<br/>
 				<h3>{% trans %}Cambiar contraseña{% endtrans %}</h3><br/>
 				{{ form_row(formModificarCuenta.oldPass) }}
@@ -143,11 +142,11 @@
 										<li>
 											<a href="{{url('pg_party_partygift_delete', {'id': partygift.id})}}"><img class="basura-negro" src="{{ asset('img/basura-negro.png') }}" width="50"></a>
 											{% trans %}Valor{% endtrans %}<br/>
-											<span class="texto-evento-grande">${{partygift.getPrecioTotalFormateado}} {{partygift.moneda}}</span><br/><br/>
+											<span class="texto-evento-grande">${{partygift.getPrecioTotalFormateado}} {{moneda}}</span><br/><br/>
 											{% trans %}Gift dividido en{% endtrans %}<br/>
-											<span class="texto-evento-grande">{{partygift.horcruxes}} partes</span><br/><br/>
+											<span class="texto-evento-grande">{{partygift.horcruxes}} {% trans %}partes{% endtrans %}</span><br/><br/>
 											{% trans %}Valor por parte{% endtrans %}</br>
-											<span class="texto-evento-grande">${{partygift.getPrecioParteFormateado}} {{partygift.moneda}}</span><br/><br/>
+											<span class="texto-evento-grande">${{partygift.getPrecioParteFormateado}} {{moneda}}</span><br/><br/>
 										</li>
 									</ul>
 								{% endfor %}
@@ -244,7 +243,7 @@
 	});
 
 	$(document).ready(function() {
-    	$("#errores").dialog({modal: true});
+    	$("#errores").modal();
     	{% for bucketgift in bucketGifts %}
     		{% if bucketgift.getStatus %}
     			$( ".evento-seleccion" ).addClass( "show" );

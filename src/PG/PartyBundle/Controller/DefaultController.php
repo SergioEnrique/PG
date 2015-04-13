@@ -48,12 +48,15 @@ class DefaultController extends Controller
         $partyGiftRepo = $em->getRepository('NWPrincipalBundle:MesaRegalos');
         $partyGift = $partyGiftRepo->find($id);
 
-        // Buscar el nombre del creador del partygift
-        $nombre = $partyGift->getBucketGift()->getUser()->getNombre();
+        // Buscar el nombre y la moneda del creador del partygift
+        $user = $partyGift->getBucketGift()->getUser();
+        $nombre = $user->getNombre();
+        $moneda = $user->getMoneda();
 
         return $this->render('PGPartyBundle:Default:party.html.twig', array(
             'partyGift' => $partyGift,
             'nombre' => $nombre,
+            'moneda' => $moneda,
         ));
     }
 
@@ -101,6 +104,7 @@ class DefaultController extends Controller
                 $resultados[$key]['evento'] = $result[$key]->getTitulo();
                 $resultados[$key]['bucketid'] = $result[$key]->getId();
                 $resultados[$key]['fecha'] = $result[$key]->getFechaformateada();
+                $resultados[$key]['moneda'] =$result[$key]->getUser()->getMoneda();
 
                 $resultados[$key]['nombreFormateado'] = $this->get('translator')->trans(
                     'partygift de <span class="rosa-persona">%name%</span>',

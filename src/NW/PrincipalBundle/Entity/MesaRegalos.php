@@ -321,34 +321,6 @@ class MesaRegalos
     {
         return $this->catregalos;
     }
-    /**
-     * @var string
-     */
-    private $moneda;
-
-
-    /**
-     * Set moneda
-     *
-     * @param string $moneda
-     * @return MesaRegalos
-     */
-    public function setMoneda($moneda)
-    {
-        $this->moneda = $moneda;
-
-        return $this;
-    }
-
-    /**
-     * Get moneda
-     *
-     * @return string 
-     */
-    public function getMoneda()
-    {
-        return $this->moneda;
-    }
 
     public function getPrecioTotalFormateado()
     {
@@ -369,13 +341,14 @@ class MesaRegalos
     {
         return array(
             'id' => $this->id,
+            'userid' => $this->getBucketGift()->getUser()->getId(),
+            'nombre' => $this->getBucketGift()->getUser()->getNombre(),
             'precioTotalFormateado' => $this->getPrecioTotalFormateado(),
             'regalo' => $this->regalo,
             'descripcion' => $this->descripcion,
             'valorPorParte' => $this->getPrecioParteFormateado(),
             'horcruxes' => $this->horcruxes,
             'partesFaltantes' => $this->getHorcruxesComprables(),
-            'moneda' => $this->moneda,
         );
     }
 }

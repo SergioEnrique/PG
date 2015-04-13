@@ -211,6 +211,7 @@ class AccountController extends Controller
             'formPartyGift' => $formPartyGift->createView(),
             'formSolicitudRetiro' => $formSolicitudRetiro->createView(),
             'bucketGifts' => $bucketGifts,
+            'moneda' => $user->getMoneda(),
         ));
     }
 
