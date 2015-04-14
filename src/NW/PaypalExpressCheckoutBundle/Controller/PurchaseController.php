@@ -77,7 +77,7 @@ class PurchaseController extends Controller
             }
 
             // Datos de la compra
-            $paymentDetails['PAYMENTREQUEST_0_CURRENCYCODE'] = "MXN"; // Pesos mexicanos
+            $paymentDetails['PAYMENTREQUEST_0_CURRENCYCODE'] = $request->request->get('currency');
             $paymentDetails['PAYMENTREQUEST_0_CUSTOM'] = $itemCount;
             $paymentDetails['PAYMENTREQUEST_0_ITEMAMT'] = $totalAmount;
             $paymentDetails['PAYMENTREQUEST_0_HANDLINGAMT'] = ($totalAmount * .06) + 4;

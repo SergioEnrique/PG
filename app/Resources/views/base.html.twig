@@ -284,7 +284,7 @@ function ajaxSuccess(data)
                 for (var k = 1; k <= data.result[i].partygifts[j].partesFaltantes; k++) {
                     filaResultadoAmpliado += '<option>'+k+'</option>';
                 };
-                filaResultadoAmpliado += '</select><input type="submit" class="item_add" href="javascript:;" value="{% trans %}Agregar{% endtrans %}"></li><li>{% trans %}Valor{% endtrans %}<br/><span class="texto-evento-grande">$'+data.result[i].partygifts[j].precioTotalFormateado+' '+data.result[i].moneda+'</span><br/><br/>{% trans %}Gift dividido en{% endtrans %}<br/><span class="texto-evento-grande">'+data.result[i].partygifts[j].horcruxes+' {% trans %}partes{% endtrans %}</span><br/><br/>{% trans %}Valor por parte{% endtrans %}</br><span class="texto-evento-grande"><span class="item_price">$'+data.result[i].partygifts[j].valorPorParte+'</span> '+data.result[i].moneda+'</span><br/><br/></li></ul></div>';
+                filaResultadoAmpliado += '</select><input type="submit" class="item_add" href="javascript:;" value="{% trans %}Agregar{% endtrans %}"></li><li>{% trans %}Valor{% endtrans %}<br/><span class="texto-evento-grande">$'+data.result[i].partygifts[j].precioTotalFormateado+' '+data.result[i].moneda+'</span><br/><br/>{% trans %}Gift dividido en{% endtrans %}<br/><span class="texto-evento-grande">'+data.result[i].partygifts[j].horcruxes+' {% trans %}partes{% endtrans %}</span><br/><br/>{% trans %}Valor por parte{% endtrans %}</br><span class="texto-evento-grande"><span class="item_price">$'+data.result[i].partygifts[j].valorPorParte+'</span> <span class="item_currency">'+data.result[i].moneda+'</span></span><br/><br/></li></ul></div>';
                 $(".evento-desplegar").append(filaResultadoAmpliado);
                 contadorFilas++;
             }
@@ -308,6 +308,7 @@ simpleCart({
     },
     cartStyle: "table", 
     cartColumns: [
+        { attr: "currency"},
         { attr: "userid"},
         { attr: "nombre"},
         { attr: "itemid" , label: "ID" },
@@ -344,6 +345,10 @@ simpleCart.bind( 'beforeAdd' , function( item ){
         $("#seleccion").modal();
         return false;
     }
+
+    simpleCart.currency(item.get("currency"));
+    $("#carritoCurrency").html(item.get("currency"));
+
 });
 
 // Funcion que busca los nombre de los dos usuarios a quienes se les quiere regalar y actualiza los botones
@@ -379,6 +384,7 @@ $("#seleccion1").click(function() {
 $("#seleccion2").click(function() {
     simpleCart.empty();
     simpleCart.add({ 
+        currency: itemTemporal.get("currency"),
         userid: itemTemporal.get("userid"),
         nombre: itemTemporal.get("nombre"),
         itemid: itemTemporal.get("itemid"),
@@ -387,8 +393,19 @@ $("#seleccion2").click(function() {
         price: itemTemporal.get("price"),
         quantity: itemTemporal.get("quantity")
     });
+    simpleCart.currency(itemTemporal.get("currency"));
+    $("#carritoCurrency").html(itemTemporal.get("currency"));
     //despues cerrar modal
     $.modal.close();
+});
+
+
+// Cuando carga el carrito, se establece su moneda
+simpleCart.ready( function(){
+    simpleCart.each(function( item , x ){
+        simpleCart.currency(item.get("currency"));
+        $("#carritoCurrency").html(item.get("currency"));
+    });
 });
 
 </script>

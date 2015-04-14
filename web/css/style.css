@@ -1031,6 +1031,10 @@ tr.carritoVaciado{
 	color:white;
 }
 
+.item-currency, .item-userid, .item-nombre{
+	display:none;
+}
+
 .headerRow{
 	color: #2AC2FF;
   	font-family: 'Century Gothic', 'Open Sans', sans-serif;

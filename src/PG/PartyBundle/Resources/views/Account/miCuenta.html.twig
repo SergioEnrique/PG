@@ -272,10 +272,11 @@
             url: "{{ url('nw_paypal_express_checkout_prepare_purchase') }}",
             method: "POST",
         },
-        currency: "MXN",
-        language: "spanish-mx",
         cartStyle: "table", 
         cartColumns: [
+        	{ attr: "currency"},
+	        { attr: "userid"},
+	        { attr: "nombre"},
             { attr: "itemid" , label: "ID" } ,
             { attr: "name" , label: "Gift" } ,
             { attr: "description" , label: "Descripción" },
@@ -290,6 +291,89 @@
     simpleCart.shipping(function(){
         return simpleCart.total()*.06+4;
     });
+
+    var itemTemporal;
+
+simpleCart.bind( 'beforeAdd' , function( item ){
+    var items = [];
+    var itemsNombre = [];
+    //var itemsIndizados = [];
+    simpleCart.each(function( item , x ){
+        items.push( item.get('userid') );
+        itemsNombre.push( item.get('nombre') );
+        //itemsIndizados[item.get('userid')] = item.get('nombre');
+    });
+
+    if(!verificarCarrito(items, item.get('userid')))
+    {
+        itemTemporal = item;
+        actualizarBotones(itemsNombre[0], item.get('nombre'))
+        $("#seleccion").modal();
+        return false;
+    }
+
+    simpleCart.currency(item.get("currency"));
+    $("#carritoCurrency").html(item.get("currency"));
+
+});
+
+// Funcion que busca los nombre de los dos usuarios a quienes se les quiere regalar y actualiza los botones
+function actualizarBotones(nombre1, nombre2)
+{
+    // Primer botón
+    $("#seleccion1").html(nombre1);
+
+    // Segundo botón
+    $("#seleccion2").html(nombre2);
+}
+
+// Verdadero si todo está bien, falso si se tiene que abrir el modal
+function verificarCarrito(usuarios, usuarioActual)
+{
+    for (var i = usuarios.length - 1; i >= 0; i--)
+    {
+        if (usuarios[i] != usuarioActual)
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+// Clic en el boton1 de seleccion
+$("#seleccion1").click(function() {
+    // Solo cerrar modal
+    $.modal.close();
+});
+
+// Clic en el boton2 de seleccion
+$("#seleccion2").click(function() {
+    simpleCart.empty();
+    simpleCart.add({ 
+        currency: itemTemporal.get("currency"),
+        userid: itemTemporal.get("userid"),
+        nombre: itemTemporal.get("nombre"),
+        itemid: itemTemporal.get("itemid"),
+        name: itemTemporal.get("name"),
+        description: itemTemporal.get("description"),
+        price: itemTemporal.get("price"),
+        quantity: itemTemporal.get("quantity")
+    });
+    simpleCart.currency(itemTemporal.get("currency"));
+    $("#carritoCurrency").html(itemTemporal.get("currency"));
+    //despues cerrar modal
+    $.modal.close();
+});
+
+
+// Cuando carga el carrito, se establece su moneda
+simpleCart.ready( function(){
+    simpleCart.each(function( item , x ){
+        simpleCart.currency(item.get("currency"));
+        $("#carritoCurrency").html(item.get("currency"));
+    });
+});
+
 </script>
 
 {% set transaccion = app.session.flashbag.get("transaccion") %}
