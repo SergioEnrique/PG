@@ -159,7 +159,7 @@ class AccountController extends Controller
                         // Enviar correo al usuario de que se solicitó un retiro
                         $message = \Swift_Message::newInstance()
                         ->setSubject("Solicitud de Retiro en PartyGift")
-                        ->setFrom("info@newlywishes.com")
+                        ->setFrom("info@partygift.ws")
                         ->setTo($user->getEmail())
                         ->setContentType("text/html")
                         ->setBody(
@@ -173,9 +173,9 @@ class AccountController extends Controller
 
                         // PartyGift finanzas o admin
                         $message = \Swift_Message::newInstance()
-                        ->setSubject("Solicitud de Retiro en NewlyWishes.com")
-                        ->setFrom("info@newlywishes.com")
-                        ->setTo("docser@gmail.com")
+                        ->setSubject("Solicitud de Retiro en PartyGift.ws")
+                        ->setFrom("info@partygift.ws")
+                        ->setTo("docser@gmail.com") // CAMBIAR!
                         ->setContentType("text/html")
                         ->setBody(
                             $this->renderView(

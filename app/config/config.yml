@@ -77,15 +77,15 @@ swiftmailer:
     encryption: ssl
     auth_mode:  login
     host:       smtp.gmail.com
-    username:   info@newlywishes.com
-    password:   'infonewlywishes'
+    username:   info@partygift.ws
+    password:   'infopartygift'
 
 fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: secure_area
     user_class: NW\UserBundle\Entity\User
     from_email: 
-        address:  info@newlywishes.com
+        address:  info@partygift.ws
         sender_name:  PartyGift
     resetting:
         email:

@@ -228,8 +228,8 @@ class UserController extends Controller
                     // Enviar correo a los novios por el registro exitoso
                     // Novio
                     $message = \Swift_Message::newInstance()
-                    ->setSubject("Te registraste con éxito en NewlyWishes.com")
-                    ->setFrom("info@newlywishes.com")
+                    ->setSubject("Te registraste con éxito en PartyGift.ws")
+                    ->setFrom("info@partygift.ws")
                     ->setTo($novios->getEMail())
                     ->setContentType("text/html")
                     ->setBody(
@@ -242,8 +242,8 @@ class UserController extends Controller
                     $this->get('mailer')->send($message);
                     // Novia
                     $message = \Swift_Message::newInstance()
-                    ->setSubject("Te registraste con éxito en NewlyWishes.com")
-                    ->setFrom("info@newlywishes.com")
+                    ->setSubject("Te registraste con éxito en PartyGift.ws")
+                    ->setFrom("info@partygift.ws")
                     ->setTo($novias->getEMail())
                     ->setContentType("text/html")
                     ->setBody(
@@ -362,8 +362,8 @@ class UserController extends Controller
                     // Enviar correo a los novios por el registro exitoso
                     // Novio
                     $message = \Swift_Message::newInstance()
-                    ->setSubject("Te registraste con éxito en NewlyWishes.com")
-                    ->setFrom("info@newlywishes.com")
+                    ->setSubject("Te registraste con éxito en PartyGift.ws")
+                    ->setFrom("info@partygift.ws")
                     ->setTo($novios->getEMail())
                     ->setContentType("text/html")
                     ->setBody(
@@ -377,8 +377,8 @@ class UserController extends Controller
                     $this->get('mailer')->send($message);
                     // Novia
                     $message = \Swift_Message::newInstance()
-                    ->setSubject("Te registraste con éxito en NewlyWishes.com")
-                    ->setFrom("info@newlywishes.com")
+                    ->setSubject("Te registraste con éxito en PartyGift.ws")
+                    ->setFrom("info@partygift.ws")
                     ->setTo($novias->getEMail())
                     ->setContentType("text/html")
                     ->setBody(

@@ -32,7 +32,7 @@
 					<ul>
 						<li>{% trans with {'%name%': app.user.nombre} %}Bienvenido <span class="rosa-persona bold">%name%</span>{% endtrans %} <a href="#mis-datos" rel="modal:open">({% trans %}modificar datos{% endtrans %})</a>
 						</li>
-						<li style="width:19%">{% trans %}Saldo{% endtrans %}: <span class="rosa-persona bold">${{app.user.getSaldoFormateado}} {{app.user.moneda}}</span></li>
+						<li style="width:21%">{% trans %}Saldo{% endtrans %}: <span class="rosa-persona bold">${{app.user.getSaldoFormateado}} {{app.user.moneda}}</span></li>
 						<li><span class="rosa-persona bold show-paypal">{% trans %}retirar{% endtrans %}</span>
 							<div id="login" class="login wow bounceIn retiro-paypal">
 								<form action="{{ path('pg_party_miCuenta') }}" name="nw_principalbundle_solicitudretiro" method="post" {{ form_enctype(formModificarCuenta) }}>
