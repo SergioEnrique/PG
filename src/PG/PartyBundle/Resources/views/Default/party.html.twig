@@ -74,9 +74,11 @@
                     </li>
                     <li>
                         <h3 class="texto-evento-grande item_name">{{partyGift.regalo}}</h3>
-                        <p style="width:500px;" class="item_description">{{partyGift.descripcion}}</p>
+                        <p style="width:530px;" class="item_description">{{partyGift.descripcion}}</p>
 
                         <span class="invisible item_itemid">{{partyGift.id}}</span>
+                        <span class="invisible item_userid">{{partyGift.bucketgift.user.id}}</span>
+                        <span class="invisible item_nombre">{{partyGift.bucketgift.user.nombre}}</span>
                         
                         {% trans %}¿Cuántas partes deseas regalar?{% endtrans %}
                             <select class="item_Quantity">
@@ -105,6 +107,7 @@
 
 	{% block modales %}
         {% include ':plantillasParciales:modalCarrito.html.twig' %}
+        {% include ':plantillasParciales:modalSeleccion.html.twig' %}
     {% endblock %}}
 
 <script>
@@ -142,15 +145,15 @@ simpleCart({
         { attr: "currency"},
         { attr: "userid"},
         { attr: "nombre"},
-        { attr: "itemid" , label: "ID" } ,
-        { attr: "name" , label: "Gift" } ,
-        { attr: "description" , label: "Descripción" },
-        { attr: "price" , label: "Precio", view: 'currency' } ,
+        { attr: "itemid" , label: "ID" },
+        { attr: "name" , label: "Gift" },
+        { attr: "description" , label: "{% trans %}Descripción{% endtrans %}" },
+        { attr: "price" , label: "{% trans %}Precio{% endtrans %}", view: 'currency' } ,
         { view: "decrement" , label: false , text: "-" } ,
-        { attr: "quantity" , label: "Cantidad" } ,
+        { attr: "quantity" , label: "{% trans %}Cantidad{% endtrans %}" } ,
         { view: "increment" , label: false , text: "+" } ,
         { attr: "total" , label: "SubTotal", view: 'currency' } ,
-        { view: "remove" , text: "Remover" , label: false }
+        { view: "remove" , text: "{% trans %}Remover{% endtrans %}" , label: false }
     ]
 });
 simpleCart.shipping(function(){

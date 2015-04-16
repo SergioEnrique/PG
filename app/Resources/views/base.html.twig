@@ -142,10 +142,10 @@
                 {% if app.user == false %}
                     <h2>{% trans %}Crea un bucketgift{% endtrans %}</h2>
                     <h3>{% trans %}Primero debes registrarte{% endtrans %}</h3>
-                    <form action="{{ url('pg_party_registro') }}" method="get" name="myForm">
+                    <form action="{{ url('pg_party_registro') }}" method="get" name="myForm" id="formPreRegistro">
                         <input type="text" name="email" placeholder="{% trans %}correo{% endtrans %}" required><br/>
                         <input type="checkbox" required="required"> <span class="small-font">{% trans %}Acepto términos y condiciones{% endtrans %}</span><br/>
-                        <input class="registrate" type="submit" value="{% trans %}Regístrate{% endtrans %}" onClick="enviaformulario();"><img class="face-registro" src="{{asset('img/facebook.png')}}" width="30" height="30" />
+                        <input class="registrate" type="submit" style="cursor: pointer;" value="{% trans %}Regístrate{% endtrans %}"><img class="face-registro" src="{{asset('img/facebook.png')}}" width="30" height="30" />
                     </form>
                     <span class="small-font aviso-crea">{% trans %}Aviso de privacidad{% endtrans %}</span>
                 {% endif %}
@@ -207,10 +207,17 @@ $("#resultadosBusqueda").on("click", ".evento-tr", function(){
 });
 
 function enviaformulario() {
-    win = window.open('','myWin','toolbars=0,width=400,height=600');            
-    document.myForm.target='myWin';
-    document.myForm.submit();
-    checarmicuenta();
+    if (!event.target.checkValidity()) {
+        event.preventDefault(); // dismiss the default functionality
+        alert('{%trans%}Por favor, llene el formulario{%endtrans%}'); // error message
+    }
+    else
+    {
+        win = window.open('','myWin','toolbars=0,width=400,height=600');            
+        document.myForm.target='myWin';
+        document.myForm.submit();
+        checarmicuenta();
+    }
 }
 
 function checarmicuenta()
@@ -234,6 +241,7 @@ function checarmicuenta()
 $(document).ready(function() {
     $("#errores").modal();
     $("#formBusqueda").submit(submitForm);
+    $("#formPreRegistro").submit(enviaformulario);
 });
 
 //// REALIZAR BÚSQUEDA CON AJAX \\\\

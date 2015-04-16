@@ -267,27 +267,27 @@
 	});
 
 	simpleCart({
-        checkout: {
-            type: "SendForm" , 
-            url: "{{ url('nw_paypal_express_checkout_prepare_purchase') }}",
-            method: "POST",
-        },
-        cartStyle: "table", 
-        cartColumns: [
-        	{ attr: "currency"},
+	    checkout: {
+	        type: "SendForm" , 
+	        url: "{{ url('nw_paypal_express_checkout_prepare_purchase') }}",
+	        method: "POST",
+	    },
+	    cartStyle: "table", 
+	    cartColumns: [
+	        { attr: "currency"},
 	        { attr: "userid"},
 	        { attr: "nombre"},
-            { attr: "itemid" , label: "ID" } ,
-            { attr: "name" , label: "Gift" } ,
-            { attr: "description" , label: "Descripción" },
-            { attr: "price" , label: "Precio", view: 'currency' } ,
-            { view: "decrement" , label: false , text: "-" } ,
-            { attr: "quantity" , label: "Cantidad" } ,
-            { view: "increment" , label: false , text: "+" } ,
-            { attr: "total" , label: "SubTotal", view: 'currency' } ,
-            { view: "remove" , text: "Remover" , label: false }
-        ]
-    });
+	        { attr: "itemid" , label: "ID" },
+	        { attr: "name" , label: "Gift" },
+	        { attr: "description" , label: "{% trans %}Descripción{% endtrans %}" },
+	        { attr: "price" , label: "{% trans %}Precio{% endtrans %}", view: 'currency' } ,
+	        { view: "decrement" , label: false , text: "-" } ,
+	        { attr: "quantity" , label: "{% trans %}Cantidad{% endtrans %}" } ,
+	        { view: "increment" , label: false , text: "+" } ,
+	        { attr: "total" , label: "SubTotal", view: 'currency' } ,
+	        { view: "remove" , text: "{% trans %}Remover{% endtrans %}" , label: false }
+	    ]
+	});
     simpleCart.shipping(function(){
         return simpleCart.total()*.06+4;
     });
