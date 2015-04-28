@@ -19,6 +19,11 @@ class AccountController extends Controller
 {
     public function miCuentaAction(Request $request)
     {	
+        // Redirigir al panel de administracion si es administrador
+        if(true === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            return $this->redirect($this->generateUrl("pg_party_admin_panel"));
+        }
+
     	// Manejador de entidades
     	$em = $this->getDoctrine()->getManager();
 

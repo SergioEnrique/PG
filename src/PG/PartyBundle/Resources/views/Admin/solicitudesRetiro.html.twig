@@ -1,39 +1,95 @@
-{# src/NW/PrincipalBundle/Resources/views/Admin/solicitudesRetiro.html.twig #}
+<!doctype html>
+<html lang="{{app.request.locale}}">
+<head>
+    <meta charset="UTF-8">
+    <title>{%block title%}PartyGift{%endblock%}</title>
+    <link href="{{asset('css/style.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{asset('css/animate.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{asset('css/jquery.modal.css')}}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+    <script type="text/javascript" src="{{asset('js/jquery-1.9.0.min.js')}}"></script>
+    <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+    <script type="text/javascript" src="{{asset('js/jquery.scrollTo-1.4.3.1-min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/jquery.modal.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/simpleCart.min.js')}}"></script>
+</head>
+<body class="body-micuenta">
+    <div class="all-wrapper body-micuenta">
+        <header>
+            <div class="max-wrapper">
+                <h1 class="logo">
+                    <a href="{{url('pg_party_homepage')}}">
+                        <img src="{{asset('img/partygift-logo.png')}}" />
+                        <span class="oculto">Party Gift</span>
+                    </a>
+                </h1>
+                <div class="salir-cuenta"><a href="{{ path('fos_user_security_logout') }}">{% trans %}salir{% endtrans %}</a></div>
+                {% include ':plantillasParciales:cuentaBox.html.twig' %}
+            </div>
+            <div class="cuenta-info-top">
+                <div class="max-wrapper">
+                    <ul>
+                        <li>{% trans with {'%name%': app.user.nombre} %}Bienvenido <span class="rosa-persona bold">%name%</span>{% endtrans %}
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </header>
 
-    <div class="row">
-        <div class="panel panel-default" style="border: none;">
-            <table class="table table-striped table-hover table-responsive" style="height: inherit;">
-                <thead>
-                    <tr>
-                        <th>Usuario</th>
-                        <th>Cuenta Paypal</th>
-                        <th>Fecha</th>
-                        <th>Monto solicitado</th>
-                        <th>Saldo disponible</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for solicitud in solicitudes %}
-                    {% if solicitud.realizado == false %}
-                    <tr>
-                        <td>{{solicitud.usuario.username}}</td>
-                        <td>{{solicitud.cuentaPaypal}}</td>
-                        <td>{{solicitud.getFechaFormat}}</td>
-                        <td>${{solicitud.amount|number_format(2, '.', ',')}}</td>
-                        <td>${{solicitud.usuario.saldo|number_format(2, '.', ',')}}</td>
-                        <td>
-                            <a href="{{path('pg_party_admin_operaciones')}}/aceptar-retiro/{{solicitud.id}}">
-                                <img src="{{asset('img/palomita.png')}}" width="20">
-                            </a>
-                             <a href="{{path('pg_party_admin_operaciones')}}/denegar-retiro/{{solicitud.id}}">
-                                <img src="{{asset('img/xminus.png')}}" width="23">
-                            </a>
-                        </td>
-                    </tr>
-                    {% endif %}
-                    {% endfor %}
-                </tbody>
-            </table>
+        <div class="espacio-header"></div>
+        <div class="cuenta-content">
+            <div class="max-wrapper">
+                <div style="background-color:black; color:white; margin-top:30px; padding:25px; border-radius: 8px 8px 8px 8px;">
+                    <div class="panel panel-default" style="border: none;">
+                        <table style="height: inherit; width:100%;" class="titulosSolicitudes">
+                            <thead>
+                                <tr>
+                                    <th>Usuario</th>
+                                    <th>Cuenta Paypal</th>
+                                    <th>Fecha</th>
+                                    <th>Monto solicitado</th>
+                                    <th>Saldo disponible</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for solicitud in solicitudes %}
+                                {% if solicitud.realizado == false %}
+                                <tr>
+                                    <td>{{solicitud.usuario.username}}</td>
+                                    <td>{{solicitud.cuentaPaypal}}</td>
+                                    <td>{{solicitud.getFechaFormat}}</td>
+                                    <td>${{solicitud.amount|number_format(2, '.', ',')}}</td>
+                                    <td>${{solicitud.usuario.saldo|number_format(2, '.', ',')}}</td>
+                                    <td>
+                                        <a href="{{path('pg_party_admin_operaciones')}}/aceptar-retiro/{{solicitud.id}}">
+                                            <img src="{{asset('img/palomita.png')}}" width="20">
+                                        </a>
+                                         <a href="{{path('pg_party_admin_operaciones')}}/denegar-retiro/{{solicitud.id}}">
+                                            <img src="{{asset('img/xminus.png')}}" width="23">
+                                        </a>
+                                    </td>
+                                </tr>
+                                {% endif %}
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
+
+        {% block footer %}
+            {% include ':plantillasParciales:footer.html.twig' %}
+        {% endblock %}
     </div>
+</div>
+
+{% block modales %}
+    {% include ':plantillasParciales:modalErrores.html.twig' %}
+{% endblock %}
+
+</body>
+</html>

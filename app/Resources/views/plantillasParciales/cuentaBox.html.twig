@@ -9,7 +9,20 @@
 		<a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'es'})) }}">Español</a> | <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'en'})) }}">English</a>
 	</div>
 	{% if app.user %}
-		<div class="datos">{{ app.user.nombre }}{% if is_granted('ROLE_USER') %} - <a href="{{ url('pg_party_miCuenta') }}">{% trans %}Mi cuenta{% endtrans %}</a>{% endif %}</div>
+		<div class="datos">
+			{{ app.user.nombre }}
+			{% if is_granted('ROLE_ADMIN') %}
+				 - 
+				<a href="{{ url('pg_party_admin_panel') }}">
+					{% trans %}Administración{% endtrans %}
+				</a>
+			{% elseif is_granted('ROLE_USER') %}
+				 - 
+				<a href="{{ url('pg_party_miCuenta') }}">
+					{% trans %}Mi cuenta{% endtrans %}
+				</a>
+			{% endif %}
+		</div>
 	{% endif %}
 
 </div>

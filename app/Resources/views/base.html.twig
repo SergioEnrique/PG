@@ -25,7 +25,7 @@
                 <span class="oculto">Party Gift</span>
                 </a>
             </h1>
-            <div class="salir-cuenta"><a href="/app_dev.php/logout">{% trans %}salir{% endtrans %}</a></div>
+            <div class="salir-cuenta"><a href="{{ path('fos_user_security_logout') }}">{% trans %}salir{% endtrans %}</a></div>
             {% include ':plantillasParciales:cuentaBox.html.twig' %}
 
             {% if app.user == false %}

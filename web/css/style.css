@@ -1103,3 +1103,13 @@ tr.carritoVaciado{
 .show{display:block !important;}
 .show-inline{display:inline-block !important;}
 .hide{display:none !important;}
+
+.titulosSolicitudes th{
+	font-weight: bold;
+	color: gray;
+	font-size: 14pt;
+}
+.titulosSolicitudes td{
+	font-size: 11pt;
+}
+
