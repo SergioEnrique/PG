@@ -1095,6 +1095,9 @@ tr.carritoVaciado{
 	padding: 16px 10px;
 }
 
+.simpleCart_items{
+	min-width: 650px;
+}
 /* FIN CARRITO */
 
 .show{display:block !important;}

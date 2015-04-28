@@ -14,7 +14,14 @@
 </head>
 <body>
 <center>
+
 				<div class="header-registro"><img src="{{ asset('img/partygift-logo.png') }}" width="200"/></div>
+				<div>{% for flashMessage in app.session.flashbag.get('notice') %}
+		    <div class="alert alert-info">
+		        <br><span style="color:red;">{{ flashMessage }}</span>
+
+		    </div>
+		{% endfor %}</div>
 				<form action="{{ url('pg_party_registro') }}" method="post" id="registration-form" name="myForm" class="contacto-main">
 				<h3 class="registro">{% trans %}REGISTRO{% endtrans %}</h3>
 				<label>

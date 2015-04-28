@@ -24,6 +24,7 @@ class AccountController extends Controller
 
     	// Cargar datos del usuario
     	$user = $this->getUser();
+        $correoViejo = $user->getEmail();
 
     	// Generar formulario para Modificar la cuenta
     	$formModificarCuenta = $this->createForm(new ModificarCuentaType, $user);
@@ -80,6 +81,20 @@ class AccountController extends Controller
                                 'La contraseña es incorrecta'
                             );
                         }
+                    }
+
+
+                    // Registrar usuario
+                    $userManager = $this->get('fos_user.user_manager');
+
+                    // Checando si ya existe el usuario o el correo
+                    $usuarioExistente = $userManager->findUserBy(array('username' => $user->getEmail()));
+
+                    if($usuarioExistente && $correoViejo != $usuarioExistente->getEmail())
+                    {
+                        $this->get('session')->getFlashBag()->add('notice', 'Este correo ya está en uso');
+                        
+                        return $this->redirect($this->generateUrl("pg_party_miCuenta"));
                     }
                     
                     // Se modifican los demás datos

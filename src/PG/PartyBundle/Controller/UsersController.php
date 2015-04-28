@@ -26,7 +26,20 @@ class UsersController extends Controller
         if('POST' === $request->getMethod())
         {
             // Registrar usuario
-            $userManager = $this->get('fos_user.user_manager'); 
+            $userManager = $this->get('fos_user.user_manager');
+
+            // Checando si ya existe el usuario o el correo
+            $usuarioExistente = $userManager->findUserBy(array('username' => $formRegistroPary["email"]->getData()));
+
+            if($usuarioExistente)
+            {
+                $this->get('session')->getFlashBag()->add('notice', 'Este correo ya está en uso');
+                return $this->render('PGPartyBundle:Users:registro.html.twig', array(
+                    'formRegistroPary' => $formRegistroPary->createView(),
+                    'emailpasado' => $request->query->get('email'),
+                ));
+            }
+
             $user = $userManager->createUser(); 
 
             $password = $formRegistroPary["userPass"]->getData();
