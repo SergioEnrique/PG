@@ -101,39 +101,32 @@ class ConnectController extends BaseConnectController
         // Checando si ya existe el usuario o el correo
         $usuarioPorUsername = $userManager->findUserBy(array('username' => $nicknameOriginal));
         
-        // Si ya existe el usuario, se le suma 1 al final del nombre
-        $contador = 1;
+        // Si ya existe el usuario se manda mensaje de que ya existe el usuario
         if($usuarioPorUsername)
         {
-            while ($usuarioPorUsername) {
-                $nickname = $nicknameOriginal.$contador;
-                $usuarioPorUsername = $userManager->findUserBy(array('username' => $nickname));
-                $contador++;
-            }
+            $this->get('session')->getFlashBag()->add('notice', 'Este correo ya está en uso');
         }
         else
         {
-            $nickname = $nicknameOriginal;
-        }
+            // Generar contraseña aleatoria
+            $password = $this->randomPassword();
 
-        // Generar contraseña aleatoria
-        $password = $this->randomPassword();
-
-        // Envio de correo de registro exitoso
-        $message = \Swift_Message::newInstance()
-        ->setSubject("Te registraste con éxito en PartyGift")
-        ->setFrom("info@newlywishes.com")
-        ->setTo($userInformation->getEmail())
-        ->setContentType("text/html")
-        ->setBody(
-            $this->container->get('templating')->render(
-                'PGPartyBundle:Users:correoRegistroExitosoFacebook.html.twig', array(
-                    'password' => $password,
-                    'email' => $userInformation->getEmail(),
+            // Envio de correo de registro exitoso
+            $message = \Swift_Message::newInstance()
+            ->setSubject("Te registraste con éxito en PartyGift")
+            ->setFrom("info@newlywishes.com")
+            ->setTo($userInformation->getEmail())
+            ->setContentType("text/html")
+            ->setBody(
+                $this->container->get('templating')->render(
+                    'PGPartyBundle:Users:correoRegistroExitosoFacebook.html.twig', array(
+                        'password' => $password,
+                        'email' => $userInformation->getEmail(),
+                    )
                 )
-            )
-        );
-        $this->container->get('swiftmailer.mailer')->send($message);
+            );
+            $this->container->get('swiftmailer.mailer')->send($message);   
+        }
 
         return $this->container->get('templating')->renderResponse('HWIOAuthBundle:Connect:registration.html.' . $this->getTemplatingEngine(), array(
             'key' => $key,
