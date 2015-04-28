@@ -144,10 +144,19 @@
                     <h3>{% trans %}Primero debes registrarte{% endtrans %}</h3>
                     <form action="{{ url('pg_party_registro') }}" method="get" name="myForm" id="formPreRegistro">
                         <input type="text" name="email" placeholder="{% trans %}correo{% endtrans %}" required><br/>
-                        <input type="checkbox" required="required"> <span class="small-font">{% trans %}Acepto términos y condiciones{% endtrans %}</span><br/>
+                        <input type="checkbox" required="required">
+                            <span class="small-font">
+                                <a href="{{ asset('docs/TERMSCONDITIONSPARTYGIFT.pdf') }}">
+                                    {% trans %}Acepto términos y condiciones{% endtrans %}
+                                </a>
+                            </span><br/>
                         <input class="registrate" type="submit" style="cursor: pointer;" value="{% trans %}Regístrate{% endtrans %}"><img class="face-registro" src="{{asset('img/facebook.png')}}" width="30" height="30" />
                     </form>
-                    <span class="small-font aviso-crea">{% trans %}Aviso de privacidad{% endtrans %}</span>
+                    <span class="small-font aviso-crea">
+                        <a href="{{ asset('docs/PRIVACYPARTYGIFT.pdf') }}">
+                            {% trans %}Aviso de privacidad{% endtrans %}
+                        </a>
+                    </span>
                 {% endif %}
             </div>
             <div id="zona-eventos" class="eventos">
