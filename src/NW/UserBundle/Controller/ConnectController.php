@@ -75,6 +75,17 @@ class ConnectController extends BaseConnectController
             // Authenticate the user
             $this->authenticateUser($request, $form->getData(), $error->getResourceOwnerName(), $error->getRawToken());
 
+            $quedatos = $form->getData();
+
+            // Setear saldo en el usuario
+            $em = $this->container->get('doctrine.orm.entity_manager');
+            $usersRepository = $em->getRepository('NWUserBundle:User');
+            $miUsuario = $usersRepository->find($quedatos->getId());
+
+            $miUsuario->setSaldo(0);
+            $em->persist($miUsuario);
+            $em->flush();
+
             // Respuesta HTML
             /*$respuestaHTML = "<script language=\"javascript\">
                                 window.onunload = refreshParent;
@@ -94,12 +105,13 @@ class ConnectController extends BaseConnectController
         $session->set('_hwi_oauth.registration_error.'.$key, $error);
 
         // Crear un nombre de usuario con base en el nombre de usuario de facebook
-        $nicknameOriginal = $this->quitarAcentos($userInformation->getNickname());
+        $nickname = $this->quitarAcentos($userInformation->getNickname());
 
         // Manejador de usuarios de fosuserbundle
         $userManager = $this->container->get('fos_user.user_manager'); 
+
         // Checando si ya existe el usuario o el correo
-        $usuarioPorUsername = $userManager->findUserBy(array('username' => $nicknameOriginal));
+        $usuarioPorUsername = $userManager->findUserBy(array('username' => $nickname));
         
         // Si ya existe el usuario se manda mensaje de que ya existe el usuario
         if($usuarioPorUsername)
@@ -125,7 +137,7 @@ class ConnectController extends BaseConnectController
                     )
                 )
             );
-            $this->container->get('swiftmailer.mailer')->send($message);   
+            $this->container->get('swiftmailer.mailer')->send($message); 
         }
 
         return $this->container->get('templating')->renderResponse('HWIOAuthBundle:Connect:registration.html.' . $this->getTemplatingEngine(), array(
