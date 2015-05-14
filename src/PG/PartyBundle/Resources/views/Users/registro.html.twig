@@ -3,14 +3,14 @@
 <head>
 	<meta charset="UTF-8">
 	<title>{%block title%}PartyGift{%endblock%}</title>
-<link href="{{asset('css/style.css')}}" rel="stylesheet" type="text/css">
-<link href="{{asset('css/animate.css')}}" rel="stylesheet" type="text/css">
-<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
-<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-<script type="text/javascript" src="{{asset('js/jquery.scrollTo-1.4.3.1-min.js')}}"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.1.47/jquery.form-validator.min.js"></script>
-    <script> $.validate(); </script>
+	<link href="{{asset('css/style.css')}}" rel="stylesheet" type="text/css">
+	<link href="{{asset('css/animate.css')}}" rel="stylesheet" type="text/css">
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+	<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+	<script type="text/javascript" src="{{asset('js/jquery.scrollTo-1.4.3.1-min.js')}}"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.2.1/jquery.form-validator.min.js"></script>
+	<script> $.validate(); </script>
 </head>
 <body>
 <center>
@@ -55,7 +55,7 @@
 		 data-validation-strength="2" data-validation-error-msg="{% trans %}Por favor pon una contraseña más fuerte.{% endtrans %}"/>
 				</label><br />
                 <label>
-					<input type="password" placeholder="{% trans %}Confirmar contraseña{% endtrans %}" id="registroPartyForm_userPass2" name="registroPartyForm[userPass2]"maxlength="20" data-validation="" data-validation-error-msg="{% trans %}Las contraseñas no coinciden.{% endtrans %}"/>
+					<input type="password" placeholder="{% trans %}Confirmar contraseña{% endtrans %}" id="registroPartyForm_userPass2" name="registroPartyForm[userPass2]"maxlength="20" data-validation="confirmation"  data-validation-confirm="registroPartyForm[userPass]" data-validation-error-msg="{% trans %}Las contraseñas no coinciden.{% endtrans %}"/>
 				</label><br />
 				
 				
@@ -67,7 +67,7 @@
   $.validate({
     modules : 'location, date, security, file',
     onModulesLoaded : function() {
-      $('#country').suggestCountry();
+    	$('#country').suggestCountry();
     }
   });
  
