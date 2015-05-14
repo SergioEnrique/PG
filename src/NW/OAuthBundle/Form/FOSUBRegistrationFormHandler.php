@@ -200,6 +200,9 @@ class FOSUBRegistrationFormHandler implements RegistrationFormHandlerInterface
             case 'MX':
                 $currency = "MXN";
                 break;
+            case 'US':
+                $currency = "USD";
+                break;
             
             default:
                 $currency = "MXN";
