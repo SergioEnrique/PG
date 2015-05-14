@@ -244,6 +244,7 @@
 
 	$(document).ready(function() {
     	$("#errores").modal();
+    	$("#errores2").modal();
     	{% for bucketgift in bucketGifts %}
     		{% if bucketgift.getStatus %}
     			$( ".evento-seleccion" ).addClass( "show" );

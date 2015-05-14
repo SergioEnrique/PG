@@ -83,6 +83,6 @@ class AdminController extends Controller
     	$em->remove($solicitudObject);
     	$em->flush();
 
-        return $this->redirect($this->generateURL('pg_party_admin_panel`'));
+        return $this->redirect($this->generateURL('pg_party_admin_panel'));
     }
 }

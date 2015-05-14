@@ -3,9 +3,24 @@
 		<div id="errores" class="modal" style="display:none; width:300px;">		    
 	        <div class="row"><br />
 	            <div class="alert alert-info" style="color:white;">
-	                {{ flashMessagePrueba }}
+			        {{ flashMessagePrueba }}
 	            </div>
 	        </div>
 		</div>
 	{% endif %}
 {% endfor %}
+
+{% if formSolicitudRetiro is defined %}
+	{% if not formSolicitudRetiro.vars.valid %}
+
+		<div id="errores2" class="modal" style="display:none; width:300px;">		    
+		    <div class="row"><br />
+		        <div class="alert alert-info" style="color:white;">
+			        El valor requerido en el retiro es incorrecto:
+				    {{ form_errors(formSolicitudRetiro.amount) }}
+		        </div>
+		    </div>
+		</div>
+		å
+	{% endif %}
+{% endif %}
