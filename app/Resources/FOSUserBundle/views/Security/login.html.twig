@@ -1,0 +1,25 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+{% if error %}
+    <div>{{ error|trans }}</div>
+{% endif %}
+
+<form action="{{ path("fos_user_security_check") }}" method="post">
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+
+    <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" placeholder="Usuario" class="input_login_novios" />
+
+	
+
+    <br />
+    <input type="password" id="password" name="_password" required="required" placeholder="Contraseña" class="input_login_novios" />
+
+    <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" class="btn btn-default enviar_form" style=" width: 148px;" />
+</form>
+
+<a href="{{url('nw_principal_homepage')}}connect/facebook"><button id="loginface" class="btn btn-default enviar_form" style="background-color: #1543A5; width: 148px;">Entrar con Facebook</button></a>
+
+{% endblock fos_user_content %}

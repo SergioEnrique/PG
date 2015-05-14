@@ -69,3 +69,9 @@ pg_party_busqueda:
     defaults: { _controller: PGPartyBundle:Default:busqueda }
     requirements:
         _locale: en|es
+
+pg_party_changepass:
+    pattern:  /{_locale}/changepass/{id}
+    defaults: { _controller: PGPartyBundle:Users:changePass, id: false }
+    requirements:
+        _locale: en|es

@@ -2,37 +2,37 @@
 
 {% block body_text %}
 {% autoescape %}
-Hola {{ user.getNovias.nombre }} y {{ user.getNovios.nombre }}
+Hola persona
 Puedes resetear tu contraseña accediendo al siguiente enlace: {{ confirmationUrl }}
 {% endautoescape %}
 {% endblock %}
 
 {% block body_html %}
-<div style="border: 2px solid gray; width: 94%; margin: 28px auto; font-family: sans-serif;">
-	<div style="border-bottom: 2px solid gray; padding: 16px;">
-		<div style="padding-bottom: 21px; margin-bottom: 36px; border-bottom: 2px solid #c09;">
-			<div style="width:38%; display: inline-block; line-height: 27px;">
-				<span style="color:rgb(79, 79, 79); font-size:14px;">Notificaciones</span>
-				<br>
-				<span style="color: #c09; font-size:12px;">{{today()}}</span>
-			</div>
-			<div style="width:59%; display: inline-block;">
-				<img src="{{app.request.getSchemeAndHttpHost() ~ asset('img/logo_small.jpg')}}" style="width:90%">
-			</div>
-		</div>
-		<div>
-			<span style="color:rgb(79, 79, 79); font-size:19px;">Recuperación de contraseña</span>
-			<p style="text-align: center;font-size: 15px; color:rgb(79, 79, 79); margin-top: 62px;">
-				Hola {{ user.getNovias.nombre }} y {{ user.getNovios.nombre }}<br>
-				Pueden resetear su contraseña accediendo al siguiente enlace: {{ confirmationUrl }}
-			</p>
-			<div style="font-size: 16px; color:rgb(79, 79, 79); font-style: italic; text-align: right; width: 100%; margin-top: 48px; margin-bottom: 43px;">El equipo de Newly<span style="color: #c09;">W</span>ishes</div>
-		</div>
-	</div>
-	<div style="padding: 20px; color: gray; font-size: 12px; background-color:rgb(232, 232, 232);">
-		<p>Estás recibiendo este mensaje de correo electrónico por haber hecho uso de los servicios de NewlyWishes, con base en la aceptación de los términos y condiciones de uso.</p>
-		<p>Recuerda que NewlyWishes nunca te pedirá que envíes datos personales, de cuenta o financieros a través de correo electrónico. Puedes consultar nuestro aviso de privacidad en www.newlywishes.com. Si tienes aglún comentario o duda, ponemos a tu disposición el siguiente correo electrónico: atencion@newlywishes.com</p>
-		<p>NewlyWishes y su logotipo son marcas registradas.</p>
-	</div>
-</div>
+<body style="padding: 0; margin: 0; background-color:black; font-family: 'Arial';">
+    <div style="font-family: sans-serif;">
+        <div style="padding: 16px;">
+            <div style="width:38%; display: inline-block; line-height: 27px;">
+                <span style="font-size: 23px; color:#A262A7; font-family: serif; text-align: right; width: 100%; margin-top: 48px; margin-bottom: 43px;">party<span style="color:#00B0F0;">message</span></span>
+                <br>
+                <span style="color:#00B0F0; font-size:14px;">{{today()}}</span>
+            </div>
+            <div style="width:59%; display: inline-block;">
+                <img src="{{app.request.getSchemeAndHttpHost() ~ asset('img/partygift-logo.png')}}" style="width:90%">
+            </div>
+            <div>
+                <span style="color:rgb(79, 79, 79); font-size:19px;">Recuperación de Contraseña</span>
+                <p style="text-align: left;font-size: 15px; color:white; margin-top: 62px;">
+                    Hola persona<br>
+					Puedes resetear su contraseña accediendo al siguiente enlace: {{ confirmationUrl }}
+                </p>
+                <div style="font-size: 26px; color:#A262A7; font-family: serif; text-align: right; width: 100%; margin-top: 48px; margin-bottom: 43px;">the party<span style="color:#00B0F0;">team</span></div>
+            </div>
+        </div>
+        <div style="padding: 20px; color: gray; font-size: 12px; background-color:rgb(48, 48, 48);">
+            <p>Estás recibiendo este mensaje de correo electrónico por haber hecho uso de los servicios de partygift, con base en la aceptación de los términos y condiciones de uso.</p>
+            <p>Recuerda que partygift nunca te pedirá que envíes datos personales o confidenciales a través de correo electrónico. Puedes consultar nuestro aviso de privacidad en www.partygift.ws. Si tienes algún comentario, puedes contactarnos en support@partygift.ws</p>
+            <p>Partygift y su logotipo son marcas registradas.</p>
+        </div>
+    </div>
+</body>
 {% endblock %}

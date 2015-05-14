@@ -2,10 +2,6 @@
 #    pattern:  /asignarRoles
 #    defaults: { _controller: NWUserBundle:User:asignarRoles }
 
-nw_user_pruebas:
-    pattern:  /pruebas
-    defaults: { _controller: NWUserBundle:User:pruebas }
-
 nw_user_registronovios:
     pattern:  /registronovios
     defaults: { _controller: NWUserBundle:User:registronovios }
@@ -33,7 +29,3 @@ nw_user_registro_exitoso:
 nw_user_postregistro_novios:
     pattern:  /postregistronovios
     defaults: { _controller: NWUserBundle:User:postregistronovios }
-
-nw_principal_changepass:
-    pattern:  /changepass/{id}
-    defaults: { _controller: NWUserBundle:User:changePass, id: false }

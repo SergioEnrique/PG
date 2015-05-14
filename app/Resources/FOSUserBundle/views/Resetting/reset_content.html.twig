@@ -1,0 +1,43 @@
+{% extends '::base.html.twig' %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+	{% block body %}
+
+	{% include ':plantillasParciales:top.html.twig' %}
+
+	<div class="container">
+		<div class="cuadro img-responsive text-center" style="padding-top: 65px;">
+			<br>
+
+			{% for type, messages in app.session.flashbag.all() %}
+			    {% for message in messages %}
+			        <div class="flash-{{ type }}">
+			            {{ message }}
+			        </div>
+			    {% endfor %}
+			{% endfor %}
+
+
+			<div class="error-formulario">
+				{{ form_errors(form) }}
+			</div>
+
+			<p style="font-size:14px; font-style:italic; margin-bottom: 10px;" class="text-center">
+			Utilice el siguiente formulario para configurar su nueva contraseña
+			</p>
+
+			<form action="{{ path('fos_user_resetting_reset', {'token': token}) }}" {{ form_enctype(form) }} method="POST" class="fos_user_resetting_reset">
+			    {{ form_widget(form.plainPassword.first, { 'attr': {'class': 'input_registro_novios', 'placeholder': 'Nueva contraseña', 'style': 'width:50%;' } }) }}
+			    <br>
+			    {{ form_widget(form.plainPassword.second, { 'attr': {'class': 'input_registro_novios', 'placeholder': 'Repita la contraseña', 'style': 'width:50%;' } }) }}
+			    {{ form_widget(form) }}
+			    <div>
+			        <input type="submit" class="botoncitoRosa" style="width: 121px; height: 34px; margin-top: 16px;" value="{{ 'resetting.reset.submit'|trans }}" />
+			    </div>
+			</form>
+
+			</div>
+		</div>
+
+{% endblock %}

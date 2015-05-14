@@ -111,4 +111,86 @@ class UsersController extends Controller
         // Regresa el resultado en JSON
         return new Response($return, $responseCode, array('Content-Type'=>'application/json'));
     }
+
+    public function changePassAction($id)
+    {
+        $request = $this->getRequest();
+
+        // Se quiere cambiar la contraseña
+        if($id)
+        {
+            // Buscar el usuario
+            $userEntity = $this->getDoctrine()->getManager()->getRepository('NWUserBundle:User');
+            $user = $userEntity->find($id);
+            $username = $user->getUsername();
+
+            // Inicio de Sesión
+            $session = $request->getSession();
+     
+            // get the login error if there is one
+            if ($request->attributes->has(SecurityContext::AUTHENTICATION_ERROR)) {
+                $error = $request->attributes->get(
+                    SecurityContext::AUTHENTICATION_ERROR
+                );
+            }
+            else {
+                $error = $session->get(SecurityContext::AUTHENTICATION_ERROR);
+                $session->remove(SecurityContext::AUTHENTICATION_ERROR);
+            }
+
+            // Formulario de cambio de contraseña
+            $formChangePass = $this->createFormBuilder()
+                ->add('newPass', 'password')
+                ->add('Cambiar', 'submit')
+                ->getForm();
+
+            $exitoActualizacion = false;
+
+            // Obtener formuario de cambio de contraseña
+            $formChangePass->handleRequest($request);
+            if($formChangePass->isValid())
+            {
+                // Cambiar contraseña del usuario
+                $user->setPlainPassword($formChangePass["newPass"]->getData());
+                $this->get('fos_user.user_manager')->updateUser($user, false);
+                $this->getDoctrine()->getManager()->flush();
+                
+                // Ya se actualizó la contraseña
+                $exitoActualizacion = true;
+            }
+
+            return $this->render('PGPartyBundle:Users:changePassword.html.twig', array(
+                'exitoActualizacion' => $exitoActualizacion,
+                'formChangePass' => $formChangePass->createView(),
+                'last_username' => $session->get(SecurityContext::LAST_USERNAME),
+                'error'         => $error,
+                'username' => $username
+            ));
+
+        }
+
+        // Formulario de correo
+        $formCorreo = $this->createFormBuilder()
+            ->add('email', 'email')
+            ->add('Continuar', 'submit')
+            ->getForm();
+
+        // Obtener formuario
+        $formCorreo->handleRequest($request);
+        if($formCorreo->isValid())
+        {
+            // Buscar el usuario
+            $userEntity = $this->getDoctrine()->getManager()->getRepository('NWUserBundle:User');
+            $user = $userEntity->findOneBy(array('email' => $formCorreo['email']->getData()));
+            $id = $user->getId();
+
+            $redirect = $this->generateUrl('pg_party_changepass', array('id' => $id));
+            return $this->redirect($redirect);
+        }
+
+        return $this->render('PGPartyBundle:Users:cualmail.html.twig', array(
+            'formCorreo' => $formCorreo->createView()
+        ));
+        
+    }
 }

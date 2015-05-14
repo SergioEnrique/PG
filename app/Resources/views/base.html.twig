@@ -25,7 +25,11 @@
                 <span class="oculto">Party Gift</span>
                 </a>
             </h1>
-            <div class="salir-cuenta"><a href="{{ path('fos_user_security_logout') }}">{% trans %}salir{% endtrans %}</a></div>
+            {% if app.user %}
+                <div class="salir-cuenta">
+                    <a href="{{ path('fos_user_security_logout') }}">{% trans %}salir{% endtrans %}</a>
+                </div>
+            {% endif %}
             {% include ':plantillasParciales:cuentaBox.html.twig' %}
 
             {% if app.user == false %}
@@ -34,20 +38,24 @@
                     {% trans %}Ingresar{% endtrans %}
                 </div>
                 <div id="login" class="login wow bounceIn">
-                    {% if error %}
-                        <div>{{ error.message }}</div>
+                    {% if error is defined %}
+                        {% if error %}
+                            <div>{{ error.message }}</div>
+                        {% endif %}
                     {% endif %}
                     <form action="{{url('pg_pary_root')}}login_check" method="POST">
-                        <input type="text" id="username" name="_username" required="required" value="{{ last_username }}" placeholder="{% trans %}correo{% endtrans %}">
+                        <input type="text" id="username" name="_username" required="required" placeholder="{% trans %}correo{% endtrans %}">
                         <input type="password" id="password" name="_password" required="required" placeholder="{% trans %}contraseña{% endtrans %}">
                         <input type="submit" id="_submit" name="_submit" value="{% trans %}Acceder{% endtrans %}">
                         <a href="{{url('root')}}connect/facebook">
                             <img class="facebook" src="{{asset('img/facebook.png')}}" width="30" alt="">
                         </a>
                         <br>
-                        <a href=""><span class="small-font recuperar-pass">{% trans %}Recuperar contraseña{% endtrans %}</span></a>
+                        <a href="{{url('pg_party_changepass')}}"><span class="small-font recuperar-pass">{% trans %}Recuperar contraseña{% endtrans %}</span></a>
                         <input type="hidden" name="_target_path" value="{{url('pg_party_miCuenta')}}" />
-                        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                        {% if csrf_token is defined %}
+                            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                        {% endif %}
                     </form>
                 </div>
                 <a href="{{url('root')}}connect/facebook">
