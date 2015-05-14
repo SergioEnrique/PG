@@ -27,6 +27,11 @@
                     </a>
                 </h1>
                 
+                {% if app.user %}
+	                <div class="salir-cuenta">
+	                    <a href="{{ path('fos_user_security_logout') }}">{% trans %}salir{% endtrans %}</a>
+	                </div>
+	            {% endif %}
                 {% include ':plantillasParciales:cuentaBox.html.twig' %}
             </div>
             <div class="cuenta-info-top">
@@ -44,22 +49,14 @@
 
                    	
 					<div class="container">
-						<div class="cuadro img-responsive">
-							<br>
+						<div class="cuadro img-responsive text-center">
+							
+							La contraseña se ha cambiado con éxito:
 
-							{% for type, messages in app.session.flashbag.all() %}
-							    {% for message in messages %}
-							        <div class="flash-{{ type }}">
-							            {{ message }}
-							        </div>
-							    {% endfor %}
-							{% endfor %}
-
-							<p style="font-size:14px; font-style:italic;" class="text-center">
-							{{ 'resetting.password_already_requested'|trans }}
-							</p>
-
+							<div class="fos_user_user_show" style="font-size:13px;">
+							    <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
 							</div>
+
 						</div>
 					</div>
 							
@@ -81,3 +78,4 @@
 
 </body>
 </html>
+

@@ -1,43 +1,99 @@
-{% extends '::base.html.twig' %}
-
 {% trans_default_domain 'FOSUserBundle' %}
 
-	{% block body %}
+<!doctype html>
+<html lang="{{app.request.locale}}">
+<head>
+    <meta charset="UTF-8">
+    <title>{%block title%}PartyGift{%endblock%}</title>
+    <link href="{{asset('css/style.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{asset('css/animate.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{asset('css/jquery.modal.css')}}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+    <script type="text/javascript" src="{{asset('js/jquery-1.9.0.min.js')}}"></script>
+    <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+    <script type="text/javascript" src="{{asset('js/jquery.scrollTo-1.4.3.1-min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/jquery.modal.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/simpleCart.min.js')}}"></script>
+</head>
+<body class="body-micuenta">
+    <div class="all-wrapper body-micuenta">
+        <header>
+            <div class="max-wrapper">
+                <h1 class="logo">
+                    <a href="{{url('pg_party_homepage')}}">
+                        <img src="{{asset('img/partygift-logo.png')}}" />
+                        <span class="oculto">Party Gift</span>
+                    </a>
+                </h1>
+                
+                {% include ':plantillasParciales:cuentaBox.html.twig' %}
+            </div>
+            <div class="cuenta-info-top">
+                <div class="max-wrapper">
+                    
+                </div>
+            </div>
+        </header>
 
-	{% include ':plantillasParciales:top.html.twig' %}
+        <div class="espacio-header"></div>
+        <div class="cuenta-content">
+            <div class="max-wrapper">
+                <div style="background-color:black; color:white; margin-top:30px; padding:40px; border-radius: 8px 8px 8px 8px;">
+                    
 
-	<div class="container">
-		<div class="cuadro img-responsive text-center" style="padding-top: 65px;">
-			<br>
+                   	
+					<div class="container">
+						<div class="cuadro img-responsive text-center">
+							<br>
 
-			{% for type, messages in app.session.flashbag.all() %}
-			    {% for message in messages %}
-			        <div class="flash-{{ type }}">
-			            {{ message }}
-			        </div>
-			    {% endfor %}
-			{% endfor %}
+							{% for type, messages in app.session.flashbag.all() %}
+							    {% for message in messages %}
+							        <div class="flash-{{ type }}">
+							            {{ message }}
+							        </div>
+							    {% endfor %}
+							{% endfor %}
 
 
-			<div class="error-formulario">
-				{{ form_errors(form) }}
-			</div>
+							<div class="error-formulario">
+								{{ form_errors(form) }}
+							</div>
 
-			<p style="font-size:14px; font-style:italic; margin-bottom: 10px;" class="text-center">
-			Utilice el siguiente formulario para configurar su nueva contraseña
-			</p>
+							<p style="font-size:14px; font-style:italic; margin-bottom: 10px;" class="text-center">
+							Utilice el siguiente formulario para configurar su nueva contraseña
+							</p>
 
-			<form action="{{ path('fos_user_resetting_reset', {'token': token}) }}" {{ form_enctype(form) }} method="POST" class="fos_user_resetting_reset">
-			    {{ form_widget(form.plainPassword.first, { 'attr': {'class': 'input_registro_novios', 'placeholder': 'Nueva contraseña', 'style': 'width:50%;' } }) }}
-			    <br>
-			    {{ form_widget(form.plainPassword.second, { 'attr': {'class': 'input_registro_novios', 'placeholder': 'Repita la contraseña', 'style': 'width:50%;' } }) }}
-			    {{ form_widget(form) }}
-			    <div>
-			        <input type="submit" class="botoncitoRosa" style="width: 121px; height: 34px; margin-top: 16px;" value="{{ 'resetting.reset.submit'|trans }}" />
-			    </div>
-			</form>
+							<form action="{{ path('fos_user_resetting_reset', {'token': token}) }}" {{ form_enctype(form) }} method="POST" class="fos_user_resetting_reset">
+							    {{ form_widget(form.plainPassword.first, { 'attr': {'class': 'input_registro_novios', 'placeholder': 'Nueva contraseña', 'style': 'width:50%; background-color:white; color:black;' } }) }}
+							    
+							    {{ form_widget(form.plainPassword.second, { 'attr': {'class': 'input_registro_novios', 'placeholder': 'Repita la contraseña', 'style': 'width:50%; background-color:white; color:black; margin-top:12px;' } }) }}
+							    {{ form_widget(form) }}
+							    <div>
+							        <input type="submit" class="botoncitoRosa" style="width: 121px; height: 34px; margin-top: 16px;" value="{{ 'resetting.reset.submit'|trans }}" />
+							    </div>
+							</form>
 
-			</div>
-		</div>
+							</div>
+						</div>
+					</div>
+							
 
+
+                </div>
+            </div>
+        </div>
+
+        {% block footer %}
+            {% include ':plantillasParciales:footer.html.twig' %}
+        {% endblock %}
+    </div>
+</div>
+
+{% block modales %}
+    {% include ':plantillasParciales:modalErrores.html.twig' %}
 {% endblock %}
+
+</body>
+</html>
+
