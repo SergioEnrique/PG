@@ -1113,6 +1113,6 @@ tr.carritoVaciado{
 .titulosSolicitudes td{
 	font-size: 11pt;
 }
-#nw_principalbundle_mesaregalos li{
+#nw_principalbundle_mesaregalos li, #pg_partybundle_bucketgift li{
 	color:red;
 }

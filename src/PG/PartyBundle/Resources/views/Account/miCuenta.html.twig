@@ -83,9 +83,7 @@
 		<div id="nuevo-party" class="modal" style="display:none;">
 			<h2>{% trans %}Nuevo{% endtrans %} <span class="bolder">party</span>gift</h2><br/>
 			<form action="{{ path('pg_party_miCuenta') }}" method="post" {{ form_enctype(formModificarCuenta) }}>
-				
 				{{ form_widget(formPartyGift) }}
-	
 				<br/>
 
 				<input type="submit" style="cursor:pointer;" value="{% trans %}Agregar{% endtrans %}">
@@ -248,6 +246,11 @@
     	{% if formPartyGift is defined %}
 			{% if not formPartyGift.vars.valid %}
 		    		$("#nuevo-party").modal();
+    		{% endif %}
+    	{% endif %}
+    	{% if formBucketGift is defined %}
+			{% if not formBucketGift.vars.valid %}
+		    		$("#nuevo-bucket").modal();
     		{% endif %}
     	{% endif %}
     	{% for bucketgift in bucketGifts %}
