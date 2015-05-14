@@ -178,7 +178,6 @@ class FOSUBRegistrationFormHandler implements RegistrationFormHandlerInterface
 
         // Moneda del usuario
         $ip = $this->getIP();
-        $ip = "217.216.0.0";
         $details = json_decode(file_get_contents("http://ipinfo.io/".$ip."/json"));
         $accessor->setValue($user, 'moneda', $this->getCurrency($details->country));
         
@@ -189,10 +188,18 @@ class FOSUBRegistrationFormHandler implements RegistrationFormHandlerInterface
     {
         if (!empty($_SERVER["HTTP_X_FORWARDED_FOR"])) {
             $real_client_ip = $_SERVER["HTTP_X_FORWARDED_FOR"];
-        } else {
+        } else if (!empty($_SERVER["REMOTE_ADDR"])){
             $real_client_ip = $_SERVER["REMOTE_ADDR"];
         }
-        return "192.100.196.185";
+        else {
+            $real_client_ip = "192.100.196.185";
+        }
+
+        if($real_client_ip == "127.0.0.1")
+        {
+            $real_client_ip = "192.100.196.185";
+        }
+        return $real_client_ip;
     }
 
     protected function getCurrency($country_code)

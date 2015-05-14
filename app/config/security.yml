@@ -16,9 +16,9 @@ security:
             pattern: ^/
 
             oauth:
-                failure_path: /connect
+                failure_path: hwi_oauth_connect
                 login_path: /
-                check_path: /connect
+                check_path: hwi_oauth_connect
                 provider: fos_userbundle
                 resource_owners:
                     facebook: "/login/check-facebook"

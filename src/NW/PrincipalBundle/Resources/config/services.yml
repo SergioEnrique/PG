@@ -36,6 +36,7 @@ services:
         arguments: [@doctrine.orm.entity_manager, @fos_user.user_manager, @security.encoder_factory]
     today_twig_extension:
         class: %today_twig_extension.class%
+        arguments: [@translator]
         tags:
             - { name: twig.extension }
     payum.buzz.client: # Overwriting this payum service as doesnt work with paypal sandbox

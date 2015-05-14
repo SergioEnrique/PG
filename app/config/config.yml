@@ -70,6 +70,11 @@ services:
         class: HWI\Bundle\OAuthBundle\Security\Core\User\OAuthUserProvider
         arguments: [ @router ]
         scope: request
+    app.locale_listener:
+        class: PG\PartyBundle\EventListener\LocaleListener
+        arguments: ["%kernel.default_locale%"]
+        tags:
+            - { name: kernel.event_subscriber }
 
 # Swiftmailer Configuration
 swiftmailer:
