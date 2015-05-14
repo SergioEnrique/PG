@@ -178,6 +178,7 @@ class FOSUBRegistrationFormHandler implements RegistrationFormHandlerInterface
 
         // Moneda del usuario
         $ip = $this->getIP();
+        $ip = "217.216.0.0";
         $details = json_decode(file_get_contents("http://ipinfo.io/".$ip."/json"));
         $accessor->setValue($user, 'moneda', $this->getCurrency($details->country));
         
@@ -197,15 +198,87 @@ class FOSUBRegistrationFormHandler implements RegistrationFormHandlerInterface
     protected function getCurrency($country_code)
     {
         switch ($country_code) {
-            case 'MX':
-                $currency = "MXN";
-                break;
-            case 'US':
-                $currency = "USD";
-                break;
+            case 'MX': $currency = "MXN"; break;
+
+            case 'AS': $currency = "USD"; break;
+            case 'VG': $currency = "USD"; break;
+            case 'EC': $currency = "USD"; break;
+            case 'GU': $currency = "USD"; break;
+            case 'FM': $currency = "USD"; break;
+            case 'PW': $currency = "USD"; break;
+            case 'PR': $currency = "USD"; break;
+            case 'TC': $currency = "USD"; break;
+            case 'US': $currency = "USD"; break;
+            case 'UM': $currency = "USD"; break;
+            case 'VI': $currency = "USD"; break;
+            case 'ZW': $currency = "USD"; break;
+
+            case 'AD': $currency = "EUR"; break;
+            case 'AT': $currency = "EUR"; break;
+            case 'BE': $currency = "EUR"; break;
+            case 'CY': $currency = "EUR"; break;
+            case 'EE': $currency = "EUR"; break;
+            case 'EU': $currency = "EUR"; break;
+            case 'FI': $currency = "EUR"; break;
+            case 'FR': $currency = "EUR"; break;
+            case 'GF': $currency = "EUR"; break;
+            case 'TF': $currency = "EUR"; break;
+            case 'DE': $currency = "EUR"; break;
+            case 'GR': $currency = "EUR"; break;
+            case 'IE': $currency = "EUR"; break;
+            case 'IT': $currency = "EUR"; break;
+            case 'LV': $currency = "EUR"; break;
+            case 'MT': $currency = "EUR"; break;
+            case 'MQ': $currency = "EUR"; break;
+            case 'YT': $currency = "EUR"; break;
+            case 'MC': $currency = "EUR"; break;
+            case 'ME': $currency = "EUR"; break;
+            case 'NL': $currency = "EUR"; break;
+            case 'PT': $currency = "EUR"; break;
+            case 'RE': $currency = "EUR"; break;
+            case 'PM': $currency = "EUR"; break;
+            case 'SM': $currency = "EUR"; break;
+            case 'SK': $currency = "EUR"; break;
+            case 'SI': $currency = "EUR"; break;
+            case 'ES': $currency = "EUR"; break;
+            case 'VA': $currency = "EUR"; break;
+            
+            case 'AU': $currency = "AUD"; break;
+            case 'CX': $currency = "AUD"; break;
+            case 'CC': $currency = "AUD"; break;
+            case 'HM': $currency = "AUD"; break;
+            case 'KI': $currency = "AUD"; break;
+            case 'NR': $currency = "AUD"; break;
+            case 'NF': $currency = "AUD"; break;
+            case 'TV': $currency = "AUD"; break;
+            
+            case 'BR': $currency = "BRL"; break;
+
+            case 'CA': $currency = "CAD"; break;
+
+            case 'DK': $currency = "DKK"; break;
+            case 'FO': $currency = "DKK"; break;
+            case 'GL': $currency = "DKK"; break;
+
+            case 'UK': $currency = "GBP"; break;
+            case 'IO': $currency = "GBP"; break;
+
+            case 'HK': $currency = "HKD"; break;
+
+            case 'BV': $currency = "NOK"; break;
+            case 'NO': $currency = "NOK"; break;
+            case 'SJ': $currency = "NOK"; break;
+
+            case 'CK': $currency = "NZD"; break;
+            case 'NZ': $currency = "NZD"; break;
+            case 'NU': $currency = "NZD"; break;
+            case 'PN': $currency = "NZD"; break;
+            case 'TK': $currency = "NZD"; break;
+
+            case 'SE': $currency = "SEK"; break;
             
             default:
-                $currency = "MXN";
+                $currency = "USD";
                 break;
         }
         return $currency;
