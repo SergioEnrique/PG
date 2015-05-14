@@ -168,7 +168,7 @@ class FOSUBRegistrationFormHandler implements RegistrationFormHandlerInterface
         $nombresUsuario = explode(" ", $userInformation->getRealname(), 2);
 
         // Setteando saldo en 0 para el nuevo usuario
-        $accessor->setValue($user, 'saldo', 1);
+        $accessor->setValue($user, 'saldo', 0);
 
         // Nombre del usuario
         $accessor->setValue($user, 'nombre', $nombresUsuario[0]);

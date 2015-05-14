@@ -15,52 +15,54 @@
 </head>
 <body>
 <center>
-                <div class="header-registro"><img src="{{ asset('img/partygift-logo.png') }}" width="200"/></div>
-                <h3>Bienvenido {{ userInformation.getRealname }}, haz clic en continuar si deseas registrar tu nueva cuenta de PartyGift con tus datos de facebook:</h3>
-                    <form action="{{ path('hwi_oauth_connect_registration', {'key': key}) }}" {{ form_enctype(form) }} method="POST" class="hwi_oauth_registration_register">
-                        <div class="row">
-                            <div class="col-xs-offset-4 col-xs-4 puntosRosas">
-                                <div class="invisible" style="visibility:hidden; height:10px;">
-                                    <span class="error-formulario">{{ form_errors(form.username) }}</span>
-                                    {{ form_widget(form.username, { 'attr': {'class': 'input_registro_novios', 'value': userInformation.getEmail, 'placeholder': 'Nombre de usuario' } }) }}
-                                    <br/>
-                                    <span class="error-formulario">{{ form_errors(form.email) }}</span>
-                                    {{ form_widget(form.email, { 'attr': {'class': 'input_registro_novios', 'placeholder': 'Correo electrónico' } }) }}
-                                    <br/>
-                                
-                                    <span class="error-formulario">{{ form_errors(form.plainPassword.first) }}</span>
-                                    {{ form_widget(form.plainPassword.first, { 'attr': {'class': 'input_registro_novios', 'value': password, 'placeholder': 'Contraseña' } }) }}
-                                    <br />
-                                    <span class="error-formulario">{{ form_errors(form.plainPassword.second) }}</span>
-                                    {{ form_widget(form.plainPassword.second, { 'attr': {'class': 'input_registro_novios', 'value': password, 'placeholder': 'Confirmar contraseña' } }) }}
-                                    <br />
-                                </div>
-                            </div>
-                            {#<div class="col-xs-4 puntosRosas">
-                                <span class="error-formulario">{{ form_errors(form.terminosCondiciones) }}</span>
-                                <img src="{{ asset('img/punto.png') }}" alt="Registro" style="margin:5; float:left; margin-top:7px;" width="210">{{ form_widget(form.terminosCondiciones) }} 
-                                <a href="{{asset('documents/TerminosYCondicionesNWNovios.pdf')}}" target="_blank">
-                                    Acepto los términos y condiciones generales
-                                </a><br />
-                                <span class="error-formulario">{{ form_errors(form.terminosPrivacidad) }}</span>
-                                <img src="{{ asset('img/punto.png') }}" alt="Registro" style="margin:5; float:left; margin-top:7px; " width="210">{{ form_widget(form.terminosPrivacidad) }}
-                                <a href="{{asset('documents/CondicionesDeUsoGeneralYDeRegistroYAvisoDePrivacidadNewlyWishesNovios.pdf')}}" target="_blank">
-                                    Acepto las Condiciones de Uso General y de Registro y Aviso de privacidad
-                                </a><br />
-                            </div>#}
-                        </div>
-                        <div class="row text-right">
-                            <span class="error-formulario">
-                                {{ form_errors(form.email) }}
-                            </span>
-                        </div>
-                        <div class="row text-right">
-                            {{ form_widget(form) }}
-                            <button type="submit" class="botoncitoRosa" style="width:120px; margin-top:2px; bottom:0px; margin-right: 15px; margin-bottom:30px">Continuar</button>
-                        </div>
-                    </form>
+    <div class="header-registro"><img src="{{ asset('img/partygift-logo.png') }}" width="200"/></div>
+    <h3>Bienvenido {{ userInformation.getRealname }}, haz clic en continuar si deseas registrar tu nueva cuenta de PartyGift con tus datos de facebook:</h3>
+        <form action="{{ path('hwi_oauth_connect_registration', {'key': key}) }}" {{ form_enctype(form) }} method="POST" class="hwi_oauth_registration_register">
+            {#<span class="moneda">{% trans %}Moneda{% endtrans %}:</span> 
+                 {{ form_widget(form.moneda) }}#}
+            <div class="row">
+                <div class="col-xs-offset-4 col-xs-4 puntosRosas">
+                    <div class="invisible" style="visibility:hidden; height:10px;">
+                        <span class="error-formulario">{{ form_errors(form.username) }}</span>
+                        {{ form_widget(form.username, { 'attr': {'class': 'input_registro_novios', 'value': userInformation.getEmail, 'placeholder': 'Nombre de usuario' } }) }}
+                        <br/>
+                        <span class="error-formulario">{{ form_errors(form.email) }}</span>
+                        {{ form_widget(form.email, { 'attr': {'class': 'input_registro_novios', 'placeholder': 'Correo electrónico' } }) }}
+                        <br/>
+                    
+                        <span class="error-formulario">{{ form_errors(form.plainPassword.first) }}</span>
+                        {{ form_widget(form.plainPassword.first, { 'attr': {'class': 'input_registro_novios', 'value': password, 'placeholder': 'Contraseña' } }) }}
+                        <br />
+                        <span class="error-formulario">{{ form_errors(form.plainPassword.second) }}</span>
+                        {{ form_widget(form.plainPassword.second, { 'attr': {'class': 'input_registro_novios', 'value': password, 'placeholder': 'Confirmar contraseña' } }) }}
+                        <br />
+                    </div>
                 </div>
-        </center>
+                {#<div class="col-xs-4 puntosRosas">
+                    <span class="error-formulario">{{ form_errors(form.terminosCondiciones) }}</span>
+                    <img src="{{ asset('img/punto.png') }}" alt="Registro" style="margin:5; float:left; margin-top:7px;" width="210">{{ form_widget(form.terminosCondiciones) }} 
+                    <a href="{{asset('documents/TerminosYCondicionesNWNovios.pdf')}}" target="_blank">
+                        Acepto los términos y condiciones generales
+                    </a><br />
+                    <span class="error-formulario">{{ form_errors(form.terminosPrivacidad) }}</span>
+                    <img src="{{ asset('img/punto.png') }}" alt="Registro" style="margin:5; float:left; margin-top:7px; " width="210">{{ form_widget(form.terminosPrivacidad) }}
+                    <a href="{{asset('documents/CondicionesDeUsoGeneralYDeRegistroYAvisoDePrivacidadNewlyWishesNovios.pdf')}}" target="_blank">
+                        Acepto las Condiciones de Uso General y de Registro y Aviso de privacidad
+                    </a><br />
+                </div>#}
+            </div>
+            <div class="row text-right">
+                <span class="error-formulario">
+                    {{ form_errors(form.email) }}
+                </span>
+            </div>
+            <div class="row text-right">
+                {{ form_widget(form) }}
+                <button type="submit" class="botoncitoRosa" style="width:120px; margin-top:2px; bottom:0px; margin-right: 15px; margin-bottom:30px">Continuar</button>
+            </div>
+        </form>
+    </div>
+</center>
 <script>
 
            /* $(document).ready( function() {
