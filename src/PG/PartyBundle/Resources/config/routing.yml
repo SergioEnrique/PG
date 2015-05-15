@@ -75,3 +75,7 @@ pg_party_changepass:
     defaults: { _controller: PGPartyBundle:Users:changePass, id: false }
     requirements:
         _locale: en|es
+
+pg_party_pruebas:
+    pattern:  /pruebas
+    defaults: { _controller: PGPartyBundle:Default:pruebas }

@@ -136,7 +136,7 @@ class DefaultController extends Controller
         return new Response($return, $responseCode, array('Content-Type'=>'application/json'));
     }
 
-    public function pruebasAction()
+public function pruebasAction()
     {
         return $this->render('PGPartyBundle:Default:pruebas.html.twig');
     }
