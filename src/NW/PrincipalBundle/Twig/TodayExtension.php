@@ -28,7 +28,7 @@ class TodayExtension extends \Twig_Extension
         $arrayDias = array($this->translator->trans('Domingo'), $this->translator->trans('Lunes'), $this->translator->trans('Martes'), $this->translator->trans('Miércoles'), $this->translator->trans('Jueves'), $this->translator->trans('Viernes'), $this->translator->trans('Sabado'));
         // echo $arrayDias[date('w')].", ".date('d')." de ".$arrayMeses[date('m')-1]." de ".date('Y');
         if($lang == 'es'){
-            return date('j')." de ".$arrayMeses[date('m')-1]." de ".date('Y');
+            return $arrayMeses[date('m')-1]." ".date('j')." de ".date('Y');
         }
         else{
             return $arrayMeses[date('m')-1]." ".date('j').", ".date('Y');
