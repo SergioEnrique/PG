@@ -16,7 +16,7 @@
 <body>
 <center>
     <div class="header-registro"><img src="{{ asset('img/partygift-logo.png') }}" width="200"/></div>
-    <h3>Bienvenido {{ userInformation.getRealname }}, haz clic en continuar si deseas registrar tu nueva cuenta de PartyGift con tus datos de facebook:</h3>
+    <h3>{% trans %}Bienvenido{% endtrans %} {{ userInformation.getRealname }}, {% trans %}haz clic en continuar si deseas registrar tu nueva cuenta de PartyGift con tus datos de facebook{% endtrans %}:</h3>
         <form action="{{ path('hwi_oauth_connect_registration', {'key': key}) }}" {{ form_enctype(form) }} method="POST" class="hwi_oauth_registration_register">
             {#<span class="moneda">{% trans %}Moneda{% endtrans %}:</span> 
                  {{ form_widget(form.moneda) }}#}
@@ -58,7 +58,7 @@
             </div>
             <div class="row text-right">
                 {{ form_widget(form) }}
-                <button type="submit" class="botoncitoRosa" style="width:120px; margin-top:2px; bottom:0px; margin-right: 15px; margin-bottom:30px">Continuar</button>
+                <button type="submit" class="botoncitoRosa" style="width:120px; margin-top:2px; bottom:0px; margin-right: 15px; margin-bottom:30px">{% trans %}Continuar{% endtrans %}</button>
             </div>
         </form>
     </div>

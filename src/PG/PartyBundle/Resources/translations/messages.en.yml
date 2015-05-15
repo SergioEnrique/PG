@@ -75,6 +75,7 @@ Cantidad: Quantity
 Subtotal: Subtotal
 Remover: Remove
 Hola %name%: Hello %name%
+Hola: Hello
 Nuevo: New
 Nombre del gift: Gift name
 Valor del gift: Gift value
@@ -107,3 +108,22 @@ Miércoles: Wednesday
 Jueves: Thursday
 Viernes: Friday
 Sabado: Saturday
+Puedes resetear tu contraseña accediendo al siguiente enlace: Click the link to reset your password
+Registro en PartyGift: ParyGift registration
+Te has registrado correctamente en PartyGift, puedes iniciar sesión con tu contraseña: You have registered on PartyGift successfully, please login using your password
+Te has registrado correctamente en PartyGift, puedes iniciar sesión con tu cuenta de Facebook o con tu contraseña: You have registered on PartyGift successfully, now you can login with your Facebook account or using your password
+Solicitud de Retiro en PartyGift: Withdrawal request on PartyGift
+Tú o alguien más solicitó un retiro desde la cuenta de PartyGift a su cuenta de PayPal. En cuanto sea aceptada recibirás un correo de confirmación.: You or someone else have made a withdraw request form your account on PartyGift to a PayPal account. Once it is accepted you will receive a confirmation email.
+Compra realizada en PartyGift: Purchase in PartyGift
+en PartyGift: on PartyGift
+Este correo es la confirmacion de compra realizada en la mesa de regalos (BucketGift) de: This email is a purchase confirmation made from the gift table (BucketGift) of
+Los datos de la compra son: Purchase information
+precio unitario: unit price
+ID de transacción PayPal: PayPal transaction ID
+ID de transacción PartyGift: PartyGift transaction ID
+conserva estos datos para futuras aclaraciones: use this information for further clarifications
+te acaba de regalar lo siguiente: have just gift you this
+El saldo en tu cuenta ha sido incrementado para que compres tus regalos.: Your balance at PartyGift has been increased so you can buy gifts.
+Bienvenido: Welcome
+Continuar: Continue
+haz clic en continuar si deseas registrar tu nueva cuenta de PartyGift con tus datos de facebook: Click the button to register as a new PartyGift user using your facebook information

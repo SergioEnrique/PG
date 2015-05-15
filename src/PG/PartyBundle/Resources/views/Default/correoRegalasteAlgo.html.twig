@@ -1,23 +1,23 @@
 {% extends '::correo.html.twig' %}
 
 {% block subject %}
-	Compra realizada en PartyGift
+	{% trans %}Compra realizada en PartyGift{% endtrans %}
 {% endblock %}
 
 {% block contenido %}
-	Hola {{details.FIRSTNAME}} {{details.LASTNAME}}<br><br>
+	{% trans %}Hola{% endtrans %} {{details.FIRSTNAME}} {{details.LASTNAME}}<br><br>
 
-	Este correo es la confirmacion de compra realizada en la mesa de regalos (BucketGift) de {{usuario.nombre}} {{usuario.apellidos}} en PartyGift<br><br>
+	{% trans %}Este correo es la confirmacion de compra realizada en la mesa de regalos (BucketGift) de{% endtrans %} {{usuario.nombre}} {{usuario.apellidos}} {% trans %}en PartyGift{% endtrans %}<br><br>
 
-	Los datos de la compra son: <br><br>
+	{% trans %}Los datos de la compra son{% endtrans %}: <br><br>
 
 	{% for regalo in details.regalos %}
-		{{ regalo.cantidad }} - {{ regalo.nombre }} - precio unitario: ${{ regalo.precio }} {{details.PAYMENTREQUEST_0_CURRENCYCODE}}<br>
+		{{ regalo.cantidad }} - {{ regalo.nombre }} - {% trans %}precio unitario{% endtrans %}: ${{ regalo.precio }} {{details.PAYMENTREQUEST_0_CURRENCYCODE}}<br>
 	{% endfor %}
 	<br>
 	Total: ${{details.AMT}} {{details.PAYMENTREQUEST_0_CURRENCYCODE}}<br><br>
 
-	ID de transacción PayPal: {{details.PAYMENTREQUEST_0_TRANSACTIONID}}<br>
-	ID de transacción PartyGift: {{details.INVNUM}}<br>
-	(conserva estos datos para futuras aclaraciones)
+	{% trans %}ID de transacción PayPal{% endtrans %}: {{details.PAYMENTREQUEST_0_TRANSACTIONID}}<br>
+	{% trans %}ID de transacción PartyGift{% endtrans %}: {{details.INVNUM}}<br>
+	({% trans %}conserva estos datos para futuras aclaraciones{% endtrans %})
 {% endblock %}

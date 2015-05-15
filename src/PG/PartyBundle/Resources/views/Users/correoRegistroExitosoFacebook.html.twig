@@ -1,9 +1,9 @@
 {% extends '::correo.html.twig' %}
 
 {% block subject %}
-	Registro en PartyGift
+	{% trans %}Registro en PartyGift{% endtrans %}
 {% endblock %}
 
 {% block contenido %}
-	Te has registrado correctamente en PartyGift, puedes iniciar sesión con tu cuenta de Facebook o con tu contraseña: {{password}}
+	{% trans %}Te has registrado correctamente en PartyGift, puedes iniciar sesión con tu cuenta de Facebook o con tu contraseña{% endtrans %}: {{password}}
 {% endblock %}
