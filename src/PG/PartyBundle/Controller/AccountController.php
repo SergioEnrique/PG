@@ -119,9 +119,12 @@ class AccountController extends Controller
                 $formBucketGift->handleRequest($request);
                 if($formBucketGift->isValid())
                 {
-                    $ymd = \DateTime::createFromFormat('d/m/Y', $formBucketGift["date"]->getData())->format('Y-m-d');
+                    //$ymd = \DateTime::createFromFormat('d/m/Y', $formBucketGift["date"]->getData())->format('Y-m-d');
+                    $ymd = $formBucketGift["date"]->getData();
 
-                    $bucketGift->setFecha(new \DateTime($ymd));
+                    //$bucketGift->setFecha(new \DateTime($ymd));
+                    $bucketGift->setFecha($ymd);
+
                     $em->persist($bucketGift);
                     $em->flush();
 

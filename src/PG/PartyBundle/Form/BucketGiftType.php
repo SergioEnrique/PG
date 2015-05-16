@@ -17,7 +17,7 @@ class BucketGiftType extends AbstractType
     {
         $builder
             ->add('titulo', 'text', array('label' => 'Evento', 'constraints' => new NotBlank()))
-            ->add('date', 'text', array('label' => 'Fecha', 'mapped' => false, 'constraints' => new NotBlank()))
+            ->add('date', 'date', array('label' => 'Fecha', 'widget' => 'single_text', 'format' => 'yyyy-MM-dd', 'mapped' => false, 'constraints' => new NotBlank()))
         ;
     }
     
