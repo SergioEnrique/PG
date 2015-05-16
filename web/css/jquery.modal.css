@@ -30,7 +30,7 @@
 	margin-top:20px;	
 }
 
-.modal input[type=text], .modal textarea, .modal input[type=password]{
+.modal input[type=text], .modal textarea, .modal input[type=password], .modal input[type=date]{
 	display:inline-block;
 	background:#262626;
 	width:44%;
@@ -50,7 +50,7 @@
 	margin-bottom:5px;
 	height:30px;
 }
-#nuevo-bucket input[type=text]{
+#nuevo-bucket input[type=text], #nuevo-bucket input[type=date]{
 	margin-bottom:5px;
 }
 .info-modal{
@@ -62,7 +62,7 @@
 	margin-top:15px;
 	padding:0;
 }
-#nuevo-bucket input[type=text]{
+#nuevo-bucket input[type=text], #nuevo-bucket input[type=date]{
 	width:62% !important;	
 }
 .modal input[type=submit]{

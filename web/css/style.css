@@ -13,7 +13,7 @@ body{color:#000000; background:#2ABDEF; font-family:'Century Gothic', 'Open Sans
 .small-font a{color: black;}
 .no-bg{background:none !important;}
 .ver-evento{font-size:12px;}
-input[type=text],input[type=password]{
+input[type=text], input[type=password], input[type=date]{
 	height:30px;
 	box-sizing:border-box;
 	padding:10px;

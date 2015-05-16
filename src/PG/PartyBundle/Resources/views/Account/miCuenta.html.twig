@@ -75,10 +75,7 @@
 		<div id="nuevo-bucket" class="modal" style="display:none;">
 			<h2>{% trans %}Nuevo bucketgift{% endtrans %}</h2><br/>
 			<form action="{{ path('pg_party_miCuenta') }}" method="post" {{ form_enctype(formBucketGift) }}>
-				{{ form_row(formBucketGift.titulo) }}
-				{{ form_label(formBucketGift.date) }}
-				{{ form_widget(formBucketGift.date) }}
-				{{ form_rest(formBucketGift) }}
+				{{ form_widget(formBucketGift) }}
 				<input type="submit" style="cursor:pointer;" value="{% trans %}Agregar{% endtrans %}">
 			</form>
 		</div>
