@@ -12,3 +12,4 @@
 /bin/
 /composer.phar
 .DS_Store
+.config.codekit
