@@ -1,14 +1,18 @@
 {% extends '::correo.html.twig' %}
 
 {% block subject %}
-	Solicitud de retiro aceptada
+	{% trans %}Solicitud de retiro aceptada{% endtrans %}
+{% endblock %}
+
+{% block titulo %}
+	{% trans %}Solicitud de retiro aceptada{% endtrans %}
 {% endblock %}
 
 {% block contenido %}
-	Tu solicitud de retiro en PartyGift ha sido aceptada.<br><br>
+	{% trans %}Hola, tu solicitud de retiro en partygift.ws ha sido aceptada y en breve se depositará en tu cuanta PayPal registrada. Si ha habido un error, por favor comunícate con nosotros a support@partygift.ws{% endtrans %}<br><br>
 
-	ID de solicitud: {{id}}<br>
-	Saldo anterior en PartyGift: ${{saldoViejo|number_format(2, '.', ',')}}<br>
-	Saldo nuevo en PartyGift: ${{saldoNuevo|number_format(2, '.', ',')}}<br>
-	Cantidad transferida a tu cuenta PayPal ({{cuentaPaypal}}): ${{amount|number_format(2, '.', ',')}}
+	ID: {{id}}<br>
+	{% trans %}Saldo anterior{% endtrans %}: ${{saldoViejo|number_format(2, '.', ',')}}<br>
+	{% trans %}Saldo nuevo{% endtrans %}: ${{saldoNuevo|number_format(2, '.', ',')}}<br>
+	{% trans %}Cantidad transferida a tu cuenta PayPal{% endtrans %} ({{cuentaPaypal}}): ${{amount|number_format(2, '.', ',')}}
 {% endblock %}

@@ -1,13 +1,25 @@
 {% extends '::correo.html.twig' %}
 
 {% block subject %}
+	{#
 	{{details.FIRSTNAME}} {{details.LASTNAME}} ({{details.EMAIL}}) {% trans %}te acaba de regalar lo siguiente{% endtrans %}:
+	#}
+	{% trans %}Alguien te ha regalado en PartyGift{% endtrans %}
+{% endblock %}
+
+{% block titulo %}
+	{% trans %}Alguien te ha regalado en PartyGift{% endtrans %}
 {% endblock %}
 
 {% block contenido %}
+
+	{{details.FIRSTNAME}} {{details.LASTNAME}} ({{details.EMAIL}}) {% trans %}te acaba de regalar{% endtrans %}:<br><br>
+
 	{% for regalo in details.regalos %}
 		{{ regalo.cantidad }}  {{ regalo.nombre }}<br>
 	{% endfor %}
+	{#
 	<br><br>
 	{% trans %}El saldo en tu cuenta ha sido incrementado para que compres tus regalos.{% endtrans %}
+	#}
 {% endblock %}

@@ -106,6 +106,7 @@ class DetailsController extends PayumController
                     'PGPartyBundle:Default:correoRegalasteAlgo.html.twig', array(
                         'details' => $details, 
                         'usuario' => $usuarioObject,
+                        'bucketgift' => $regaloObject->getBucketGift()->getTitulo(),
                     )
                 )
             );

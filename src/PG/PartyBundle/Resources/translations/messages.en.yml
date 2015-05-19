@@ -109,8 +109,8 @@ Jueves: Thursday
 Viernes: Friday
 Sabado: Saturday
 Puedes resetear tu contraseña accediendo al siguiente enlace: Click the following link to reset your password
-Registro en PartyGift: ParyGift registration
-Te has registrado correctamente en PartyGift, puedes iniciar sesión con tu contraseña: You have been successfully registered on PartyGift, please log in using your password
+Registro en PartyGift: ParyGift signup
+Te has registrado correctamente en PartyGift, puedes iniciar sesión con tu contraseña: You have successfully signed up into PartyGift, you can log in with your password
 Te has registrado correctamente en PartyGift, puedes iniciar sesión con tu cuenta de Facebook o con tu contraseña: You have been successfully registered on PartyGift, now you can log in with your Facebook account or using your password
 Solicitud de Retiro en PartyGift: Withdrawal request from PartyGift
 Tú o alguien más solicitó un retiro desde la cuenta de PartyGift a su cuenta de PayPal. En cuanto sea aceptada recibirás un correo de confirmación.: You or someone else has made a withdrawal request form your account from PartyGift to a PayPal account. Once it is accepted you will receive an e-mail confirmation.
@@ -121,9 +121,25 @@ Los datos de la compra son: Purchase information
 precio unitario: unit price
 ID de transacción PayPal: PayPal transaction ID
 ID de transacción PartyGift: PartyGift transaction ID
-conserva estos datos para futuras aclaraciones: use this information for further clarifications
+conserva estos datos para futuras aclaraciones: keep this email for further clarifications
 te acaba de regalar lo siguiente: have just gift you this
 El saldo en tu cuenta ha sido incrementado para que compres tus regalos.: Your balance at PartyGift has been increased so you can buy gifts.
 Bienvenido: Welcome
 Continuar: Continue
 haz clic en continuar si deseas registrar tu nueva cuenta de PartyGift con tus datos de facebook: Click on the following button to register as a new PartyGift user using your facebook account information
+Recuperación de contraseña: Password reset
+Solicitud de retiro aceptada: Withdraw request accepted
+Te registraste con éxito en PartyGift: PartyGift signup successful
+Te has registrado correctamente en PartyGift, puedes iniciar sesión con tu cuenta de facebook: You have successfully signed up into PartyGift, you can log in with your facebook account
+Hola, puedes resetear tu contraseña accediendo al siguiente enlace: Hi, you can reset your password through the following link
+Hola, tu solicitud de retiro en partygift.ws ha sido aceptada y en breve se depositará en tu cuanta PayPal registrada. Si ha habido un error, por favor comunícate con nosotros a support@partygift.ws: Hi, your withdraw request has been accepted. Soon it will be deposited into your PayPal account you gave us. If there has been an error, please contact us at support@partygift.ws
+Saldo anterior: Previous balance
+Saldo nuevo: New balance
+Cantidad transferida a tu cuenta PayPal: Balance transfered to your PayPal account
+Alguien te ha regalado en PartyGift: Someone has given you a PartyGift
+te acaba de regalar: has given you
+Regalaste en PartyGift!!: You have given a PartyGift
+Este correo es la confirmación de regalo realizada del Bucketgift %bucketgift% en PartyGift: This is the gift confirmation mail, you purchased from Bucketgift %bucketgift% at PartyGift
+El valor requerido en el retiro es incorrecto: Withdrawal request value is incorrect
+
+

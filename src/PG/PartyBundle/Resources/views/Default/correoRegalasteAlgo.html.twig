@@ -1,15 +1,27 @@
 {% extends '::correo.html.twig' %}
 
 {% block subject %}
-	{% trans %}Compra realizada en PartyGift{% endtrans %}
+	{% trans %}Regalaste en PartyGift!!{% endtrans %}
+{% endblock %}
+
+{% block titulo %}
+	{% trans %}Regalaste en PartyGift!!{% endtrans %}
 {% endblock %}
 
 {% block contenido %}
 	{% trans %}Hola{% endtrans %} {{details.FIRSTNAME}} {{details.LASTNAME}}<br><br>
 
-	{% trans %}Este correo es la confirmacion de compra realizada en la mesa de regalos (BucketGift) de{% endtrans %} {{usuario.nombre}} {{usuario.apellidos}} {% trans %}en PartyGift{% endtrans %}<br><br>
+	{% trans with {'%bucketgift%': bucketgift} %}Este correo es la confirmación de regalo realizada del Bucketgift %bucketgift% en PartyGift{% endtrans %}
 
-	{% trans %}Los datos de la compra son{% endtrans %}: <br><br>
+	{#
+	{% trans %}Este correo es la confirmacion de compra realizada en la mesa de regalos (BucketGift) de{% endtrans %} {{usuario.nombre}} {{usuario.apellidos}} {% trans %}en PartyGift{% endtrans %}<br><br>
+	#}
+
+	{#
+	{% trans %}Los datos de la compra son{% endtrans %}:
+	#}
+
+	<br><br>
 
 	{% for regalo in details.regalos %}
 		{{ regalo.cantidad }} - {{ regalo.nombre }} - {% trans %}precio unitario{% endtrans %}: ${{ regalo.precio }} {{details.PAYMENTREQUEST_0_CURRENCYCODE}}<br>
