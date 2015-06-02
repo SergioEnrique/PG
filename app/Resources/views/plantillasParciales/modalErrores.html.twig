@@ -1,4 +1,4 @@
-
+{% for flashMessagePrueba in app.session.flashbag.get('notice') %}
 	{% if loop.first %}
 		<div id="errores" class="modal" style="display:none; width:300px;">		    
 	        <div class="row"><br />

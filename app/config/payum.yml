@@ -29,7 +29,7 @@ payum:
     contexts:
         paypal_express_checkout_and_doctrine_orm:
             paypal_express_checkout_nvp:
-                username:  'docserchek-facilitator_api1.gmail.com'
-                password:  '32CEGRDF5J9EM2WS'
-                signature: 'AFcWxV21C7fd0v3bYYYRCpSSRl31A7GLJfxDJ2SFxVMqGhE7iJkP3sYA'
-                sandbox: true
+                username:  'finanzas_api1.partygift.ws'
+                password:  'HJK5PYGDRXN6B2UM'
+                signature: 'AFcWxV21C7fd0v3bYYYRCpSSRl31AgOcsHtQxxW3GO72PPoGtAsiz-T3'
+                sandbox: false
