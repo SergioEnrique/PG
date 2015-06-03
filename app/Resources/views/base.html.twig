@@ -13,6 +13,7 @@
     <script type="text/javascript" src="{{asset('js/jquery.scrollTo-1.4.3.1-min.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/jquery.modal.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/simpleCart.min.js')}}"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.2.1/jquery.form-validator.min.js"></script>
 </head>
 <body>
 
@@ -47,7 +48,7 @@
                         <input type="text" id="username" name="_username" required="required" placeholder="{% trans %}correo{% endtrans %}">
                         <input type="password" id="password" name="_password" required="required" placeholder="{% trans %}contraseña{% endtrans %}">
                         <input type="submit" id="_submit" name="_submit" value="{% trans %}Acceder{% endtrans %}">
-                        <a href="{{url('root')}}connect/facebook">
+                        <a href="{{url('root')}}{{app.request.locale}}/connect/facebook">
                             <img class="facebook" src="{{asset('img/facebook.png')}}" width="30" alt="">
                         </a>
                         <br>
@@ -152,13 +153,16 @@
                     <h3>{% trans %}Primero debes registrarte{% endtrans %}</h3>
                     <form action="{{ url('pg_party_registro') }}" method="get" name="myForm" id="formPreRegistro">
                         <input type="text" name="email" placeholder="{% trans %}correo{% endtrans %}" required><br/>
-                        <input type="checkbox" required="required">
+                        <input type="checkbox" required>
                             <span class="small-font">
                                 <a href="{{ asset('docs/TERMSCONDITIONSPARTYGIFT.pdf') }}" target="_blank">
                                     {% trans %}Acepto términos y condiciones{% endtrans %}
                                 </a>
                             </span><br/>
-                        <input class="registrate" type="submit" style="cursor: pointer;" value="{% trans %}Regístrate{% endtrans %}"><img class="face-registro" src="{{asset('img/facebook.png')}}" width="30" height="30" />
+                        <input class="registrate" type="submit" style="cursor: pointer;" value="{% trans %}Regístrate{% endtrans %}">
+                        <a href="{{url('root')}}{{app.request.locale}}/connect/facebook">
+                            <img class="face-registro" src="{{asset('img/facebook.png')}}" width="30" height="30" />
+                        </a>
                     </form>
                     <span class="small-font aviso-crea">
                         <a href="{{ asset('docs/PRIVACYPARTYGIFT.pdf') }}" target="_blank">
@@ -196,6 +200,7 @@
     {% endblock %}
 
 <script>
+
 $( "div.ingresar" ).click(function() {
   $( "div#login" ).toggleClass( "show" );
 });
@@ -224,9 +229,18 @@ $("#resultadosBusqueda").on("click", ".evento-tr", function(){
 });
 
 function enviaformulario() {
+
+    /*
+    $.validate({
+        onSuccess : function() {
+            
+        }
+    });
+*/
+
     if (!event.target.checkValidity()) {
         event.preventDefault(); // dismiss the default functionality
-        alert('{%trans%}Por favor, llene el formulario{%endtrans%}'); // error message
+        alert('{%trans%}Debes escribir un correo y aceptar los términos para continuar.{%endtrans%}'); // error message
     }
     else
     {
@@ -432,6 +446,8 @@ simpleCart.ready( function(){
         $("#carritoCurrency").html(item.get("currency"));
     });
 });
+
+
 
 </script>
 
