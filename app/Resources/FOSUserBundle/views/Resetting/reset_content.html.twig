@@ -15,6 +15,7 @@
     <script type="text/javascript" src="{{asset('js/jquery.scrollTo-1.4.3.1-min.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/jquery.modal.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/simpleCart.min.js')}}"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.2.1/jquery.form-validator.min.js"></script>
 </head>
 <body class="body-micuenta">
     <div class="all-wrapper body-micuenta">
@@ -61,16 +62,27 @@
 							</div>
 
 							<p style="font-size:14px; font-style:italic; margin-bottom: 10px;" class="text-center">
-							Utilice el siguiente formulario para configurar su nueva contraseña
+							Utilice el siguiente formulario para configurar su nueva contraseña<br>
+                            Use the form below to set your new password
 							</p>
 
 							<form action="{{ path('fos_user_resetting_reset', {'token': token}) }}" {{ form_enctype(form) }} method="POST" class="fos_user_resetting_reset">
-							    {{ form_widget(form.plainPassword.first, { 'attr': {'class': 'input_registro_novios', 'placeholder': 'Nueva contraseña', 'style': 'width:50%; background-color:white; color:black;' } }) }}
-							    
-							    {{ form_widget(form.plainPassword.second, { 'attr': {'class': 'input_registro_novios', 'placeholder': 'Repita la contraseña', 'style': 'width:50%; background-color:white; color:black; margin-top:12px;' } }) }}
-							    {{ form_widget(form) }}
+
+                                <label for="fos_user_resetting_form[plainPassword][first]">Nueva contraseña / New password: </label>
+                                <br>
+                                <input type="password" style="width:50%; background-color:white; color:black" class="input_registro_novios" placeholder="(6-20 characters)" id="fos_user_resetting_form_plainPassword_first" name="fos_user_resetting_form[plainPassword][first]" maxlength="20" data-validation="strength" data-validation-strength="2" data-validation="length" data-validation-length="50-200" data-validation-error-msg="Please provide a stronger password.">
+
+                                <br><br>
+                
+                                <label for="fos_user_resetting_form[plainPassword][second]">Confirmar contraseña / Confirm password</label>
+                                <br>
+                                <input type="password" style="width:50%; background-color:white; color:black" class="input_registro_novios" placeholder="" id="fos_user_resetting_form_plainPassword_second" name="fos_user_resetting_form[plainPassword][second]" maxlength="20" data-validation="confirmation" data-validation-confirm="fos_user_resetting_form[plainPassword][first]" data-validation-error-msg="Passwords do not match.">
+
+                                {{ form_widget(form._token) }}
+
+
 							    <div>
-							        <input type="submit" class="botoncitoRosa" style="width: 121px; height: 34px; margin-top: 16px;" value="{{ 'resetting.reset.submit'|trans }}" />
+							        <input type="submit" class="botoncitoRosa" style="width: 121px; height: 34px; margin-top: 16px;" value="Continue" />
 							    </div>
 							</form>
 
@@ -93,6 +105,12 @@
 {% block modales %}
     {% include ':plantillasParciales:modalErrores.html.twig' %}
 {% endblock %}
+
+<script type="text/javascript">
+    $.validate({
+        modules : 'security'
+    });
+</script>
 
 </body>
 </html>
