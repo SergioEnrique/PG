@@ -181,7 +181,7 @@ class AccountController extends Controller
 
                         // Enviar correo al usuario de que se solicitó un retiro
                         $message = \Swift_Message::newInstance()
-                        ->setSubject("Solicitud de Retiro en PartyGift")
+                        ->setSubject($this->get('translator')->trans('Solicitud de Retiro en PartyGift'))
                         ->setFrom("info@partygift.ws")
                         ->setTo($user->getEmail())
                         ->setContentType("text/html")
