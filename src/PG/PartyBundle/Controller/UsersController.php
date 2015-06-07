@@ -33,7 +33,7 @@ class UsersController extends Controller
 
             if($usuarioExistente)
             {
-                $this->get('session')->getFlashBag()->add('notice', 'Este correo ya está en uso');
+                $this->get('session')->getFlashBag()->add('notice', $this->get('translator')->trans('Este correo ya está en uso'));
                 return $this->render('PGPartyBundle:Users:registro.html.twig', array(
                     'formRegistroPary' => $formRegistroPary->createView(),
                     'emailpasado' => $request->query->get('email'),
@@ -62,7 +62,7 @@ class UsersController extends Controller
 
             // Envio de correo de registro exitoso
             $message = \Swift_Message::newInstance()
-            ->setSubject("Te registraste con éxito en PartyGift")
+            ->setSubject($this->get('translator')->trans('Te registraste con éxito en PartyGift'))
             ->setFrom("info@newlywishes.com")
             ->setTo($formRegistroPary["email"]->getData())
             ->setContentType("text/html")

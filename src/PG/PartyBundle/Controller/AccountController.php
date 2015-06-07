@@ -198,7 +198,7 @@ class AccountController extends Controller
                         $message = \Swift_Message::newInstance()
                         ->setSubject("Solicitud de Retiro en PartyGift.ws")
                         ->setFrom("info@partygift.ws")
-                        ->setTo("docser@gmail.com") // CAMBIAR!
+                        ->setTo("info@partygift.ws")
                         ->setContentType("text/html")
                         ->setBody(
                             $this->renderView(
