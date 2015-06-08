@@ -1,0 +1,41 @@
+<div style="border: 2px solid gray; width: 100%; margin: 28px auto; font-family: sans-serif; zoom: 80%">
+	<div style="border-bottom: 2px solid gray; padding: 20px;">
+		<div style="padding-bottom: 21px; margin-bottom: 36px; border-bottom: 2px solid #c09;">
+			<div style="width:49%; display: inline-block; line-height: 27px;">
+				<span style="color:rgb(79, 79, 79); font-size:19px;">¿Quién nos regaló?</span>
+				<br>
+				<span style="color: #c09;">{{today()}}</span>
+			</div>
+			<div style="width:49%; display: inline-block;">
+				<img src="{{app.request.getSchemeAndHttpHost() ~ asset('img/logo_small.jpg')}}" style="width:90%">
+			</div>
+		</div>
+		<div>
+			<span style="color: #c09; font-size:18px;">Listado de personas para agradecimiento</span>
+			<table style="width: 100%; margin-top: 27px; border-spacing: 0px;">
+	            <thead style="background-color: rgb(244, 244, 244);">
+	                <tr style="height: 33px;">
+	                    <th>Nombre</th>
+	                    <th>Artículo</th>
+	                    <th>Número de partes</th>
+	                    <th>Monto total regalado</th>
+	                </tr>
+	            </thead>
+	            <tbody>
+	                {% for regalo in user.cosasRegaladas %}
+	                    <tr style="height: 33px;">
+	                        <td>{{regalo.regaladorName}}</td>
+	                        <td>{{regalo.regalo.regalo}}</td>
+	                        <td style="text-align:center;">{{regalo.cantidad}}</td>
+	                        <td style="text-align:right;">${{regalo.amount|number_format(2, '.', ',')}}</td>
+	                    </tr>
+	                {% endfor %}
+	            </tbody>
+	        </table>
+			<div style="font-size: 16px; color:rgb(79, 79, 79); font-style: italic; text-align: right; width: 100%; margin-top: 48px; margin-bottom: 43px;">El equipo de Newly<span style="color: #c09;">W</span>ishes</div>
+		</div>
+	</div>
+	<div style="padding: 20px; color: gray; font-size: 12px; background-color:rgb(232, 232, 232);">
+		<p>NewlyWishes y su logotipo son marcas registradas.</p>
+	</div>
+</div>

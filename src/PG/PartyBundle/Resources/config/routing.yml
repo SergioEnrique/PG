@@ -79,3 +79,14 @@ pg_party_changepass:
 pg_party_pruebas:
     pattern:  /pruebas
     defaults: { _controller: PGPartyBundle:Default:pruebas }
+
+pg_party_pruebas_regalos_operaciones:
+    pattern:  /regalos-regalados
+
+pg_party_pruebas_regalos_operaciones_descargar:
+    pattern:  /regalos-regalados/descargar/{id}
+    defaults: { _controller: PGPartyBundle:Default:descargarRegalos }
+
+pg_party_pruebas_regalos_generar_pdf:
+    pattern:  /pdf/regalos/generar-pdf/{id}
+    defaults: { _controller: PGPartyBundle:Default:generarPdfRegalos }

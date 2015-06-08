@@ -136,8 +136,34 @@ class DefaultController extends Controller
         return new Response($return, $responseCode, array('Content-Type'=>'application/json'));
     }
 
-public function pruebasAction()
+    public function pruebasAction()
     {
         return $this->render('PGPartyBundle:Default:pruebas.html.twig');
+    }
+
+    public function generarPdfRegalosAction($id) // Id del usuario
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $usuariosRepository = $em->getRepository('NWUserBundle:User');
+        $userObject = $usuariosRepository->find($id);
+
+        return $this->render('PGPartyBundle:Default:regalosPdf.pdf.twig', array(
+            'user' => $userObject,
+        ));
+    }
+
+    public function descargarRegalosAction($id)// id del usuario
+    {
+        $pageUrl = $this->generateUrl('pg_party_pruebas_regalos_generar_pdf', array('id' => $id), true);
+
+        return new Response(
+            $this->get('knp_snappy.pdf')->getOutput($pageUrl),
+            200,
+            array(
+                'Content-Type'          => 'application/pdf',
+                'Content-Disposition'   => 'attachment; filename="mesaderegalos-'.$id.'.pdf"'
+            )
+        );
     }
 }

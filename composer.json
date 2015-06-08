@@ -25,7 +25,9 @@
         "payum/paypal-rest": "0.13",
         "payum/paypal-express-checkout-nvp": "0.13",
         "friendsofsymfony/user-bundle": "~2.0@dev",
-        "hwi/oauth-bundle": "0.4.*@dev"
+        "hwi/oauth-bundle": "0.4.*@dev",
+        "h4cc/wkhtmltopdf-amd64": "0.12.0",
+        "knplabs/knp-snappy-bundle": "dev-master"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"
