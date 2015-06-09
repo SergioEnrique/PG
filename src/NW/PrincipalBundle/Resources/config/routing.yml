@@ -213,17 +213,6 @@ nw_principal_reporteros_miinformacionbancaria:
     pattern:  /reporteros/miinformacionbancaria
     defaults: { _controller: NWPrincipalBundle:Reporteros:miinformacionbancaria }
 
-nw_principal_regalos_operaciones:
-    pattern:  /regalos-regalados
-
-nw_principal_regalos_operaciones_descargar:
-    pattern:  /regalos-regalados/descargar/{id}
-    defaults: { _controller: NWPrincipalBundle:Default:descargarRegalos }
-
-nw_principal_regalos_generar_pdf:
-    pattern:  /pdf/regalos/generar-pdf/{id}
-    defaults: { _controller: NWPrincipalBundle:Default:generarPdfRegalos }
-
 nw_principal_invitados_operaciones:
     pattern:  /invitados
 

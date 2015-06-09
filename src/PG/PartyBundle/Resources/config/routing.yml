@@ -88,5 +88,7 @@ pg_party_pruebas_regalos_operaciones_descargar:
     defaults: { _controller: PGPartyBundle:Default:descargarRegalos }
 
 pg_party_pruebas_regalos_generar_pdf:
-    pattern:  /pdf/regalos/generar-pdf/{id}
+    pattern:  /{_locale}/pdf/regalos/generar-pdf/{id}
     defaults: { _controller: PGPartyBundle:Default:generarPdfRegalos }
+    requirements:
+        _locale: en|es
