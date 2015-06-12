@@ -1,0 +1,5 @@
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^partygift.ws$ [NC,OR]
+RewriteCond %{HTTP_HOST} ^www.partygift.ws$
+RewriteCond %{REQUEST_URI} !web/
+RewriteRule (.*) /web/$1 [L]

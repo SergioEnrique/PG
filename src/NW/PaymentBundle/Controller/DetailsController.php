@@ -97,7 +97,7 @@ class DetailsController extends PayumController
 
             // Se manda correo al comprador con la confirmación de su compra
             $message = \Swift_Message::newInstance()
-            ->setSubject("Tu regalo ha sido entregado correctamente en PartyGift")
+            ->setSubject($this->container->get('translator')->trans("Regalaste en PartyGift!!"))
             ->setFrom("info@newlywishes.com")
             ->setTo($details["EMAIL"])
             ->setContentType("text/html")
@@ -114,7 +114,7 @@ class DetailsController extends PayumController
 
             // Se le manda un correo al usuario de que le han regalado algo de su BucketGift
             $message = \Swift_Message::newInstance()
-            ->setSubject("Un invitado te ha regalado algo en PartyGift")
+            ->setSubject($this->container->get('translator')->trans("Alguien te ha regalado en PartyGift"))
             ->setFrom("info@newlywishes.com")
             ->setTo($usuarioObject->getEmail())
             ->setContentType("text/html")

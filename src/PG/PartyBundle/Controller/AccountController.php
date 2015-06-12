@@ -112,6 +112,22 @@ class AccountController extends Controller
 
                     $em->flush();
 
+                    // Enviar correo al usuario de que se modificaron sus datos
+                    $message = \Swift_Message::newInstance()
+                    ->setSubject($this->get('translator')->trans('Modificación de información en PartyGift'))
+                    ->setFrom("info@partygift.ws")
+                    ->setTo($user->getEmail())
+                    ->setContentType("text/html")
+                    ->setBody(
+                        $this->renderView(
+                            'PGPartyBundle:Users:correoModificacionCuenta.html.twig', array(
+                                'vacio' => "vacio",
+                            )
+                        )
+                    );
+                    $this->get('mailer')->send($message);
+
+
                 }
     		}
             // Formulario de Nuevo BucketGift
@@ -198,7 +214,7 @@ class AccountController extends Controller
                         $message = \Swift_Message::newInstance()
                         ->setSubject("Solicitud de Retiro en PartyGift.ws")
                         ->setFrom("info@partygift.ws")
-                        ->setTo("info@partygift.ws")
+                        ->setTo("support@partygift.ws")
                         ->setContentType("text/html")
                         ->setBody(
                             $this->renderView(
@@ -212,7 +228,7 @@ class AccountController extends Controller
                         // Se manda un mensaje de travesura realizada
                         $this->get('session')->getFlashBag()->set(
                             'notice',
-                            'Se ha enviado la solicitud para retirar su dinero en la cuenta de paypal indicada. Por favor espere a que sea aprobada.'
+                            $this->get('translator')->trans('Se ha enviado la solicitud para retirar su dinero en la cuenta de paypal indicada. Por favor espere a que sea aprobada.')
                         );
                     }
                     else
@@ -220,7 +236,7 @@ class AccountController extends Controller
                         // Se manda un mensaje de travesura no realizada
                         $this->get('session')->getFlashBag()->set(
                             'notice',
-                            'Ya tienes una solicitud de retiro en espera, espera a que sea procesada antes de mandar otra.'
+                            $this->get('translator')->trans('Ya tienes una solicitud de retiro en espera, espera a que sea procesada antes de mandar otra.')
                         );   
                     }
                     

@@ -83,6 +83,9 @@ class PurchaseController extends Controller
             $paymentDetails['PAYMENTREQUEST_0_HANDLINGAMT'] = ($totalAmount * .06) + 4;
             $totalAmount += ($totalAmount * .06) + 4;
             $paymentDetails['PAYMENTREQUEST_0_AMT'] = $totalAmount;
+            $paymentDetails['LOCALECODE'] = 'en_US';
+            
+            
 
             $storage->update($paymentDetails);
 

@@ -125,7 +125,7 @@ class ConnectController extends BaseConnectController
 
             // Envio de correo de registro exitoso
             $message = \Swift_Message::newInstance()
-            ->setSubject($this->get('translator')->trans('Te registraste con éxito en PartyGift'))
+            ->setSubject($this->container->get('translator')->trans('Te registraste con éxito en PartyGift'))
             ->setFrom("info@newlywishes.com")
             ->setTo($userInformation->getEmail())
             ->setContentType("text/html")
